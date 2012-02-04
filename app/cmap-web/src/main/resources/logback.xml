@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	
+	<property name="LOG_ROOT" value="logs" />
+	<property name="LOG_FILE_NAME" value="cmap-web" />
+	<property name="ERROE_FILE_NAME" value="cmap-web-error" />
+	<property name="EXCEPTION_FILE_NAME" value="cmap-web-exception" />
+	
+	<property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} [%t] %p %c [File %F %L] - %msg%n" />
+	
+	<property name="FILE_SIZE" value="5MB" />
+	<property name="MIN_INDEX" value="1" />
+	<property name="MAX_INDEX" value="3" />
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="UTF-8" class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+			<evaluator name="exceptionEval">
+				<expression>throwable != null || level == ERROR</expression>
+			</evaluator>
+			<OnMismatch>ACCEPT</OnMismatch>
+			<OnMatch>DENY</OnMatch>
+		</filter>
+		<file>${LOG_ROOT}/${LOG_FILE_NAME}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>${LOG_FILE_NAME}%i.log</fileNamePattern>
+			<minIndex>${MIN_INDEX}</minIndex>
+			<maxIndex>${MAX_INDEX}</maxIndex>
+		</rollingPolicy>
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>${FILE_SIZE}</maxFileSize>
+		</triggeringPolicy>
+		<encoder charset="UTF-8" class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="FILE-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<OnMismatch>DENY</OnMismatch>
+			<OnMatch>ACCEPT</OnMatch>
+		</filter>
+		<file>${LOG_ROOT}/${ERROE_FILE_NAME}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>${ERROE_FILE_NAME}%i.log</fileNamePattern>
+			<minIndex>${MIN_INDEX}</minIndex>
+			<maxIndex>${MAX_INDEX}</maxIndex>
+		</rollingPolicy>
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>${FILE_SIZE}</maxFileSize>
+		</triggeringPolicy>
+		<encoder charset="UTF-8" class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="FILE-EXCEPTION" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+			<evaluator name="exceptionEval">
+				<expression>throwable != null</expression>
+			</evaluator>
+			<OnMismatch>DENY</OnMismatch>
+			<OnMatch>ACCEPT</OnMatch>
+		</filter>
+		<file>${LOG_ROOT}/${EXCEPTION_FILE_NAME}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>${EXCEPTION_FILE_NAME}%i.log</fileNamePattern>
+			<minIndex>${MIN_INDEX}</minIndex>
+			<maxIndex>${MAX_INDEX}</maxIndex>
+		</rollingPolicy>
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>${FILE_SIZE}</maxFileSize>
+		</triggeringPolicy>
+		<encoder charset="UTF-8" class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<!-- 
+		<appender-ref ref="LOGFILE" />
+		<appender-ref ref="FILE-ERROR" />
+		<appender-ref ref="FILE-EXCEPTION" />
+		 -->
+	</root>
+	
+</configuration>

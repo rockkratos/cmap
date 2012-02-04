@@ -1,0 +1,5 @@
+html,body,img{margin:0;padding:0}
+body{background:url(../imgs/admin/bg-login.gif)}
+.error-box{width:701px;margin:150px auto 0;text-align:right}
+.error-box a{font-size:12px;color:#AAA;text-decoration:none}
+.error-box a:hover{color:#FFF}

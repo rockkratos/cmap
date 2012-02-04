@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+			 xmlns:beans="http://www.springframework.org/schema/beans" 
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			 xsi:schemaLocation="http://www.springframework.org/schema/beans 
+			 					 http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+			 					 http://www.springframework.org/schema/security 
+			 					 http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+	
+	<http auto-config="false" use-expressions="true" entry-point-ref="cmapLoginUrlEntryPoint">
+		
+		<!-- 登录过滤器 -->		
+		<custom-filter before="FORM_LOGIN_FILTER" ref="loginFilter" />
+        <custom-filter position="FORM_LOGIN_FILTER" ref="adminLoginFilter" />
+        
+        <!-- 注销过滤器 -->
+        <custom-filter before="LOGOUT_FILTER" ref="logoutFilter" />
+        <custom-filter position="LOGOUT_FILTER" ref="adminLogoutFilter" />
+        
+        <custom-filter before="FILTER_SECURITY_INTERCEPTOR" ref="cmapFilter" />
+        
+	</http>
+	
+	<beans:bean id="cmapFilter" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+		<beans:property name="authenticationManager" ref="cmapAuthMgr" />
+		<beans:property name="accessDecisionManager" ref="cmapADM" />
+		<beans:property name="securityMetadataSource" ref="cmapSecurityMetadataSource" />
+	</beans:bean>
+	
+	<beans:bean id="cmapADM" class="org.springframework.security.access.vote.AffirmativeBased">
+		<beans:property name="decisionVoters">
+			<beans:list>
+				<beans:bean class="org.springframework.security.access.vote.RoleVoter" />
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	
+	<beans:bean id="cmapSecurityMetadataSource" init-method="loadResourceDefine" class="com.fc.cmapweb.ext.security.CmapInvocationSecurityMetadataSource">
+		<beans:property name="rolePrivilegeMgr" ref="rolePrivilegeMgr" />
+	</beans:bean>
+	
+	<!-- 多页面登录控制 -->
+	<beans:bean id="cmapLoginUrlEntryPoint" class="com.fc.cmapweb.ext.security.CmapLoginUrlEntryPoint" />
+	
+	<!-- 验证前台用户 -->
+	<beans:bean id="loginFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+		<beans:property name="authenticationManager" ref="cmapAuthMgr" />
+		<beans:property name="authenticationFailureHandler" ref="failureHandler" />
+		<beans:property name="authenticationSuccessHandler" ref="successHandler" />
+		<beans:property name="filterProcessesUrl" value="/usr/logincheck" />
+		<beans:property name="usernameParameter" value="login_usrname" />
+		<beans:property name="passwordParameter" value="login_usrpwd" />
+	</beans:bean>
+	
+	<beans:bean id="failureHandler" class="com.fc.cmapweb.ext.security.CmapAuthenticationFailureHandler">
+		<beans:property name="defaultFailureUrl" value="/usr/login" />
+	</beans:bean>
+	
+	<beans:bean id="successHandler" class="com.fc.cmapweb.ext.security.CmapAuthenticationSuccessHandler">
+		<beans:property name="defaultTargetUrl" value="/usr/main" />
+	</beans:bean>
+	<!-- End 验证前台用户 -->
+	
+	<!-- 验证后台用户 -->
+	<beans:bean id="adminLoginFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+		<beans:property name="authenticationManager" ref="cmapAuthMgr" />
+		<beans:property name="authenticationFailureHandler" ref="adminFailureHandler" />
+		<beans:property name="authenticationSuccessHandler" ref="adminSuccessHandler" />
+		<beans:property name="filterProcessesUrl" value="/admin/logincheck" />
+		<beans:property name="usernameParameter" value="login_usrname" />
+		<beans:property name="passwordParameter" value="login_usrpwd" />
+	</beans:bean>
+	
+	<beans:bean id="adminFailureHandler" class="com.fc.cmapweb.ext.security.CmapAuthenticationFailureHandler">
+		<beans:property name="defaultFailureUrl" value="/admin/login" />
+	</beans:bean>
+	
+	<beans:bean id="adminSuccessHandler" class="com.fc.cmapweb.ext.security.CmapAuthenticationSuccessHandler">
+		<beans:property name="defaultTargetUrl" value="/admin/main" />
+	</beans:bean>
+	<!-- End 验证后台用户 -->
+	
+	<!-- 前台用户注销 -->
+	<beans:bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+		<beans:constructor-arg value="/index" />
+		<beans:constructor-arg>
+			<beans:list>
+				<beans:bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
+			</beans:list>
+		</beans:constructor-arg>
+		<beans:property name="filterProcessesUrl" value="/usr/logout" />
+	</beans:bean>
+	<!-- End 前台用户注销 -->
+	
+	<!-- 后台用户注销 -->
+	<beans:bean id="adminLogoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+		<beans:constructor-arg value="/admin/login" />
+		<beans:constructor-arg>
+			<beans:list>
+				<beans:bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
+			</beans:list>
+		</beans:constructor-arg>
+		<beans:property name="filterProcessesUrl" value="/admin/logout" />
+	</beans:bean>
+	<!-- End 后台用户注销 -->
+	
+	<!-- 认证源 -->
+	<beans:bean id="cmapUserDetailService" class="com.fc.cmapweb.ext.security.CmapUserDetailService">
+		<beans:property name="usrMgr" ref="usrMgr" />
+		<beans:property name="usrRoleMgr" ref="usrRoleMgr" />
+	</beans:bean>
+	
+	<beans:bean id="pwdEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+		<beans:constructor-arg value="256" />
+	</beans:bean>
+	
+	<beans:bean id="authProvider" class="com.fc.cmapweb.ext.security.CmapAuthenticationProvider">
+		<beans:property name="hideUserNotFoundExceptions" value="false" />
+		<beans:property name="userDetailsService" ref="cmapUserDetailService" />
+		<beans:property name="passwordEncoder" ref="pwdEncoder" />
+	</beans:bean>
+	
+	<authentication-manager alias="cmapAuthMgr">
+		<authentication-provider ref="authProvider" />
+	</authentication-manager>
+	<!-- End 认证源 -->
+	
+	<!-- 错误消息国际化 -->
+	<beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<beans:property name="basename" value="classpath:org/springframework/security/messages_zh_CN" />
+	</beans:bean>
+	
+</beans:beans>

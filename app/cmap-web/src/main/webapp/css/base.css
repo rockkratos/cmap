@@ -1,0 +1,92 @@
+/* CSS Reset */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-weight:normal;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline}
+
+:focus{outline:0}
+
+body{line-height:1;color:black;background:white}
+ol,ul,li{list-style:none}
+a{text-decoration:none}
+a:hover{text-decoration:underline}
+
+table{border-collapse:collapse;border-spacing:0}
+caption,th,td{text-align:left}
+blockquote:before,blockquote:after,q:before,q:after{content:""}
+blockquote,q{quotes:"" ""}
+/* End CSS Reset */
+
+/* Remove float */
+.clearfix:after{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0}
+.clearfix{display:inline-block}
+html[xmlns] .clearfix{display:block}
+* html .clearfix{height:1%;overflow:visible}
+/* End Remove float */
+
+html,body,input,textarea,th,td{font-family:Tahoma,Arial,Geneva,sans-serif;font-size:12px}
+
+.lh15{line-height:15px}
+.lh20{line-height:20px}
+.fcfff{color:#FFF}
+.fc999{color:#999}
+.red-char{color:#FF0000;font-weight:bold}
+.fb{font-weight:bold}
+
+.tl{text-align:left}
+.tc{text-align:center}
+.tr{text-align:right}
+
+.fs14{font-size:14px}
+.fs16{font-size:16px}
+.fs18{font-size:18px}
+
+.fl{float:left}
+.fr{float:right}
+
+.cb{clear:both;height:0;overflow:hidden;font-size:0}
+.vm{vertical-align:middle}
+.vb{vertical-align:bottom}
+
+.w50{width:50px}
+.w60{width:60px}
+.w70{width:70px}
+.w80{width:80px}
+.w90{width:90px}
+.w100{width:100px}
+.w110{width:110px}
+.w118{width:118px}
+.w120{width:120px}
+.w130{width:130px}
+.w132{width:132px}
+.w150{width:150px}
+.w314{width:314px}
+.w326{width:326px}
+.w350{width:350px}
+.w500{width:500px}
+
+.h145{height:145px}
+
+.mt10{margin-top:10px}
+
+.mb10{margin-bottom:10px}
+.mb20{margin-bottom:20px}
+.mb45{margin-bottom:45px}
+.mb50{margin-bottom:50px}
+
+.ml10{margin-left:10px}
+.ml20{margin-left:20px}
+.ml124{margin-left:124px}
+
+.mr0{margin-right:0}
+.mr5{margin-right:5px}
+.mr10{margin-right:10px}
+.mr15{margin-right:15px}
+.mr19{margin-right:19px}
+.mr20{margin-right:20px}
+
+.p20{padding:20px}
+.pl20{padding-left:20px}
+.pr20{padding-right:20px}
+.pb0{padding-bottom:0px}
+.pud10{padding:10px 0}
+.pud30{padding:30px 0}
+
+.dn{display:none}

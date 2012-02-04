@@ -1,0 +1,80 @@
+body{background:#FFF url(../imgs/usr/bg-top.gif) repeat-x}
+
+div#header{width:960px;margin:0 auto}
+
+div#footer{padding:30px 0;text-align:center}
+div#footer .footer-link-wrapper{margin-bottom:10px;color:#818080}
+div#footer .footer-link-wrapper a{color:#818080}
+div#footer .footer-link-wrapper a:hover{color:#000}
+div#footer .footer-copyright{color:#C5C5C5}
+
+ul#nav{float:right;height:31px;margin-top:30px}
+ul#nav li{height:31px;line-height:31px;float:left;color:#FFF;background-color:#481200}
+ul#nav span.nav-bar{display:block;text-indent:-9999px;height:31px;line-height:31px;width:11px;background:url(../imgs/usr/bg-gif.gif) no-repeat 5px 10px}
+ul#nav a{color:#FFF;display:block;margin-top:5px;height:21px;line-height:21px;padding:0 5px}
+ul#nav a:hover{background-color:#9A3A00;text-decoration:none}
+ul#nav a.nav-link1{width:70px;font-size:14px}
+ul#nav a.nav-link2{width:43px}
+ul#nav a.nav-link2 span{display:block;padding:0 0 0 18px;height:21px;line-height:21px;cursor:pointer}
+ul#nav span.login{background:url(../imgs/usr/bg-gif.gif) -5px 3px no-repeat}
+ul#nav span.reg{background:url(../imgs/usr/bg-gif.gif) -47px 3px no-repeat}
+
+div#main-cnt{width:100%;background-color:#F7F7F7;margin-top:14px;border-bottom:1px solid #DBDBDB;padding:30px 0}
+div#cnt-wrapper{width:960px;margin:0 auto}
+
+a.common-btn{display:inline-block;height:35px;line-height:35px;text-align:center;border:1px solid #7F2800;background:url(../imgs/usr/bg-gif.gif) 0 -129px repeat-x;color:#FFF}
+a.default-btn{display:inline-block;height:35px;line-height:35px;text-align:center;border:1px solid #7F2800;background:url(../imgs/usr/bg-gif.gif) 0 -129px repeat-x;color:#FFF;width:134px;font-size:16px;font-weight:bold}
+a.non-bg-btn{display:inline-block;padding:0 20px;height:23px;line-height:23px;text-align:center;color:#CD3500;background-color:#FFEFC3;border:1px solid #D79660;margin:6px 0}
+a.small-btn{padding:0 20px;border:1px solid #802900;background:url(../imgs/usr/bg-gif.gif) -686px -756px no-repeat;height:25px;display:inline-block;;line-height:25px;font-size:14px;font-weight:bold;text-align:center;color:#FFF}
+a.common-link{color:#CD3500}
+
+span.ico-login{display:inline-block;width:20px;height:15px;background:url(../imgs/usr/bg-gif.gif) -90px 0 no-repeat;vertical-align:middle}
+span.ico-reg{display:inline-block;width:20px;height:15px;background:url(../imgs/usr/bg-gif.gif) -115px 0 no-repeat;vertical-align:middle}
+span.ico-warning{display:block;width:18;height:37px;line-height:37px;background:url(../imgs/usr/bg-gif.gif) 0 -165px no-repeat;padding-left:20px}
+span.ico-error{display:block;width:18;height:37px;line-height:37px;background:url(../imgs/usr/bg-gif.gif) 0 -202px no-repeat;padding-left:20px}
+span.ico-tick{display:block;width:18;height:37px;line-height:37px;background:url(../imgs/usr/bg-gif.gif) 0 -240px no-repeat;padding-left:20px}
+span.ico-msg{position:relative;left:1px;top:6px;float:left;display:block;width:12px;height:9px;background:url(../imgs/usr/bg-gif.gif) -152px 0 no-repeat;text-indent:-9999px}
+span.ico-reply{position:relative;right:1px;top:6px;float:right;display:block;width:12px;height:9px;background:url(../imgs/usr/bg-gif.gif) -140px 0 no-repeat;text-indent:-9999px}
+span.ico-promotion{text-indent:-9999px;width:46px;height:46px;background:url(../imgs/usr/bg-gif.gif) -501px -528px no-repeat;display:inline-block;position:absolute;margin-left:246px}
+span.ico-hot{text-indent:-9999px;width:46px;height:46px;background:url(../imgs/usr/bg-gif.gif) -547px -528px no-repeat;display:inline-block;position:absolute;margin-left:246px}
+span.ico-rebate{text-indent:-9999px;width:46px;height:46px;background:url(../imgs/usr/bg-gif.gif) -593px -528px no-repeat;display:inline-block;position:absolute;margin-left:246px}
+span.ico-rest{text-indent:-9999px;width:46px;height:46px;background:url(../imgs/usr/bg-gif.gif) -639px -528px no-repeat;display:inline-block;position:absolute;margin-left:246px}
+span.ico-question{display:inline-block;width:13px;height:13px;background:url(../imgs/usr/bg-gif.gif) 0 -289px no-repeat;margin-right:3px}
+span.ico-answer{display:inline-block;width:13px;height:13px;background:url(../imgs/usr/bg-gif.gif) 0 -339px no-repeat;margin-right:3px}
+/* BEGIN partition */
+div.paging-box{text-align:right}
+div.paging-box a{color:#CD3500;margin-right:5px}
+div.paging-box a.choose{color:#000;font-weight:bold}
+div.paging-box input{border:1px solid #DFDFDF;width:25px;text-align:center;background:url(../imgs/usr/bg-gif.gif) 0 -804px repeat-x}
+div.paging-box a.btn-go{display:inline-block;height:18px;line-height:18px;width:39px;border:1px solid #D79660;text-align:center;margin-bottom:0;background-color:#FFEFC3;font-weight:bold}
+/* END partition */
+
+.txt-wrapper{border:1px solid #D79660;background-color:#FFEFC3;padding:2px !important;height:31px !important;padding:1px 2px 1px 2px;height:33px;display:inline-block}
+.txt{border:1px solid #E8CC80;height:29px;line-height:29px;padding:0 5px;background:#FFF url(../imgs/usr/bg-gif.gif) 0 -804px repeat-x}
+
+/* BEGIN bubble msg frame */
+div.reply-cnt{width:550px;padding:11px 10px 18px;float:right;border:1px solid #E0C58E;background-color:#FAF5DF}
+div.msg-cnt{width:550px;border:1px solid #C7C8C9;background-color:#F2F6F9;padding:11px 10px 18px;float:left}
+
+div.usr-words{padding:0 5px 5px;border-bottom:1px dashed #D7DADC;color:#4D4D4D}
+div.said-from-box{padding:5px 5px 0}
+
+span.said-from{font-weight:bold;margin-right:5px;color:#4D4D4D}
+span.send-time{color:#999}
+/* END bubble msg frame */
+
+div.step-wrapper{background:#F7F7F7 url(../imgs/usr/bg-gif.gif) no-repeat;height:25px;line-height:25px;margin-bottom:10px}
+div.step-wrapper div{float:left;text-align:center}
+div.first-wrapper{background-position:0 -600px}
+div.second-wrapper{background-position:0 -626px}
+div.first-step{width:319px}
+div.second-step{width:347px}
+div.third-step{width:294px}
+div.step-wrapper div.over{font-weight:bold}
+div.step-wrapper div.current{font-weight:bold;color:#FFF}
+div.step-wrapper div.undone{color:#666}
+
+.fc-orange{color:#CD3500}
+img.closed{opacity:0.5;filter:alpha(opacity=(50));filter:progid:DXImageTransform.Microsoft.Alpha(opacity=(50));-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=(50))"}
+.bg-row{background-color:#F2F2F2}
+.bg-order{background-color:#FFF9DE}

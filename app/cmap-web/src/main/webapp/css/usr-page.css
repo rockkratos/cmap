@@ -1,0 +1,275 @@
+div.cmn-wrapper{border:1px solid #CCC;width:918px;background-color:#FFF}
+
+div#map-area{width:393px;height:393px;border:1px solid #C5C5C5;background:#C5C5C5 url(../imgs/usr/bg-jpg.jpg) no-repeat 0 0;float:left}
+div#search-area{float:right;width:503px;height:375px;padding:20px 0 0 0}
+
+ul#list-dinner-sort{width:503px}
+ul#list-dinner-sort li{float:left}
+ul#list-dinner-sort li.dinner-narrow{width:155px;height:47px;margin-bottom:20px}
+ul#list-dinner-sort li.dinner-wide{width:242px;height:47px;margin-bottom:30px}
+ul#list-dinner-sort a{font-size:16px;font-weight:bold;color:#000;display:block}
+ul#list-dinner-sort a:hover{text-decoration:none}
+li.dinner-narrow a{width:155px;height:47px;line-height:47px;background:url(../imgs/usr/bg-jpg.jpg) no-repeat}
+li.dinner-narrow a#dinner-zc{background-position:0 -394px;padding-left:88px;width:67px}
+li.dinner-narrow a#dinner-zc:hover{background-position:0 -441px}
+li.dinner-narrow a#dinner-zc.choose{background-position:0 -488px}
+li.dinner-narrow a#dinner-xc{background-position:0 -535px;padding-left:93px;width:62px}
+li.dinner-narrow a#dinner-xc:hover{background-position:0 -582px}
+li.dinner-narrow a#dinner-xc.choose{background-position:0 -629px}
+li.dinner-narrow a#dinner-kc{background-position:0 -676px;padding-left:99px;width:56px}
+li.dinner-narrow a#dinner-kc:hover{background-position:0 -723px}
+li.dinner-narrow a#dinner-kc.choose{background-position:0 -770px}
+li.dinner-narrow a#dinner-rl{background-position:0 -817px;padding-left:71px;width:84px}
+li.dinner-narrow a#dinner-rl:hover{background-position:0 -864px}
+li.dinner-narrow a#dinner-rl.choose{background-position:0 -911px}
+li.dinner-narrow a#dinner-hl{background-position:0 -958px;padding-left:75px;width:80px}
+li.dinner-narrow a#dinner-hl:hover{background-position:0 -1005px}
+li.dinner-narrow a#dinner-hl.choose{background-position:0 -1052px}
+li.dinner-narrow a#dinner-nyc{background-position:0 -1099px;padding-left:82px;width:73px}
+li.dinner-narrow a#dinner-nyc:hover{background-position:0 -1146px}
+li.dinner-narrow a#dinner-nyc.choose{background-position:0 -1193px}
+
+li.dinner-wide a{width:242px;height:47px;line-height:47px;background:url(../imgs/usr/bg-jpg.jpg) no-repeat}
+li.dinner-wide a#dinner-snack{background-position:-156px -394px;padding-left:128px;width:114px}
+li.dinner-wide a#dinner-snack:hover{background-position:-156px -441px}
+li.dinner-wide a#dinner-snack.choose{background-position:-156px -488px}
+li.dinner-wide a#dinner-random{background-position:-156px -535px;padding-left:124px;width:118px}
+li.dinner-wide a#dinner-random:hover{background-position:-156px -582px}
+li.dinner-wide a#dinner-random.choose{background-position:-156px -629px}
+
+div#search-bar{width:503px;height:37px;margin-bottom:30px}
+div#search-bar-txt{width:425px;height:33px !important;padding-top:2px !important;height:34px;padding-top:1px;padding-left:2px;border:1px solid #7F2800;border-right:0;background-color:#FFEFC3;float:left}
+div#search-bar-txt input{border:1px solid #D79661;font-size:14px}
+div#search-bar-txt .txt-city{font-weight:bold;padding:0 5px;width:100px;height:29px;line-height:29px;background:url(../imgs/usr/bg-gif.gif) -390px 0 no-repeat;margin-right:2px;cursor:pointer}
+div#search-bar-txt .txt-address{width:297px;height:29px;line-height:29px;padding:0 5px;background:#FFF url(../imgs/usr/bg-gif.gif) 0 -804px repeat-x}
+div#search-bar a{display:block;width:73px;height:35px;line-height:35px;border:1px solid #7F2800;float:right;font-size:0}
+
+div#slogan-wrapper{width:503px}
+div#slogan-wrapper span{display:block;width:390px;height:68px;background:url(../imgs/usr/bg-gif.gif) 0 -60px no-repeat;text-indent:-9999px;margin:0 auto}
+
+/* BEGIN login page */
+div.loginreg-cnt-wrapper{padding:30px 0 30px 30px}
+
+div#left-form{width:628px;float:left;border-right:1px solid #D9D9D9;padding-right:30px}
+div#left-form-title{width:628px;height:37px;border-bottom:1px solid #D9D9D9;margin-bottom:25px}
+div#left-form-title span{font-weight:bold}
+div#left-form-title a{font-weight:bold;color:#CD3500;vertical-align:bottom}
+
+ul#form-wrapper li{margin-bottom:25px;height:37px;line-height:37px}
+ul#form-wrapper li .txt-label{text-align:right;width:97px;padding-right:18px;font-size:14px;float:left;font-weight:bold}
+ul#form-wrapper li div{float:left}
+ul#form-wrapper a.common-btn{margin-left:115px;width:134px;font-size:16px;font-weight:bold}
+
+div#other-login-wrapper{margin-left:115px;margin-top:25px;width:450px}
+div#other-login-wrapper label{font-size:14px;font-weight:bold;line-height:15px}
+.other-login-list{margin-top:10px;border-top:1px dashed #D9D9D9;padding-top:10px}
+.other-login-list li{float:left;margin-bottom:9px}
+.other-login-list li a{display:block;width:32px;height:32px;line-height:32px;text-align:center;background:url(../imgs/usr/bg-gif.gif) no-repeat;margin-right:9px}
+.other-login-list li a:hover{text-decoration:none}
+.other-login-list li a.qq{background-position:-468px -60px}
+.other-login-list li a.weibo{background-position:-468px -93px}
+.other-login-list li a.zhifubo{background-position:-468px -126px}
+.other-login-list li a.sll{background-position:-468px -159px}
+.other-login-list li a.baidu{background-position:-468px -192px}
+.other-login-list li a.douban{background-position:-468px -225px}
+.other-login-list li a.tuan800{background-position:-468px -258px}
+
+div#right-wrapper{width:259px;text-align:center;float:right}
+div#right-wrapper label.title{font-size:14px;font-weight:bold;height:37px;line-height:37px;width:199px;background-color:#FFF9DE;display:inline-block;margin-bottom:26px}
+div#right-wrapper a.btn{font-size:14px;width:136px}
+/* END login page */
+
+/* BEGIN reg page */
+div#right-wrapper p{width:209px;text-align:left;margin:0 auto}
+div#right-login-wrapper{width:209px;margin:35px auto 0 auto;text-align:left}
+div#right-login-wrapper label{font-weight:bold}
+div#auth-code-wrapper{margin:0 47px 0 20px;width:149px}
+div#auth-code-wrapper a{margin-left:10px;font-size:12px;color:#CD3500;display:inline-block;width:39px}
+/* END reg page */
+
+/* BEGIN usr config order page */
+div.cfg-left-wrapper{width:200px;height:auto !important;height:429px;min-height:429px;padding:25px;background: url(../imgs/usr/bg-usr-cfg.gif) repeat-y;float:left;color:#FFF}
+div.cfg-left-wrapper label{display:block;margin-bottom:15px;font-weight:bold}
+div.cfg-left-wrapper label.usr-name{font-size:18px}
+div.cfg-left-wrapper li{line-height:18px}
+div.cfg-left-wrapper label.lbl-addr{font-size:14px}
+div.cfg-left-wrapper ul.addr-list li{margin-bottom:5px}
+div.cfg-left-wrapper li.default-addr{font-weight:bold}
+div.cfg-left-wrapper li.default-addr span{color:#E6AD52;font-weight:bold}
+div.cfg-left-wrapper a.link-addaddr{color:#E6AD52;font-size:14px;font-weight:bold;display:block;margin-bottom:15px}
+
+div#cfg-right-box{width:700px;float:right}
+div#cfg-right-box div.hor-tab-nav{height:34px;width:700px;border-bottom:1px solid #CCC}
+div#cfg-right-box div.hor-tab-nav ul{padding-left:5px;position:absolute}
+div#cfg-right-box div.hor-tab-nav li{float:left;margin-right:5px}
+div#cfg-right-box div.hor-tab-nav a{background-color:#FFF9DE;display:block;width:110px;height:32px;line-height:32px;font-size:14px;font-weight:bold;color:#666;text-align:center;border:1px solid #CCC;margin-top:1px}
+div#cfg-right-box div.hor-tab-nav a:hover{border-bottom:0;background:url(../imgs/usr/bg-gif.gif) -264px -165px repeat-x;color:#FFF;height:34px;line-height:34px;;margin-top:0;text-decoration:none}
+div#cfg-right-box div.hor-tab-nav a.choose{border-bottom:0;background:url(../imgs/usr/bg-gif.gif) -264px -165px repeat-x;color:#FFF;height:34px;line-height:34px;margin-top:0}
+div.cfg-tab-cnt{border:1px solid #CCC;border-top:0;width:674px;background:#FFF url(../imgs/usr/bg-tab-cnt.gif) repeat-x;padding:17px 12px 12px;min-height:500px;height:auto !important;height:500px}
+div.cfg-tab-cnt table.order-list{width:100%;margin-bottom:12px}
+div.cfg-tab-cnt table.order-list th{height:30px;line-height:30px;padding-left:8px;font-weight:bold;background-color:#EEE}
+div.cfg-tab-cnt table.order-list td{border-bottom:1px dashed #CCC;padding-left:8px;height:50px;vertical-align:middle}
+div.cfg-tab-cnt table.order-list td span{font-weight:bold;color:#CD3500;font-size:14px}
+div.cfg-tab-cnt table.order-list a{font-weight:bold}
+/* END usr config order page */
+
+/* BEGIN usr config msg page */
+div.cfg-tab-cnt ul.usr-msg-list{padding-top:10px}
+div.cfg-tab-cnt li.bar{clear:both;font-size:0}
+div.cfg-tab-cnt li.msg-bar{height:10px;line-height:10px}
+div.cfg-tab-cnt li.topic-bar{height:30px;line-height:30px}
+div.msg-box{width:650px;margin:0 auto;margin-top:50px}
+div.msg-box label{font-size:14px;font-weight:bold;line-height:15px;margin-bottom:10px;display:block}
+div.msg-box textarea{width:639px;height:100px;border:1px solid #B5B5B5;background:url(../imgs/usr/bg-gif.gif) 0 -804px repeat-x;overflow:auto;resize:none;padding:5px;margin-bottom:10px}
+div.msg-box input{margin:0;border:1px solid #B5B5B5;height:20px;line-height:20px;padding:5px;background:url(../imgs/usr/bg-gif.gif) 0 -804px repeat-x;margin-right:10px;width:124px}
+div.msg-box a.common-btn{margin:20px 0;width:134px;font-size:16px;font-weight:bold}
+/* END usr config msg page */
+
+/* BEGIN usr config setting page */
+div.cfg-tab-cnt label.base-info{font-weight:bold;font-size:14px;display:block;padding:0 0 10px 10px;border-bottom:1px solid #CCC}
+div.cfg-tab-cnt table.tab-addr-list{width:100%}
+table.tab-addr-list td{line-height:25px;padding-left:10px}
+table.tab-addr-list a{color:#CD3500}
+table.tab-addr-list a.fc-white{color:#FFF}
+div.cfg-tab-cnt div.cfg-sort-wrapper{text-align:right}
+div.cfg-sort-wrapper a{color:#CD3500;display:inline-block;padding:5px}
+div.cfg-sort-wrapper a:hover,div.cfg-sort-wrapper a.choose{background-color:#7F2405;color:#FFF;text-decoration:none}
+div.cfg-tab-cnt label.add-new-addr{border-bottom:1px dashed #CCC;margin-bottom:20px}
+div.cfg-tab-cnt div.add-new-addr-frame{border-top:1px solid #CCC;margin-top:10px;padding-top:10px;margin-bottom:30px;text-align:right}
+ul.setting-info-list li,ul.update-info-list li{height:37px;line-height:37px}
+ul.setting-info-list li{margin-bottom:20px}
+
+div.cfg-tab-cnt label.lbl-non-star{font-size:14px;font-weight:bold;width:100px;text-align:right;padding-right:9px;float:left;height:37px;line-height:37px;margin-right:15px}
+label.lbl-star{font-size:14px;font-weight:bold;width:109px;text-align:right;float:left;height:37px;line-height:37px;margin-right:15px}
+label.lbl-star span{font-weight:bold;color:#F00}
+/* END usr config setting page */
+
+/* BEGIN Q&A page */
+div.qa-wrapper{background:#F7F7F7;color:#000;padding:0;width:240px}
+div.qa-wrapper label{padding:20px 0 10px 0;border-bottom:1px solid #CCC;margin-bottom:10px;font-size:14px}
+
+div.qa-wrapper p.question-box{margin-bottom:5px}
+div.qa-wrapper p.answer-box{margin-bottom:10px;border-bottom:1px dashed #CCC;padding-bottom:10px}
+
+div.qa-list-wrapper{background:#FFF;border:1px solid #CCC;padding:12px}
+div.qa-list-wrapper label{padding:12px 0 0 12px;font-size:20px;font-weight:bold;margin-bottom:15px;display:block}
+div.qa-list-wrapper label span{color:#D6D6D6}
+/* END Q&A page */
+
+/* BEGIN restaurantList page */
+h1.current-addr{padding-left:5px;margin-bottom:5px}
+h1.current-addr span{vertical-align:middle}
+h1.current-addr span.ico-pin{width:8px;height:24px;background:url(../imgs/usr/bg-gif.gif) -165px 0 no-repeat;display:inline-block;margin-right:3px}
+h1.current-addr span.addr-desp{font-size:20px;font-weight:bold;margin-right:3px}
+h1.current-addr a{border:1px solid #D79660;display:inline-block;height:20px;line-height:20px;padding:0 8px;background-color:#FFEFC3;color:#CD3500;font-weight:bold;vertical-align:middle}
+
+div#cnt-wrapper div.rest-list-wrapper{border:1px solid #CCC;background:#FFF;padding:20px}
+div.rest-list-wrapper h2{font-weight:bold;margin-bottom:12px}
+div.rest-list-wrapper ul.rest-filter-list{height:24px;line-height:24px;margin-bottom:12px}
+div.rest-list-wrapper ul.rest-filter-list li{float:left;height:24px;line-height:24px;margin-right:5px}
+ul.rest-filter-list a{display:inline-block;color:#000;border:1px solid #C5C5C5;padding:0 22px;height:22px;line-height:22px}
+ul.rest-filter-list a:hover{border:2px solid #CD3500;height:20px;line-height:20px;padding:0 21px;text-decoration:none}
+ul.rest-filter-list a.filter-choose{border:2px solid #CD3500;height:20px;line-height:20px;padding:0 21px;background:#FFF url(../imgs/usr/red-tick.gif) right bottom no-repeat}
+div.rest-list-wrapper div.restaurant-count{width:253px;height:40px;line-height:40px;padding-left:20px;background:url(../imgs/usr/bg-gif.gif) -501px 0 no-repeat;margin-left:-21px;margin-bottom:20px}
+div.rest-list-wrapper ul.rest-list li{float:left;margin-bottom:21px;width:292px;height:162px;margin-right:21px}
+div.rest-list-wrapper ul.rest-list li.last{margin-right:0}
+div.rest-list-wrapper ul.rest-list a{width:262px;height:122px;cursor:pointer;background:#FFF url(../imgs/usr/bg-gif.gif) -501px -41px no-repeat;margin-bottom:21px;display:block;color:#000;padding:20px 15px}
+div.rest-list-wrapper ul.rest-list a:hover{background-position:-501px -203px;text-decoration:none}
+div.rest-list-wrapper ul.rest-list div.rest-pic-wrapper{width:118px;height:118px;border:1px solid #DDD;background-color:#FFF;float:left;padding:0;margin:0}
+div.rest-list-wrapper ul.rest-list ul.rest-detail-list{float:right;padding-top:3px}
+div.rest-list-wrapper ul.rest-list ul.rest-detail-list li{width:125px;height:13px;margin:0 0 12px 0;clear:both}
+div.rest-list-wrapper ul.rest-list ul.rest-detail-list h3{font-size:14px;font-weight:bold;line-height:15px}
+div.rest-list-wrapper ul.rest-list a.closed{color:#999}
+div.rest-list-wrapper ul.rest-list a.closed:hover{background-position:-501px -365px}
+/* END restaurantList page */
+
+/* BEGIN payOff page */
+div.rest-list-wrapper h1.order-title{border-bottom:1px solid #F0F0F0;padding-bottom:10px;margin-bottom:10px}
+h1.order-title span.my-order{font-size:20px;font-weight:bold}
+h1.order-title span.bar{font-size:20px;color:#CCC}
+h1.order-title span.rest-name{font-size:14px;font-weight:bold}
+div.rest-list-wrapper table.cate-list{width:100%;margin-bottom:20px}
+
+table.cate-list .txt-left{text-align:left}
+table.cate-list tr{line-height:30px;height:30px}
+table.cate-list th{font-size:14px;font-weight:bold;border-bottom:1px solid #CCC;padding-left:5px;text-align:center}
+table.cate-list th a.clean-all{color:#CD3500;padding:0;margin:0;line-height:15px}
+table.cate-list td{padding-left:5px;text-align:center;border-bottom:1px dashed #CCC}
+table.cate-list a.del-cate{text-indent:-9999px;background:#FFF url(../imgs/usr/bg-gif.gif) -190px 0 no-repeat;display:block;width:15px;height:16px;line-height:16px;margin:0 auto}
+
+div.rest-list-wrapper div.cate-sum-wrapper{height:30px;background-color:#F0F0F0;padding-right:10px;text-align:right;font-size:14px;line-height:30px;margin-bottom:50px}
+div.rest-list-wrapper h1.cfm-addr-title{border-bottom:1px solid #F0F0F0;padding-bottom:10px;margin-bottom:10px;font-size:20px;font-weight:bold}
+div.rest-list-wrapper h1.memo-title{border-bottom:1px solid #F0F0F0;padding-bottom:10px;margin-bottom:10px;font-size:20px;font-weight:bold}
+
+div.rest-list-wrapper table.tab-addr-list{width:100%}
+table.tab-addr-list tr,table.tab-addr-list td,table.tab-addr-list th{line-height:30px;height:30px;vertical-align:middle}
+table.tab-addr-list span.choose{text-indent:-9999px;display:block;background:url(../imgs/usr/bg-gif.gif) 0 -251px no-repeat;height:14px;width:16px;margin-left:20px;line-height:14px}
+
+div.rest-list-wrapper div.add-addr-bar{border-top:1px solid #CCC;margin-top:10px;padding-top:10px;margin-bottom:30px;text-align:right}
+
+div.rest-list-wrapper ul.memo li{float:left;margin-right:10px;margin-bottom:10px}
+div.rest-list-wrapper ul.memo li a{display:inline-block;padding:0 10px;line-height:20px;height:20px;text-align:center;background-color:#FFEFC3;color:#CD3500}
+div.rest-list-wrapper ul.memo li a:hover{background-color:#CD3500;color:#FFF;text-decoration:none}
+div.rest-list-wrapper textarea.memo-txt{width:906px;height:100px;border:1px solid #B5B5B5;background:url(../imgs/usr/bg-gif.gif) 0 -804px repeat-x;overflow:auto;resize:none;padding:5px;font-size:12px;margin-bottom:20px}
+div.rest-list-wrapper div.opt-wrapper{width:300px;margin:0 auto}
+div.rest-list-wrapper div.opt-wrapper li{float:left;margin-bottom:10px}
+
+a.sub-count{display:inline-block;background:#FFF url(../imgs/usr/bg-gif.gif) -174px 0 no-repeat;width:15px;height:15px;line-height:15px}
+a.sub-count:hover{background-position:-174px -30px}
+a.add-count{display:inline-block;background:#FFF url(../imgs/usr/bg-gif.gif) -174px -15px no-repeat; width:15px;height:15px;line-height:15px}
+a.add-count:hover{background-position:-174px -45px}
+span.cate-num{width:30px;display:inline-block;text-align:center}
+/* END payOff page */
+
+/* BEGIN detail page */
+div#wood-wrapper{width:692px;background:url(../imgs/usr/bg-wood.jpg) repeat-y;border:1px solid #997032;padding:0 3px 37px;float:left}
+div#wood-wrapper span.rest-logo{padding:3px;display:inline-block;width:69px;height:139px;background: url(../imgs/usr/bg-gif.gif) -389px -200px no-repeat;position:absolute;margin-top:-4px;margin-left:6px}
+div#wood-wrapper span.rest-logo li.success-rate{font-size:20px;font-weight:bold;color:#CD3500;margin-bottom:10px;text-align:center}
+div#wood-wrapper h1.rest-name-title{font-size:22px;font-weight:bold;height:37px;line-height:37px;margin-left:95px}
+div#wood-wrapper div.menu-wrapper{border:1px solid #B39752;background-color:#FFF;padding:24px 9px}
+div#wood-wrapper div.menu-wrapper ul.shop-info{padding-left:88px;width:388px;float:left}
+div#wood-wrapper div.menu-wrapper ul.shop-info li{margin-bottom:15px}
+div#wood-wrapper div.menu-wrapper ul.shop-info span.deliver-fee{font-weight:bold;color:#CD3500}
+div#wood-wrapper div.contact-wrapper{width:195px;border-left:1px dotted #CCC;float:right;height:93px;background:#FFF url(../imgs/usr/bg-gif.gif) -794px 0 no-repeat}
+div.contact-wrapper ul.contact-list{margin-left:42px}
+div.contact-wrapper ul.contact-list li{height:20px;line-height:20px}
+div.contact-wrapper ul.contact-list label{font-size:14px;color:#CD3500;font-weight:bold}
+div#wood-wrapper div.promotion-info-wrapper{background:url(../imgs/usr/bg-gif.gif) 0 -678px no-repeat;width:655px;height:85px;padding:20px 15px;position:relative;margin:-145px 0 20px -13px}
+div#wood-wrapper div.promotion-info-wrapper h1{font-size:16px;font-weight:bold;padding-bottom:10px;border-bottom:1px dashed #CCC;margin-bottom:10px}
+div#wood-wrapper div#promotion-slider li{width:655px}
+div#wood-wrapper div#promotion-slider p{height:20px;line-height:20px}
+div#wood-wrapper #prevBtn,div#wood-wrapper #nextBtn{display:block;width:16px;height:16px;position:absolute;margin-left:620px;margin-top:5px}
+div#wood-wrapper #nextBtn{margin-left:640px}
+div#wood-wrapper #prevBtn a,div#wood-wrapper #nextBtn a{display:block;width:16px;height:16px;background:url(../imgs/usr/bg-gif.gif) -206px 0 no-repeat;text-indent:-9999px}
+div#wood-wrapper #nextBtn a{background:url(../imgs/usr/bg-gif.gif) -215px 0 no-repeat}
+
+div#wood-wrapper ul.food-sort{width:105px;border-right:1px solid #D4D4D4;padding:8px 0 3px;float:left;height:577px}
+div#wood-wrapper ul.food-sort li{margin-bottom:5px}
+div#wood-wrapper ul.food-sort li a{display:block;width:103px;height:35px;border:1px solid #E5CBA3;border-right:1px solid #D4D4D4;background-color:#FFF9DE;text-align:center;line-height:35px;color:#CD3500;position:relative;right:-1px}
+div#wood-wrapper ul.food-sort li a:hover{width:105px;height:37px;line-height:37px;border:0;background:url(../imgs/usr/bg-gif.gif) -686px -718px no-repeat;color:#FFF;text-decoration:none}
+div#wood-wrapper ul.food-sort li a.choose{width:105px;height:37px;line-height:37px;border:0;color:#FFF;background:url(../imgs/usr/bg-gif.gif) -686px -681px no-repeat}
+div#wood-wrapper div.food-list-wrapper{float:right;height:566px;border:1px solid #D4D4D4;border-left:0;width:545px;padding:10px}
+div#wood-wrapper div.food-list-wrapper h1.food-sort-title{font-size:14px;font-weight:bold;border-bottom:1px solid #F4F4F4;padding-bottom:5px;margin-bottom:5px}
+div#wood-wrapper table.food-list{width:100%;margin-bottom:10px}
+div#wood-wrapper table.food-list tr{height:50px;line-height:50px}
+div#wood-wrapper table.food-list td{border-bottom:1px dashed #CCC;padding:0 5px}
+div#wood-wrapper table.food-list a{display:inline-block;padding:0 10px;height:25px;line-height:25px;border:1px solid #D79660;background-color:#FFEFC3;text-align:center;color:#CD3500;font-weight:bold}
+
+div.my-order-wrapper{width:259px;float:right;border:1px solid #997032;background-color:#FFF; margin-top:10px;margin-left:-1px;padding:10px 0}
+div.my-order-wrapper p.order-title-box{height:15px;padding-bottom:4px;border-bottom:1px solid #CCC;width:229px;margin:0 auto}
+div.my-order-wrapper p.order-title-box span.order-title{float:left;font-size:14px;font-weight:bold;line-height:15px}
+div.my-order-wrapper p.order-title-box span.order-count{float:right;margin-top:2px}
+div.my-order-wrapper p.price-box{margin:0 15px;height:80px;line-height:80px;border-bottom:1px dashed #CCC;text-align:center;margin-bottom:5px}
+div.my-order-wrapper p.price-box span{font-size:20px;font-weight:bold}
+div.my-order-wrapper ul.my-order-list li{height:54px;padding:0 15px}
+div.my-order-wrapper ul.my-order-list span.del-food{display:inline-block;width:13px;height:12px;background:url(../imgs/usr/bg-gif.gif) -190px -17px no-repeat;position:absolute;cursor:pointer;margin-top:9px;margin-left:215px;text-indent:-9999px}
+div.my-order-wrapper ul.my-order-list h2{line-height:32px}
+div.my-order-wrapper ul.my-order-list span.unit-price{width:70px;display:inline-block;font-weight:bold}
+div.my-order-wrapper ul.my-order-list span.subtotal-price{color:#CD3500;font-weight:bold;width:70px;display:inline-block;text-align:right}
+div.my-order-wrapper a.small-btn{margin:10px 86px}
+div.my-order-wrapper div.fold-box{padding-top:10px;margin:0 15px;text-align:right;border-top:1px dashed #CCC}
+div.my-order-wrapper div.fold-box a{color:#CD3500}
+div.my-order-wrapper div.fold-box a:hover{text-decoration:none}
+div.my-order-wrapper div.fold-box span.arrow-up{display:inline-block;width:16px;height:16px;line-height:16px;background:url(../imgs/usr/bg-gif.gif) -232px 0 no-repeat;vertical-align:middle;text-indent:-9999px}
+div.my-order-wrapper div.fold-box span.arrow-down{display:inline-block;width:16px;height:16px;line-height:16px;background:url(../imgs/usr/bg-gif.gif) -232px -9px no-repeat;text-indent:-9999px;vertical-align:middle}
+/* END detail page */

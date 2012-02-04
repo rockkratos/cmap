@@ -1,0 +1,17 @@
+body{color:#fff;background:#222 url(../imgs/admin/bg-login.gif)}
+
+#login-wrapper{background:url(../imgs/admin/bg-login-top.png) top left repeat-x;height:206px}
+#login-wrapper #login-top{width:100%;text-align:center;padding:135px 0 20px 0}
+				
+#login-content{text-align:left;width:300px;margin:0 auto}
+#login-content label{color:#fff;font-size:14px;line-height:25px;float:left;width:50px;padding:0}
+#login-content input{width:230px;float:right;margin:0 0 20px 0;border:0;background:#fff;padding:5px;font-size:12px;color:#333}
+
+#errmsg-container{background-color:#141414;margin:20px auto;font-size:12px}
+#errmsg-container div{padding:10px 0 10px 15px}
+#errmsg-container span{margin-left:5px;color:#EBFFD4}
+
+#login-container{width:300px;margin:0 auto}
+
+a.login-btn{border:1px solid #459300;display:inline-block;width:80px;height:23px;line-height:23px;text-align:center;text-decoration:none;color:#FFF;float:right;background:url(../imgs/admin/bg-button-green.gif) repeat-x;cursor:pointer}
+a.login-btn:hover{text-decoration:underline}
