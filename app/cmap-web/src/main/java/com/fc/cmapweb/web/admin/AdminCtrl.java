@@ -17,4 +17,9 @@ public class AdminCtrl {
 		return "admin/adminLogin";
 	}
 	
+	@RequestMapping(value = "main", method = RequestMethod.GET)
+	public String showIdx() {
+		return "admin/adminIdx";
+	}
+	
 }

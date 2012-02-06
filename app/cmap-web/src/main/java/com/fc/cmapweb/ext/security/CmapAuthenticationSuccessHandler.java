@@ -15,11 +15,11 @@ public class CmapAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest req, HttpServletResponse resp, Authentication auth) throws IOException, ServletException {
 		
-		System.out.println("------- " + getDefaultTargetUrl());
+//		System.out.println("------- " + getDefaultTargetUrl());
 		
 		if ("true".equals(req.getHeader("X-Ajax-call"))) {
 			
-			System.out.println("*****");
+//			System.out.println("*****");
 			PrintWriter out = resp.getWriter();
 			out.write("中文");
 			out.flush();

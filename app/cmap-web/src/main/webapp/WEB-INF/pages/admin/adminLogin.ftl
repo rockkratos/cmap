@@ -6,7 +6,6 @@
 <link type="text/css" rel="stylesheet" rev="stylesheet" media="screen" href="${rc.contextPath}/css/base.css" />
 <link type="text/css" rel="stylesheet" rev="stylesheet" media="screen" href="${rc.contextPath}/css/admin-login.css" />
 <script type="text/javascript" language="javascript" src="${rc.contextPath}/js/jquery.js"></script>
-<script type="text/javascript" language="javascript" src="${rc.contextPath}/js/unitpngfix.js"></script>
 <script type="text/javascript" language="javascript" src="${rc.contextPath}/js/cmap-admin.js"></script>
 </head>
 
@@ -74,6 +73,6 @@ $(function(){
 });
 </script>
 
+<#include "/common/pngFix.ftl" />
 </body>
-
 </html>

@@ -1,6 +1,9 @@
 html,body{height:100%}
 body{background:url(../imgs/admin/bg-body.gif)}
 
+div.loading-wrapper{background:url(../imgs/admin/icons/loading.gif) left center no-repeat;padding:10px 0 10px 20px}
+div.loading-wrapper span{padding-left:5px}
+
 .tab-bg{background-color:#F3F3F3}
 .tab-bg-white{background-color:#FFF}
 .tab-btm{border-top:1px solid #DDD}
@@ -87,8 +90,8 @@ div.hint-box span{margin-left:5px}
 div.hint-warning{border:1px solid #E6DB55;background-color:#FFFBCC}
 div.hint-warning span{color:#666452}
 
-div.hint-message{border:1px solid #A2B4EE;background-color:#DBE3FF}
-div.hint-message span{color:#585B66}
+div.hint-msg{border:1px solid #A2B4EE;background-color:#DBE3FF}
+div.hint-msg span{color:#585B66}
 
 div.hint-success{border:1px solid #9ADF8F;background-color:#D5FFCE}
 div.hint-success span{color:#556652}
