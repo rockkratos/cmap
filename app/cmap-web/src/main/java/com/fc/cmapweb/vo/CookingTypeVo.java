@@ -21,7 +21,7 @@ public class CookingTypeVo implements Serializable {
 	private String cookingTypeName;
 	
 	@Column(name = "ENABLED")
-	private boolean enabled;
+	private boolean cookingTypeEnabled;
 
 	public int getCookingTypeId() {
 		return cookingTypeId;
@@ -39,12 +39,12 @@ public class CookingTypeVo implements Serializable {
 		this.cookingTypeName = cookingTypeName;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public boolean isCookingTypeEnabled() {
+		return cookingTypeEnabled;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setCookingTypeEnabled(boolean cookingTypeEnabled) {
+		this.cookingTypeEnabled = cookingTypeEnabled;
 	}
 
 }

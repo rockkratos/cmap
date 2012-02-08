@@ -39,7 +39,7 @@ public class PrmtInfoVo implements Serializable {
 	private Date prmtEndTime;
 	
 	@Column(name = "ENABLED")
-	private boolean enabled;
+	private boolean prmtEnabled;
 
 	public String getPrmtInfoId() {
 		return prmtInfoId;
@@ -81,12 +81,12 @@ public class PrmtInfoVo implements Serializable {
 		this.prmtEndTime = prmtEndTime;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public boolean isPrmtEnabled() {
+		return prmtEnabled;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setPrmtEnabled(boolean prmtEnabled) {
+		this.prmtEnabled = prmtEnabled;
 	}
 	
 }

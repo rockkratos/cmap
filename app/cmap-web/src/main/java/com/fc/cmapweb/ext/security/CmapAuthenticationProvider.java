@@ -24,13 +24,13 @@ public class CmapAuthenticationProvider extends AbstractUserDetailsAuthenticatio
 		Object credentials = authentication.getCredentials();
 		
 		if (null == credentials || credentials.toString().length() == 0) {
-            throw new BadCredentialsException(PropUtil.getErrMsg("pwd.empty", null));
+            throw new BadCredentialsException(PropUtil.getHintMsg("pwd.empty", null));
         }
 		
 		String presentedPassword = authentication.getCredentials().toString();
 		
 		if (!passwordEncoder.isPasswordValid(userDetails.getPassword(), presentedPassword, null)) {
-            throw new BadCredentialsException(PropUtil.getErrMsg("pwd.error", null));
+            throw new BadCredentialsException(PropUtil.getHintMsg("pwd.error", null));
         }
 
 	}
@@ -47,7 +47,7 @@ public class CmapAuthenticationProvider extends AbstractUserDetailsAuthenticatio
         }
 		
         if (null == loadedUser) {
-        	throw new UsernameNotFoundException(PropUtil.getErrMsg("usr.notFound", new Object[]{username}));
+        	throw new UsernameNotFoundException(PropUtil.getHintMsg("usr.notFound", new Object[]{username}));
         }
         
         return loadedUser;

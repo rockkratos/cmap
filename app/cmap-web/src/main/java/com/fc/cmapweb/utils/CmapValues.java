@@ -2,6 +2,11 @@ package com.fc.cmapweb.utils;
 
 public class CmapValues {
 	
+	public static final String HINT_SUCCESS = "success";
+	public static final String HINT_MSG = "msg";
+	public static final String HINT_WARNING = "warning";
+	public static final String HINT_ERROR = "error";
+	
 	public static final int USR_TYPE_ADMIN = 1;
 	public static final int USR_TYPE_CUSTOMER = 2;
 	public static final int USR_TYPE_REST = 3;

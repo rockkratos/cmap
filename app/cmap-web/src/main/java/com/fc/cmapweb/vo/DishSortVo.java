@@ -35,7 +35,7 @@ public class DishSortVo implements Serializable {
 	private int dishSortOrder;
 	
 	@Column(name = "ENABLED")
-	private boolean enabled;
+	private boolean dishSortEnabled;
 
 	public String getDishSortId() {
 		return dishSortId;
@@ -69,12 +69,12 @@ public class DishSortVo implements Serializable {
 		this.dishSortOrder = dishSortOrder;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public boolean isDishSortEnabled() {
+		return dishSortEnabled;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setDishSortEnabled(boolean dishSortEnabled) {
+		this.dishSortEnabled = dishSortEnabled;
 	}
 	
 }

@@ -26,7 +26,7 @@ public class RoleInfoVo implements Serializable {
 	private String roleName;
 	
 	@Column(name = "ENABLED")
-	private boolean enabled;
+	private boolean roleEnabled;
 	
 	@Column(name = "ROLE_DESC")
 	private String roleDesc;
@@ -55,12 +55,12 @@ public class RoleInfoVo implements Serializable {
 		this.roleDesc = roleDesc;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public boolean isRoleEnabled() {
+		return roleEnabled;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setRoleEnabled(boolean roleEnabled) {
+		this.roleEnabled = roleEnabled;
 	}
 
 }

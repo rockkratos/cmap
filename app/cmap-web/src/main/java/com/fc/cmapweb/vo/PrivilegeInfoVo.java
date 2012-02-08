@@ -35,7 +35,7 @@ public class PrivilegeInfoVo implements Serializable {
 	private HttpMethodTypeVo httpMethodTypeVo;
 	
 	@Column(name = "ENABLED")
-	private boolean enabled;
+	private boolean privilegeEnabled;
 	
 	@Column(name = "PRIVILEGE_DESC")
 	private String privilegeDesc;
@@ -80,12 +80,12 @@ public class PrivilegeInfoVo implements Serializable {
 		this.privilegeDesc = privilegeDesc;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public boolean isPrivilegeEnabled() {
+		return privilegeEnabled;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setPrivilegeEnabled(boolean privilegeEnabled) {
+		this.privilegeEnabled = privilegeEnabled;
 	}
 
 }

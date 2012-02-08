@@ -1,3 +1,7 @@
+<#assign spring=JspTaglibs["http://www.springframework.org/tags"] />
+<#assign form=JspTaglibs["http://www.springframework.org/tags/form"] />
+<form id="privilegeForm">
+
 <div id="page-title">
 	<ul>
 		<li class="main-title">权限管理</li>
@@ -38,47 +42,49 @@
     
 </ul>
 
-<div class="dn"></div><!-- error msg wrapper -->
+<div id="topHint" class="hint-box dn"></div><!-- error msg wrapper -->
 
 <div id="cbAddPrivilege" class="content-box dn">
-		
+	
 	<div class="content-box-header"><h3>新增权限</h3></div>
     
     <div class="content-box-content clearfix">
     	
+    	<@spring.bind path="privilegeInfoVo">
+    	
         <div class="column-left">
             <p>
                 <label>权限名称</label>
-                <input type="text" class="text-input w200" />
+                <input name="privilegeName" type="text" class="text-input w200" />
             </p>
             <p>
                 <label>资源路径</label>
-                <input type="text" class="text-input w200" />
+                <input name="resPath" type="text" class="text-input w200" />
             </p>
             <p>
                 <label>启用/禁用</label>
-                <input type="radio" name="radio1" class="vm" /> <span class="vm">启用</span>
-                <input type="radio" name="radio2" class="vm" /> <span class="vm">禁用</span>
+                <input name="privilegeEnabled" type="radio" class="vm" /> <span class="vm">启用</span>
+                <input name="privilegeEnabled" type="radio" class="vm" /> <span class="vm">禁用</span>
             </p>
         </div>
         
         <div class="column-right">
 			<p>
             	<label>HTTP方法类型</label>
-                <input id="ttt_show" type="text" class="dropdown w200" readonly="readonly" value="测试" onclick="javascript:showDropDownList(this, 'ttt');" onblur="javascript:dropDownListBlur('ttt');" />
-				<div id="ttt" class="dropdown-content">
+                <input id="methodTypeShow" type="text" class="dropdown w200" readonly="readonly" />
+				<div id="methodTypeList" class="dropdown-content">
 					<ul>
-						<li><a href="javascript:void(0);" value="1" onclick="javascript:updateDropDownListVal(this, 'ttt_val', 'ttt_show');">选项一</a></li>
-						<li><a href="javascript:void(0);" value="2" onclick="javascript:updateDropDownListVal(this, 'ttt_val', 'ttt_show');">选项二</a></li>
-						<li><a href="javascript:void(0);" value="3" onclick="javascript:updateDropDownListVal(this, 'ttt_val', 'ttt_show');">选项三</a></li>
-						<li><a href="javascript:void(0);" value="3" onclick="javascript:updateDropDownListVal(this, 'ttt_val', 'ttt_show');">选项三</a></li>
+						<li><a href="javascript:void(0);" value="1">查询 -- GET</a></li>
+						<li><a href="javascript:void(0);" value="2">新增 -- POST</a></li>
+						<li><a href="javascript:void(0);" value="3">修改 -- PUT</a></li>
+						<li><a href="javascript:void(0);" value="4">删除 -- DELETE</a></li>
 					</ul>
 				</div>
-                <input id="ttt_val" type="hidden" />
+                <input name="httpMethodTypeVo.methodTypeId" id="methodTypeVal" type="hidden" />
             </p>
 			<p>
                 <label>权限描述</label>
-                <input type="text" class="text-input w200" />
+                <input name="privilegeDesc" type="text" class="text-input w200" />
             </p>
         </div>
         
@@ -86,9 +92,11 @@
         
         <div>
             <p>
-                <a id="btnAddPrivilege" href="#" class="button">提 交</a>
+                <a id="btnAddPrivilege" href="javascript:void(0);" class="button">提 交</a>
             </p>
         </div>
+        
+        </@spring.bind>
         
     </div>
     
@@ -329,6 +337,8 @@
     
 </div><!-- END content-box -->
 
+</form>
+
 <script type="text/javascript" language="javascript">
 $("#addPrivilegeLink").click(function() {
 	cmap.triggerContentBox('cbQueryPrivilege', 'cbAddPrivilege');
@@ -336,5 +346,33 @@ $("#addPrivilegeLink").click(function() {
 
 $("#queryPrivilegeLink").click(function() {
 	cmap.triggerContentBox('cbAddPrivilege', 'cbQueryPrivilege');
+});
+
+$("#methodTypeShow").click(function() {
+	cmap.showDropDownList($(this), 'methodTypeList');
+});
+
+$("#methodTypeShow").blur(function() {
+	cmap.dropDownListBlur('methodTypeList');
+});
+
+$("#methodTypeList a").click(function() {
+	cmap.updateDropDownListVal($(this), 'methodTypeVal', 'methodTypeShow');
+});
+
+$("#btnAddPrivilege").click(function() {
+	var params = $("#privilegeForm").formSerialize();
+	var dialog = new Dialog(loadingPanel);
+	dialog.show();
+	$.ajax({
+		type: "POST",
+		url: "${rc.contextPath}/adminPrivilege",
+		data: params,
+		success: function (msg) {
+			dialog.close();
+			$("#cbAddPrivilege").slideUp("normal");
+			cmap.showHintMsg('topHint', msg);
+		}
+	});
 });
 </script>

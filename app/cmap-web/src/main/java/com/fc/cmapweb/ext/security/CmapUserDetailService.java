@@ -38,7 +38,7 @@ public class CmapUserDetailService implements UserDetailsService {
 			roles.add(new SimpleGrantedAuthority(tmpUsrRole.getRoleInfoVo().getRoleName()));
 		}
 		
-		CmapUser userdetail = new CmapUser(usr.getLoginName(), usr.getLoginPwd(), usr.isEnabled(), true, true, usr.getBadPwdCount() < Integer.parseInt(PropUtil.getPolicy("bad.pwd.count")), usr.getUsrTypeVo().getUsrTypeId(), roles);
+		CmapUser userdetail = new CmapUser(usr.getLoginName(), usr.getLoginPwd(), usr.isUsrEnabled(), true, true, usr.getBadPwdCount() < Integer.parseInt(PropUtil.getPolicy("bad.pwd.count")), usr.getUsrTypeVo().getUsrTypeId(), roles);
 		
 		return userdetail;
 		

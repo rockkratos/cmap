@@ -16,7 +16,7 @@ public class RolePrivilegeDaoImpl extends CmapBaseDao implements IRolePrivilegeD
 	@Override
 	public List<RolePrivilegeVo> getValidRolePrivileges() {
 		
-		String jpql = "select rp from RolePrivilegeVo rp where rp.roleInfoVo.enabled = true and rp.privilegeInfoVo.enabled = true";
+		String jpql = "select rp from RolePrivilegeVo rp where rp.roleInfoVo.roleEnabled = true and rp.privilegeInfoVo.privilegeEnabled = true";
 		
 		TypedQuery<RolePrivilegeVo> tq = em.createQuery(jpql, RolePrivilegeVo.class);
 		return tq.getResultList();

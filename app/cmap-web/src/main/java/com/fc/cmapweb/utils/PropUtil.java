@@ -12,7 +12,7 @@ public class PropUtil {
 	private static Map<PropFileName, Properties> propMap;
 	private enum PropFileName {
 		
-		ERRMSG, 
+		HINTMSG, 
 		POLICY
 		
 	}
@@ -48,9 +48,9 @@ public class PropUtil {
 		
 	}
 	
-	public static String getErrMsg(String key, Object[] params) {
+	public static String getHintMsg(String key, Object[] params) {
 		
-		Properties errMsgProp = propMap.get(PropFileName.ERRMSG);
+		Properties errMsgProp = propMap.get(PropFileName.HINTMSG);
 		
 		String value = errMsgProp.getProperty(key, null);
 		

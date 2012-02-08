@@ -38,7 +38,7 @@ public class DishInfoVo implements Serializable {
 	private DishSortVo dishSortVo;
 	
 	@Column(name = "ENABLED")
-	private boolean enabled;
+	private boolean dishEnabled;
 	
 	@Column(name = "DISH_PRMT")
 	private boolean dishPrmt;
@@ -86,12 +86,12 @@ public class DishInfoVo implements Serializable {
 		this.dishSortVo = dishSortVo;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public boolean isDishEnabled() {
+		return dishEnabled;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setDishEnabled(boolean dishEnabled) {
+		this.dishEnabled = dishEnabled;
 	}
 
 	public boolean isDishPrmt() {

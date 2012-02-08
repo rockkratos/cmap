@@ -61,7 +61,7 @@ public class RestInfoVo implements Serializable {
 	private float takeAwayFee;
 	
 	@Column(name = "ENABLED")
-	private boolean enabled;
+	private boolean restEnabled;
 	
 	@Column(name = "REST_START_TIME")
 	private Date restStartTime;
@@ -178,12 +178,12 @@ public class RestInfoVo implements Serializable {
 		this.takeAwayFee = takeAwayFee;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public boolean isRestEnabled() {
+		return restEnabled;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setRestEnabled(boolean restEnabled) {
+		this.restEnabled = restEnabled;
 	}
 
 	public Date getRestStartTime() {

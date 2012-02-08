@@ -21,7 +21,7 @@ public class UsrTypeVo implements Serializable {
 	private String usrTypeName;
 	
 	@Column(name = "ENABLED")
-	private boolean enabled;
+	private boolean usrTypeEnabled;
 	
 	@Column(name = "USR_TYPE_DESC")
 	private String usrTypeDesc;
@@ -42,12 +42,12 @@ public class UsrTypeVo implements Serializable {
 		this.usrTypeName = usrTypeName;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public boolean isUsrTypeEnabled() {
+		return usrTypeEnabled;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setUsrTypeEnabled(boolean usrTypeEnabled) {
+		this.usrTypeEnabled = usrTypeEnabled;
 	}
 
 	public String getUsrTypeDesc() {

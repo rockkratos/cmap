@@ -55,10 +55,13 @@ var cmap = {
 				$("#main-nav a").removeClass("current");
 				$(this).parent().parent().prev().addClass("current");
 				$(this).addClass("current");
+				var dialog = new Dialog(loadingPanel);
+				dialog.show();
 				$.ajax({
 					type: "GET",
 					url: "/cmapweb/adminMenu/" + $(this).attr("id"),
 					success: function (msg) {
+						dialog.close();
 						$("#main-content").fadeOut("normal", function () {
 							$("#main-content").html(msg);
 							$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");
@@ -80,6 +83,10 @@ var cmap = {
 		
 		$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");
 		
+		$("#hint-wrapper a").click(function() {
+			$(this).parent().slideUp();
+		});
+		
 	}, 
 	
 	triggerContentBox : function (closeId, triggerId) {
@@ -95,6 +102,38 @@ var cmap = {
 			$(triggerCb).slideUp();
 		}
 		
+	}, 
+	
+	showDropDownList : function (self, dropDownListId) {
+		var left = $(self).offset().left;
+		var top = $(self).offset().top;
+		var height = $(self).height();
+		var width = $(self).width();
+		
+		$("#" + dropDownListId).css("top", top + height + 15);
+		$("#" + dropDownListId).css("left", left);
+	
+		$("#" + dropDownListId + " ul").css("width", width + 12);
+		
+		$("#" + dropDownListId).slideDown();
+	}, 
+	
+	dropDownListBlur : function (dropDownListId) {
+		$("#" + dropDownListId).slideUp();
+	}, 
+	
+	updateDropDownListVal : function (self, valId, showId) {
+		$("#" + showId).val($(self).text());
+		$("#" + valId).val($(self).attr("value"));
+	}, 
+	
+	showHintMsg : function (showId, jsonStr) {
+		 var type = $.evalJSON(jsonStr).hintType;
+		 var msg = $.evalJSON(jsonStr).hintMsg;
+		 var hintHtml = $(".hint" + "-" + type).html().replace("[hintmsg]", msg);
+		 $("#" + showId).addClass("hint-" + type);
+		 $("#" + showId).html(hintHtml);
+		 $("#" + showId).slideDown();
 	}
 	
 };

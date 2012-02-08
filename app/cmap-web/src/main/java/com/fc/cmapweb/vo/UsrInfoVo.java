@@ -50,7 +50,7 @@ public class UsrInfoVo implements Serializable {
 	private int badPwdCount;
 	
 	@Column(name = "ENABLED")
-	private boolean enabled;
+	private boolean usrEnabled;
 	
 	@ManyToOne
 	@JoinColumn(name = "USR_TYPE_ID")
@@ -134,12 +134,12 @@ public class UsrInfoVo implements Serializable {
 		this.badPwdCount = badPwdCount;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public boolean isUsrEnabled() {
+		return usrEnabled;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setUsrEnabled(boolean usrEnabled) {
+		this.usrEnabled = usrEnabled;
 	}
 
 	public UsrTypeVo getUsrTypeVo() {
