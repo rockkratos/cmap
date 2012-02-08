@@ -56,12 +56,15 @@ var cmap = {
 				$(this).parent().parent().prev().addClass("current");
 				$(this).addClass("current");
 				$.ajax({
-				   type: "GET",
-				   url: "/cmapweb/adminMenu/" + $(this).attr("id"),
-				   success: function (msg) {
-				     $("#main-content").html(msg);
-				     $("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");
-				   }
+					type: "GET",
+					url: "/cmapweb/adminMenu/" + $(this).attr("id"),
+					success: function (msg) {
+						$("#main-content").fadeOut("normal", function () {
+							$("#main-content").html(msg);
+							$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");
+							$("#main-content").fadeIn("normal");
+						});
+					}
 				});
 			}
 		);

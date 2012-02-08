@@ -13,7 +13,7 @@
         <a id="addPrivilegeLink" class="shortcut-button" href="javascript:void(0);">
             <span>
                 <img src="${rc.contextPath}/imgs/admin/icons/add.png" alt="icon" /><br />
-                新增权限
+				新增权限
             </span>
         </a>
     </li>
@@ -22,7 +22,7 @@
         <a id="queryPrivilegeLink" class="shortcut-button" href="javascript:void(0);">
             <span>
                 <img src="${rc.contextPath}/imgs/admin/icons/search.png" alt="icon" /><br />
-                查询权限
+				查询权限
             </span>
         </a>
     </li>
@@ -40,41 +40,45 @@
 
 <div class="dn"></div><!-- error msg wrapper -->
 
-<div id="cbAddPrivilege" class="content-box dynamic-cb">
+<div id="cbAddPrivilege" class="content-box dn">
 		
 	<div class="content-box-header"><h3>新增权限</h3></div>
     
-    <div class="content-box-content clearfix pb0">
+    <div class="content-box-content clearfix">
     	
         <div class="column-left">
             <p>
-                <label>文本输入框</label>
-                <input type="text" class="text-input" />
+                <label>权限名称</label>
+                <input type="text" class="text-input w200" />
             </p>
             <p>
-                <label>复选框</label>
-                <input type="checkbox" class="vm" /> <span class="vm">第一复选框</span>
-                <input type="checkbox" class="vm" /> <span class="vm">第二复选框</span>
+                <label>资源路径</label>
+                <input type="text" class="text-input w200" />
             </p>
             <p>
-                <label>单选框</label>
-                <input type="radio" name="radio1" class="vm" /> <span class="vm">单选框1</span><br />
-                <input type="radio" name="radio2" class="vm" /> <span class="vm">单选框2</span>
+                <label>启用/禁用</label>
+                <input type="radio" name="radio1" class="vm" /> <span class="vm">启用</span>
+                <input type="radio" name="radio2" class="vm" /> <span class="vm">禁用</span>
             </p>
         </div>
         
         <div class="column-right">
 			<p>
-            	<label>下拉框</label>              
-                <input id="ttt_show" type="text" class="dropdown" readonly="readonly" value="测试" onclick="javascript:showDropDownList(this, 'ttt');" onblur="javascript:dropDownListBlur('ttt');" />
+            	<label>HTTP方法类型</label>
+                <input id="ttt_show" type="text" class="dropdown w200" readonly="readonly" value="测试" onclick="javascript:showDropDownList(this, 'ttt');" onblur="javascript:dropDownListBlur('ttt');" />
 				<div id="ttt" class="dropdown-content">
 					<ul>
 						<li><a href="javascript:void(0);" value="1" onclick="javascript:updateDropDownListVal(this, 'ttt_val', 'ttt_show');">选项一</a></li>
 						<li><a href="javascript:void(0);" value="2" onclick="javascript:updateDropDownListVal(this, 'ttt_val', 'ttt_show');">选项二</a></li>
 						<li><a href="javascript:void(0);" value="3" onclick="javascript:updateDropDownListVal(this, 'ttt_val', 'ttt_show');">选项三</a></li>
+						<li><a href="javascript:void(0);" value="3" onclick="javascript:updateDropDownListVal(this, 'ttt_val', 'ttt_show');">选项三</a></li>
 					</ul>
 				</div>
                 <input id="ttt_val" type="hidden" />
+            </p>
+			<p>
+                <label>权限描述</label>
+                <input type="text" class="text-input w200" />
             </p>
         </div>
         
@@ -92,41 +96,38 @@
 
 <div id="cbQueryPrivilege" class="content-box dn">
 	
-	<div class="content-box-header">
-		<h3>查询条件</h3>
-	</div>
+	<div class="content-box-header"><h3>查询条件</h3></div>
     
-    <div class="content-box-content clearfix pb0">
+    <div class="content-box-content clearfix">
 		
         <div class="column-left">
-            <p>
-                <label>文本输入框</label>
-                <input type="text" class="text-input" />
+        	<p>
+                <label>权限描述</label>
+                <input type="text" class="text-input w200" />
             </p>
-            <p>
-                <label>复选框</label>
-                <input type="checkbox" class="vm" /> <span class="vm">第一复选框</span>
-                <input type="checkbox" class="vm" /> <span class="vm">第二复选框</span>
-            </p>
-            <p>
-                <label>单选框</label>
-                <input type="radio" name="radio1" class="vm" /> <span class="vm">单选框1</span><br />
-                <input type="radio" name="radio2" class="vm" /> <span class="vm">单选框2</span>
+        	<p>
+                <label>权限名称</label>
+                <input type="text" class="text-input w200" />
             </p>
         </div>
         
         <div class="column-right">
+        	<p>
+            	<label>HTTP方法类型</label>
+                <input id="ttt_show" type="text" class="dropdown w200" readonly="readonly" value="测试" onclick="javascript:showDropDownList(this, 'ttt');" onblur="javascript:dropDownListBlur('ttt');" />
+				<div id="ttt" class="dropdown-content">
+					<ul>
+						<li><a href="javascript:void(0);" value="1" onclick="javascript:updateDropDownListVal(this, 'ttt_val', 'ttt_show');">选项一</a></li>
+						<li><a href="javascript:void(0);" value="2" onclick="javascript:updateDropDownListVal(this, 'ttt_val', 'ttt_show');">选项二</a></li>
+						<li><a href="javascript:void(0);" value="3" onclick="javascript:updateDropDownListVal(this, 'ttt_val', 'ttt_show');">选项三</a></li>
+						<li><a href="javascript:void(0);" value="3" onclick="javascript:updateDropDownListVal(this, 'ttt_val', 'ttt_show');">选项三</a></li>
+					</ul>
+				</div>
+                <input id="ttt_val" type="hidden" />
+            </p>
             <p>
-                <label>下拉框</label>              
-                <input id="ttt_show2" type="text" class="dropdown" readonly="readonly" value="测试2" onclick="javascript:showDropDownList(this, 'ttt2');" onblur="javascript:dropDownListBlur('ttt2');" />
-          <div id="ttt2" class="dropdown-content">
-                    <ul>
-                        <li><a href="javascript:void(0);" value="1" onclick="javascript:updateDropDownListVal(this, 'ttt_val2', 'ttt_show2');">选项1</a></li>
-                        <li><a href="javascript:void(0);" value="2" onclick="javascript:updateDropDownListVal(this, 'ttt_val2', 'ttt_show2');">选项2</a></li>
-                        <li><a href="javascript:void(0);" value="3" onclick="javascript:updateDropDownListVal(this, 'ttt_val2', 'ttt_show2');">选项3</a></li>
-                    </ul>
-          </div>
-                <input id="ttt_val2" type="hidden" />
+                <label>资源路径</label>
+                <input type="text" class="text-input w200" />
             </p>
         </div>
         
@@ -251,8 +252,10 @@
                 <td>111</td>
                 <td>111</td>
             </tr>
+            
             <tr class="tab-bg-white">
-            	<td colspan="6" class="tab-btm">
+            
+            	<td colspan="6" class="tab-btm pb10">
 					
 					<div class="bulk-actions fl">
 						<a class="button" href="#">批量删除</a>
@@ -268,9 +271,12 @@
 						<a href="#" class="number">10</a>
 						<a href="#">下一页 &raquo;</a>
 						<a href="#">尾页 &raquo;</a>
-					</div> <!-- End .pagination -->
+					</div>
+					
 				</td>
+				
             </tr>
+            
         </table>
     </div>
     
@@ -302,13 +308,13 @@
             <p>
                 <label>下拉框</label>
                 <input id="tt2_show" type="text" class="dropdown" readonly="readonly" value="测试2" onclick="javascript:showDropDownList(this, 'tt2');" onblur="javascript:dropDownListBlur('tt2');" />
-          <div id="tt2" class="dropdown-content">
-                    <ul>
-                        <li><a href="javascript:void(0);" value="1" onclick="javascript:updateDropDownListVal(this, 'tt2_val', 'tt2_show');">选项A</a></li>
-                        <li><a href="javascript:void(0);" value="2" onclick="javascript:updateDropDownListVal(this, 'tt2_val', 'tt2_show');">选项B</a></li>
-                        <li><a href="javascript:void(0);" value="3" onclick="javascript:updateDropDownListVal(this, 'tt2_val', 'tt2_show');">选项C</a></li>
-                    </ul>
-          </div>
+				<div id="tt2" class="dropdown-content">
+		            <ul>
+		                <li><a href="javascript:void(0);" value="1" onclick="javascript:updateDropDownListVal(this, 'tt2_val', 'tt2_show');">选项A</a></li>
+		                <li><a href="javascript:void(0);" value="2" onclick="javascript:updateDropDownListVal(this, 'tt2_val', 'tt2_show');">选项B</a></li>
+		                <li><a href="javascript:void(0);" value="3" onclick="javascript:updateDropDownListVal(this, 'tt2_val', 'tt2_show');">选项C</a></li>
+		            </ul>
+				</div>
                 <input id="tt2_val" type="hidden" />
             </p>
         </div>
@@ -322,3 +328,13 @@
     </div>
     
 </div><!-- END content-box -->
+
+<script type="text/javascript" language="javascript">
+$("#addPrivilegeLink").click(function() {
+	cmap.triggerContentBox('cbQueryPrivilege', 'cbAddPrivilege');
+});
+
+$("#queryPrivilegeLink").click(function() {
+	cmap.triggerContentBox('cbAddPrivilege', 'cbQueryPrivilege');
+});
+</script>
