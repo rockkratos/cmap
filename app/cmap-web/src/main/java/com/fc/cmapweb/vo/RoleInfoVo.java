@@ -44,7 +44,7 @@ public class RoleInfoVo implements Serializable {
 	}
 
 	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+		this.roleName = roleName.trim();
 	}
 
 	public String getRoleDesc() {
@@ -52,7 +52,7 @@ public class RoleInfoVo implements Serializable {
 	}
 
 	public void setRoleDesc(String roleDesc) {
-		this.roleDesc = roleDesc;
+		this.roleDesc = roleDesc.trim();
 	}
 
 	public boolean isRoleEnabled() {

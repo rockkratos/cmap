@@ -57,7 +57,7 @@ public class AddrCollVo implements Serializable {
 	}
 
 	public void setAddrName(String addrName) {
-		this.addrName = addrName;
+		this.addrName = addrName.trim();
 	}
 
 	public String getSepcAddr() {
@@ -65,7 +65,7 @@ public class AddrCollVo implements Serializable {
 	}
 
 	public void setSepcAddr(String sepcAddr) {
-		this.sepcAddr = sepcAddr;
+		this.sepcAddr = sepcAddr.trim();
 	}
 
 	public double getAddrLongitude() {

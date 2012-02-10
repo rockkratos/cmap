@@ -63,7 +63,7 @@
             </p>
             <p>
                 <label>启用/禁用</label>
-                <input name="privilegeEnabled" type="radio" class="vm" /> <span class="vm">启用</span>
+                <input name="privilegeEnabled" type="radio" class="vm" checked="checked" /> <span class="vm">启用</span>
                 <input name="privilegeEnabled" type="radio" class="vm" /> <span class="vm">禁用</span>
             </p>
         </div>
@@ -122,16 +122,16 @@
         <div class="column-right">
         	<p>
             	<label>HTTP方法类型</label>
-                <input id="ttt_show" type="text" class="dropdown w200" readonly="readonly" value="测试" onclick="javascript:showDropDownList(this, 'ttt');" onblur="javascript:dropDownListBlur('ttt');" />
-				<div id="ttt" class="dropdown-content">
+                <input id="queryMethodTypeShow" type="text" class="dropdown w200" readonly="readonly" />
+				<div id="queryMethodTypeList" class="dropdown-content">
 					<ul>
-						<li><a href="javascript:void(0);" value="1" onclick="javascript:updateDropDownListVal(this, 'ttt_val', 'ttt_show');">选项一</a></li>
-						<li><a href="javascript:void(0);" value="2" onclick="javascript:updateDropDownListVal(this, 'ttt_val', 'ttt_show');">选项二</a></li>
-						<li><a href="javascript:void(0);" value="3" onclick="javascript:updateDropDownListVal(this, 'ttt_val', 'ttt_show');">选项三</a></li>
-						<li><a href="javascript:void(0);" value="3" onclick="javascript:updateDropDownListVal(this, 'ttt_val', 'ttt_show');">选项三</a></li>
+						<li><a href="javascript:void(0);" value="1">查询 -- GET</a></li>
+						<li><a href="javascript:void(0);" value="2">新增 -- POST</a></li>
+						<li><a href="javascript:void(0);" value="3">修改 -- PUT</a></li>
+						<li><a href="javascript:void(0);" value="4">删除 -- DELETE</a></li>
 					</ul>
 				</div>
-                <input id="ttt_val" type="hidden" />
+                <input id="queryMethodTypeVal" type="hidden" />
             </p>
             <p>
                 <label>资源路径</label>
@@ -340,25 +340,16 @@
 </form>
 
 <script type="text/javascript" language="javascript">
-$("#addPrivilegeLink").click(function() {
-	cmap.triggerContentBox('cbQueryPrivilege', 'cbAddPrivilege');
-});
+$("#addPrivilegeLink").click(function() { cmap.triggerContentBox('cbQueryPrivilege', 'cbAddPrivilege'); });
+$("#queryPrivilegeLink").click(function() { cmap.triggerContentBox('cbAddPrivilege', 'cbQueryPrivilege'); });
 
-$("#queryPrivilegeLink").click(function() {
-	cmap.triggerContentBox('cbAddPrivilege', 'cbQueryPrivilege');
-});
+$("#methodTypeShow").click(function() { cmap.showDropDownList($(this), 'methodTypeList'); });
+$("#methodTypeShow").blur(function() { cmap.dropDownListBlur('methodTypeList'); });
+$("#methodTypeList a").click(function() { cmap.updateDropDownListVal($(this), 'methodTypeVal', 'methodTypeShow'); });
 
-$("#methodTypeShow").click(function() {
-	cmap.showDropDownList($(this), 'methodTypeList');
-});
-
-$("#methodTypeShow").blur(function() {
-	cmap.dropDownListBlur('methodTypeList');
-});
-
-$("#methodTypeList a").click(function() {
-	cmap.updateDropDownListVal($(this), 'methodTypeVal', 'methodTypeShow');
-});
+$("#queryMethodTypeShow").click(function() { cmap.showDropDownList($(this), 'queryMethodTypeList'); });
+$("#queryMethodTypeShow").blur(function() { cmap.dropDownListBlur('queryMethodTypeList'); });
+$("#queryMethodTypeList a").click(function() { cmap.updateDropDownListVal($(this), 'queryMethodTypeVal', 'queryMethodTypeShow'); });
 
 $("#btnAddPrivilege").click(function() {
 	var params = $("#privilegeForm").formSerialize();
@@ -370,8 +361,7 @@ $("#btnAddPrivilege").click(function() {
 		data: params,
 		success: function (msg) {
 			dialog.close();
-			$("#cbAddPrivilege").slideUp("normal");
-			cmap.showHintMsg('topHint', msg);
+			cmap.callBackOptForCb('cbAddPrivilege', msg, 'topHint');
 		}
 	});
 });

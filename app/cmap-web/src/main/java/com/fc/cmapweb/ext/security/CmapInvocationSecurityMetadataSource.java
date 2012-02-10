@@ -11,6 +11,7 @@ import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 
 import com.fc.cmapweb.mgr.privilege.IRolePrivilegeMgr;
+import com.fc.cmapweb.utils.StrUtil;
 
 /**
  * 该类用于加载资源与对应角色到缓存及查找资源的可访问角色
@@ -38,7 +39,7 @@ public class CmapInvocationSecurityMetadataSource implements FilterInvocationSec
 		if (null == urlMap) {
 			return null;
 		} else {
-			return urlMap.get(reqUrl);
+			return urlMap.get(StrUtil.getPrivilegeUrl(reqUrl));
 		}
 		
 	}

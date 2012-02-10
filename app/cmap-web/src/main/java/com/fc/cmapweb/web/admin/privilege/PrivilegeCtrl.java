@@ -2,7 +2,9 @@ package com.fc.cmapweb.web.admin.privilege;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,11 +22,6 @@ public class PrivilegeCtrl {
 	@Autowired
 	private IPrivilegeMgr privilegeMgr;
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public String showPrivilegePage() {
-		return "/admin/privilegeCfg";
-	}
-	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
 	public String addPrivilege(@ModelAttribute("privilegeInfoVo") PrivilegeInfoVo privilegeInfoVo) {
@@ -33,6 +30,14 @@ public class PrivilegeCtrl {
 		
 		privilegeMgr.addPrivilege(privilegeInfoVo);
 		return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("add.success", null));
+		
+	}
+	
+	@RequestMapping(value = "/{privilegeId}", method = RequestMethod.GET)
+	public String queryPrivilege(@PathVariable String privilegeId, Model model) {
+		
+		
+		return "/admin/privilege/privilegeInfo";
 		
 	}
 

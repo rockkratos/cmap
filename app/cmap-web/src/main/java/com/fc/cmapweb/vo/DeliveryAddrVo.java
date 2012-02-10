@@ -47,7 +47,7 @@ public class DeliveryAddrVo implements Serializable {
 	}
 
 	public void setSpecAddr(String specAddr) {
-		this.specAddr = specAddr;
+		this.specAddr = specAddr.trim();
 	}
 
 	public String getPhoneNbr() {
@@ -55,7 +55,7 @@ public class DeliveryAddrVo implements Serializable {
 	}
 
 	public void setPhoneNbr(String phoneNbr) {
-		this.phoneNbr = phoneNbr;
+		this.phoneNbr = phoneNbr.trim();
 	}
 
 	public UsrInfoVo getUsrInfoVo() {

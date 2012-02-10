@@ -75,7 +75,7 @@ public class UsrInfoVo implements Serializable {
 	}
 
 	public void setLoginName(String loginName) {
-		this.loginName = loginName;
+		this.loginName = loginName.trim();
 	}
 
 	public String getLoginPwd() {
@@ -91,7 +91,7 @@ public class UsrInfoVo implements Serializable {
 	}
 
 	public void setNickName(String nickName) {
-		this.nickName = nickName;
+		this.nickName = nickName.trim();
 	}
 
 	public String getRealName() {
@@ -99,7 +99,7 @@ public class UsrInfoVo implements Serializable {
 	}
 
 	public void setRealName(String realName) {
-		this.realName = realName;
+		this.realName = realName.trim();
 	}
 
 	public String getUsrCell() {
@@ -107,7 +107,7 @@ public class UsrInfoVo implements Serializable {
 	}
 
 	public void setUsrCell(String usrCell) {
-		this.usrCell = usrCell;
+		this.usrCell = usrCell.trim();
 	}
 
 	public String getUsrEmail() {
@@ -115,7 +115,7 @@ public class UsrInfoVo implements Serializable {
 	}
 
 	public void setUsrEmail(String usrEmail) {
-		this.usrEmail = usrEmail;
+		this.usrEmail = usrEmail.trim();
 	}
 
 	public Date getRegTime() {

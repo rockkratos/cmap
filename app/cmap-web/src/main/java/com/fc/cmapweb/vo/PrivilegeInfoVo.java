@@ -53,7 +53,7 @@ public class PrivilegeInfoVo implements Serializable {
 	}
 
 	public void setPrivilegeName(String privilegeName) {
-		this.privilegeName = privilegeName;
+		this.privilegeName = privilegeName.trim();
 	}
 
 	public String getResPath() {
@@ -61,7 +61,7 @@ public class PrivilegeInfoVo implements Serializable {
 	}
 
 	public void setResPath(String resPath) {
-		this.resPath = resPath;
+		this.resPath = resPath.trim();
 	}
 
 	public HttpMethodTypeVo getHttpMethodTypeVo() {
@@ -77,7 +77,7 @@ public class PrivilegeInfoVo implements Serializable {
 	}
 
 	public void setPrivilegeDesc(String privilegeDesc) {
-		this.privilegeDesc = privilegeDesc;
+		this.privilegeDesc = privilegeDesc.trim();
 	}
 
 	public boolean isPrivilegeEnabled() {

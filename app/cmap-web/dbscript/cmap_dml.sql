@@ -18,7 +18,7 @@ INSERT INTO cooking_type VALUES(2, '西餐', true);
 INSERT INTO cooking_type VALUES(3, '快餐', true);
 INSERT INTO cooking_type VALUES(4, '日式料理', true);
 INSERT INTO cooking_type VALUES(5, '韩式料理', true);
-INSERT INTO cooking_type VALUES(6, '南亚餐', true);
+INSERT INTO cooking_type VALUES(6, '清真', true);
 INSERT INTO cooking_type VALUES(7, '零食/饮料', true);
 INSERT INTO cooking_type VALUES(8, '随便吃点', true);
 

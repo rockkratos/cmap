@@ -83,10 +83,6 @@ var cmap = {
 		
 		$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");
 		
-		$("#hint-wrapper a").click(function() {
-			$(this).parent().slideUp();
-		});
-		
 	}, 
 	
 	triggerContentBox : function (closeId, triggerId) {
@@ -127,13 +123,44 @@ var cmap = {
 		$("#" + valId).val($(self).attr("value"));
 	}, 
 	
-	showHintMsg : function (showId, jsonStr) {
-		 var type = $.evalJSON(jsonStr).hintType;
-		 var msg = $.evalJSON(jsonStr).hintMsg;
-		 var hintHtml = $(".hint" + "-" + type).html().replace("[hintmsg]", msg);
-		 $("#" + showId).addClass("hint-" + type);
-		 $("#" + showId).html(hintHtml);
-		 $("#" + showId).slideDown();
+	showHintMsg : function (showId, hintType, msg) {
+		
+		$("#" + showId).slideUp();
+		var hintHtml = $(".hint" + "-" + hintType).html().replace("[hintmsg]", msg);
+		
+		$("#" + showId).addClass("hint-" + hintType);
+		$("#" + showId).html(hintHtml);
+		
+		cmap.bindHindBoxClick(showId);
+		$("#" + showId).slideDown();
+		
+	}, 
+	
+	bindHindBoxClick : function(boxId) {
+		$("#" + boxId + " a").click(function() {
+			$(this).parent().slideUp();
+		});
+	}, 
+	
+	cleanBox : function (boxId) {
+		$("#" + boxId + " input[type='text']").val('');
+		$($("#" + boxId + " input[type='radio']").get(0)).attr("checked", true);
+	}, 
+	
+	callBackOptForCb : function (cbId, jsonStr, hintBoxId) {
+	
+		var type = $.evalJSON(jsonStr).hintType;
+		var msg = $.evalJSON(jsonStr).hintMsg;
+		
+		if ("success" == type) {
+			$("#" + cbId).slideUp("normal", function() {
+				cmap.showHintMsg(hintBoxId, type, msg);
+				cmap.cleanBox(cbId);
+			});
+		} else {
+			cmap.showHintMsg(hintBoxId, type, msg);
+		}
+		
 	}
 	
 };

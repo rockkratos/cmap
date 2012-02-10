@@ -59,7 +59,7 @@ public class DishInfoVo implements Serializable {
 	}
 
 	public void setDishName(String dishName) {
-		this.dishName = dishName;
+		this.dishName = dishName.trim();
 	}
 
 	public float getDishPrice() {
@@ -107,7 +107,7 @@ public class DishInfoVo implements Serializable {
 	}
 
 	public void setDishDesc(String dishDesc) {
-		this.dishDesc = dishDesc;
+		this.dishDesc = dishDesc.trim();
 	}
 
 }

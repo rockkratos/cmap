@@ -95,7 +95,7 @@ public class RestInfoVo implements Serializable {
 	}
 
 	public void setRestName(String restName) {
-		this.restName = restName;
+		this.restName = restName.trim();
 	}
 
 	public String getRestAddr() {
@@ -103,7 +103,7 @@ public class RestInfoVo implements Serializable {
 	}
 
 	public void setRestAddr(String restAddr) {
-		this.restAddr = restAddr;
+		this.restAddr = restAddr.trim();
 	}
 
 	public String getRestOpenTime() {
@@ -111,7 +111,7 @@ public class RestInfoVo implements Serializable {
 	}
 
 	public void setRestOpenTime(String restOpenTime) {
-		this.restOpenTime = restOpenTime;
+		this.restOpenTime = restOpenTime.trim();
 	}
 
 	public String getRestCloseTime() {
@@ -119,7 +119,7 @@ public class RestInfoVo implements Serializable {
 	}
 
 	public void setRestCloseTime(String restCloseTime) {
-		this.restCloseTime = restCloseTime;
+		this.restCloseTime = restCloseTime.trim();
 	}
 
 	public double getRestLongitude() {
@@ -207,7 +207,7 @@ public class RestInfoVo implements Serializable {
 	}
 
 	public void setTakeAwayDesc(String takeAwayDesc) {
-		this.takeAwayDesc = takeAwayDesc;
+		this.takeAwayDesc = takeAwayDesc.trim();
 	}
 
 	public String getRestPhone() {
@@ -215,7 +215,7 @@ public class RestInfoVo implements Serializable {
 	}
 
 	public void setRestPhone(String restPhone) {
-		this.restPhone = restPhone;
+		this.restPhone = restPhone.trim();
 	}
 
 	public boolean isRestSigned() {

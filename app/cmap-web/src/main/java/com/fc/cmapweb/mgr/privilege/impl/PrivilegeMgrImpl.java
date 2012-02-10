@@ -16,7 +16,7 @@ public class PrivilegeMgrImpl implements IPrivilegeMgr {
 	private IPrivilegeDao privilegeDao;
 	
 	@Override
-	public List<PrivilegeInfoVo> queryAllPrivileges() {
+	public List<PrivilegeInfoVo> queryPrivileges(PrivilegeInfoVo queryCondition) {
 		return privilegeDao.getAllPrivileges();
 	}
 

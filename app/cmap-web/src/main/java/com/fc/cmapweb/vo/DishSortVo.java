@@ -50,7 +50,7 @@ public class DishSortVo implements Serializable {
 	}
 
 	public void setDishSortName(String dishSortName) {
-		this.dishSortName = dishSortName;
+		this.dishSortName = dishSortName.trim();
 	}
 
 	public RestInfoVo getRestInfoVo() {

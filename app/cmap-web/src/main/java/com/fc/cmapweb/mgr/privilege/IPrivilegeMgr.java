@@ -6,8 +6,8 @@ import com.fc.cmapweb.vo.PrivilegeInfoVo;
 
 public interface IPrivilegeMgr {
 	
-	public List<PrivilegeInfoVo> queryAllPrivileges();
+	public List<PrivilegeInfoVo> queryPrivileges(PrivilegeInfoVo queryCondition);
 	public PrivilegeInfoVo queryPrivilege(String privilegeId);
 	public PrivilegeInfoVo addPrivilege(PrivilegeInfoVo privilegeInfoVo);
-
+	
 }

@@ -54,7 +54,7 @@ public class PrmtInfoVo implements Serializable {
 	}
 
 	public void setPrmtInfoDesc(String prmtInfoDesc) {
-		this.prmtInfoDesc = prmtInfoDesc;
+		this.prmtInfoDesc = prmtInfoDesc.trim();
 	}
 
 	public RestInfoVo getRestInfoVo() {
