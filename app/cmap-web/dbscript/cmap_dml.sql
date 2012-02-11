@@ -3,9 +3,12 @@ INSERT INTO http_method_type VALUES(2, 'POST', '新增');
 INSERT INTO http_method_type VALUES(3, 'PUT', '修改');
 INSERT INTO http_method_type VALUES(4, 'DELETE', '删除');
 
-INSERT INTO usr_type VALUES(1, 'ADMIN', true, '后台用户');
+INSERT INTO usr_type VALUES(1, 'ADMIN', true, '管理员');
 INSERT INTO usr_type VALUES(2, 'CUSTOMER', true, '普通用户');
 INSERT INTO usr_type VALUES(3, 'REST', true, '餐馆用户');
+INSERT INTO usr_type VALUES(4, 'SERVICE', true, '客服用户');
+INSERT INTO usr_type VALUES(5, 'MARKET', true, '营销用户');
+INSERT INTO usr_type VALUES(6, 'BUSINESS', true, '业务用户');
 
 INSERT INTO order_trans_type VALUES(1, 'PHONE', '电话');
 INSERT INTO order_trans_type VALUES(2, 'SMS', '短信');

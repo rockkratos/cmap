@@ -1,5 +1,7 @@
 package com.fc.cmapweb.mgr.usr.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,11 @@ public class UsrMgrImpl implements IUsrMgr {
 	@Override
 	public UsrInfoVo addUsr(UsrInfoVo usrInfoVo) {
 		return usrDao.insertUsr(usrInfoVo);
+	}
+	
+	@Override
+	public List<String> queryUsrRoles(String loginName) {
+		return usrDao.getUsrRoles(loginName);
 	}
 
 }

@@ -13,8 +13,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "USR_ROLE")
-public class UsrRoleVo implements Serializable {
+@Table(name = "USR_TYPE_ROLE")
+public class UsrTypeRoleVo implements Serializable {
 	
 	private static final long serialVersionUID = 3585732970128614248L;
 	
@@ -25,8 +25,8 @@ public class UsrRoleVo implements Serializable {
 	private String usrRoleId;
 	
 	@ManyToOne
-	@JoinColumn(name = "USR_ID")
-	private UsrInfoVo usrInfoVo;
+	@JoinColumn(name = "USR_TYPE_ID")	
+	private UsrTypeVo usrTypeVo;
 	
 	@ManyToOne
 	@JoinColumn(name = "ROLE_ID")
@@ -40,12 +40,12 @@ public class UsrRoleVo implements Serializable {
 		this.usrRoleId = usrRoleId;
 	}
 
-	public UsrInfoVo getUsrInfoVo() {
-		return usrInfoVo;
+	public UsrTypeVo getUsrTypeVo() {
+		return usrTypeVo;
 	}
 
-	public void setUsrInfoVo(UsrInfoVo usrInfoVo) {
-		this.usrInfoVo = usrInfoVo;
+	public void setUsrTypeVo(UsrTypeVo usrTypeVo) {
+		this.usrTypeVo = usrTypeVo;
 	}
 
 	public RoleInfoVo getRoleInfoVo() {

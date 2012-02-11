@@ -79,13 +79,13 @@ CREATE TABLE usr_type (
 );
 
 -- ============================================================
---   Table: usr_role
+--   Table: usr_type_role
 -- ============================================================
-CREATE TABLE usr_role (
-	usr_role_id CHAR(32) NOT NULL,
+CREATE TABLE usr_type_role (
+	usr_type_role_id CHAR(32) NOT NULL,
 	role_id CHAR(32) NOT NULL,
-	usr_id CHAR(32) NOT NULL,
-	CONSTRAINT usr_role_pkey PRIMARY KEY (usr_role_id)
+	usr_type_id SMALLINT NOT NULL,
+	CONSTRAINT usr_type_role_pkey PRIMARY KEY (usr_type_role_id)
 );
 
 -- ============================================================
@@ -297,8 +297,8 @@ ALTER TABLE role_privilege ADD CONSTRAINT fk_privilege FOREIGN KEY (privilege_id
 
 ALTER TABLE usr_info ADD CONSTRAINT fk_usr_type FOREIGN KEY (usr_type_id) REFERENCES usr_type(usr_type_id);
 
-ALTER TABLE usr_role ADD CONSTRAINT fk_usr FOREIGN KEY (usr_id) REFERENCES usr_info(usr_id);
-ALTER TABLE usr_role ADD CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES role_info(role_id);
+ALTER TABLE usr_type_role ADD CONSTRAINT fk_usr_type FOREIGN KEY (usr_type_id) REFERENCES usr_type(usr_type_id);
+ALTER TABLE usr_type_role ADD CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES role_info(role_id);
 
 ALTER TABLE rest_info ADD CONSTRAINT fk_order_trans_type FOREIGN KEY (order_trans_type_id) REFERENCES order_trans_type(order_trans_type_id);
 ALTER TABLE rest_info ADD CONSTRAINT fk_cooking_type FOREIGN KEY (cooking_type_id) REFERENCES cooking_type(cooking_type_id);

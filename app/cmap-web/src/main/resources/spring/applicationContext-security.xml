@@ -107,7 +107,6 @@
 	<!-- 认证源 -->
 	<beans:bean id="cmapUserDetailService" class="com.fc.cmapweb.ext.security.CmapUserDetailService">
 		<beans:property name="usrMgr" ref="usrMgr" />
-		<beans:property name="usrRoleMgr" ref="usrRoleMgr" />
 	</beans:bean>
 	
 	<beans:bean id="pwdEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">

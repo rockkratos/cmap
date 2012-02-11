@@ -30,7 +30,7 @@
 		<class>com.fc.cmapweb.vo.RoleInfoVo</class>
 		<class>com.fc.cmapweb.vo.RolePrivilegeVo</class>
 		<class>com.fc.cmapweb.vo.UsrInfoVo</class>
-		<class>com.fc.cmapweb.vo.UsrRoleVo</class>
+		<class>com.fc.cmapweb.vo.UsrTypeRoleVo</class>
 		<class>com.fc.cmapweb.vo.UsrTypeVo</class>
 		
 	</persistence-unit>

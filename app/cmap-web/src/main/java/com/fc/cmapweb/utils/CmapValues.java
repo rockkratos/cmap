@@ -10,6 +10,9 @@ public class CmapValues {
 	public static final int USR_TYPE_ADMIN = 1;
 	public static final int USR_TYPE_CUSTOMER = 2;
 	public static final int USR_TYPE_REST = 3;
+	public static final int USR_TYPE_SERVICE = 4;
+	public static final int USR_TYPE_MARKET = 5;
+	public static final int USR_TYPE_BUSINESS = 6;
 	
 	public static final int HTTP_METHOD_TYPE_GET = 1;
 	public static final int HTTP_METHOD_TYPE_POST = 2;
