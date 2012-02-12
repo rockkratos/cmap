@@ -2,6 +2,9 @@ package com.fc.cmapweb.utils;
 
 public class CmapValues {
 	
+	public static final String PAGE_INDEX = "pageIndex";
+	public static final int DEFAULT_PAGE_SIZE = 10;
+	
 	public static final String HINT_SUCCESS = "success";
 	public static final String HINT_MSG = "msg";
 	public static final String HINT_WARNING = "warning";

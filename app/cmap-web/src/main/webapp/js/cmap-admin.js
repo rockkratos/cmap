@@ -24,7 +24,7 @@ var cmap = {
 		return flag;
 	}, 
 	
-	initAdminPage : function() {
+	initAdminPage : function(ctxPath) {
 		
 		if (!$.browser.mozilla && !($.browser.msie && $.browser.version == 9)) {
 			$("#main-content").css("margin-bottom", "50px");
@@ -59,7 +59,7 @@ var cmap = {
 				dialog.show();
 				$.ajax({
 					type: "GET",
-					url: "/cmapweb/adminMenu/" + $(this).attr("id"),
+					url: ctxPath + "/adminMenu/" + $(this).attr("id"),
 					success: function (msg) {
 						dialog.close();
 						$("#main-content").fadeOut("normal", function () {
@@ -161,6 +161,16 @@ var cmap = {
 			cmap.showHintMsg(hintBoxId, type, msg);
 		}
 		
+	}, 
+	
+	initPagination : function (paginationId, maxItemNum) {
+		$("#" + paginationId).pagination(maxItemNum, {
+			callback: pageselectCallback, 
+			prev_text: '&lt;&lt; 上一页', 
+			next_text: '下一页 &gt;&gt;', 
+			num_display_entries: 4, 
+			num_edge_entries: 1
+		}); 
 	}
 	
 };

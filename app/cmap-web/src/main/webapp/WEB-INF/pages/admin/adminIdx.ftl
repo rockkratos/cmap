@@ -6,7 +6,7 @@
 <#include "/common/adminCommon.ftl" />
 <script type="text/javascript" language="javascript">
 $(document).ready(function(){
-	cmap.initAdminPage();
+	cmap.initAdminPage('${rc.contextPath}');
 });
 </script>
 </head>

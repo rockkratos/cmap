@@ -1,5 +1,10 @@
 package com.fc.cmapweb.web.admin.privilege;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fc.cmapweb.mgr.privilege.IPrivilegeMgr;
 import com.fc.cmapweb.utils.CmapValues;
 import com.fc.cmapweb.utils.PropUtil;
+import com.fc.cmapweb.utils.QueryUtil;
 import com.fc.cmapweb.utils.StrUtil;
 import com.fc.cmapweb.vo.PrivilegeInfoVo;
 
@@ -34,10 +40,25 @@ public class PrivilegeCtrl {
 	}
 	
 	@RequestMapping(value = "/{privilegeId}", method = RequestMethod.GET)
-	public String queryPrivilege(@PathVariable String privilegeId, Model model) {
+	public String showPrivilegeInfo(@PathVariable String privilegeId, Model model) {
 		
 		
 		return "/admin/privilege/privilegeInfo";
+		
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	@ResponseBody
+	public String queryPrivilege(Model model, HttpServletRequest request) {
+		
+		int pageIndex = QueryUtil.getCurrentPage(request);
+		Map<String, Object> queryParams = QueryUtil.getQueryParams(request);
+		
+		List<PrivilegeInfoVo> resultList = privilegeMgr.queryPrivileges(queryParams, pageIndex, CmapValues.DEFAULT_PAGE_SIZE);
+		
+		model.addAttribute("resultList", resultList);
+		
+		return "***";
 		
 	}
 

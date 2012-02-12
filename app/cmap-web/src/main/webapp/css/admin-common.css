@@ -12,11 +12,12 @@ div.loading-wrapper span{padding-left:5px}
 
 /*************** Pagination ***************/
 #main-content .pagination{text-align:right;color:#57A000;padding:14px 0 5px 0}
-.pagination a{padding:0 6px;text-decoration:none;color:#57A000;height:21px;line-height:21px;display:inline-block}
+.pagination a{color:#57A000;border:1px solid #DDD}
+.pagination a,.pagination span{padding:0 6px;height:21px;line-height:21px;display:inline-block;margin-right:5px}
 .pagination a:hover{color:#000}
-.pagination a.number{border:1px solid #DDD}
-.pagination a.current{background:#469400 url(../imgs/admin/bg-button-green.gif) top left repeat-x !important;border-color:#459300 !important;color:#FFF !important}
-.pagination a.current:hover{text-decoration:underline}
+.pagination .current{background:#469400 url(../imgs/admin/bg-button-green.gif) top left repeat-x;border:1px solid #459300;color:#FFF}
+.pagination .current.prev,.pagination .current.next{color:#999}
+.pagination .prev,.pagination .next{background:#FFF;border:0}
 
 div#container{height:auto !important;height:100%;min-height:100%;width:960px;margin-left:auto;margin-right:auto;background:#F6F6F6 url(../imgs/admin/bg-left.gif) repeat-y}
 

@@ -2,13 +2,32 @@ package com.fc.cmapweb.utils;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.alibaba.fastjson.JSON;
 
 public class StrUtil {
+	
+	public static boolean isInteger(String str) {
+		
+		String regex = "^[-|+]?\\d+$";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(str);
+		
+		return m.matches();
+		
+	}
+	
+	public static boolean isDigit(String str) {
+		
+		String regex = "^[-|+]?\\d+([.]\\d+)?$";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(str);
+		
+		return m.matches();
+		
+	}
 	
 	public static boolean isNotEmpty(String str) {
 		return (null != str && str.length() > 0) ? true : false;
@@ -30,50 +49,14 @@ public class StrUtil {
 	
 	public static String getPrivilegeUrl(String requestUrl) {
 		
+		String tmpUrl = requestUrl.replaceAll("\\?.*$", "");
 		String regex = ".+/[0-9a-zA-Z]{32}$";
+		String replaceRegex = "[0-9a-zA-Z]{32}$";
 		
 		Pattern p = Pattern.compile(regex);
-		Matcher m = p.matcher(requestUrl);
+		Matcher m = p.matcher(tmpUrl);
 		
-		return m.matches() ? requestUrl.replaceAll(regex, "{id}") : requestUrl;
-		
-	}
-	
-	public static String getQueryCondition(Map<String, Object> queryCondition) {
-		
-		StringBuilder buffer = new StringBuilder();
-		
-		if (null!= queryCondition && queryCondition.size() > 0) {
-			
-			buffer.append("where ");
-			
-			Set<String> keySets = queryCondition.keySet();
-			
-			for (String tmpKey : keySets) {
-				
-				Object obj = queryCondition.get(tmpKey);
-				
-				if (obj instanceof String) {
-					
-					if (isNotEmpty((String) obj)) {
-						buffer.append(tmpKey + "'%" + obj + "%' and");
-					}
-					
-				} else {
-					
-					buffer.append(tmpKey + obj + " and");
-					
-				}
-				
-			}
-			
-			return buffer.toString().replaceAll(" and$", "");
-			
-		} else {
-			
-			return "";
-			
-		}
+		return m.matches() ? tmpUrl.replaceAll(replaceRegex, "{id}") : tmpUrl;
 		
 	}
 

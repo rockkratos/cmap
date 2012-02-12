@@ -93,6 +93,7 @@
         <div>
             <p>
                 <a id="btnAddPrivilege" href="javascript:void(0);" class="button">提 交</a>
+                <a id="btnCleanAddPrivilege" href="javascript:void(0);" class="button">清 空</a>
             </p>
         </div>
         
@@ -107,15 +108,15 @@
 	<div class="content-box-header"><h3>查询条件</h3></div>
     
     <div class="content-box-content clearfix">
-		
+    	
         <div class="column-left">
         	<p>
                 <label>权限描述</label>
-                <input type="text" class="text-input w200" />
+                <input name="queryPrivilegeDesc" type="text" class="text-input w200" />
             </p>
         	<p>
                 <label>权限名称</label>
-                <input type="text" class="text-input w200" />
+                <input name="queryPrivilegeName" type="text" class="text-input w200" />
             </p>
         </div>
         
@@ -131,11 +132,11 @@
 						<li><a href="javascript:void(0);" value="4">删除 -- DELETE</a></li>
 					</ul>
 				</div>
-                <input id="queryMethodTypeVal" type="hidden" />
+				<input name="queryHttpMethodTypeVo.methodTypeId" id="queryMethodTypeVal" type="hidden" />
             </p>
             <p>
                 <label>资源路径</label>
-                <input type="text" class="text-input w200" />
+                <input name="queryResPath" type="text" class="text-input w200" />
             </p>
         </div>
         
@@ -143,10 +144,11 @@
         
         <div>
             <p>
-                <a href="#" class="button">查 询</a>
+                <a href="javascript:void(0);" class="button">查 询</a>
+                <a id="btnCleanQueryPrivilege" href="javascript:void(0);" class="button">清 空</a>
             </p>
         </div>
-	
+		
     </div>
     
 </div><!-- END content-box -->
@@ -269,17 +271,7 @@
 						<a class="button" href="#">批量删除</a>
 					</div>
 					
-					<div class="pagination fr">
-						<a href="#">&laquo; 首页</a>
-						<a href="#">&laquo; 上一页</a>
-						<a href="#" class="number">1</a>
-						<a href="#" class="number">2</a>
-						<a href="#" class="number current">3</a>
-						...
-						<a href="#" class="number">10</a>
-						<a href="#">下一页 &raquo;</a>
-						<a href="#">尾页 &raquo;</a>
-					</div>
+					<div id="Pagination" class="pagination fr"></div>
 					
 				</td>
 				
@@ -351,6 +343,9 @@ $("#queryMethodTypeShow").click(function() { cmap.showDropDownList($(this), 'que
 $("#queryMethodTypeShow").blur(function() { cmap.dropDownListBlur('queryMethodTypeList'); });
 $("#queryMethodTypeList a").click(function() { cmap.updateDropDownListVal($(this), 'queryMethodTypeVal', 'queryMethodTypeShow'); });
 
+$("#btnCleanAddPrivilege").click(function() { cmap.cleanBox('cbAddPrivilege') });
+$("#btnCleanQueryPrivilege").click(function() { cmap.cleanBox('cbQueryPrivilege') });
+
 $("#btnAddPrivilege").click(function() {
 	var params = $("#privilegeForm").formSerialize();
 	var dialog = new Dialog(loadingPanel);
@@ -365,4 +360,18 @@ $("#btnAddPrivilege").click(function() {
 		}
 	});
 });
+
+cmap.initPagination("Pagination", 100);
+
+function pageselectCallback(pageIndex, jq) {
+	var params = $("#privilegeForm").formSerialize();
+ 	$.ajax({
+ 		type: "GET",
+		url: "${rc.contextPath}/adminPrivilege",
+		data: params + "&pageIndex=" + pageIndex,
+		success: function (msg) {
+			alert(msg);
+		}
+ 	});
+}
 </script>
