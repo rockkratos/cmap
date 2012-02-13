@@ -17,6 +17,10 @@ public class PrivilegeMgrImpl implements IPrivilegeMgr {
 	@Autowired
 	private IPrivilegeDao privilegeDao;
 	
+	public int queryPrivilegeCount(Map<String, Object> queryParams) {
+		return privilegeDao.getPrivilegeCount(queryParams);
+	}
+	
 	@Override
 	public List<PrivilegeInfoVo> queryPrivileges(Map<String, Object> queryParams, int pageIndex, int pageSize) {
 		

@@ -48,17 +48,16 @@ public class PrivilegeCtrl {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	@ResponseBody
 	public String queryPrivilege(Model model, HttpServletRequest request) {
 		
 		int pageIndex = QueryUtil.getCurrentPage(request);
 		Map<String, Object> queryParams = QueryUtil.getQueryParams(request);
 		
-		List<PrivilegeInfoVo> resultList = privilegeMgr.queryPrivileges(queryParams, pageIndex, CmapValues.DEFAULT_PAGE_SIZE);
+		List<PrivilegeInfoVo> privilegeList = privilegeMgr.queryPrivileges(queryParams, pageIndex, CmapValues.DEFAULT_PAGE_SIZE);
 		
-		model.addAttribute("resultList", resultList);
+		model.addAttribute("privilegeList", privilegeList);
 		
-		return "***";
+		return "/admin/privilege/privilegeList";
 		
 	}
 

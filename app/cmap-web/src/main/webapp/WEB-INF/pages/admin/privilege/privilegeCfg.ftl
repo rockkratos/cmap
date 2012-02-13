@@ -166,101 +166,11 @@
     	<table class="zebra-tab">
         	<tr>
             	<th><input class="check-all" type="checkbox" /></th>
-				<th>序号</th>
-				<th>关键字</th>
-				<th>资源</th>
+				<th>名称</th>
+				<th>资源路径</th>
+				<th>方法类型</th>
 				<th>描述</th>
 				<th>操作</th>
-            </tr>
-            <tr>
-            	<td><input type="checkbox" /></td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>
-                	<a href="javascript:void(0);" title="启用/禁用"><img src="../../imgs/admin/icons/bulb-off.png" /></a>
-					<a href="javascript:void(0);" title="编辑"><img src="../../imgs/admin/icons/edit.png" /></a>
-					<a href="javascript:void(0);" title="删除"><img src="../../imgs/admin/icons/cross.png" /></a> 
-					<a href="javascript:void(0);" title="查看"><img src="../../imgs/admin/icons/query.png" /></a>
-				</td>
-            </tr>
-            <tr>
-            	<td><input type="checkbox" /></td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>
-                	<a href="javascript:void(0);" title="启用/禁用"><img src="../../imgs/admin/icons/bulb-on.png" /></a>
-					<a href="javascript:void(0);" title="编辑"><img src="../../imgs/admin/icons/edit.png" /></a>
-					<a href="javascript:void(0);" title="删除"><img src="../../imgs/admin/icons/cross.png" /></a> 
-					<a href="javascript:void(0);" title="查看"><img src="../../imgs/admin/icons/query.png" /></a>
-                </td>
-            </tr>
-            <tr>
-            	<td><input type="checkbox" /></td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-            </tr>
-            <tr>
-            	<td><input type="checkbox" /></td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-            </tr>
-            <tr>
-            	<td><input type="checkbox" /></td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-            </tr>
-            <tr>
-            	<td><input type="checkbox" /></td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-            </tr>
-            <tr>
-            	<td><input type="checkbox" /></td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-            </tr>
-            <tr>
-            	<td><input type="checkbox" /></td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-            </tr>
-			<tr>
-            	<td><input type="checkbox" /></td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-            </tr>
-            <tr>
-            	<td><input type="checkbox" /></td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
-                <td>111</td>
             </tr>
             
             <tr class="tab-bg-white">
@@ -268,7 +178,8 @@
             	<td colspan="6" class="tab-btm pb10">
 					
 					<div class="bulk-actions fl">
-						<a class="button" href="#">批量删除</a>
+						<a class="button" href="javascript:void(0);">批量删除</a>
+						<a class="button" href="javascript:void(0);">刷 新</a>
 					</div>
 					
 					<div id="Pagination" class="pagination fr"></div>
@@ -278,6 +189,7 @@
             </tr>
             
         </table>
+        
     </div>
     
 </div><!-- END content-box -->
@@ -361,7 +273,7 @@ $("#btnAddPrivilege").click(function() {
 	});
 });
 
-cmap.initPagination("Pagination", 100);
+cmap.initPagination("Pagination", ${privilegeCount});
 
 function pageselectCallback(pageIndex, jq) {
 	var params = $("#privilegeForm").formSerialize();
@@ -370,7 +282,10 @@ function pageselectCallback(pageIndex, jq) {
 		url: "${rc.contextPath}/adminPrivilege",
 		data: params + "&pageIndex=" + pageIndex,
 		success: function (msg) {
-			alert(msg);
+			var firstLine = "<tr>" + $(".zebra-tab tr").first().html() + "</tr>";
+			$("table.zebra-tab tr:not(:last)").remove();
+			$("table.zebra-tab tr:last").before(firstLine + msg);
+			$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");			
 		}
  	});
 }

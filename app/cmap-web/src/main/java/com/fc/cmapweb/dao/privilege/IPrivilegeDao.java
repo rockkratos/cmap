@@ -7,7 +7,7 @@ import com.fc.cmapweb.vo.PrivilegeInfoVo;
 
 public interface IPrivilegeDao {
 	
-	public int getPrivilegePages(Map<String, Object> queryParams);
+	public int getPrivilegeCount(Map<String, Object> queryParams);
 	public List<PrivilegeInfoVo> getPrivileges(Map<String, Object> queryParams, int pageIndex, int pageSize);
 	
 	public PrivilegeInfoVo getPrivilege(String privilegeId);

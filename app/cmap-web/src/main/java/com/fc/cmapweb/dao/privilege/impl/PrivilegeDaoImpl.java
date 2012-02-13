@@ -16,7 +16,7 @@ import com.fc.cmapweb.vo.PrivilegeInfoVo;
 public class PrivilegeDaoImpl extends CmapBaseDao implements IPrivilegeDao {
 	
 	@Override
-	public int getPrivilegePages(Map<String, Object> queryParams) {
+	public int getPrivilegeCount(Map<String, Object> queryParams) {
 		
 		StringBuilder buffer = new StringBuilder();
 		

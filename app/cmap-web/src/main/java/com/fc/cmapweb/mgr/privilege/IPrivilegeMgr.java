@@ -7,6 +7,8 @@ import com.fc.cmapweb.vo.PrivilegeInfoVo;
 
 public interface IPrivilegeMgr {
 	
+	public int queryPrivilegeCount(Map<String, Object> queryParams);
+	
 	/**
 	 * 查询权限
 	 * @param queryParams		查询条件
