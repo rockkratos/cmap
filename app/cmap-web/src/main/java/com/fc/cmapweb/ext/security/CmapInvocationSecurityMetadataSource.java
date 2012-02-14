@@ -2,9 +2,12 @@ package com.fc.cmapweb.ext.security;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.web.FilterInvocation;
@@ -12,6 +15,7 @@ import org.springframework.security.web.access.intercept.FilterInvocationSecurit
 
 import com.fc.cmapweb.mgr.privilege.IRolePrivilegeMgr;
 import com.fc.cmapweb.utils.StrUtil;
+import com.fc.cmapweb.utils.XmlUtil;
 
 /**
  * 该类用于加载资源与对应角色到缓存及查找资源的可访问角色
@@ -21,6 +25,7 @@ import com.fc.cmapweb.utils.StrUtil;
 public class CmapInvocationSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
 
 	private IRolePrivilegeMgr rolePrivilegeMgr;
+	private List<Map<String, Collection<ConfigAttribute>>> globalRequestMapList;
 	
 	/**
 	 * 根据请求URL和HTTP method，查找对应Role
@@ -37,7 +42,26 @@ public class CmapInvocationSecurityMetadataSource implements FilterInvocationSec
 		Map<String, Collection<ConfigAttribute>> urlMap = resMap.get(reqMethod);
 		
 		if (null == urlMap) {
+			
+			for (Map<String, Collection<ConfigAttribute>> globalRequestMap : globalRequestMapList) {
+				
+				Set<String> globalReqKey = globalRequestMap.keySet();
+				
+				for (String tmpKey : globalReqKey) {
+					
+					Pattern p = Pattern.compile(tmpKey);
+					Matcher m = p.matcher(reqUrl);
+					
+					if (m.matches()) {
+						return globalRequestMap.get(tmpKey);
+					}
+					
+				}
+				
+			}
+			
 			return null;
+			
 		} else {
 			return urlMap.get(StrUtil.getPrivilegeUrl(reqUrl));
 		}
@@ -72,6 +96,7 @@ public class CmapInvocationSecurityMetadataSource implements FilterInvocationSec
 	
 	public void loadResourceDefine() {
 		rolePrivilegeMgr.queryResMap(); // save to cache
+		globalRequestMapList = XmlUtil.getGlobalACList();
 	}
 
 	public void setRolePrivilegeMgr(IRolePrivilegeMgr rolePrivilegeMgr) {

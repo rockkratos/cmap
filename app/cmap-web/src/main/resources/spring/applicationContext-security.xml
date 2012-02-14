@@ -9,7 +9,7 @@
 	
 	<http auto-config="false" use-expressions="true" entry-point-ref="cmapLoginUrlEntryPoint">
 		
-		<!-- 登录过滤器 -->		
+		<!-- 登录过滤器 -->
 		<custom-filter before="FORM_LOGIN_FILTER" ref="loginFilter" />
         <custom-filter position="FORM_LOGIN_FILTER" ref="adminLoginFilter" />
         
@@ -30,7 +30,7 @@
 	<beans:bean id="cmapADM" class="org.springframework.security.access.vote.AffirmativeBased">
 		<beans:property name="decisionVoters">
 			<beans:list>
-				<beans:bean class="org.springframework.security.access.vote.RoleVoter" />
+				<beans:bean class="com.fc.cmapweb.ext.security.CmapVoter" />
 			</beans:list>
 		</beans:property>
 	</beans:bean>

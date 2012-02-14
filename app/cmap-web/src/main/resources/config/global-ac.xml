@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<url-list>
+	
+	<url pattern="/admin/login" access="IS_ANONYMOUS" />
+	<url pattern="/admin/main" access="ONLY_AUTHENTICATED" />
+	<url pattern="/admin.*" access="IS_AUTHENTICATED" />
+	
+</url-list>
