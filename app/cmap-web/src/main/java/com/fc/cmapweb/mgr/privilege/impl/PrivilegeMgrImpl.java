@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.fc.cmapweb.dao.privilege.IPrivilegeDao;
 import com.fc.cmapweb.mgr.privilege.IPrivilegeMgr;
 import com.fc.cmapweb.utils.PaginationUtil;
+import com.fc.cmapweb.vo.HttpMethodTypeVo;
 import com.fc.cmapweb.vo.PrivilegeInfoVo;
 import com.googlecode.ehcache.annotations.TriggersRemove;
 
@@ -17,6 +18,25 @@ public class PrivilegeMgrImpl implements IPrivilegeMgr {
 
 	@Autowired
 	private IPrivilegeDao privilegeDao;
+	
+	@Override
+	@TriggersRemove(cacheName = "eternalCache")
+	public void updatePrivilege(String privilegeId, Map<String, Object> updateParams) {
+		
+		HttpMethodTypeVo httpMethodTypeVo = new HttpMethodTypeVo();
+		httpMethodTypeVo.setMethodTypeId(Integer.valueOf(String.valueOf(updateParams.get("httpMethodTypeVo.methodTypeId"))));
+		
+		PrivilegeInfoVo tmpPrivilege = new PrivilegeInfoVo();
+		tmpPrivilege.setPrivilegeId(privilegeId);
+		tmpPrivilege.setHttpMethodTypeVo(httpMethodTypeVo);
+		tmpPrivilege.setPrivilegeDesc(String.valueOf(updateParams.get("privilegeDesc")));
+		tmpPrivilege.setPrivilegeEnabled(Boolean.valueOf(String.valueOf(updateParams.get("privilegeEnabled"))));
+		tmpPrivilege.setPrivilegeName(String.valueOf(updateParams.get("privilegeName")));
+		tmpPrivilege.setResPath(String.valueOf(updateParams.get("resPath")));
+		
+		privilegeDao.updatePrivilege(tmpPrivilege);
+		
+	}
 	
 	@Override
 	@TriggersRemove(cacheName = "eternalCache")

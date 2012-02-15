@@ -7,6 +7,7 @@ import com.fc.cmapweb.vo.PrivilegeInfoVo;
 
 public interface IPrivilegeMgr {
 	
+	public void updatePrivilege(String privilegeId, Map<String, Object> updateParams);
 	public void rmPrivilege(String privilegeId);
 	public boolean updateEnableDisable(String privilegeId);	
 	public int queryPrivilegeCount(Map<String, Object> queryParams);

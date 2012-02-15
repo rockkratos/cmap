@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fc.cmapweb.mgr.privilege.IPrivilegeMgr;
 import com.fc.cmapweb.utils.CmapValues;
 import com.fc.cmapweb.utils.PropUtil;
-import com.fc.cmapweb.utils.QueryUtil;
+import com.fc.cmapweb.utils.ParamUtil;
 import com.fc.cmapweb.utils.StrUtil;
 import com.fc.cmapweb.vo.PrivilegeInfoVo;
 
@@ -28,6 +28,23 @@ public class PrivilegeCtrl {
 	
 	@Autowired
 	private IPrivilegeMgr privilegeMgr;
+	
+	@RequestMapping(value = "/edit/{privilegeId}", method = RequestMethod.PUT)
+	@ResponseBody
+	public String updatePrivilege(@PathVariable String privilegeId, HttpServletRequest request) {
+		
+		Map<String, Object> updateParams = ParamUtil.getParams(request, CmapValues.PREFIX_DETAIL);
+		privilegeMgr.updatePrivilege(privilegeId, updateParams);
+		
+		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
+		int count = privilegeMgr.queryPrivilegeCount(queryParams);
+		
+		Map<String, String> otherParams = new HashMap<String, String>();
+		otherParams.put("recordCount", String.valueOf(count));
+		
+		return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("update.success", null), otherParams);
+		
+	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
@@ -43,17 +60,18 @@ public class PrivilegeCtrl {
 	@RequestMapping(value = "/{privilegeId}", method = RequestMethod.GET)
 	public String showPrivilegeInfo(@PathVariable String privilegeId, Model model) {
 		
-		
+		model.addAttribute("privilegeInfoVo", privilegeMgr.queryPrivilege(privilegeId));
 		return "/admin/privilege/privilegeInfo";
 		
 	}
 	
 	@RequestMapping(value = "/{privilegeId}", method = RequestMethod.DELETE)
+	@ResponseBody
 	public String deletePrivilege(@PathVariable String privilegeId, HttpServletRequest request) {
 		
 		privilegeMgr.rmPrivilege(privilegeId);
 		
-		Map<String, Object> queryParams = QueryUtil.getQueryParams(request);
+		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
 		int count = privilegeMgr.queryPrivilegeCount(queryParams);
 		
 		Map<String, String> otherParams = new HashMap<String, String>();
@@ -81,7 +99,7 @@ public class PrivilegeCtrl {
 	@ResponseBody
 	public String queryPrivilegeCount(HttpServletRequest request) {
 		
-		Map<String, Object> queryParams = QueryUtil.getQueryParams(request);
+		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
 		int count = privilegeMgr.queryPrivilegeCount(queryParams);
 		
 		return String.valueOf(count);
@@ -91,8 +109,8 @@ public class PrivilegeCtrl {
 	@RequestMapping(method = RequestMethod.GET)
 	public String queryPrivilege(Model model, HttpServletRequest request) {
 		
-		int pageIndex = QueryUtil.getCurrentPage(request);
-		Map<String, Object> queryParams = QueryUtil.getQueryParams(request);
+		int pageIndex = ParamUtil.getCurrentPage(request);
+		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
 		
 		List<PrivilegeInfoVo> privilegeList = privilegeMgr.queryPrivileges(queryParams, pageIndex, CmapValues.DEFAULT_PAGE_SIZE);
 		

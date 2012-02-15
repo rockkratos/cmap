@@ -63,8 +63,8 @@
             </p>
             <p>
                 <label>启用/禁用</label>
-                <input name="privilegeEnabled" type="radio" class="vm" checked="checked" /> <span class="vm">启用</span>
-                <input name="privilegeEnabled" type="radio" class="vm" /> <span class="vm">禁用</span>
+                <input name="privilegeEnabled" type="radio" class="vm" checked="checked" value="true" /> <span class="vm">启用</span>
+                <input name="privilegeEnabled" type="radio" class="vm" value="false" /> <span class="vm">禁用</span>
             </p>
         </div>
         
@@ -194,52 +194,7 @@
     
 </div><!-- END content-box -->
 
-<div id="cb_detail_info" class="content-box dn">
-		
-	<div class="content-box-header">
-		<h3>详细信息</h3>					
-	</div>
-    
-    <div class="content-box-content clearfix pb0">
-        <div class="column-left">
-            <p>
-                <label>文本输入框</label>
-                <input type="text" class="text-input" />
-            </p>
-            <p>
-                <label>复选框</label>
-                <input type="checkbox" class="vm" /> <span class="vm">第一复选框</span> <input type="checkbox" class="vm" /> <span class="vm">第二复选框</span>
-            </p>
-            <p>
-                <label>单选框</label>
-                <input type="radio" name="radio1" class="vm" /> <span class="vm">单选框1</span><br />
-                <input type="radio" name="radio2" class="vm" /> <span class="vm">单选框2</span>
-            </p>
-        </div>
-        <div class="column-right">
-            <p>
-                <label>下拉框</label>
-                <input id="tt2_show" type="text" class="dropdown" readonly="readonly" value="测试2" onclick="javascript:showDropDownList(this, 'tt2');" onblur="javascript:dropDownListBlur('tt2');" />
-				<div id="tt2" class="dropdown-content">
-		            <ul>
-		                <li><a href="javascript:void(0);" value="1" onclick="javascript:updateDropDownListVal(this, 'tt2_val', 'tt2_show');">选项A</a></li>
-		                <li><a href="javascript:void(0);" value="2" onclick="javascript:updateDropDownListVal(this, 'tt2_val', 'tt2_show');">选项B</a></li>
-		                <li><a href="javascript:void(0);" value="3" onclick="javascript:updateDropDownListVal(this, 'tt2_val', 'tt2_show');">选项C</a></li>
-		            </ul>
-				</div>
-                <input id="tt2_val" type="hidden" />
-            </p>
-        </div>
-        <div class="cb"></div>
-        <div>
-            <p>
-                <a href="#" class="button">保 存</a>
-                <a id="btn-detail-close" href="javascript:void(0);" class="button">关 闭</a>
-            </p>
-        </div>
-    </div>
-    
-</div><!-- END content-box -->
+<div id="cbDetailInfo" class="content-box dn"></div><!-- detail info box -->
 
 </form>
 

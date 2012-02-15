@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.fc.cmapweb.dao.CmapBaseDao;
 import com.fc.cmapweb.dao.privilege.IPrivilegeDao;
-import com.fc.cmapweb.utils.QueryUtil;
+import com.fc.cmapweb.utils.ParamUtil;
 import com.fc.cmapweb.vo.PrivilegeInfoVo;
 
 @Repository("privilegeDao")
@@ -33,7 +33,7 @@ public class PrivilegeDaoImpl extends CmapBaseDao implements IPrivilegeDao {
 		StringBuilder buffer = new StringBuilder();
 		
 		buffer.append("SELECT COUNT(p) FROM PrivilegeInfoVo p ");
-		buffer.append(QueryUtil.getQueryConditionJPQL(queryParams, "p"));
+		buffer.append(ParamUtil.getQueryConditionJPQL(queryParams, "p"));
 		
 		Query rowCountQuery = em.createQuery(buffer.toString());
 		return ((Long) rowCountQuery.getSingleResult()).intValue();
@@ -46,7 +46,7 @@ public class PrivilegeDaoImpl extends CmapBaseDao implements IPrivilegeDao {
 		StringBuilder buffer = new StringBuilder();
 		
 		buffer.append("SELECT p FROM PrivilegeInfoVo p ");
-		buffer.append(QueryUtil.getQueryConditionJPQL(queryParams, "p"));
+		buffer.append(ParamUtil.getQueryConditionJPQL(queryParams, "p"));
 		buffer.append(" ORDER BY p.privilegeName");
 		
 		return em.createQuery(buffer.toString(), PrivilegeInfoVo.class)

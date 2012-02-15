@@ -210,7 +210,7 @@ var cmap = {
 		});
 	}, 
 	
-	delete : function (reqUrl, hintBoxId, paginationId, formId) {
+	del : function (reqUrl, hintBoxId, paginationId, formId) {
 		var params = $("#" + formId).formSerialize();
 		$.ajax({
 			type: "DELETE", 
@@ -221,7 +221,57 @@ var cmap = {
 				var msgContent = $.evalJSON(msg).hintMsg;
 				
 				if ("success" == msgType) {
-					cmap.initPagination(paginationId, $.evalJSON(msg).recordCount);
+					cmap.initPagination(paginationId, parseInt($.evalJSON(msg).recordCount));
+				}
+				
+				cmap.showHintMsg(hintBoxId, msgType, msgContent);
+			}
+		});
+	}, 
+	
+	edit : function (reqUrl, detailBoxId) {
+		var dialog = new Dialog(loadingPanel);
+		dialog.show();
+		$("#" + detailBoxId).slideUp("normal", function() {
+			$("#" + detailBoxId).empty();
+			$.ajax({
+				type: "GET", 
+				url: reqUrl, 
+				success: function (msg) {
+					$("#" + detailBoxId).empty().append(msg);
+					dialog.close();
+					$("#" + detailBoxId).slideDown();
+				}
+			});
+		});
+	}, 
+	
+	close : function (contentBoxId, emptyFlag) {
+		$("#" + contentBoxId).slideUp("normal", function() {
+			if (emptyFlag) {
+				$("#" + contentBoxId).empty();
+			}
+		});
+	}, 
+	
+	save : function (reqUrl, hintBoxId, paginationId, formId, contentBoxId) {
+		var dialog = new Dialog(loadingPanel);
+		dialog.show();
+		var params = $("#" + formId).formSerialize();
+		$.ajax({
+			type: "PUT", 
+			url: reqUrl, 
+			data: params, 
+			success: function (msg) {
+				dialog.close();
+				var msgType = $.evalJSON(msg).hintType;
+				var msgContent = $.evalJSON(msg).hintMsg;
+				
+				if ("success" == msgType) {
+					cmap.initPagination(paginationId, parseInt($.evalJSON(msg).recordCount));
+					$("#" + contentBoxId).slideUp("normal", function() {
+						$("#" + contentBoxId).empty();
+					});
 				}
 				
 				cmap.showHintMsg(hintBoxId, msgType, msgContent);

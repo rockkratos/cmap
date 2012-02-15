@@ -7,16 +7,16 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class QueryUtil {
+public class ParamUtil {
 	
 	public static int getCurrentPage(HttpServletRequest request) {
 		return Integer.valueOf(request.getParameter(CmapValues.PAGE_INDEX));
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public static Map<String, Object> getQueryParams(HttpServletRequest request) {
+	public static Map<String, Object> getParams(HttpServletRequest request, String prefix) {
 		
-		Map<String, Object> queryCondition = new HashMap<String, Object>();
+		Map<String, Object> back = new HashMap<String, Object>();
 		
 		Enumeration params = request.getParameterNames();
 		
@@ -24,22 +24,24 @@ public class QueryUtil {
 			
 			String paramKey = params.nextElement().toString();
 			
-			if (paramKey.startsWith("query")) {
+			if (paramKey.startsWith(prefix)) {
 				
 				String param = request.getParameter(paramKey);
+				String tmpKey = paramKey.replaceAll("^" + prefix, "");
+				tmpKey = tmpKey.replace(tmpKey.charAt(0), (char)(tmpKey.charAt(0) + 32));
 				
 				if (StrUtil.isNotEmpty(param)) {
 					
 					if (StrUtil.isDigit(param)) {
 						
 						if (StrUtil.isInteger(param)) {
-							queryCondition.put(paramKey.replaceAll("^query", ""), Integer.valueOf(param));
+							back.put(tmpKey, Integer.valueOf(param));
 						} else {
-							queryCondition.put(paramKey.replaceAll("^query", ""), Double.valueOf(param));
+							back.put(tmpKey, Double.valueOf(param));
 						}
 						
 					} else {
-						queryCondition.put(paramKey.replaceAll("^query", ""), param);
+						back.put(tmpKey, param);
 					}
 					
 				}
@@ -48,7 +50,7 @@ public class QueryUtil {
 			
 		}
 		
-		return queryCondition;
+		return back;
 		
 	}
 	
@@ -66,17 +68,19 @@ public class QueryUtil {
 				
 				Object obj = queryParams.get(tmpKey);
 				
-				String attrName = tmpKey.replace(tmpKey.charAt(0), (char)(tmpKey.charAt(0) + 32));
+//				String attrName = tmpKey.replace(tmpKey.charAt(0), (char)(tmpKey.charAt(0) + 32));
 				
 				if (obj instanceof String) {
 					
 					if (StrUtil.isNotEmpty((String) obj)) {
-						buffer.append(prefix + "." + attrName + " like '%" + obj + "%' and");
+//						buffer.append(prefix + "." + attrName + " like '%" + obj + "%' and");
+						buffer.append(prefix + "." + tmpKey + " like '%" + obj + "%' and");
 					}
 					
 				} else {
 					
-					buffer.append(prefix + "." + attrName + " = " + obj + " and");
+//					buffer.append(prefix + "." + attrName + " = " + obj + " and");
+					buffer.append(prefix + "." + tmpKey + " = " + obj + " and");
 					
 				}
 				

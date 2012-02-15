@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fc.cmapweb.mgr.privilege.IPrivilegeMgr;
-import com.fc.cmapweb.utils.QueryUtil;
+import com.fc.cmapweb.utils.CmapValues;
+import com.fc.cmapweb.utils.ParamUtil;
 import com.fc.cmapweb.vo.PrivilegeInfoVo;
 
 @Controller
@@ -27,7 +28,7 @@ public class AdminMenuCtrl {
 		
 		if ("menuPrivilegeCfg".equals(itemId)) {
 			
-			Map<String, Object> queryParams = QueryUtil.getQueryParams(request);
+			Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
 			
 			model.addAttribute("privilegeCount", privilegeMgr.queryPrivilegeCount(queryParams));
 			model.addAttribute("privilegeInfoVo", new PrivilegeInfoVo());
