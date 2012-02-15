@@ -49,7 +49,9 @@ public class CmapVoter implements AccessDecisionVoter<Object> {
                 if (attribute.getAttribute().equals("IS_ANONYMOUS")) {
                 	result = ACCESS_GRANTED;
                 	break;
-                } else if (attribute.getAttribute().equals("ONLY_AUTHENTICATED") && !(authentication instanceof AnonymousAuthenticationToken) && authentication.isAuthenticated()) {
+                } else if (attribute.getAttribute().equals("ONLY_AUTHENTICATED") 
+                		&& !(authentication instanceof AnonymousAuthenticationToken) 
+                		&& authentication.isAuthenticated()) {
                 	result = ACCESS_GRANTED;
                 	break;
                 }
@@ -57,7 +59,8 @@ public class CmapVoter implements AccessDecisionVoter<Object> {
                 // Attempt to find a matching granted authority
                 for (GrantedAuthority authority : authorities) {
                 	
-                    if (!(authentication instanceof AnonymousAuthenticationToken) && attribute.getAttribute().equals(authority.getAuthority())) {
+                    if (!(authentication instanceof AnonymousAuthenticationToken) 
+                    		&& attribute.getAttribute().equals(authority.getAuthority())) {
                         return ACCESS_GRANTED;
                     }
                     

@@ -125,14 +125,17 @@ var cmap = {
 	
 	showHintMsg : function (showId, hintType, msg) {
 		
-		$("#" + showId).slideUp();
-		var hintHtml = $(".hint" + "-" + hintType).html().replace("[hintmsg]", msg);
+		$("#" + showId).slideUp("normal", function() {
 		
-		$("#" + showId).addClass("hint-" + hintType);
-		$("#" + showId).html(hintHtml);
+			var hintHtml = $("#hint-wrapper .hint" + "-" + hintType).html().replace("[hintmsg]", msg);
 		
-		cmap.bindHindBoxClick(showId);
-		$("#" + showId).slideDown();
+			$("#" + showId).addClass("hint-" + hintType);
+			$("#" + showId).html(hintHtml);
+			
+			cmap.bindHindBoxClick(showId);
+			$("#" + showId).slideDown();
+		
+		});
 		
 	}, 
 	
@@ -145,6 +148,7 @@ var cmap = {
 	cleanBox : function (boxId) {
 		$("#" + boxId + " input[type='text']").val('');
 		$($("#" + boxId + " input[type='radio']").get(0)).attr("checked", true);
+		$("#" + boxId + " input[type='hidden']").val('');
 	}, 
 	
 	callBackOptForCb : function (cbId, jsonStr, hintBoxId) {
@@ -171,6 +175,58 @@ var cmap = {
 			num_display_entries: 4, 
 			num_edge_entries: 1
 		}); 
+	}, 
+	
+	chooseAll : function (inputName) {
+		if ($(this).attr("checked")) {
+			$(this).attr("checked", false);
+			$("input[name='" + inputName + "']").attr("checked", false);
+		} else {
+			$(this).attr("checked", true);
+			$("input[name='" + inputName + "']").attr("checked", true);
+		}
+	}, 
+	
+	enableDisabled : function (obj, reqUrl, hintBoxId) {
+		$.ajax({
+			type: "PUT", 
+			url: reqUrl, 
+			success: function (msg) {
+				var msgType = $.evalJSON(msg).hintType;
+				var msgContent = $.evalJSON(msg).hintMsg;
+				
+				if ("success" == msgType) {
+					var imgSrc = $(obj).children().attr("src");
+					if (imgSrc.indexOf("bulb-on") != -1) {
+						imgSrc = imgSrc.replace(/bulb-on/, "bulb-off");
+					} else {
+						imgSrc = imgSrc.replace(/bulb-off/, "bulb-on");
+					}
+					$(obj).children().attr("src", imgSrc);
+				}
+				
+				cmap.showHintMsg(hintBoxId, msgType, msgContent);
+			}
+		});
+	}, 
+	
+	delete : function (reqUrl, hintBoxId, paginationId, formId) {
+		var params = $("#" + formId).formSerialize();
+		$.ajax({
+			type: "DELETE", 
+			url: reqUrl, 
+			data: params, 
+			success: function (msg) {
+				var msgType = $.evalJSON(msg).hintType;
+				var msgContent = $.evalJSON(msg).hintMsg;
+				
+				if ("success" == msgType) {
+					cmap.initPagination(paginationId, $.evalJSON(msg).recordCount);
+				}
+				
+				cmap.showHintMsg(hintBoxId, msgType, msgContent);
+			}
+		});
 	}
 	
 };

@@ -1,5 +1,6 @@
 package com.fc.cmapweb.web.admin.privilege;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,6 +45,46 @@ public class PrivilegeCtrl {
 		
 		
 		return "/admin/privilege/privilegeInfo";
+		
+	}
+	
+	@RequestMapping(value = "/{privilegeId}", method = RequestMethod.DELETE)
+	public String deletePrivilege(@PathVariable String privilegeId, HttpServletRequest request) {
+		
+		privilegeMgr.rmPrivilege(privilegeId);
+		
+		Map<String, Object> queryParams = QueryUtil.getQueryParams(request);
+		int count = privilegeMgr.queryPrivilegeCount(queryParams);
+		
+		Map<String, String> otherParams = new HashMap<String, String>();
+		otherParams.put("recordCount", String.valueOf(count));
+		
+		return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("delete.success", null), otherParams);
+		
+	}
+	
+	@RequestMapping(value = "/{privilegeId}", method = RequestMethod.PUT)
+	@ResponseBody
+	public String enableDisablePrivilege(@PathVariable String privilegeId) {
+		
+		boolean flag = privilegeMgr.updateEnableDisable(privilegeId);
+		
+		if (flag) {
+			return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("enable.success", null));
+		} else {
+			return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("disable.success", null));
+		}
+		
+	}
+	
+	@RequestMapping(value = "/privilegeCount", method = RequestMethod.GET)
+	@ResponseBody
+	public String queryPrivilegeCount(HttpServletRequest request) {
+		
+		Map<String, Object> queryParams = QueryUtil.getQueryParams(request);
+		int count = privilegeMgr.queryPrivilegeCount(queryParams);
+		
+		return String.valueOf(count);
 		
 	}
 	

@@ -2,6 +2,7 @@ package com.fc.cmapweb.utils;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,6 +36,22 @@ public class StrUtil {
 	
 	public static boolean isEmpty(String str) {
 		return (null == str || str.length() == 0) ? true : false;
+	}
+	
+	public static String getJsonHintMsg(String hintType, String hintMsg, Map<String, String> otherParams) {
+		
+		Map<String, String> tmp = new HashMap<String, String>();
+		tmp.put("hintType", hintType);
+		tmp.put("hintMsg", hintMsg);
+		
+		Set<String> keySet = otherParams.keySet();
+		
+		for (String tmpKey : keySet) {
+			tmp.put(tmpKey, otherParams.get(tmpKey));
+		}
+		
+		return JSON.toJSONString(tmp);
+		
 	}
 	
 	public static String getJsonHintMsg(String hintType, String hintMsg) {

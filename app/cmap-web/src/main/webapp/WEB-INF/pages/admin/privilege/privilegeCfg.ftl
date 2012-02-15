@@ -144,7 +144,7 @@
         
         <div>
             <p>
-                <a href="javascript:void(0);" class="button">查 询</a>
+                <a id="btnQueryPrivilege" href="javascript:void(0);" class="button">查 询</a>
                 <a id="btnCleanQueryPrivilege" href="javascript:void(0);" class="button">清 空</a>
             </p>
         </div>
@@ -153,7 +153,7 @@
     
 </div><!-- END content-box -->
 
-<div id="privilege_list" class="content-box">
+<div id="privilegeList" class="content-box">
 		
 	<div class="content-box-header">
 		<h3>权限列表</h3>					
@@ -161,7 +161,7 @@
     
     <div class="content-box-content">
 		
-		<div class="dn"></div><!-- error msg wrapper -->
+		<div id="privilegeListHint" class="hint-box dn"></div><!-- error msg wrapper -->
 		
     	<table class="zebra-tab">
         	<tr>
@@ -255,8 +255,8 @@ $("#queryMethodTypeShow").click(function() { cmap.showDropDownList($(this), 'que
 $("#queryMethodTypeShow").blur(function() { cmap.dropDownListBlur('queryMethodTypeList'); });
 $("#queryMethodTypeList a").click(function() { cmap.updateDropDownListVal($(this), 'queryMethodTypeVal', 'queryMethodTypeShow'); });
 
-$("#btnCleanAddPrivilege").click(function() { cmap.cleanBox('cbAddPrivilege') });
-$("#btnCleanQueryPrivilege").click(function() { cmap.cleanBox('cbQueryPrivilege') });
+$("#btnCleanAddPrivilege").click(function() { cmap.cleanBox('cbAddPrivilege'); });
+$("#btnCleanQueryPrivilege").click(function() { cmap.cleanBox('cbQueryPrivilege'); });
 
 $("#btnAddPrivilege").click(function() {
 	var params = $("#privilegeForm").formSerialize();
@@ -273,6 +273,22 @@ $("#btnAddPrivilege").click(function() {
 	});
 });
 
+$("#btnQueryPrivilege").click(function() {
+	var params = $("#privilegeForm").formSerialize();
+	var dialog = new Dialog(loadingPanel);
+	dialog.show();
+	$.ajax({
+		type: "GET", 
+		url: "${rc.contextPath}/adminPrivilege/privilegeCount",
+		data: params, 
+		success: function (msg) {
+			cmap.initPagination("Pagination", msg);
+			dialog.close();
+			$("#cbQueryPrivilege").slideUp();
+		}
+	});
+});
+
 cmap.initPagination("Pagination", ${privilegeCount});
 
 function pageselectCallback(pageIndex, jq) {
@@ -285,7 +301,8 @@ function pageselectCallback(pageIndex, jq) {
 			var firstLine = "<tr>" + $(".zebra-tab tr").first().html() + "</tr>";
 			$("table.zebra-tab tr:not(:last)").remove();
 			$("table.zebra-tab tr:last").before(firstLine + msg);
-			$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");			
+			$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");
+			$("#privilegeList input[class='check-all']").click(function() {cmap.chooseAll('listPrivilegeId');});
 		}
  	});
 }

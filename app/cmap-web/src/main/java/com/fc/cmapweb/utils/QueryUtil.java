@@ -66,15 +66,17 @@ public class QueryUtil {
 				
 				Object obj = queryParams.get(tmpKey);
 				
+				String attrName = tmpKey.replace(tmpKey.charAt(0), (char)(tmpKey.charAt(0) + 32));
+				
 				if (obj instanceof String) {
 					
 					if (StrUtil.isNotEmpty((String) obj)) {
-						buffer.append(prefix + "." + tmpKey + "'%" + obj + "%' and");
+						buffer.append(prefix + "." + attrName + " like '%" + obj + "%' and");
 					}
 					
 				} else {
 					
-					buffer.append(prefix + "." + tmpKey + obj + " and");
+					buffer.append(prefix + "." + attrName + " = " + obj + " and");
 					
 				}
 				

@@ -16,6 +16,18 @@ import com.fc.cmapweb.vo.PrivilegeInfoVo;
 public class PrivilegeDaoImpl extends CmapBaseDao implements IPrivilegeDao {
 	
 	@Override
+	public boolean switchEnableDisable(String privilegeId) {
+		
+		PrivilegeInfoVo tmp = getPrivilege(privilegeId);
+		tmp.setPrivilegeEnabled(tmp.isPrivilegeEnabled() == true ? false : true);
+		
+		em.merge(tmp);
+		
+		return tmp.isPrivilegeEnabled();
+		
+	}
+	
+	@Override
 	public int getPrivilegeCount(Map<String, Object> queryParams) {
 		
 		StringBuilder buffer = new StringBuilder();
