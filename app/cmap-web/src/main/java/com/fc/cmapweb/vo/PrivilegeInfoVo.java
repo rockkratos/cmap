@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -39,6 +40,9 @@ public class PrivilegeInfoVo implements Serializable {
 	
 	@Column(name = "PRIVILEGE_DESC")
 	private String privilegeDesc;
+	
+	@Transient
+	private String roleId;
 
 	public String getPrivilegeId() {
 		return privilegeId;
@@ -86,6 +90,14 @@ public class PrivilegeInfoVo implements Serializable {
 
 	public void setPrivilegeEnabled(boolean privilegeEnabled) {
 		this.privilegeEnabled = privilegeEnabled;
+	}
+
+	public String getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(String roleId) {
+		this.roleId = roleId;
 	}
 
 }

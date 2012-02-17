@@ -2,6 +2,8 @@ package com.fc.cmapweb.utils;
 
 public class CmapValues {
 	
+	public static final boolean PRIVILEGE_CHECK = Boolean.valueOf(PropUtil.getPolicy("privilege.check"));
+	
 	public static final String PREFIX_QUERY = "query";
 	public static final String PREFIX_DETAIL = "detail";
 	

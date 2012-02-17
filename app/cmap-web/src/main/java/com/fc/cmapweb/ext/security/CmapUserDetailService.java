@@ -29,7 +29,7 @@ public class CmapUserDetailService implements UserDetailsService {
 		}
 		
 		Collection<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
-		List<String> usrRoleList = usrMgr.queryUsrRoles(loginName);
+		List<String> usrRoleList = usrMgr.queryAllUsrRole(loginName);
 		
 		for (String tmpRoleName : usrRoleList) {
 			roles.add(new SimpleGrantedAuthority(tmpRoleName));

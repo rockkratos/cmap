@@ -1,12 +1,13 @@
 package com.fc.cmapweb.mgr.privilege;
 
-import java.util.List;
+import java.util.Map;
 
 import com.fc.cmapweb.vo.RoleInfoVo;
 
 public interface IRoleMgr {
 	
-	public List<RoleInfoVo> queryAllRoles();
+	public int queryRoleCount(Map<String, Object> queryParams);
+	
 	public RoleInfoVo queryRole(String roleId);
 	public RoleInfoVo addRole(RoleInfoVo roleInfoVo);
 

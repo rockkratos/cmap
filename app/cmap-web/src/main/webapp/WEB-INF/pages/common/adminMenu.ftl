@@ -20,7 +20,7 @@
         <a href="javascript:void(0);" class="nav-top-item">权限管理</a>
         <ul class="submenu">
             <li><a id="menuPrivilegeCfg" href="javascript:void(0);">权限配置</a></li>
-            <li><a id="menuRoleMgr" href="javascript:void(0);">角色维护</a></li>
+            <li><a id="menuRoleCfg" href="javascript:void(0);">角色维护</a></li>
         </ul>
     </li>
     

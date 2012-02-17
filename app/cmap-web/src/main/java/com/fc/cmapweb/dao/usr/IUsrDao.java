@@ -8,6 +8,6 @@ public interface IUsrDao {
 	
 	public UsrInfoVo getUsrInfo(String loginName);
 	public UsrInfoVo insertUsr(UsrInfoVo usrInfoVo);
-	public List<String> getUsrRoles(String loginName);
+	public List<String> getAllUsrRole(String loginName);
 
 }

@@ -8,6 +8,8 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
+import com.fc.cmapweb.utils.CmapValues;
+
 public class CmapVoter implements AccessDecisionVoter<Object> {
 	
 	private String rolePrefix = "ROLE_";
@@ -36,6 +38,10 @@ public class CmapVoter implements AccessDecisionVoter<Object> {
 
 	@Override
 	public int vote(Authentication authentication, Object object, Collection<ConfigAttribute> attributes) {
+		
+		if (!CmapValues.PRIVILEGE_CHECK) {
+			return ACCESS_GRANTED;
+		}
 		
 		int result = ACCESS_ABSTAIN;
         Collection<? extends GrantedAuthority> authorities = extractAuthorities(authentication);

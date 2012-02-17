@@ -29,6 +29,33 @@ public class PrivilegeCtrl {
 	@Autowired
 	private IPrivilegeMgr privilegeMgr;
 	
+	@RequestMapping(value = "/{privilegeId}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public String deletePrivilege(@PathVariable String privilegeId, HttpServletRequest request) {
+		
+		privilegeMgr.rmPrivilege(privilegeId);
+		
+		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
+		int count = privilegeMgr.queryPrivilegeCount(queryParams);
+		
+		Map<String, String> otherParams = new HashMap<String, String>();
+		otherParams.put("recordCount", String.valueOf(count));
+		
+		return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("delete.success", null), otherParams);
+		
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	@ResponseBody
+	public String addPrivilege(@ModelAttribute("privilegeInfoVo") PrivilegeInfoVo privilegeInfoVo) {
+		
+		// TODO: 数据校验
+		
+		privilegeMgr.addPrivilege(privilegeInfoVo);
+		return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("add.success", null));
+		
+	}
+	
 	@RequestMapping(value = "/edit/{privilegeId}", method = RequestMethod.PUT)
 	@ResponseBody
 	public String updatePrivilege(@PathVariable String privilegeId, HttpServletRequest request) {
@@ -46,38 +73,11 @@ public class PrivilegeCtrl {
 		
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
-	@ResponseBody
-	public String addPrivilege(@ModelAttribute("privilegeInfoVo") PrivilegeInfoVo privilegeInfoVo) {
-		
-		// TODO: 数据校验
-		
-		privilegeMgr.addPrivilege(privilegeInfoVo);
-		return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("add.success", null));
-		
-	}
-	
 	@RequestMapping(value = "/{privilegeId}", method = RequestMethod.GET)
 	public String showPrivilegeInfo(@PathVariable String privilegeId, Model model) {
 		
 		model.addAttribute("privilegeInfoVo", privilegeMgr.queryPrivilege(privilegeId));
 		return "/admin/privilege/privilegeInfo";
-		
-	}
-	
-	@RequestMapping(value = "/{privilegeId}", method = RequestMethod.DELETE)
-	@ResponseBody
-	public String deletePrivilege(@PathVariable String privilegeId, HttpServletRequest request) {
-		
-		privilegeMgr.rmPrivilege(privilegeId);
-		
-		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
-		int count = privilegeMgr.queryPrivilegeCount(queryParams);
-		
-		Map<String, String> otherParams = new HashMap<String, String>();
-		otherParams.put("recordCount", String.valueOf(count));
-		
-		return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("delete.success", null), otherParams);
 		
 	}
 	

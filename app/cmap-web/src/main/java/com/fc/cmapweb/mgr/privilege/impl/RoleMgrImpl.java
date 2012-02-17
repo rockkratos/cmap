@@ -1,6 +1,6 @@
 package com.fc.cmapweb.mgr.privilege.impl;
 
-import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +16,8 @@ public class RoleMgrImpl implements IRoleMgr {
 	private IRoleDao roleDao;
 	
 	@Override
-	public List<RoleInfoVo> queryAllRoles() {
-		return roleDao.getAllRoles();
+	public int queryRoleCount(Map<String, Object> queryParams) {
+		return roleDao.getRoleCount(queryParams);
 	}
 
 	@Override

@@ -7,6 +7,9 @@ import com.fc.cmapweb.vo.PrivilegeInfoVo;
 
 public interface IPrivilegeDao {
 	
+	public List<PrivilegeInfoVo> getAllPrivilege();
+	
+	public List<PrivilegeInfoVo> getPrivilegeMarkedRole();
 	public boolean switchEnableDisable(String privilegeId);
 	
 	public int getPrivilegeCount(Map<String, Object> queryParams);

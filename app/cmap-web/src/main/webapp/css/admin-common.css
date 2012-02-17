@@ -104,6 +104,10 @@ div.hint-error span{color:#665252}
 .column-left{width:48%;float:left}
 .column-right{width:48%;float:right}
 
+ul.cb-list{overflow:auto;border:1px solid #D5D5D5;height:140px}
+ul.cb-list li{height:28px;line-height:28px}
+ul.cb-list input,ul.cb-list span{vertical-align:middle}
+
 #footer {width:738px;margin:0 auto;background:#F6F6F6 url(../imgs/admin/bg-left.gif) left no-repeat;clear:both;height:50px;margin-top:-50px;position:relative;padding-left:222px}
 #footer div{border-top:1px solid #CCC;line-height:49px;margin:0 20px;background-color:#F6F6F6;color:#555}
 #footer div a{text-decoration:none;color:#57A000}

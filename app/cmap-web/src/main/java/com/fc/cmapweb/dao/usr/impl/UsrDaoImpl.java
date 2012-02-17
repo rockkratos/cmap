@@ -43,7 +43,7 @@ public class UsrDaoImpl extends CmapBaseDao implements IUsrDao {
 	}
 	
 	@Override
-	public List<String> getUsrRoles(String loginName) {
+	public List<String> getAllUsrRole(String loginName) {
 		
 		StringBuilder buffer = new StringBuilder();
 		

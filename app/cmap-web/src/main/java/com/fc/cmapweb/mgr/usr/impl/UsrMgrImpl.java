@@ -33,8 +33,8 @@ public class UsrMgrImpl implements IUsrMgr {
 	}
 	
 	@Override
-	public List<String> queryUsrRoles(String loginName) {
-		return usrDao.getUsrRoles(loginName);
+	public List<String> queryAllUsrRole(String loginName) {
+		return usrDao.getAllUsrRole(loginName);
 	}
 
 }
