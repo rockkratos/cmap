@@ -14,5 +14,5 @@ public interface IRolePrivilegeMgr {
 	 * 		   value format - role string list 
 	 */
 	public Map<String, Map<String, Collection<ConfigAttribute>>> queryResMap();
-
+	
 }

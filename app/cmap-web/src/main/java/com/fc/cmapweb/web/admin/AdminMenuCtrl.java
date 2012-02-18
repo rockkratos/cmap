@@ -45,10 +45,10 @@ public class AdminMenuCtrl {
 			
 			queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
 			
-			model.addAttribute("allPrivileges", privilegeMgr.queryAllPrivilege());
+			model.addAttribute("allPrivileges", privilegeMgr.queryAllEnabledPrivilege());
 			model.addAttribute("roleCount", roleMgr.queryRoleCount(queryParams));
 			model.addAttribute("roleInfoVo", new RoleInfoVo());
-			return "admin/role/roleCfg";
+			return "admin/privilege/roleCfg";
 			
 		} else {
 			

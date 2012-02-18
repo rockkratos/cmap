@@ -7,13 +7,13 @@ import com.fc.cmapweb.vo.PrivilegeInfoVo;
 
 public interface IPrivilegeDao {
 	
-	public List<PrivilegeInfoVo> getAllPrivilege();
+	public List<PrivilegeInfoVo> getAllEnabledPrivilege();
 	
-	public List<PrivilegeInfoVo> getPrivilegeMarkedRole();
+	public List<PrivilegeInfoVo> getPrivilegeMarkedRole(String roleId);
 	public boolean switchEnableDisable(String privilegeId);
 	
 	public int getPrivilegeCount(Map<String, Object> queryParams);
-	public List<PrivilegeInfoVo> getPrivileges(Map<String, Object> queryParams, int pageIndex, int pageSize);
+	public List<PrivilegeInfoVo> getPrivilege(Map<String, Object> queryParams, int currentPage, int pageSize);
 	
 	public PrivilegeInfoVo getPrivilege(String privilegeId);
 	public PrivilegeInfoVo insertPrivilege(PrivilegeInfoVo privilegeInfoVo);

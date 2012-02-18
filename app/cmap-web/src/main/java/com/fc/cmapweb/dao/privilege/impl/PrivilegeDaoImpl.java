@@ -18,9 +18,9 @@ import com.fc.cmapweb.vo.PrivilegeInfoVo;
 public class PrivilegeDaoImpl extends CmapBaseDao implements IPrivilegeDao {
 	
 	@Override
-	public List<PrivilegeInfoVo> getAllPrivilege() {
+	public List<PrivilegeInfoVo> getAllEnabledPrivilege() {
 		
-		String jpql = "SELECT p FROM PrivilegeInfoVo p ORDER BY p.privilegeName";
+		String jpql = "SELECT p FROM PrivilegeInfoVo p WHERE p.privilegeEnabled = true ORDER BY p.privilegeName";
 		TypedQuery<PrivilegeInfoVo> tq = em.createQuery(jpql, PrivilegeInfoVo.class);
 		
 		return tq.getResultList();
@@ -29,7 +29,7 @@ public class PrivilegeDaoImpl extends CmapBaseDao implements IPrivilegeDao {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<PrivilegeInfoVo> getPrivilegeMarkedRole() {
+	public List<PrivilegeInfoVo> getPrivilegeMarkedRole(String roleId) {
 		
 		List<PrivilegeInfoVo> back = new ArrayList<PrivilegeInfoVo>();
 		
@@ -37,13 +37,15 @@ public class PrivilegeDaoImpl extends CmapBaseDao implements IPrivilegeDao {
 		sql.append("SELECT privilege_info.privilege_id, ");
 		sql.append("privilege_info.privilege_name, ");
 		sql.append("privilege_info.privilege_desc, ");
-		sql.append("role_privilege.role_id ");
-		sql.append("FROM privilege_info LEFT OUTER JOIN role_privilege ");
-		sql.append("ON privilege_info.privilege_id = role_privilege.privilege_id ");
+		sql.append("tmp_tab.role_id ");
+		sql.append("FROM privilege_info LEFT OUTER JOIN ");
+		sql.append("(SELECT * FROM role_privilege WHERE role_privilege.role_id = ?) tmp_tab ");
+		sql.append("ON privilege_info.privilege_id = tmp_tab.privilege_id ");
 		sql.append("WHERE privilege_info.enabled = true ");
 		sql.append("ORDER BY privilege_info.privilege_name");
 		
 		Query q = em.createNativeQuery(sql.toString());
+		q.setParameter(1, roleId);
 		
 		List<Object[]> list = q.getResultList();
 		
@@ -53,7 +55,7 @@ public class PrivilegeDaoImpl extends CmapBaseDao implements IPrivilegeDao {
 			tmpPrivilege.setPrivilegeId(String.valueOf(tmp[0]));
 			tmpPrivilege.setPrivilegeName(String.valueOf(tmp[1]));
 			tmpPrivilege.setPrivilegeDesc(String.valueOf(tmp[2]));
-			tmpPrivilege.setRoleId(String.valueOf(tmp[3]));
+			tmpPrivilege.setRoleId(null == tmp[3] ? null : String.valueOf(tmp[3]));
 			
 			back.add(tmpPrivilege);
 			
@@ -89,7 +91,7 @@ public class PrivilegeDaoImpl extends CmapBaseDao implements IPrivilegeDao {
 	}
 	
 	@Override
-	public List<PrivilegeInfoVo> getPrivileges(Map<String, Object> queryParams, int currentPage, int pageSize) {
+	public List<PrivilegeInfoVo> getPrivilege(Map<String, Object> queryParams, int currentPage, int pageSize) {
 		
 		StringBuilder buffer = new StringBuilder();
 		

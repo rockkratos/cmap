@@ -32,7 +32,7 @@ public class RolePrivilegeMgrImpl implements IRolePrivilegeMgr {
 	public Map<String, Map<String, Collection<ConfigAttribute>>> queryResMap() {
 		
 		Map<String, Map<String, Collection<ConfigAttribute>>> resMap = new HashMap<String, Map<String, Collection<ConfigAttribute>>>();
-		List<RolePrivilegeVo> rolePrivilegeList = rolePrivilegeDao.getValidRolePrivileges();
+		List<RolePrivilegeVo> rolePrivilegeList = rolePrivilegeDao.getValidRolePrivilege();
 		
 		for (RolePrivilegeVo tmp : rolePrivilegeList) {
 			

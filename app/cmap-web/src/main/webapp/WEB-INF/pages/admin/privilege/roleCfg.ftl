@@ -32,7 +32,7 @@
     </li>
     
     <li>
-    	<a class="shortcut-button" href="#">
+    	<a id="privilegeCfgLink" class="shortcut-button" href="#">
         	<span>
         		<img src="${rc.contextPath}/imgs/admin/icons/privilege.png" alt="icon" /><br />
         		权限配置
@@ -179,4 +179,55 @@ $("#queryRoleLink").click(function() { cmap.triggerContentBox('cbAddRole', 'cbQu
 
 $("#btnCleanAddRole").click(function() { cmap.cleanBox('cbAddRole'); });
 $("#btnCleanQueryRole").click(function() { cmap.cleanBox('cbQueryRole'); });
+
+$("#privilegeCfgLink").click(function() { $("#menuPrivilegeCfg").click(); });
+
+$("#btnAddRole").click(function() {
+	var params = $("#roleForm").formSerialize();
+	var dialog = new Dialog(loadingPanel);
+	dialog.show();
+	$.ajax({
+		type: "POST",
+		url: "${rc.contextPath}/adminRole",
+		data: params,
+		success: function (msg) {
+			dialog.close();
+			cmap.callBackOptForCb('cbAddRole', msg, 'topHint', 'Pagination');
+		}
+	});
+});
+
+$("#btnQueryRole").click(function() {
+	var params = $("#roleForm").formSerialize();
+	var dialog = new Dialog(loadingPanel);
+	dialog.show();
+	$.ajax({
+		type: "GET", 
+		url: "${rc.contextPath}/adminRole/roleCount",
+		data: params, 
+		success: function (msg) {
+			cmap.initPagination("Pagination", msg);
+			dialog.close();
+			$("#cbQueryRole").slideUp();
+		}
+	});
+});
+
+cmap.initPagination("Pagination", ${roleCount});
+
+function pageselectCallback(pageIndex, jq) {
+	var params = $("#roleForm").formSerialize();
+ 	$.ajax({
+ 		type: "GET",
+		url: "${rc.contextPath}/adminRole",
+		data: params + "&pageIndex=" + pageIndex,
+		success: function (msg) {
+			var firstLine = "<tr>" + $(".zebra-tab tr").first().html() + "</tr>";
+			$("table.zebra-tab tr:not(:last)").remove();
+			$("table.zebra-tab tr:last").before(firstLine + msg);
+			$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");
+			$("#roleList input[class='check-all']").click(function() {cmap.chooseAll('listRoleId');});
+		}
+ 	});
+}
 </script>

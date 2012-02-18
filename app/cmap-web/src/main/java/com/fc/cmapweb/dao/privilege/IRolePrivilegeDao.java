@@ -6,6 +6,8 @@ import com.fc.cmapweb.vo.RolePrivilegeVo;
 
 public interface IRolePrivilegeDao {
 	
-	public List<RolePrivilegeVo> getValidRolePrivileges();
+	public RolePrivilegeVo insertRolePrivilege(RolePrivilegeVo rolePrivilegeVo);
+	public void delAllPrivilegeByRoleId(String roleId);
+	public List<RolePrivilegeVo> getValidRolePrivilege();
 
 }

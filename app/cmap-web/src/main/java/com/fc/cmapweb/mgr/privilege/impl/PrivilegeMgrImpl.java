@@ -20,13 +20,13 @@ public class PrivilegeMgrImpl implements IPrivilegeMgr {
 	private IPrivilegeDao privilegeDao;
 	
 	@Override
-	public List<PrivilegeInfoVo> queryAllPrivilege() {
-		return privilegeDao.getAllPrivilege();
+	public List<PrivilegeInfoVo> queryAllEnabledPrivilege() {
+		return privilegeDao.getAllEnabledPrivilege();
 	}
 	
 	@Override
-	public List<PrivilegeInfoVo> queryPrivilegeMarkedRole() {
-		return privilegeDao.getPrivilegeMarkedRole();
+	public List<PrivilegeInfoVo> queryPrivilegeMarkedRole(String roleId) {
+		return privilegeDao.getPrivilegeMarkedRole(roleId);
 	}
 	
 	@Override
@@ -66,9 +66,9 @@ public class PrivilegeMgrImpl implements IPrivilegeMgr {
 	}
 	
 	@Override
-	public List<PrivilegeInfoVo> queryPrivileges(Map<String, Object> queryParams, int pageIndex, int pageSize) {
+	public List<PrivilegeInfoVo> queryPrivilege(Map<String, Object> queryParams, int currentPage, int pageSize) {
 		
-		List<PrivilegeInfoVo> back =  privilegeDao.getPrivileges(queryParams, pageIndex, pageSize);
+		List<PrivilegeInfoVo> back =  privilegeDao.getPrivilege(queryParams, currentPage, pageSize);
 		PaginationUtil.fillList(back, PrivilegeInfoVo.class, pageSize);
 		
 		return back;

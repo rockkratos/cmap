@@ -152,12 +152,13 @@ var cmap = {
 		$("#" + boxId + " input[type='checkbox']").attr("checked", false);
 	}, 
 	
-	callBackOptForCb : function (cbId, jsonStr, hintBoxId) {
-	
+	callBackOptForCb : function (cbId, jsonStr, hintBoxId, paginationId) {
+		
 		var type = $.evalJSON(jsonStr).hintType;
 		var msg = $.evalJSON(jsonStr).hintMsg;
 		
 		if ("success" == type) {
+			cmap.initPagination(paginationId, parseInt($.evalJSON(jsonStr).recordCount));
 			$("#" + cbId).slideUp("normal", function() {
 				cmap.showHintMsg(hintBoxId, type, msg);
 				cmap.cleanBox(cbId);

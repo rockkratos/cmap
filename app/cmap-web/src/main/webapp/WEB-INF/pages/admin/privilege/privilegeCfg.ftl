@@ -32,7 +32,7 @@
     </li>
     
     <li>
-    	<a class="shortcut-button" href="#">
+    	<a id="roleCfgLink" class="shortcut-button" href="javascript:void(0);">
         	<span>
         		<img src="${rc.contextPath}/imgs/admin/icons/role.png" alt="icon" /><br />
         		角色维护
@@ -213,6 +213,8 @@ $("#queryMethodTypeList a").click(function() { cmap.updateDropDownListVal($(this
 $("#btnCleanAddPrivilege").click(function() { cmap.cleanBox('cbAddPrivilege'); });
 $("#btnCleanQueryPrivilege").click(function() { cmap.cleanBox('cbQueryPrivilege'); });
 
+$("#roleCfgLink").click(function() { $("#menuRoleCfg").click(); });
+
 $("#btnAddPrivilege").click(function() {
 	var params = $("#privilegeForm").formSerialize();
 	var dialog = new Dialog(loadingPanel);
@@ -223,7 +225,7 @@ $("#btnAddPrivilege").click(function() {
 		data: params,
 		success: function (msg) {
 			dialog.close();
-			cmap.callBackOptForCb('cbAddPrivilege', msg, 'topHint');
+			cmap.callBackOptForCb('cbAddPrivilege', msg, 'topHint', 'Pagination');
 		}
 	});
 });

@@ -47,12 +47,19 @@ public class PrivilegeCtrl {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
-	public String addPrivilege(@ModelAttribute("privilegeInfoVo") PrivilegeInfoVo privilegeInfoVo) {
+	public String addPrivilege(@ModelAttribute("privilegeInfoVo") PrivilegeInfoVo privilegeInfoVo, HttpServletRequest request) {
 		
 		// TODO: 数据校验
 		
 		privilegeMgr.addPrivilege(privilegeInfoVo);
-		return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("add.success", null));
+		
+		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
+		int count = privilegeMgr.queryPrivilegeCount(queryParams);
+		
+		Map<String, String> otherParams = new HashMap<String, String>();
+		otherParams.put("recordCount", String.valueOf(count));
+		
+		return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("add.success", null), otherParams);
 		
 	}
 	
@@ -112,7 +119,7 @@ public class PrivilegeCtrl {
 		int pageIndex = ParamUtil.getCurrentPage(request);
 		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
 		
-		List<PrivilegeInfoVo> privilegeList = privilegeMgr.queryPrivileges(queryParams, pageIndex, CmapValues.DEFAULT_PAGE_SIZE);
+		List<PrivilegeInfoVo> privilegeList = privilegeMgr.queryPrivilege(queryParams, pageIndex, CmapValues.DEFAULT_PAGE_SIZE);
 		
 		model.addAttribute("privilegeList", privilegeList);
 		
