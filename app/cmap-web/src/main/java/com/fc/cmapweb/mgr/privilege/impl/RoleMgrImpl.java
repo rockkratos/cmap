@@ -27,6 +27,12 @@ public class RoleMgrImpl implements IRoleMgr {
 	@Autowired
 	private IUsrTypeRoleDao usrTypeRoleDao;
 	
+	@Override
+	public List<RoleInfoVo> queryAllEnabledRole() {
+		return roleDao.getAllEnabledRole();
+	}
+	
+	@Override
 	public void updateRole(String roleId, Map<String, Object> updateParams, List<String> privilegeIdList) {
 		
 		RoleInfoVo tmpRole = new RoleInfoVo();

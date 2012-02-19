@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fc.cmapweb.mgr.privilege.IPrivilegeMgr;
 import com.fc.cmapweb.mgr.privilege.IRoleMgr;
+import com.fc.cmapweb.mgr.privilege.IRolePrivilegeMgr;
 import com.fc.cmapweb.utils.CmapValues;
 import com.fc.cmapweb.utils.ParamUtil;
 import com.fc.cmapweb.utils.PropUtil;
@@ -32,7 +32,7 @@ public class RoleCtrl {
 	private IRoleMgr roleMgr;
 	
 	@Autowired
-	private IPrivilegeMgr privilegeMgr;
+	private IRolePrivilegeMgr rolePrivilegeMgr;
 	
 	@RequestMapping(value = "/edit/{roleId}", method = RequestMethod.PUT)
 	@ResponseBody
@@ -57,7 +57,7 @@ public class RoleCtrl {
 	public String showPrivilegeInfo(@PathVariable String roleId, Model model) {
 		
 		model.addAttribute("roleInfoVo", roleMgr.queryRole(roleId));
-		model.addAttribute("privilegeMarkedRole", privilegeMgr.queryPrivilegeMarkedRole(roleId));
+		model.addAttribute("privilegeMarkedRole", rolePrivilegeMgr.queryPrivilegeMarkedRole(roleId));
 		
 		return "/admin/privilege/roleInfo";
 		

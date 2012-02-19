@@ -7,6 +7,7 @@ import com.fc.cmapweb.vo.RoleInfoVo;
 
 public interface IRoleDao {
 	
+	public List<RoleInfoVo> getAllEnabledRole();
 	public boolean switchEnableDisable(String roleId);
 	
 	public int getRoleCount(Map<String, Object> queryParams);

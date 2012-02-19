@@ -14,6 +14,11 @@ public class UsrTypeRoleMgrImpl implements IUsrTypeRoleMgr {
 
 	@Autowired
 	private IUsrTypeRoleDao usrTypeRoleDao;
+	
+	@Override
+	public List<UsrTypeRoleVo> queryRoleMarkedUsrType(int usrTypeId) {
+		return usrTypeRoleDao.getRoleMarkedUsrType(usrTypeId);
+	}
 
 	@Override
 	public List<UsrTypeRoleVo> queryUsrTypeRoles(int usrTypeId) {

@@ -21,6 +21,7 @@
         <ul class="submenu">
             <li><a id="menuPrivilegeCfg" href="javascript:void(0);">权限配置</a></li>
             <li><a id="menuRoleCfg" href="javascript:void(0);">角色维护</a></li>
+            <li><a id="menuRoleBinding" href="javascript:void(0);">角色绑定</a></li>
         </ul>
     </li>
     

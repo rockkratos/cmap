@@ -50,6 +50,11 @@ public class AdminMenuCtrl {
 			model.addAttribute("roleInfoVo", new RoleInfoVo());
 			return "admin/privilege/roleCfg";
 			
+		} else if ("menuRoleBinding".equals(itemId)) {
+			
+			model.addAttribute("allRoles", roleMgr.queryAllEnabledRole());
+			return "/admin/privilege/roleBinding";
+			
 		} else {
 			
 			return "/common/blank";

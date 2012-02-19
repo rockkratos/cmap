@@ -22,6 +22,11 @@ public class RolePrivilegeMgrImpl implements IRolePrivilegeMgr {
 	@Autowired
 	private IRolePrivilegeDao rolePrivilegeDao;
 	
+	@Override
+	public List<RolePrivilegeVo> queryPrivilegeMarkedRole(String roleId) {
+		return rolePrivilegeDao.getPrivilegeMarkedRole(roleId);
+	}
+	
 	/**
 	 * 查询权限映射
 	 * @return Map<String, Map<String, Collection<ConfigAttribute>>>

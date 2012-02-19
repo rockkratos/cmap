@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,16 @@ import com.fc.cmapweb.vo.RoleInfoVo;
 
 @Repository("roleDao")
 public class RoleDaoImpl extends CmapBaseDao implements IRoleDao {
+	
+	@Override
+	public List<RoleInfoVo> getAllEnabledRole() {
+		
+		String jpql = "SELECT r FROM RoleInfoVo r WHERE r.roleEnabled = true ORDER BY r.roleName";
+		TypedQuery<RoleInfoVo> tq = em.createQuery(jpql, RoleInfoVo.class);
+		
+		return tq.getResultList();
+		
+	}
 	
 	@Override
 	public boolean switchEnableDisable(String roleId) {

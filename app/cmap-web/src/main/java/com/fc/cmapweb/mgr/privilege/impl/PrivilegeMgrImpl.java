@@ -25,11 +25,6 @@ public class PrivilegeMgrImpl implements IPrivilegeMgr {
 	}
 	
 	@Override
-	public List<PrivilegeInfoVo> queryPrivilegeMarkedRole(String roleId) {
-		return privilegeDao.getPrivilegeMarkedRole(roleId);
-	}
-	
-	@Override
 	@TriggersRemove(cacheName = "eternalCache")
 	public void updatePrivilege(String privilegeId, Map<String, Object> updateParams) {
 		

@@ -9,7 +9,6 @@ public interface IPrivilegeDao {
 	
 	public List<PrivilegeInfoVo> getAllEnabledPrivilege();
 	
-	public List<PrivilegeInfoVo> getPrivilegeMarkedRole(String roleId);
 	public boolean switchEnableDisable(String privilegeId);
 	
 	public int getPrivilegeCount(Map<String, Object> queryParams);

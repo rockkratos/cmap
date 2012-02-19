@@ -1,5 +1,4 @@
 <#assign spring=JspTaglibs["http://www.springframework.org/tags"] />
-<#assign form=JspTaglibs["http://www.springframework.org/tags/form"] />
 <form id="roleForm">
 
 <div id="page-title">
@@ -36,6 +35,15 @@
         	<span>
         		<img src="${rc.contextPath}/imgs/admin/icons/privilege.png" alt="icon" /><br />
         		权限配置
+    		</span>
+		</a>
+	</li>
+	
+	<li>
+    	<a id="roleBindingLink" class="shortcut-button" href="javascript:void(0);">
+        	<span>
+        		<img src="${rc.contextPath}/imgs/admin/icons/role-binding.png" alt="icon" /><br />
+        		角色绑定
     		</span>
 		</a>
 	</li>
@@ -181,6 +189,7 @@ $("#btnCleanAddRole").click(function() { cmap.cleanBox('cbAddRole'); });
 $("#btnCleanQueryRole").click(function() { cmap.cleanBox('cbQueryRole'); });
 
 $("#privilegeCfgLink").click(function() { $("#menuPrivilegeCfg").click(); });
+$("#roleBindingLink").click(function() { $("#menuRoleBinding").click(); });
 
 $("#btnAddRole").click(function() {
 	var params = $("#roleForm").formSerialize();
