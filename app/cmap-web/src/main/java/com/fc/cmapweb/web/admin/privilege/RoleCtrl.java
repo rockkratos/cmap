@@ -41,7 +41,7 @@ public class RoleCtrl {
 		String[] editPrivilegeIdArray = request.getParameterValues("editRolePrivilegeId");
 		
 		Map<String, Object> updateParams = ParamUtil.getParams(request, CmapValues.PREFIX_DETAIL);
-		roleMgr.updateRole(roleId, updateParams, Arrays.asList(editPrivilegeIdArray));
+		roleMgr.updateRole(roleId, updateParams, null == editPrivilegeIdArray ? null : Arrays.asList(editPrivilegeIdArray));
 		
 		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
 		int count = roleMgr.queryRoleCount(queryParams);
@@ -71,7 +71,7 @@ public class RoleCtrl {
 		
 		String[] privilegeIdArray = request.getParameterValues("setRolePrivilegeId");
 		
-		roleMgr.addRole(roleInfoVo, Arrays.asList(privilegeIdArray));
+		roleMgr.addRole(roleInfoVo, null == privilegeIdArray ? null : Arrays.asList(privilegeIdArray));
 		
 		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
 		int count = roleMgr.queryRoleCount(queryParams);

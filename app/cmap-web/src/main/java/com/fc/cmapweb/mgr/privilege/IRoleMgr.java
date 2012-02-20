@@ -7,7 +7,6 @@ import com.fc.cmapweb.vo.RoleInfoVo;
 
 public interface IRoleMgr {
 	
-	public List<RoleInfoVo> queryAllEnabledRole();
 	public void updateRole(String roleId, Map<String, Object> updateParams, List<String> privilegeIdList);
 	public void rmRole(String roleId);
 	public boolean updateEnableDisable(String roleId);

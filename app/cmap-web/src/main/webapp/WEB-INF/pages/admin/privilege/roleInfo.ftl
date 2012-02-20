@@ -23,12 +23,14 @@
     <div class="column-right">
 		<label>权限列表</label>
     	<ul class="cb-list">
+    		<#if privilegeMarkedRole?exists && (privilegeMarkedRole?size > 0)>
     		<#list privilegeMarkedRole as tmpRolePrivilege>
 			<li>
 				<input name="editRolePrivilegeId" type="checkbox" value="${tmpRolePrivilege.privilegeInfoVo.privilegeId}" <#if tmpRolePrivilege.roleInfoVo.roleId??>checked="checked"</#if> />
 				<span>${tmpRolePrivilege.privilegeInfoVo.privilegeDesc} -- ${tmpRolePrivilege.privilegeInfoVo.privilegeName}</span>
 			</li>
 			</#list>
+			</#if>
 		</ul>
     </div>
     

@@ -21,8 +21,8 @@ public class UsrTypeRoleVo implements Serializable {
 	@Id
 	@GeneratedValue(generator = "system-uuid")
 	@GenericGenerator(name = "system-uuid", strategy = "uuid")
-	@Column(name = "USR_ROLE_ID")
-	private String usrRoleId;
+	@Column(name = "USR_TYPE_ROLE_ID")
+	private String usrTypeRoleId;
 	
 	@ManyToOne
 	@JoinColumn(name = "USR_TYPE_ID")	
@@ -32,12 +32,12 @@ public class UsrTypeRoleVo implements Serializable {
 	@JoinColumn(name = "ROLE_ID")
 	private RoleInfoVo roleInfoVo;
 
-	public String getUsrRoleId() {
-		return usrRoleId;
+	public String getUsrTypeRoleId() {
+		return usrTypeRoleId;
 	}
 
-	public void setUsrRoleId(String usrRoleId) {
-		this.usrRoleId = usrRoleId;
+	public void setUsrTypeRoleId(String usrTypeRoleId) {
+		this.usrTypeRoleId = usrTypeRoleId;
 	}
 
 	public UsrTypeVo getUsrTypeVo() {

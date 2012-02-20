@@ -14,6 +14,7 @@ import com.fc.cmapweb.utils.PaginationUtil;
 import com.fc.cmapweb.vo.PrivilegeInfoVo;
 import com.fc.cmapweb.vo.RoleInfoVo;
 import com.fc.cmapweb.vo.RolePrivilegeVo;
+import com.googlecode.ehcache.annotations.TriggersRemove;
 
 @Service("roleMgr")
 public class RoleMgrImpl implements IRoleMgr {
@@ -28,11 +29,7 @@ public class RoleMgrImpl implements IRoleMgr {
 	private IUsrTypeRoleDao usrTypeRoleDao;
 	
 	@Override
-	public List<RoleInfoVo> queryAllEnabledRole() {
-		return roleDao.getAllEnabledRole();
-	}
-	
-	@Override
+	@TriggersRemove(cacheName = "eternalCache")
 	public void updateRole(String roleId, Map<String, Object> updateParams, List<String> privilegeIdList) {
 		
 		RoleInfoVo tmpRole = new RoleInfoVo();
@@ -44,22 +41,27 @@ public class RoleMgrImpl implements IRoleMgr {
 		roleDao.updateRole(tmpRole);
 		rolePrivilegeDao.delAllPrivilegeByRoleId(roleId);
 		
-		for (int i = 0; i < privilegeIdList.size(); i++) {
+		if (null != privilegeIdList && privilegeIdList.size() > 0) {
 			
-			PrivilegeInfoVo tmpPrivilege = new PrivilegeInfoVo();
-			tmpPrivilege.setPrivilegeId(privilegeIdList.get(i));
-			
-			RolePrivilegeVo tmpRolePrivilege = new RolePrivilegeVo();
-			tmpRolePrivilege.setRoleInfoVo(tmpRole);
-			tmpRolePrivilege.setPrivilegeInfoVo(tmpPrivilege);
-			
-			rolePrivilegeDao.insertRolePrivilege(tmpRolePrivilege);
+			for (int i = 0; i < privilegeIdList.size(); i++) {
+				
+				PrivilegeInfoVo tmpPrivilege = new PrivilegeInfoVo();
+				tmpPrivilege.setPrivilegeId(privilegeIdList.get(i));
+				
+				RolePrivilegeVo tmpRolePrivilege = new RolePrivilegeVo();
+				tmpRolePrivilege.setRoleInfoVo(tmpRole);
+				tmpRolePrivilege.setPrivilegeInfoVo(tmpPrivilege);
+				
+				rolePrivilegeDao.insertRolePrivilege(tmpRolePrivilege);
+				
+			}
 			
 		}
 		
 	}
 	
 	@Override
+	@TriggersRemove(cacheName = "eternalCache")
 	public void rmRole(String roleId) {
 		rolePrivilegeDao.delAllPrivilegeByRoleId(roleId);
 		usrTypeRoleDao.delUsrTypeRole(roleId);
@@ -67,6 +69,7 @@ public class RoleMgrImpl implements IRoleMgr {
 	}
 	
 	@Override
+	@TriggersRemove(cacheName = "eternalCache")
 	public boolean updateEnableDisable(String roleId) {
 		return roleDao.switchEnableDisable(roleId);
 	}
@@ -92,20 +95,25 @@ public class RoleMgrImpl implements IRoleMgr {
 	}
 
 	@Override
+	@TriggersRemove(cacheName = "eternalCache")
 	public RoleInfoVo addRole(RoleInfoVo roleInfoVo, List<String> privilegeIdList) {
 		
 		roleDao.insertRole(roleInfoVo);
 		
-		for (int i = 0; i < privilegeIdList.size(); i++) {
+		if (null != privilegeIdList && privilegeIdList.size() > 0) {
 			
-			PrivilegeInfoVo tmpPrivilege = new PrivilegeInfoVo();
-			tmpPrivilege.setPrivilegeId(privilegeIdList.get(i));
-			
-			RolePrivilegeVo tmpRolePrivilege = new RolePrivilegeVo();
-			tmpRolePrivilege.setRoleInfoVo(roleInfoVo);
-			tmpRolePrivilege.setPrivilegeInfoVo(tmpPrivilege);
-			
-			rolePrivilegeDao.insertRolePrivilege(tmpRolePrivilege);
+			for (int i = 0; i < privilegeIdList.size(); i++) {
+				
+				PrivilegeInfoVo tmpPrivilege = new PrivilegeInfoVo();
+				tmpPrivilege.setPrivilegeId(privilegeIdList.get(i));
+				
+				RolePrivilegeVo tmpRolePrivilege = new RolePrivilegeVo();
+				tmpRolePrivilege.setRoleInfoVo(roleInfoVo);
+				tmpRolePrivilege.setPrivilegeInfoVo(tmpPrivilege);
+				
+				rolePrivilegeDao.insertRolePrivilege(tmpRolePrivilege);
+				
+			}
 			
 		}
 		

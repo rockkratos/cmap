@@ -17,6 +17,24 @@ import com.fc.cmapweb.vo.UsrTypeVo;
 @Repository("usrTypeRoleDao")
 public class UsrTypeRoleDaoImpl extends CmapBaseDao implements IUsrTypeRoleDao {
 	
+	@Override
+	public UsrTypeRoleVo insertUsrTypeRole(UsrTypeRoleVo usrTypeRoleVo) {
+		em.persist(usrTypeRoleVo);
+		return usrTypeRoleVo;
+	}
+	
+	@Override
+	public void delAllRoleByUsrType(int usrTypeId) {
+		
+		String jpql = "DELETE FROM UsrTypeRoleVo ur WHERE ur.usrTypeVo.usrTypeId = ?";
+		
+		Query q = em.createQuery(jpql);
+		q.setParameter(1, usrTypeId);
+		
+		q.executeUpdate();
+		
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<UsrTypeRoleVo> getRoleMarkedUsrType(int usrTypeId) {
@@ -78,7 +96,7 @@ public class UsrTypeRoleDaoImpl extends CmapBaseDao implements IUsrTypeRoleDao {
 	@Override
 	public List<UsrTypeRoleVo> getUsrTypeRoles(int usrTypeId) {
 		
-		String jpql = "select ur from UsrTypeRoleVo ur where ur.usrTypeVo.usrTypeId = ?";
+		String jpql = "SELECT ur FROM UsrTypeRoleVo ur WHERE ur.usrTypeVo.usrTypeId = ?";
 		
 		TypedQuery<UsrTypeRoleVo> tq = em.createQuery(jpql, UsrTypeRoleVo.class);
 		tq.setParameter(1, usrTypeId);

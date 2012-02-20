@@ -1,5 +1,5 @@
 <#assign spring=JspTaglibs["http://www.springframework.org/tags"] />
-<form id="roleForm">
+<form id="roleBindingForm">
 
 <div id="page-title">
 	<ul>
@@ -42,14 +42,7 @@
     	
     	<div class="column-left">
 			<label>角色列表</label>
-        	<ul id="roleList" class="cb-list mb20">
-        		<#list allRoles as tmpRole>
-				<li>
-					<input name="setRoleId" type="checkbox" value="${tmpRole.roleId}" />
-					<span>${tmpRole.roleDesc} -- ${tmpRole.roleName}</span>
-				</li>
-				</#list>
-			</ul>
+        	<ul id="roleList" class="cb-list mb20"></ul>
         </div>
     	
         <div class="column-right">
@@ -98,26 +91,55 @@ $("#usrTypeList a").click(function() {
 	cmap.updateDropDownListVal($(this), 'usrTypeVal', 'usrTypeShow');
 	var dialog = new Dialog(loadingPanel);
 	dialog.show();
-	var reqUrl = "${rc.contextPath}/adminUsrTypeRole/" + $("#usrTypeVal").val();
-	$.ajax({
-		type: "GET", 
-		url: reqUrl, 
-		success: function (msg) {
-			$("#roleList").empty().append(msg);
-			dialog.close();
-		}
-	});
+	loadRoleList(dialog);
 });
 
 $("#privilegeCfgLink").click(function() { $("#menuPrivilegeCfg").click(); });
 $("#roleCfgLink").click(function() { $("#menuRoleCfg").click(); });
 
-$("#btnCleanRoleBinding").click(function() { cmap.cleanBox('cbRoleBinding'); });
+$("#btnCleanRoleBinding").click(function() { cmap.cleanBox('cbRoleBinding'); $("#roleList").empty(); });
 
 $("#btnRoleBinding").click(function() {
-	var reqUrl = "${rc.contextPath}/adminUsrTypeRole/" + $("#usrTypeVal").val();
+	var dialog = new Dialog(loadingPanel);
+	dialog.show();
+	var reqUrl = "${rc.contextPath}/adminUsrTypeRole/edit/" + $("#usrTypeVal").val();
+	var params = $("#roleBindingForm").formSerialize();
 	$.ajax({
-		
+		type: "PUT", 
+		url: reqUrl, 
+		data: params, 
+		success: function (msg) {
+			var msgType = $.evalJSON(msg).hintType;
+			var msgContent = $.evalJSON(msg).hintMsg;
+			if ("success" == msgType) {
+				loadRoleList(dialog);
+			}
+			cmap.showHintMsg('topHint', msgType, msgContent);
+		}
 	});
 });
+
+function loadRoleList(dialog) {
+	var reqUrl = "${rc.contextPath}/adminUsrTypeRole/" + $("#usrTypeVal").val();
+	$.ajax({
+		type: "GET", 
+		url: reqUrl, 
+		success: function (msg) {
+			var roleList = $.evalJSON(msg).roleList;
+			var usrTypeEnabled = $.evalJSON(msg).usrTypeEnabled;
+			
+			if (null != roleList) {
+				$("#roleList").empty().append(roleList);
+			}
+			
+			if ("true" == usrTypeEnabled) {
+				$($("input[name='usrTypeEnabled']").get(0)).attr("checked", true);
+			} else {
+				$($("input[name='usrTypeEnabled']").get(1)).attr("checked", true);
+			}
+			
+			dialog.close();
+		}
+	});
+}
 </script>

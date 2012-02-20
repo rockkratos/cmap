@@ -6,7 +6,7 @@ import com.fc.cmapweb.vo.UsrTypeRoleVo;
 
 public interface IUsrTypeRoleMgr {
 	
+	public void updateUsrTypeRole(boolean enabled, int usrTypeId, List<String> roleIdList);
 	public List<UsrTypeRoleVo> queryRoleMarkedUsrType(int usrTypeId);
-	public List<UsrTypeRoleVo> queryUsrTypeRoles(int usrTypeId);
 	
 }

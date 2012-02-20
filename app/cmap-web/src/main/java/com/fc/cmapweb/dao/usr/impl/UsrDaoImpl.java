@@ -47,11 +47,10 @@ public class UsrDaoImpl extends CmapBaseDao implements IUsrDao {
 		
 		StringBuilder buffer = new StringBuilder();
 		
-		buffer.append("SELECT r.roleName FROM ");
-		buffer.append("RoleInfoVo r, UsrTypeRoleVo ur, UsrInfoVo u ");
-		buffer.append("WHERE r.roleId = ur.roleInfoVo.roleId AND ur.usrTypeVo.usrTypeId = u.usrTypeVo.usrTypeId ");
-		buffer.append("AND r.roleEnabled = TRUE ");
-		buffer.append("AND u.loginName = ?");
+		buffer.append("SELECT ur.roleInfoVo.roleName ");
+		buffer.append("FROM UsrTypeRoleVo ur, UsrInfoVo u ");
+		buffer.append("WHERE ur.usrTypeVo.usrTypeId = u.usrTypeVo.usrTypeId ");
+		buffer.append("AND ur.roleInfoVo.roleEnabled = TRUE AND u.loginName = ?");
 		
 		TypedQuery<String> tq = em.createQuery(buffer.toString(), String.class);
 		tq.setParameter(1, loginName);
