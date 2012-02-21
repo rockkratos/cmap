@@ -47,6 +47,7 @@ div#main-content{float:right;width:698px;padding:0 20px}
 div#page-title li{float:left;font-weight:bold;margin:20px 0;text-align:center;display:inline-block;padding:0 20px}
 div#page-title .main-title{font-size:16px;background:#2C2C2C url(../imgs/admin/bg-main-title.gif) right top no-repeat;color:#FFF;height:35px;line-height:35px}
 div#page-title .sub-title{font-size:14px;background-color:#E8E8E8;border:1px solid #CCC;border-left:0;height:33px;line-height:33px}
+div#page-title span{font-weight:bold;margin:20px 0;text-align:center;display:inline-block;padding:0 20px;font-size:16px;color:#FFF;height:35px;line-height:35px;background:#2C2C2C}
 
 /************ Shortcut Buttons ************/
 .shortcut-button{border:1px solid #CCC;background:#F7F7F7 url(../imgs/admin/shortcut-btn-bg.gif);display:block;width:80px;margin:0 0 20px 0}

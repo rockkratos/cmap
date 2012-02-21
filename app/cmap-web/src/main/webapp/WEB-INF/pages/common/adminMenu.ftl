@@ -9,11 +9,7 @@
     </li>
     
     <li>
-        <a href="javascript:void(0);" class="nav-top-item">用户管理</a>
-        <ul class="submenu">
-            <li><a id="menuUsrMgr" href="javascript:void(0);">前台用户维护</a></li>
-            <li><a id="menuAdminMgr" href="javascript:void(0);">后台用户维护</a></li>
-        </ul>
+        <a id="menuUsrMgr" href="javascript:void(0);" class="nav-top-item no-submenu">用户管理</a>
     </li>
     
     <li>

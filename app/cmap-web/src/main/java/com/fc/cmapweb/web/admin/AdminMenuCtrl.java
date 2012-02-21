@@ -52,8 +52,11 @@ public class AdminMenuCtrl {
 			
 		} else if ("menuRoleBinding".equals(itemId)) {
 			
-//			model.addAttribute("allRoles", roleMgr.queryAllEnabledRole());
 			return "/admin/privilege/roleBinding";
+			
+		} else if ("menuUsrMgr".equals(itemId)) {
+			
+			return "admin/usr/usrMgr";
 			
 		} else {
 			

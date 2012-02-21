@@ -41,12 +41,11 @@ var cmap = {
 			}
 		);
 	
-		$("#main-nav li a.no-submenu").click( // When a menu item with no sub menu is clicked...
+		$("#main-nav li a.no-submenu").click(
 			function () {
-				window.location.href = (this.href); // Just open the link instead of a sub menu
 				$("#main-nav a").removeClass("current");
 				$(this).addClass("current");
-				return false;
+				cmap.loadPage(ctxPath, $(this).attr("id"));
 			}
 		);
 	
@@ -55,20 +54,7 @@ var cmap = {
 				$("#main-nav a").removeClass("current");
 				$(this).parent().parent().prev().addClass("current");
 				$(this).addClass("current");
-				var dialog = new Dialog(loadingPanel);
-				dialog.show();
-				$.ajax({
-					type: "GET",
-					url: ctxPath + "/adminMenu/" + $(this).attr("id"),
-					success: function (msg) {
-						dialog.close();
-						$("#main-content").fadeOut("normal", function () {
-							$("#main-content").html(msg);
-							$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");
-							$("#main-content").fadeIn("normal");
-						});
-					}
-				});
+				cmap.loadPage(ctxPath, $(this).attr("id"));
 			}
 		);
 		
@@ -83,6 +69,23 @@ var cmap = {
 		
 		$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");
 		
+	}, 
+	
+	loadPage : function (ctxPath, menuId) {
+		var dialog = new Dialog(loadingPanel);
+		dialog.show();
+		$.ajax({
+			type: "GET",
+			url: ctxPath + "/adminMenu/" + menuId,
+			success: function (msg) {
+				dialog.close();
+				$("#main-content").fadeOut("normal", function () {
+					$("#main-content").html(msg);
+					$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");
+					$("#main-content").fadeIn("normal");
+				});
+			}
+		});
 	}, 
 	
 	triggerContentBox : function (closeId, triggerId) {

@@ -84,9 +84,6 @@ public class UsrTypeRoleCtrl {
 		
 		return JSON.toJSONString(back);
 		
-//		model.addAttribute("roleMarkedUsrType", usrTypeRoleMgr.queryRoleMarkedUsrType(usrTypeId));
-//		return "/admin/privilege/roleBindingList";
-		
 	}
 
 }
