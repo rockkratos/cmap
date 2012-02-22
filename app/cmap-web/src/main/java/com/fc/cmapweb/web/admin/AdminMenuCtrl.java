@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fc.cmapweb.mgr.privilege.IPrivilegeMgr;
 import com.fc.cmapweb.mgr.privilege.IRoleMgr;
+import com.fc.cmapweb.mgr.usr.IUsrMgr;
 import com.fc.cmapweb.utils.CmapValues;
 import com.fc.cmapweb.utils.ParamUtil;
 import com.fc.cmapweb.vo.PrivilegeInfoVo;
 import com.fc.cmapweb.vo.RoleInfoVo;
+import com.fc.cmapweb.vo.UsrInfoVo;
 
 @Controller
 @RequestMapping("/adminMenu/")
@@ -27,6 +29,9 @@ public class AdminMenuCtrl {
 	
 	@Autowired
 	private IRoleMgr roleMgr;
+	
+	@Autowired
+	private IUsrMgr usrMgr;
 	
 	@RequestMapping(value = "/{itemId}", method=RequestMethod.GET)
 	public String showPage(@PathVariable String itemId, Model model, HttpServletRequest request) {
@@ -56,6 +61,10 @@ public class AdminMenuCtrl {
 			
 		} else if ("menuUsrMgr".equals(itemId)) {
 			
+			queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
+			
+			model.addAttribute("usrCount", usrMgr.queryUsrCount(queryParams));
+			model.addAttribute("usrInfoVo", new UsrInfoVo());
 			return "admin/usr/usrMgr";
 			
 		} else {

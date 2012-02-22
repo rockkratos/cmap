@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -52,7 +53,7 @@ public class UsrInfoVo implements Serializable {
 	@Column(name = "ENABLED")
 	private boolean usrEnabled;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USR_TYPE_ID")
 	private UsrTypeVo usrTypeVo;
 	
@@ -83,7 +84,7 @@ public class UsrInfoVo implements Serializable {
 	}
 
 	public void setLoginPwd(String loginPwd) {
-		this.loginPwd = loginPwd;
+		this.loginPwd = loginPwd.trim();
 	}
 
 	public String getNickName() {

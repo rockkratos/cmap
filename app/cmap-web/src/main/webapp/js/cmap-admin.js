@@ -153,6 +153,7 @@ var cmap = {
 		$($("#" + boxId + " input[type='radio']").get(0)).attr("checked", true);
 		$("#" + boxId + " input[type='hidden']").val('');
 		$("#" + boxId + " input[type='checkbox']").attr("checked", false);
+		$("#" + boxId + " input[type='password']").val('');
 	}, 
 	
 	callBackOptForCb : function (cbId, jsonStr, hintBoxId, paginationId) {

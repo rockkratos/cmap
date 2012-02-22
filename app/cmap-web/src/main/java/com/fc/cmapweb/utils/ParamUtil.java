@@ -67,26 +67,21 @@ public class ParamUtil {
 			for (String tmpKey : keySets) {
 				
 				Object obj = queryParams.get(tmpKey);
-				
-//				String attrName = tmpKey.replace(tmpKey.charAt(0), (char)(tmpKey.charAt(0) + 32));
-				
-				if (obj instanceof String) {
+
+				if (tmpKey.contains("Cell") || (obj instanceof String && StrUtil.isNotEmpty((String) obj))) {
 					
-					if (StrUtil.isNotEmpty((String) obj)) {
-//						buffer.append(prefix + "." + attrName + " like '%" + obj + "%' and");
-						buffer.append(prefix + "." + tmpKey + " like '%" + obj + "%' and");
-					}
+					String tmpStr = (String) obj;
+					buffer.append(prefix + "." + tmpKey + " like '%" + tmpStr + "%' and ");
 					
 				} else {
 					
-//					buffer.append(prefix + "." + attrName + " = " + obj + " and");
-					buffer.append(prefix + "." + tmpKey + " = " + obj + " and");
+					buffer.append(prefix + "." + tmpKey + " = " + obj + " and ");
 					
 				}
 				
 			}
 			
-			return buffer.toString().replaceAll(" and$", "");
+			return buffer.toString().replaceAll(" and $", " ");
 			
 		} else {
 			

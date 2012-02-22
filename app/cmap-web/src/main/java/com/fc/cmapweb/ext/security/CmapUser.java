@@ -5,28 +5,24 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fc.cmapweb.vo.UsrInfoVo;
+
 public class CmapUser implements UserDetails {
 	
 	private static final long serialVersionUID = -5871870996481319907L;
 	
 	private Collection<GrantedAuthority> authorities;
-	private String password;
-	private String username;
 	private boolean accountNonExpired;
 	private boolean accountNonLocked;
 	private boolean credentialsNonExpired;
-	private boolean enabled;
-	private int usrTypeId;
+	private UsrInfoVo usrInfoVo;
 	
-	public CmapUser(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, int usrTypeId, Collection<GrantedAuthority> authorities) {
+	public CmapUser(UsrInfoVo usrInfoVo, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<GrantedAuthority> authorities) {
 		
-		this.username = username;
-		this.password = password;
-		this.enabled = enabled;
+		this.usrInfoVo = usrInfoVo;
 		this.accountNonExpired = accountNonExpired;
 		this.credentialsNonExpired = credentialsNonExpired;
 		this.accountNonLocked = accountNonLocked;
-		this.usrTypeId = usrTypeId;
 		this.authorities = authorities;
 		
 	}
@@ -38,12 +34,12 @@ public class CmapUser implements UserDetails {
 
 	@Override
 	public String getPassword() {
-		return password;
+		return usrInfoVo.getLoginPwd();
 	}
 
 	@Override
 	public String getUsername() {
-		return username;
+		return usrInfoVo.getLoginName();
 	}
 
 	@Override
@@ -63,11 +59,11 @@ public class CmapUser implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return enabled;
+		return usrInfoVo.isUsrEnabled();
 	}
 
-	public int getUsrTypeId() {
-		return usrTypeId;
+	public UsrInfoVo getUsrInfoVo() {
+		return usrInfoVo;
 	}
 
 }

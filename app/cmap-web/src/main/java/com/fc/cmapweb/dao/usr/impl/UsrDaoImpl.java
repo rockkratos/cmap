@@ -1,20 +1,75 @@
 package com.fc.cmapweb.dao.usr.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
 import com.fc.cmapweb.dao.CmapBaseDao;
 import com.fc.cmapweb.dao.usr.IUsrDao;
+import com.fc.cmapweb.utils.ParamUtil;
+import com.fc.cmapweb.utils.ShaUtil;
 import com.fc.cmapweb.vo.UsrInfoVo;
 
 @Repository("usrDao")
 public class UsrDaoImpl extends CmapBaseDao implements IUsrDao {
-
+	
+	@Override
+	public void delUsr(String usrId) {
+		em.remove(em.getReference(UsrInfoVo.class, usrId));
+	}
+	
+	@Override
+	public UsrInfoVo getUsr(String usrId) {
+		return em.find(UsrInfoVo.class, usrId);
+	}
+	
+	@Override
+	public boolean switchEnableDisable(String usrId) {
+		
+		UsrInfoVo tmp = getUsr(usrId);
+		tmp.setUsrEnabled(tmp.isUsrEnabled() == true ? false : true);
+		
+		em.merge(tmp);
+		
+		return tmp.isUsrEnabled();
+		
+	}
+	
+	@Override
+	public List<UsrInfoVo> getUsr(Map<String, Object> queryParams, int currentPage, int pageSize) {
+		
+		StringBuilder buffer = new StringBuilder();
+		
+		buffer.append("SELECT u FROM UsrInfoVo u ");
+		buffer.append(ParamUtil.getQueryConditionJPQL(queryParams, "u"));
+		buffer.append(" ORDER BY u.loginName");
+		
+		return em.createQuery(buffer.toString(), UsrInfoVo.class)
+				 .setFirstResult(currentPage * pageSize)
+				 .setMaxResults(pageSize)
+				 .getResultList();
+		
+	}
+	
+	@Override
+	public int getUsrCount(Map<String, Object> queryParams) {
+		
+		StringBuilder buffer = new StringBuilder();
+		
+		buffer.append("SELECT COUNT(u) FROM UsrInfoVo u ");
+		buffer.append(ParamUtil.getQueryConditionJPQL(queryParams, "u"));
+		
+		Query rowCountQuery = em.createQuery(buffer.toString());
+		return ((Long) rowCountQuery.getSingleResult()).intValue();
+		
+	}
+	
 	@Override
 	public UsrInfoVo getUsrInfo(String loginName) {
 		
@@ -38,8 +93,13 @@ public class UsrDaoImpl extends CmapBaseDao implements IUsrDao {
 	
 	@Override
 	public UsrInfoVo insertUsr(UsrInfoVo usrInfoVo) {
+		
+		String encryptPwd = ShaUtil.getEncryptData(usrInfoVo.getLoginPwd());
+		usrInfoVo.setLoginPwd(encryptPwd);
+		
 		em.persist(usrInfoVo);
 		return usrInfoVo;
+		
 	}
 	
 	@Override
