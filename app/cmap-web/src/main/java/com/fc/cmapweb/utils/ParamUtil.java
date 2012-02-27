@@ -32,7 +32,7 @@ public class ParamUtil {
 				
 				if (StrUtil.isNotEmpty(param)) {
 					
-					if (StrUtil.isDigit(param)) {
+					if (!tmpKey.contains("Cell") && StrUtil.isDigit(param)) {
 						
 						if (StrUtil.isInteger(param)) {
 							back.put(tmpKey, Integer.valueOf(param));

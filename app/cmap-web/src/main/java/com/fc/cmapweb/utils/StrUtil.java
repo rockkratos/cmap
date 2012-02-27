@@ -6,9 +6,19 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import com.alibaba.fastjson.JSON;
 
 public class StrUtil {
+	
+	public static String getSHAEncryptData(String data) {
+		return DigestUtils.sha256Hex(data);
+	}
+	
+	public static String upperInitial(String str) {
+		return str.replace(str.charAt(0), (char)(str.charAt(0) - 32));
+	}
 	
 	public static boolean isInteger(String str) {
 		

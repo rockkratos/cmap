@@ -20,7 +20,14 @@ public class XmlUtil {
 		
 		List<Map<String, Collection<ConfigAttribute>>> back = new ArrayList<Map<String, Collection<ConfigAttribute>>>();
 		
-		String path = (XmlUtil.class.getResource("/config") + "/global-ac.xml").replaceAll("^file:/", "");
+		String path = (XmlUtil.class.getResource("/config") + "/global-ac.xml");
+		
+		if (System.getProperty("os.name").equals("Linux")) {
+			path = path.replaceAll("^file:", "");
+		} else {
+			path = path.replaceAll("^file:/", "");
+		}
+		
 		File f = new File(path);
 		
 		SAXReader reader = new SAXReader();

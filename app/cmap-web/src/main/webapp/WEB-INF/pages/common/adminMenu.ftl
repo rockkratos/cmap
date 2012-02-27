@@ -1,10 +1,6 @@
 <ul id="main-nav"><!-- BEGIN left menu -->
     
     <li>
-        <a id="menuAddrMgr" href="javascript:void(0);" class="nav-top-item no-submenu">地址管理</a>
-    </li>
-    
-    <li>
         <a id="menuRestMgr" href="javascript:void(0);" class="nav-top-item no-submenu">餐馆管理</a>
     </li>
     

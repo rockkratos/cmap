@@ -13,11 +13,29 @@ import org.springframework.stereotype.Repository;
 import com.fc.cmapweb.dao.CmapBaseDao;
 import com.fc.cmapweb.dao.usr.IUsrDao;
 import com.fc.cmapweb.utils.ParamUtil;
-import com.fc.cmapweb.utils.ShaUtil;
+import com.fc.cmapweb.utils.StrUtil;
 import com.fc.cmapweb.vo.UsrInfoVo;
 
 @Repository("usrDao")
 public class UsrDaoImpl extends CmapBaseDao implements IUsrDao {
+	
+	@Override
+	public UsrInfoVo updateUsr(UsrInfoVo usrInfoVo) {
+		
+		if (usrInfoVo.getLoginPwd().length() != 64) {
+			String encryptPwd = StrUtil.getSHAEncryptData(usrInfoVo.getLoginPwd());
+			usrInfoVo.setLoginPwd(encryptPwd);
+		}
+		
+		em.merge(usrInfoVo);
+		return usrInfoVo;
+		
+	}
+	
+	@Override
+	public UsrInfoVo getUsrInfoByUsrId(String usrId) {
+		return em.find(UsrInfoVo.class, usrId);
+	}
 	
 	@Override
 	public void delUsr(String usrId) {
@@ -94,7 +112,7 @@ public class UsrDaoImpl extends CmapBaseDao implements IUsrDao {
 	@Override
 	public UsrInfoVo insertUsr(UsrInfoVo usrInfoVo) {
 		
-		String encryptPwd = ShaUtil.getEncryptData(usrInfoVo.getLoginPwd());
+		String encryptPwd = StrUtil.getSHAEncryptData(usrInfoVo.getLoginPwd());
 		usrInfoVo.setLoginPwd(encryptPwd);
 		
 		em.persist(usrInfoVo);

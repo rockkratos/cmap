@@ -7,6 +7,7 @@ import com.fc.cmapweb.vo.UsrInfoVo;
 
 public interface IUsrDao {
 	
+	public UsrInfoVo updateUsr(UsrInfoVo usrInfoVo);
 	public void delUsr(String usrId);
 	public boolean switchEnableDisable(String usrId);
 	
@@ -14,6 +15,7 @@ public interface IUsrDao {
 	public List<UsrInfoVo> getUsr(Map<String, Object> queryParams, int currentPage, int pageSize);
 	public int getUsrCount(Map<String, Object> queryParams);
 	
+	public UsrInfoVo getUsrInfoByUsrId(String usrId);
 	public UsrInfoVo getUsrInfo(String loginName);
 	public UsrInfoVo insertUsr(UsrInfoVo usrInfoVo);
 	public List<String> getAllUsrRole(String loginName);

@@ -57,7 +57,7 @@
 					<webAppConfig>
 						<contextPath>/cmapweb</contextPath>
 					</webAppConfig>
-					<stopKey>stop-cmapweb</stopKey>
+					<stopKey>stop-jetty</stopKey>
 					<stopPort>9999</stopPort>
 				</configuration>
 				<executions>

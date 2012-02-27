@@ -30,6 +30,32 @@ public class UsrMgrCtrl {
 	@Autowired
 	private IUsrMgr usrMgr;
 	
+	@RequestMapping(value = "/edit/{usrId}", method = RequestMethod.PUT)
+	@ResponseBody
+	public String updateUsr(@PathVariable String usrId, HttpServletRequest request) {
+		
+		Map<String, Object> updateParams = ParamUtil.getParams(request, CmapValues.PREFIX_DETAIL);
+		
+		usrMgr.updateUsr(usrId, updateParams);
+		
+		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
+		int count = usrMgr.queryUsrCount(queryParams);
+		
+		Map<String, String> otherParams = new HashMap<String, String>();
+		otherParams.put("recordCount", String.valueOf(count));
+		
+		return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("update.success", null), otherParams);
+		
+	}
+	
+	@RequestMapping(value = "/{usrId}", method = RequestMethod.GET)
+	public String showUsrInfo(@PathVariable String usrId, Model model) {
+		
+		model.addAttribute("usrInfoVo", usrMgr.queryUsrInfoByUsrId(usrId));
+		return "/admin/usr/usrInfo";
+		
+	}
+	
 	@RequestMapping(value = "/{usrId}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public String deletePrivilege(@PathVariable String usrId, HttpServletRequest request) {
