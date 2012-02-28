@@ -17,6 +17,7 @@ import com.fc.cmapweb.mgr.usr.IUsrMgr;
 import com.fc.cmapweb.utils.CmapValues;
 import com.fc.cmapweb.utils.ParamUtil;
 import com.fc.cmapweb.vo.PrivilegeInfoVo;
+import com.fc.cmapweb.vo.RestInfoVo;
 import com.fc.cmapweb.vo.RoleInfoVo;
 import com.fc.cmapweb.vo.UsrInfoVo;
 
@@ -66,6 +67,11 @@ public class AdminMenuCtrl {
 			model.addAttribute("usrCount", usrMgr.queryUsrCount(queryParams));
 			model.addAttribute("usrInfoVo", new UsrInfoVo());
 			return "admin/usr/usrMgr";
+			
+		} else if ("menuRestMgr".equals(itemId)) {
+			
+			model.addAttribute("restInfoVo", new RestInfoVo());
+			return "/admin/rest/restMgr";
 			
 		} else {
 			

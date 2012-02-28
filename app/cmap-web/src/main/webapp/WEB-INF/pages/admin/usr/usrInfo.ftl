@@ -50,11 +50,11 @@
         </p>
     	<p>
             <label>昵称</label>
-            <input name="detailNickName" type="text" class="text-input w200" value="${usrInfoVo.nickName}" />
+            <input name="detailNickName" type="text" class="text-input w200" value="${usrInfoVo.nickName!}" />
         </p>
         <p>
             <label>真实姓名</label>
-            <input name="detailRealName" type="text" class="text-input w200" value="${usrInfoVo.realName}" />
+            <input name="detailRealName" type="text" class="text-input w200" value="${usrInfoVo.realName!}" />
         </p>
     </div>
     
@@ -68,3 +68,9 @@
     </div>
     
 </div>
+
+<script type="text/javascript" language="javascript">
+$("#detailUsrTypeShow").click(function() { cmap.showDropDownList($(this), 'detailUsrTypeList'); });
+$("#detailUsrTypeShow").blur(function() { cmap.dropDownListBlur('detailUsrTypeList'); });
+$("#detailUsrTypeList a").click(function() { cmap.updateDropDownListVal($(this), 'detailUsrTypeVal', 'detailUsrTypeShow'); });
+</script>

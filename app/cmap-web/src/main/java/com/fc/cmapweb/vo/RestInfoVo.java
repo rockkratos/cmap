@@ -37,11 +37,11 @@ public class RestInfoVo implements Serializable {
 	@Column(name = "REST_CLOSE_TIME")
 	private String restCloseTime;
 	
-	@Column(name = "REST_LONGITUDE")
-	private double restLongitude;
+	@Column(name = "REST_LNG")
+	private double restLng;
 	
-	@Column(name = "REST_LATITUDE")
-	private double restLatitude;
+	@Column(name = "REST_LAT")
+	private double restLat;
 	
 	@ManyToOne
 	@JoinColumn(name = "ORDER_TRANS_TYPE_ID")
@@ -122,20 +122,20 @@ public class RestInfoVo implements Serializable {
 		this.restCloseTime = restCloseTime.trim();
 	}
 
-	public double getRestLongitude() {
-		return restLongitude;
+	public double getRestLng() {
+		return restLng;
 	}
 
-	public void setRestLongitude(double restLongitude) {
-		this.restLongitude = restLongitude;
+	public void setRestLongitude(double restLng) {
+		this.restLng = restLng;
 	}
 
-	public double getRestLatitude() {
-		return restLatitude;
+	public double getRestLat() {
+		return restLat;
 	}
 
-	public void setRestLatitude(double restLatitude) {
-		this.restLatitude = restLatitude;
+	public void setRestLatitude(double restLat) {
+		this.restLat = restLat;
 	}
 
 	public OrderTransTypeVo getOrderTransTypeVo() {
