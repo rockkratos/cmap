@@ -2,13 +2,13 @@ var loadingPanel = '<div class="loading-wrapper"><span>系统处理中...</span>
 
 var cmap = {
 	
-	submitForm : function(submitFlag, formName) {
+	submitForm: function(submitFlag, formName) {
 		if (submitFlag) {
 			$("form[name='" + formName + "']").submit();
 		}
 	}, 
 	
-	checkAdminLoginInfo : function(componentId, errmsg) {
+	checkAdminLoginInfo: function(componentId, errmsg) {
 		if ($("#" +componentId).val() == "") {
 			$("#errmsg span").text(errmsg);
 			$("#errmsg").removeClass("dn");
@@ -18,13 +18,13 @@ var cmap = {
 		return true;
 	}, 
 	
-	checkLoginInfo : function() {
+	checkLoginInfo: function() {
 		var flag = cmap.checkAdminLoginInfo("login_usrname", "用户名不能为空");
 		flag = flag && cmap.checkAdminLoginInfo("login_usrpwd", "密码不能为空");
 		return flag;
 	}, 
 	
-	initAdminPage : function(ctxPath) {
+	initAdminPage: function(ctxPath) {
 		
 		if (!$.browser.mozilla && !($.browser.msie && $.browser.version == 9)) {
 			$("#main-content").css("margin-bottom", "50px");
@@ -71,7 +71,7 @@ var cmap = {
 		
 	}, 
 	
-	loadPage : function (ctxPath, menuId) {
+	loadPage: function (ctxPath, menuId) {
 		var dialog = new Dialog(loadingPanel);
 		dialog.show();
 		$.ajax({
@@ -88,7 +88,7 @@ var cmap = {
 		});
 	}, 
 	
-	triggerContentBox : function (closeId, triggerId) {
+	triggerContentBox: function (closeId, triggerId) {
 		
 		var closeCb = "#" + closeId;
 		var triggerCb = "#" + triggerId;
@@ -103,13 +103,13 @@ var cmap = {
 		
 	}, 
 	
-	showDropDownList : function (self, dropDownListId) {
+	showDropDownList: function (self, dropDownListId) {
 		var left = $(self).offset().left;
 		var top = $(self).offset().top;
 		var height = $(self).height();
 		var width = $(self).width();
 		
-		$("#" + dropDownListId).css("top", top + height + 15);
+		$("#" + dropDownListId).css("top", top + height + 3);
 		$("#" + dropDownListId).css("left", left);
 	
 		$("#" + dropDownListId + " ul").css("width", width + 12);
@@ -117,16 +117,16 @@ var cmap = {
 		$("#" + dropDownListId).slideDown();
 	}, 
 	
-	dropDownListBlur : function (dropDownListId) {
+	dropDownListBlur: function (dropDownListId) {
 		$("#" + dropDownListId).slideUp();
 	}, 
 	
-	updateDropDownListVal : function (self, valId, showId) {
+	updateDropDownListVal: function (self, valId, showId) {
 		$("#" + showId).val($(self).text());
 		$("#" + valId).val($(self).attr("value"));
 	}, 
 	
-	showHintMsg : function (showId, hintType, msg) {
+	showHintMsg: function (showId, hintType, msg) {
 		
 		$("#" + showId).slideUp("normal", function() {
 		
@@ -142,21 +142,22 @@ var cmap = {
 		
 	}, 
 	
-	bindHindBoxClick : function(boxId) {
+	bindHindBoxClick: function(boxId) {
 		$("#" + boxId + " a").click(function() {
 			$(this).parent().slideUp();
 		});
 	}, 
 	
-	cleanBox : function (boxId) {
+	cleanBox: function (boxId) {
 		$("#" + boxId + " input[type='text']").val('');
-		$($("#" + boxId + " input[type='radio']").get(0)).attr("checked", true);
+		//$($("#" + boxId + " input[type='radio']").get(0)).attr("checked", true);
+		$("#" + boxId + " input[type='radio'][value='true']").attr("checked", true);
 		$("#" + boxId + " input[type='hidden']").val('');
 		$("#" + boxId + " input[type='checkbox']").attr("checked", false);
 		$("#" + boxId + " input[type='password']").val('');
 	}, 
 	
-	callBackOptForCb : function (cbId, jsonStr, hintBoxId, paginationId) {
+	callBackOptForCb: function (cbId, jsonStr, hintBoxId, paginationId) {
 		
 		var type = $.evalJSON(jsonStr).hintType;
 		var msg = $.evalJSON(jsonStr).hintMsg;
@@ -173,7 +174,7 @@ var cmap = {
 		
 	}, 
 	
-	initPagination : function (paginationId, maxItemNum) {
+	initPagination: function (paginationId, maxItemNum) {
 		$("#" + paginationId).pagination(maxItemNum, {
 			callback: pageselectCallback, 
 			prev_text: '&lt;&lt; 上一页', 
@@ -183,7 +184,7 @@ var cmap = {
 		}); 
 	}, 
 	
-	chooseAll : function (inputName) {
+	chooseAll: function (inputName) {
 		if ($(this).attr("checked")) {
 			$(this).attr("checked", false);
 			$("input[name='" + inputName + "']").attr("checked", false);
@@ -193,7 +194,7 @@ var cmap = {
 		}
 	}, 
 	
-	enableDisabled : function (obj, reqUrl, hintBoxId) {
+	enableDisabled: function (obj, reqUrl, hintBoxId) {
 		$.ajax({
 			type: "PUT", 
 			url: reqUrl, 
@@ -216,7 +217,7 @@ var cmap = {
 		});
 	}, 
 	
-	del : function (reqUrl, hintBoxId, paginationId, formId) {
+	del: function (reqUrl, hintBoxId, paginationId, formId) {
 		var params = $("#" + formId).formSerialize();
 		$.ajax({
 			type: "DELETE", 
@@ -235,7 +236,7 @@ var cmap = {
 		});
 	}, 
 	
-	edit : function (reqUrl, detailBoxId) {
+	edit: function (reqUrl, detailBoxId) {
 		var dialog = new Dialog(loadingPanel);
 		dialog.show();
 		$("#" + detailBoxId).slideUp("normal", function() {
@@ -252,7 +253,7 @@ var cmap = {
 		});
 	}, 
 	
-	close : function (contentBoxId, emptyFlag) {
+	close: function (contentBoxId, emptyFlag) {
 		$("#" + contentBoxId).slideUp("normal", function() {
 			if (emptyFlag) {
 				$("#" + contentBoxId).empty();
@@ -260,7 +261,7 @@ var cmap = {
 		});
 	}, 
 	
-	save : function (reqUrl, hintBoxId, paginationId, formId, contentBoxId) {
+	save: function (reqUrl, hintBoxId, paginationId, formId, contentBoxId) {
 		var dialog = new Dialog(loadingPanel);
 		dialog.show();
 		var params = $("#" + formId).formSerialize();
@@ -283,6 +284,62 @@ var cmap = {
 				cmap.showHintMsg(hintBoxId, msgType, msgContent);
 			}
 		});
+	}, 
+	
+	create: function (formId, reqUrl, cbId, hintId, paginationId) {
+		var params = $("#" + formId).formSerialize();
+		var dialog = new Dialog(loadingPanel);
+		dialog.show();
+		$.ajax({
+			type: "POST",
+			url: reqUrl,
+			data: params,
+			success: function (msg) {
+				dialog.close();
+				cmap.callBackOptForCb(cbId, msg, hintId, paginationId);
+			}
+		});
+	}, 
+	
+	paging: function (formId, reqUrl, pageIndex, listId, checkBoxId) {
+		var params = $("#" + formId).formSerialize();
+	 	$.ajax({
+	 		type: "GET",
+			url: reqUrl,
+			data: params + "&pageIndex=" + pageIndex,
+			success: function (msg) {
+				var firstLine = "<tr>" + $(".zebra-tab tr").first().html() + "</tr>";
+				$("table.zebra-tab tr:not(:last)").remove();
+				$("table.zebra-tab tr:last").before(firstLine + msg);
+				$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");
+				$("#" + listId + " input[class='check-all']").click(function() {cmap.chooseAll(checkBoxName);});
+			}
+	 	});
+	}, 
+	
+	query: function (formId, reqUrl, paginationId, cbId) {
+		var params = $("#" + formId).formSerialize();
+		var dialog = new Dialog(loadingPanel);
+		dialog.show();
+		$.ajax({
+			type: "GET", 
+			url: reqUrl,
+			data: params, 
+			success: function (msg) {
+				cmap.initPagination(paginationId, msg);
+				dialog.close();
+				$("#" + cbId).slideUp();
+			}
+		});
+	}, 
+	
+	bindingSelectEvent: function (prefix, key) {
+		var showId = prefix + key + "Show";
+		var listId = prefix + key + "List";
+		var valId = prefix + key + "Val";
+		$("#" + showId).click(function() { cmap.showDropDownList($(this), listId); });
+		$("#" + showId).blur(function() { cmap.dropDownListBlur(listId); });
+		$("#" + listId + " a").click(function() { cmap.updateDropDownListVal($(this), valId, showId); });
 	}
 	
 };

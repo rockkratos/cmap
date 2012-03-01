@@ -6,4 +6,5 @@
 <script type="text/javascript" language="javascript" src="${rc.contextPath}/js/jquery.json-2.3.min.js"></script>
 <script type="text/javascript" language="javascript" src="${rc.contextPath}/js/jquery.pagination.js"></script>
 <script type="text/javascript" language="javascript" src="${rc.contextPath}/js/dialog.js"></script>
+<script type="text/javascript" language="javascript" src="${rc.contextPath}/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" language="javascript" src="${rc.contextPath}/js/cmap-admin.js"></script>

@@ -73,10 +73,11 @@ div.bulk-actions{padding:14px 0 5px 0}
 
 .content-box-content label{display:block;padding:0 0 10px;font-weight:bold;font-size:14px;color:#555;line-height:15px}
 .content-box-content p{margin-bottom:20px}
-.content-box-content input.text-input{padding:6px;font-size:12px;background:#FFF url(../imgs/admin/bg-form-field.gif) top left repeat-x;border:1px solid #D5D5D5;color:#333}
-				
-.dropdown{background:url(../imgs/admin/bg-dropdown.gif) right no-repeat;cursor:pointer;padding:6px;font-size:12px;border:1px solid #D5D5D5;color:#333}
-.dropdown-content{background-color:#FFF;display:none;position:absolute}
+.content-box-content input.text-input{padding:0 6px;font-size:12px;background:#FFF url(../imgs/admin/bg-form-field.gif) top left repeat-x;border:1px solid #D5D5D5;color:#333;height:27px;line-height:27px}
+
+.date-txt{background:url(../imgs/admin/bg-calendar.gif) right no-repeat;cursor:pointer;padding:0 6px;font-size:12px;border:1px solid #D5D5D5;color:#333;height:27px;line-height:27px}
+.dropdown{background:url(../imgs/admin/bg-dropdown.gif) right no-repeat;cursor:pointer;padding:0 6px;font-size:12px;border:1px solid #D5D5D5;color:#333;height:27px;line-height:27px}
+.dropdown-content{background-color:#E8E8E8;display:none;position:absolute}
 .dropdown-content ul{border:1px solid #D5D5D5}
 .dropdown-content li{line-height:25px}
 .dropdown-content a{padding-left:7px !important;padding-left:6px;display:block;height:25px;text-decoration:none;color:#333}

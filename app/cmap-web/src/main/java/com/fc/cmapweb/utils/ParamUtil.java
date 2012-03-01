@@ -71,7 +71,12 @@ public class ParamUtil {
 				if (tmpKey.contains("Cell") || (obj instanceof String && StrUtil.isNotEmpty((String) obj))) {
 					
 					String tmpStr = (String) obj;
-					buffer.append(prefix + "." + tmpKey + " like '%" + tmpStr + "%' and ");
+					
+					if ("true".equals(tmpStr) || "false".equals(tmpStr)) {
+						buffer.append(prefix + "." + tmpKey + " = " + obj + " and ");
+					} else {
+						buffer.append(prefix + "." + tmpKey + " like '%" + tmpStr + "%' and ");
+					}
 					
 				} else {
 					

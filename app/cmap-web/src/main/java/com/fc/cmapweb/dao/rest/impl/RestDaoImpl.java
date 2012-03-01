@@ -1,18 +1,49 @@
 package com.fc.cmapweb.dao.rest.impl;
 
-import javax.persistence.NoResultException;
-import javax.persistence.NonUniqueResultException;
-import javax.persistence.TypedQuery;
+import java.util.List;
+import java.util.Map;
+
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
 import com.fc.cmapweb.dao.CmapBaseDao;
 import com.fc.cmapweb.dao.rest.IRestDao;
+import com.fc.cmapweb.utils.ParamUtil;
 import com.fc.cmapweb.vo.RestInfoVo;
 
 @Repository("restDao")
 public class RestDaoImpl extends CmapBaseDao implements IRestDao {
+	
+	@Override
+	public List<RestInfoVo> getRest(Map<String, Object> queryParams, int currentPage, int pageSize) {
+		
+		StringBuilder buffer = new StringBuilder();
+		
+		buffer.append("SELECT r FROM RestInfoVo r ");
+		buffer.append(ParamUtil.getQueryConditionJPQL(queryParams, "r"));
+		buffer.append(" ORDER BY r.restName");
+		
+		return em.createQuery(buffer.toString(), RestInfoVo.class)
+				 .setFirstResult(currentPage * pageSize)
+				 .setMaxResults(pageSize)
+				 .getResultList();
+		
+	}
 
+	@Override
+	public int getRestCount(Map<String, Object> queryParams) {
+		
+		StringBuilder buffer = new StringBuilder();
+		
+		buffer.append("SELECT COUNT(r) FROM RestInfoVo r ");
+		buffer.append(ParamUtil.getQueryConditionJPQL(queryParams, "r"));
+		
+		Query rowCountQuery = em.createQuery(buffer.toString());
+		return ((Long) rowCountQuery.getSingleResult()).intValue();
+		
+	}
+	
 	@Override
 	public RestInfoVo insertRest(RestInfoVo restInfoVo) {
 		em.persist(restInfoVo);
@@ -21,28 +52,12 @@ public class RestDaoImpl extends CmapBaseDao implements IRestDao {
 	
 	@Override
 	public RestInfoVo getRestInfo(String restId) {
-		
-		RestInfoVo back = null;
-		String jpql = "select r from RestInfoVo r where r.restId = ?";
-		
-		TypedQuery<RestInfoVo> tq = em.createQuery(jpql, RestInfoVo.class);
-		tq.setParameter(1, restId);
-		
-		try {
-			back = tq.getSingleResult();
-		} catch (NoResultException e) {
-			back = null;
-		} catch (NonUniqueResultException e) {
-			back = tq.getResultList().get(0);
-		}
-		
-		return back;
-		
+		return em.find(RestInfoVo.class, restId);		
 	}
 	
 	@Override
 	public void delRest(String restId) {
-		em.remove(getRestInfo(restId));
+		em.remove(em.getReference(RestInfoVo.class, restId));
 	}
 	
 }

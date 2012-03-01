@@ -1,5 +1,5 @@
 <#assign spring=JspTaglibs["http://www.springframework.org/tags"] />
-<form id="restForm">
+<form id="restMgrForm">
 
 <div id="page-title">
 	<ul>
@@ -49,7 +49,7 @@
             </p>
             <p>
                 <label>餐馆地址</label>
-                <input name="resAddr" type="text" class="text-input w200" />
+                <input name="restAddr" type="text" class="text-input w200" />
             </p>
             <p>
                 <label>餐馆经度</label>
@@ -79,6 +79,11 @@
                 <label>启用/禁用</label>
                 <input name="restEnabled" type="radio" class="vm" checked="checked" value="true" /> <span class="vm">启用</span>
                 <input name="restEnabled" type="radio" class="vm" value="false" /> <span class="vm">禁用</span>
+            </p>
+            <p>
+                <label>是否签约</label>
+                <input name="restSigned" type="radio" class="vm" checked="checked" value="true" /> <span class="vm">已签</span>
+                <input name="restSigned" type="radio" class="vm" value="false" /> <span class="vm">未签</span>
             </p>
         </div>
         
@@ -137,16 +142,15 @@
             </p>
 			<p>
                 <label>生效时间</label>
-                <input name="restStartTime" type="text" class="text-input w200" />
+                <input id="restStartTime" name="restStartTime" type="text" readonly="readonly" class="date-txt w200" />
             </p>
             <p>
                 <label>失效时间</label>
-                <input name="restEndTime" type="text" class="text-input w200" />
+                <input id="restEndTime" name="restEndTime" type="text" readonly="readonly" class="date-txt w200" />
             </p>
             <p>
-                <label>是否签约</label>
-                <input name="restSigned" type="radio" class="vm" checked="checked" value="true" /> <span class="vm">已签</span>
-                <input name="restSigned" type="radio" class="vm" value="false" /> <span class="vm">未签</span>
+                <label>网络打印机ID</label>
+                <input name="printerId" type="text" class="text-input w200" />
             </p>
         </div>
         
@@ -271,5 +275,27 @@
 </form>
 
 <script type="text/javascript" language="javascript">
+$("#addRestLink").click(function() { cmap.triggerContentBox('cbQueryRest', 'cbAddRest'); });
+$("#queryRestLink").click(function() { cmap.triggerContentBox('cbAddRest', 'cbQueryRest'); });
 
+cmap.bindingSelectEvent('', 'city');
+cmap.bindingSelectEvent('', 'orderTransType');
+cmap.bindingSelectEvent('', 'cookingType');
+cmap.bindingSelectEvent('query', 'CookingType');
+cmap.bindingSelectEvent('query', 'City');
+
+$("#restStartTime").focus(function() { WdatePicker(); });
+$("#restEndTime").focus(function() { WdatePicker(); });
+
+$("#btnAddRest").click(function() { cmap.create('restMgrForm', '${rc.contextPath}/adminRestMgr', 'cbAddRest', 'topHint', 'Pagination'); });
+$("#btnCleanAddRest").click(function() { cmap.cleanBox('cbAddRest'); });
+
+$("#btnQueryRest").click(function() { cmap.query('restMgrForm', '${rc.contextPath}/adminRestMgr/restCount', 'Pagination', 'cbQueryRest'); });
+$("#btnCleanQueryRest").click(function() { cmap.cleanBox('cbQueryRest'); });
+
+cmap.initPagination("Pagination", ${restCount});
+
+function pageselectCallback(pageIndex, jq) {
+	cmap.paging('restMgrForm', '${rc.contextPath}/adminRestMgr', pageIndex, 'restList', 'listRestId');
+}
 </script>

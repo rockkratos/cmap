@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -43,11 +44,11 @@ public class RestInfoVo implements Serializable {
 	@Column(name = "REST_LAT")
 	private double restLat;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ORDER_TRANS_TYPE_ID")
 	private OrderTransTypeVo orderTransTypeVo;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "COOKING_TYPE_ID")
 	private CookingTypeVo cookingTypeVo;
 	
@@ -78,9 +79,12 @@ public class RestInfoVo implements Serializable {
 	@Column(name = "REST_SIGNED")
 	private boolean restSigned;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CITY_ID")
 	private CityInfoVo cityInfoVo;
+	
+	@Column(name = "PRINTER_ID")
+	private String printerId;
 	
 	public String getRestId() {
 		return restId;
@@ -126,7 +130,7 @@ public class RestInfoVo implements Serializable {
 		return restLng;
 	}
 
-	public void setRestLongitude(double restLng) {
+	public void setRestLng(double restLng) {
 		this.restLng = restLng;
 	}
 
@@ -134,7 +138,7 @@ public class RestInfoVo implements Serializable {
 		return restLat;
 	}
 
-	public void setRestLatitude(double restLat) {
+	public void setRestLat(double restLat) {
 		this.restLat = restLat;
 	}
 
@@ -232,6 +236,14 @@ public class RestInfoVo implements Serializable {
 
 	public void setCityInfoVo(CityInfoVo cityInfoVo) {
 		this.cityInfoVo = cityInfoVo;
+	}
+
+	public String getPrinterId() {
+		return printerId;
+	}
+
+	public void setPrinterId(String printerId) {
+		this.printerId = printerId;
 	}
 
 }
