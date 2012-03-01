@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,9 +34,39 @@ public class RestMgrCtrl {
 	@Autowired
 	private IRestMgr restMgr;
 	
+	@RequestMapping(value = "/{restId}", method = RequestMethod.PUT)
+	@ResponseBody
+	public String enableDisableRest(@PathVariable String restId) {
+		
+		boolean flag = restMgr.updateEnableDisable(restId);
+		
+		if (flag) {
+			return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("enable.success", null));
+		} else {
+			return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("disable.success", null));
+		}
+		
+	}
+	
+	@RequestMapping(value = "/{restId}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public String deleteRest(@PathVariable String restId, HttpServletRequest request) {
+		
+		restMgr.rmRest(restId);
+		
+		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
+		int count = restMgr.queryRestCount(queryParams);
+		
+		Map<String, String> otherParams = new HashMap<String, String>();
+		otherParams.put("recordCount", String.valueOf(count));
+		
+		return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("delete.success", null), otherParams);
+		
+	}
+	
 	@RequestMapping(value = "/restCount", method = RequestMethod.GET)
 	@ResponseBody
-	public String queryUsrCount(HttpServletRequest request) {
+	public String queryRestCount(HttpServletRequest request) {
 		
 		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
 		int count = restMgr.queryRestCount(queryParams);

@@ -18,6 +18,11 @@ public class RestMgrImpl implements IRestMgr {
 	private IRestDao restDao;
 	
 	@Override
+	public boolean updateEnableDisable(String restId) {
+		return restDao.switchEnableDisable(restId);	
+	}
+	
+	@Override
 	public List<RestInfoVo> queryRest(Map<String, Object> queryParams, int currentPage, int pageSize) {
 		
 		List<RestInfoVo> back = restDao.getRest(queryParams, currentPage, pageSize);

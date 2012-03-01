@@ -58,7 +58,7 @@ public class UsrMgrCtrl {
 	
 	@RequestMapping(value = "/{usrId}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public String deletePrivilege(@PathVariable String usrId, HttpServletRequest request) {
+	public String deleteUsr(@PathVariable String usrId, HttpServletRequest request) {
 		
 		usrMgr.rmUsr(usrId);
 		
@@ -93,7 +93,7 @@ public class UsrMgrCtrl {
 	
 	@RequestMapping(value = "/{usrId}", method = RequestMethod.PUT)
 	@ResponseBody
-	public String enableDisablePrivilege(@PathVariable String usrId) {
+	public String enableDisableUsr(@PathVariable String usrId) {
 		
 		boolean flag = usrMgr.updateEnableDisable(usrId);
 		
@@ -117,7 +117,7 @@ public class UsrMgrCtrl {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String queryRole(Model model, HttpServletRequest request) {
+	public String queryUsr(Model model, HttpServletRequest request) {
 		
 		int pageIndex = ParamUtil.getCurrentPage(request);
 		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);

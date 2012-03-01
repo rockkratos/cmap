@@ -133,7 +133,7 @@ CREATE TABLE rest_info (
 	rest_phone VARCHAR(64), 
 	rest_signed BOOLEAN NOT NULL, 
 	city_id SMALLINT NOT NULL, 
-	print_id VARCHAR(16), 
+	printer_id VARCHAR(16), 
 	CONSTRAINT pk_rest_info PRIMARY KEY (rest_id)
 );
 

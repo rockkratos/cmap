@@ -54,7 +54,7 @@ public class RoleCtrl {
 	}
 	
 	@RequestMapping(value = "/{roleId}", method = RequestMethod.GET)
-	public String showPrivilegeInfo(@PathVariable String roleId, Model model) {
+	public String showRoleInfo(@PathVariable String roleId, Model model) {
 		
 		model.addAttribute("roleInfoVo", roleMgr.queryRole(roleId));
 		model.addAttribute("privilegeMarkedRole", rolePrivilegeMgr.queryPrivilegeMarkedRole(roleId));
@@ -65,7 +65,7 @@ public class RoleCtrl {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
-	public String addPrivilege(@ModelAttribute("roleInfoVo") RoleInfoVo roleInfoVo, HttpServletRequest request) {
+	public String addRole(@ModelAttribute("roleInfoVo") RoleInfoVo roleInfoVo, HttpServletRequest request) {
 		
 		// TODO: 数据校验
 		

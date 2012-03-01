@@ -16,6 +16,18 @@ import com.fc.cmapweb.vo.RestInfoVo;
 public class RestDaoImpl extends CmapBaseDao implements IRestDao {
 	
 	@Override
+	public boolean switchEnableDisable(String restId) {
+		
+		RestInfoVo tmp = getRestInfo(restId);
+		tmp.setRestEnabled(tmp.isRestEnabled() == true ? false : true);
+		
+		em.merge(tmp);
+		
+		return tmp.isRestEnabled();
+		
+	}
+	
+	@Override
 	public List<RestInfoVo> getRest(Map<String, Object> queryParams, int currentPage, int pageSize) {
 		
 		StringBuilder buffer = new StringBuilder();

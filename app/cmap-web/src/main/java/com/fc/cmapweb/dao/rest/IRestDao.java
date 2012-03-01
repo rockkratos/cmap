@@ -7,6 +7,7 @@ import com.fc.cmapweb.vo.RestInfoVo;
 
 public interface IRestDao {
 	
+	public boolean switchEnableDisable(String restId);
 	public List<RestInfoVo> getRest(Map<String, Object> queryParams, int currentPage, int pageSize);
 	public int getRestCount(Map<String, Object> queryParams);
 	
