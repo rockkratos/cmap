@@ -86,6 +86,9 @@ public class RestInfoVo implements Serializable {
 	@Column(name = "PRINTER_ID")
 	private String printerId;
 	
+	@Column(name = "PRINT_JOINT_NUM")
+	private Integer printJointNum;
+	
 	public String getRestId() {
 		return restId;
 	}
@@ -244,6 +247,14 @@ public class RestInfoVo implements Serializable {
 
 	public void setPrinterId(String printerId) {
 		this.printerId = printerId;
+	}
+
+	public Integer getPrintJointNum() {
+		return printJointNum;
+	}
+
+	public void setPrintJointNum(Integer printJointNum) {
+		this.printJointNum = printJointNum;
 	}
 
 }

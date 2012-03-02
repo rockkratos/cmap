@@ -76,14 +76,13 @@
                 <input name="sendingAmount" type="text" class="text-input w200" />
             </p>
             <p>
+                <label>网络打印机ID</label>
+                <input name="printerId" type="text" class="text-input w200" />
+            </p>
+            <p>
                 <label>启用/禁用</label>
                 <input name="restEnabled" type="radio" class="vm" checked="checked" value="true" /> <span class="vm">启用</span>
                 <input name="restEnabled" type="radio" class="vm" value="false" /> <span class="vm">禁用</span>
-            </p>
-            <p>
-                <label>是否签约</label>
-                <input name="restSigned" type="radio" class="vm" checked="checked" value="true" /> <span class="vm">已签</span>
-                <input name="restSigned" type="radio" class="vm" value="false" /> <span class="vm">未签</span>
             </p>
         </div>
         
@@ -149,8 +148,20 @@
                 <input id="restEndTime" name="restEndTime" type="text" readonly="readonly" class="date-txt w200" />
             </p>
             <p>
-                <label>网络打印机ID</label>
-                <input name="printerId" type="text" class="text-input w200" />
+                <label>打印联数</label>
+                <input id="printJointNumShow" type="text" class="dropdown w200" readonly="readonly" />
+				<div id="printJointNumList" class="dropdown-content">
+					<ul>
+						<li><a href="javascript:void(0);" value="2">二联</a></li>
+						<li><a href="javascript:void(0);" value="3">三联</a></li>
+					</ul>
+				</div>
+                <input name="printJointNum" id="printJointNumVal" type="hidden" />
+            </p>
+            <p>
+                <label>是否签约</label>
+                <input name="restSigned" type="radio" class="vm" checked="checked" value="true" /> <span class="vm">已签</span>
+                <input name="restSigned" type="radio" class="vm" value="false" /> <span class="vm">未签</span>
             </p>
         </div>
         
@@ -283,6 +294,7 @@ cmap.bindingSelectEvent('', 'orderTransType');
 cmap.bindingSelectEvent('', 'cookingType');
 cmap.bindingSelectEvent('query', 'CookingType');
 cmap.bindingSelectEvent('query', 'City');
+cmap.bindingSelectEvent('', 'printJointNum');
 
 $("#restStartTime").focus(function() { WdatePicker(); });
 $("#restEndTime").focus(function() { WdatePicker(); });

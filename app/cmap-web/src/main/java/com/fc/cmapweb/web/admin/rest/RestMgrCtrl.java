@@ -34,6 +34,14 @@ public class RestMgrCtrl {
 	@Autowired
 	private IRestMgr restMgr;
 	
+	@RequestMapping(value = "/{restId}", method = RequestMethod.GET)
+	public String showRestInfo(@PathVariable String restId, Model model) {
+		
+		model.addAttribute("restInfoVo", restMgr.queryRestInfo(restId));
+		return "/admin/rest/restInfo";
+		
+	}
+	
 	@RequestMapping(value = "/{restId}", method = RequestMethod.PUT)
 	@ResponseBody
 	public String enableDisableRest(@PathVariable String restId) {
