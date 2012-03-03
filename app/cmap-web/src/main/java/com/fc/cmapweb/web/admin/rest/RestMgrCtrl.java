@@ -34,6 +34,24 @@ public class RestMgrCtrl {
 	@Autowired
 	private IRestMgr restMgr;
 	
+	@RequestMapping(value = "/edit/{restId}", method = RequestMethod.PUT)
+	@ResponseBody
+	public String updateRest(@PathVariable String restId, HttpServletRequest request) {
+		
+		Map<String, Object> updateParams = ParamUtil.getParams(request, CmapValues.PREFIX_DETAIL);
+		
+		restMgr.updateRest(restId, updateParams);
+		
+		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
+		int count = restMgr.queryRestCount(queryParams);
+		
+		Map<String, String> otherParams = new HashMap<String, String>();
+		otherParams.put("recordCount", String.valueOf(count));
+		
+		return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("update.success", null), otherParams);
+		
+	}
+	
 	@RequestMapping(value = "/{restId}", method = RequestMethod.GET)
 	public String showRestInfo(@PathVariable String restId, Model model) {
 		

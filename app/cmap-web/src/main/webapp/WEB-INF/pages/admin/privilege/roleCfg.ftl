@@ -62,7 +62,7 @@
     	
         <div class="column-left">
             <p>
-                <label>角色名称</label>
+                <label>角色名称*</label>
                 <input name="roleName" type="text" class="text-input w200" />
             </p>
             <p>
@@ -70,7 +70,7 @@
                 <input name="roleDesc" type="text" class="text-input w200" />
             </p>
             <p>
-                <label>启用/禁用</label>
+                <label>启用/禁用*</label>
                 <input name="roleEnabled" type="radio" class="vm" checked="checked" value="true" /> <span class="vm">启用</span>
                 <input name="roleEnabled" type="radio" class="vm" value="false" /> <span class="vm">禁用</span>
             </p>
@@ -162,7 +162,6 @@
 					
 					<div class="bulk-actions fl">
 						<a class="button" href="javascript:void(0);">批量删除</a>
-						<a class="button" href="javascript:void(0);">刷 新</a>
 					</div>
 					
 					<div id="Pagination" class="pagination fr"></div>
@@ -185,58 +184,15 @@
 $("#addRoleLink").click(function() { cmap.triggerContentBox('cbQueryRole', 'cbAddRole'); });
 $("#queryRoleLink").click(function() { cmap.triggerContentBox('cbAddRole', 'cbQueryRole'); });
 
+$("#btnAddRole").click(function() { cmap.create('roleForm', '${rc.contextPath}/adminRole', 'cbAddRole', 'topHint', 'Pagination'); });
 $("#btnCleanAddRole").click(function() { cmap.cleanBox('cbAddRole'); });
+
+$("#btnQueryRole").click(function() { cmap.query('roleForm', '${rc.contextPath}/adminRole/roleCount', 'Pagination', 'cbQueryRole'); });
 $("#btnCleanQueryRole").click(function() { cmap.cleanBox('cbQueryRole'); });
 
 $("#privilegeCfgLink").click(function() { $("#menuPrivilegeCfg").click(); });
 $("#roleBindingLink").click(function() { $("#menuRoleBinding").click(); });
 
-$("#btnAddRole").click(function() {
-	var params = $("#roleForm").formSerialize();
-	var dialog = new Dialog(loadingPanel);
-	dialog.show();
-	$.ajax({
-		type: "POST",
-		url: "${rc.contextPath}/adminRole",
-		data: params,
-		success: function (msg) {
-			dialog.close();
-			cmap.callBackOptForCb('cbAddRole', msg, 'topHint', 'Pagination');
-		}
-	});
-});
-
-$("#btnQueryRole").click(function() {
-	var params = $("#roleForm").formSerialize();
-	var dialog = new Dialog(loadingPanel);
-	dialog.show();
-	$.ajax({
-		type: "GET", 
-		url: "${rc.contextPath}/adminRole/roleCount",
-		data: params, 
-		success: function (msg) {
-			cmap.initPagination("Pagination", msg);
-			dialog.close();
-			$("#cbQueryRole").slideUp();
-		}
-	});
-});
-
 cmap.initPagination("Pagination", ${roleCount});
-
-function pageselectCallback(pageIndex, jq) {
-	var params = $("#roleForm").formSerialize();
- 	$.ajax({
- 		type: "GET",
-		url: "${rc.contextPath}/adminRole",
-		data: params + "&pageIndex=" + pageIndex,
-		success: function (msg) {
-			var firstLine = "<tr>" + $(".zebra-tab tr").first().html() + "</tr>";
-			$("table.zebra-tab tr:not(:last)").remove();
-			$("table.zebra-tab tr:last").before(firstLine + msg);
-			$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");
-			$("#roleList input[class='check-all']").click(function() {cmap.chooseAll('listRoleId');});
-		}
- 	});
-}
+function pageselectCallback(pageIndex, jq) {	cmap.paging('roleForm', '${rc.contextPath}/adminRole', pageIndex, 'roleList', 'listRoleId'); }
 </script>

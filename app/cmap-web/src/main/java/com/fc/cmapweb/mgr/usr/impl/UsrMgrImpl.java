@@ -24,7 +24,6 @@ public class UsrMgrImpl implements IUsrMgr {
 	public void updateUsr(String usrId, Map<String, Object> updateParams) {
 		
 		UsrInfoVo tmpUsr = usrDao.getUsr(usrId);
-		tmpUsr.setUsrId(usrId);
 		
 		Set<String> keySet = updateParams.keySet();
 		

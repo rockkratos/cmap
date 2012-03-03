@@ -7,6 +7,8 @@ import com.fc.cmapweb.vo.RestInfoVo;
 
 public interface IRestMgr {
 	
+	public void updateRest(String restId, Map<String, Object> updateParams);
+	
 	public boolean updateEnableDisable(String restId);
 	public List<RestInfoVo> queryRest(Map<String, Object> queryParams, int currentPage, int pageSize);
 	public int queryRestCount(Map<String, Object> queryParams);

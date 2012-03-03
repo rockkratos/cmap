@@ -23,7 +23,7 @@ $(document).ready(function(){
 			<img src="${rc.contextPath}/imgs/admin/icons/current-user.png" />
 			<span class="vm mr10">当前用户</span>
 			<img src="${rc.contextPath}/imgs/admin/icons/logout.png" />
-			<a href="${rc.contextPath}/admin/logout" class="vm">退出</a>
+			<a href="${rc.contextPath}/admin/logout" class="vm">注销</a>
 		</div><!-- END profile links -->
 		
         <#include "/common/adminMenu.ftl" />

@@ -334,9 +334,15 @@ var cmap = {
 	}, 
 	
 	bindingSelectEvent: function (prefix, key) {
-		var showId = prefix + key + "Show";
-		var listId = prefix + key + "List";
-		var valId = prefix + key + "Val";
+		var prefixId = '';
+		if (prefix != '') {
+			prefixId = prefix + key.substring(0, 1).toUpperCase( ) + key.substring(1);
+		} else {
+			prefixId = key;
+		}
+		var showId = prefixId + "Show";
+		var listId = prefixId + "List";
+		var valId = prefixId + "Val";
 		$("#" + showId).click(function() { cmap.showDropDownList($(this), listId); });
 		$("#" + showId).blur(function() { cmap.dropDownListBlur(listId); });
 		$("#" + listId + " a").click(function() { cmap.updateDropDownListVal($(this), valId, showId); });

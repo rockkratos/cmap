@@ -44,35 +44,35 @@
     	
         <div class="column-left">
             <p>
-                <label>餐馆名称</label>
+                <label>餐馆名称*</label>
                 <input name="restName" type="text" class="text-input w200" />
             </p>
             <p>
-                <label>餐馆地址</label>
+                <label>餐馆地址*</label>
                 <input name="restAddr" type="text" class="text-input w200" />
             </p>
             <p>
-                <label>餐馆经度</label>
+                <label>餐馆经度*</label>
                 <input name="restLng" type="text" class="text-input w200" />
             </p>
             <p>
-                <label>餐馆纬度</label>
+                <label>餐馆纬度*</label>
                 <input name="restLat" type="text" class="text-input w200" />
             </p>
             <p>
-                <label>送餐起始时间</label>
+                <label>送餐起始时间*</label>
                 <input name="restOpenTime" type="text" class="text-input w200" />
             </p>
             <p>
-                <label>送餐结束时间</label>
+                <label>送餐结束时间*</label>
                 <input name="restCloseTime" type="text" class="text-input w200" />
             </p>
             <p>
-                <label>送餐半径</label>
+                <label>送餐半径*</label>
                 <input name="takeAwayRadius" type="text" class="text-input w200" />
             </p>
             <p>
-                <label>起送价格</label>
+                <label>起送价格*</label>
                 <input name="sendingAmount" type="text" class="text-input w200" />
             </p>
             <p>
@@ -80,7 +80,7 @@
                 <input name="printerId" type="text" class="text-input w200" />
             </p>
             <p>
-                <label>启用/禁用</label>
+                <label>启用/禁用*</label>
                 <input name="restEnabled" type="radio" class="vm" checked="checked" value="true" /> <span class="vm">启用</span>
                 <input name="restEnabled" type="radio" class="vm" value="false" /> <span class="vm">禁用</span>
             </p>
@@ -88,7 +88,7 @@
         
         <div class="column-right">
         	<p>
-                <label>送餐费用</label>
+                <label>送餐费用*</label>
                 <input name="takeAwayFee" type="text" class="text-input w200" />
             </p>
             <p>
@@ -100,7 +100,7 @@
                 <input name="restPhone" type="text" class="text-input w200" />
             </p>
             <p>
-            	<label>所属城市</label>
+            	<label>所属城市*</label>
                 <input id="cityShow" type="text" class="dropdown w200" readonly="readonly" />
 				<div id="cityList" class="dropdown-content">
 					<ul>
@@ -110,7 +110,7 @@
                 <input name="cityInfoVo.cityId" id="cityVal" type="hidden" />
             </p>
         	<p>
-            	<label>订单传输类型</label>
+            	<label>订单传输类型*</label>
                 <input id="orderTransTypeShow" type="text" class="dropdown w200" readonly="readonly" />
 				<div id="orderTransTypeList" class="dropdown-content">
 					<ul>
@@ -124,7 +124,7 @@
                 <input name="orderTransTypeVo.orderTransTypeId" id="orderTransTypeVal" type="hidden" />
             </p>
             <p>
-            	<label>餐馆类型</label>
+            	<label>餐馆类型*</label>
                 <input id="cookingTypeShow" type="text" class="dropdown w200" readonly="readonly" />
 				<div id="cookingTypeList" class="dropdown-content">
 					<ul>
@@ -140,11 +140,11 @@
                 <input name="cookingTypeVo.cookingTypeId" id="cookingTypeVal" type="hidden" />
             </p>
 			<p>
-                <label>生效时间</label>
+                <label>生效时间*</label>
                 <input id="restStartTime" name="restStartTime" type="text" readonly="readonly" class="date-txt w200" />
             </p>
             <p>
-                <label>失效时间</label>
+                <label>失效时间*</label>
                 <input id="restEndTime" name="restEndTime" type="text" readonly="readonly" class="date-txt w200" />
             </p>
             <p>
@@ -152,6 +152,7 @@
                 <input id="printJointNumShow" type="text" class="dropdown w200" readonly="readonly" />
 				<div id="printJointNumList" class="dropdown-content">
 					<ul>
+						<li><a href="javascript:void(0);" value="">--</a></li>
 						<li><a href="javascript:void(0);" value="2">二联</a></li>
 						<li><a href="javascript:void(0);" value="3">三联</a></li>
 					</ul>
@@ -159,7 +160,7 @@
                 <input name="printJointNum" id="printJointNumVal" type="hidden" />
             </p>
             <p>
-                <label>是否签约</label>
+                <label>是否签约*</label>
                 <input name="restSigned" type="radio" class="vm" checked="checked" value="true" /> <span class="vm">已签</span>
                 <input name="restSigned" type="radio" class="vm" value="false" /> <span class="vm">未签</span>
             </p>
@@ -265,8 +266,9 @@
             	<td colspan="6" class="tab-btm pb10">
 					
 					<div class="bulk-actions fl">
+						<a class="button" href="javascript:void(0);">菜品分类</a>
+						<a class="button" href="javascript:void(0);">菜品管理</a>
 						<a class="button" href="javascript:void(0);">批量删除</a>
-						<a class="button" href="javascript:void(0);">刷 新</a>
 					</div>
 					
 					<div id="Pagination" class="pagination fr"></div>
@@ -292,8 +294,8 @@ $("#queryRestLink").click(function() { cmap.triggerContentBox('cbAddRest', 'cbQu
 cmap.bindingSelectEvent('', 'city');
 cmap.bindingSelectEvent('', 'orderTransType');
 cmap.bindingSelectEvent('', 'cookingType');
-cmap.bindingSelectEvent('query', 'CookingType');
-cmap.bindingSelectEvent('query', 'City');
+cmap.bindingSelectEvent('query', 'cookingType');
+cmap.bindingSelectEvent('query', 'city');
 cmap.bindingSelectEvent('', 'printJointNum');
 
 $("#restStartTime").focus(function() { WdatePicker(); });
@@ -306,8 +308,5 @@ $("#btnQueryRest").click(function() { cmap.query('restMgrForm', '${rc.contextPat
 $("#btnCleanQueryRest").click(function() { cmap.cleanBox('cbQueryRest'); });
 
 cmap.initPagination("Pagination", ${restCount});
-
-function pageselectCallback(pageIndex, jq) {
-	cmap.paging('restMgrForm', '${rc.contextPath}/adminRestMgr', pageIndex, 'restList', 'listRestId');
-}
+function pageselectCallback(pageIndex, jq) { cmap.paging('restMgrForm', '${rc.contextPath}/adminRestMgr', pageIndex, 'restList', 'listRestId'); }
 </script>

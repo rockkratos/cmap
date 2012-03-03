@@ -193,7 +193,6 @@
 					
 					<div class="bulk-actions fl">
 						<a class="button" href="javascript:void(0);">批量删除</a>
-						<a class="button" href="javascript:void(0);">刷 新</a>
 					</div>
 					
 					<div id="Pagination" class="pagination fr"></div>
@@ -216,63 +215,15 @@
 $("#addUsrLink").click(function() { cmap.triggerContentBox('cbQueryUsr', 'cbAddUsr'); });
 $("#queryUsrLink").click(function() { cmap.triggerContentBox('cbAddUsr', 'cbQueryUsr'); });
 
-$("#usrTypeShow").click(function() { cmap.showDropDownList($(this), 'usrTypeList'); });
-$("#usrTypeShow").blur(function() { cmap.dropDownListBlur('usrTypeList'); });
-$("#usrTypeList a").click(function() { cmap.updateDropDownListVal($(this), 'usrTypeVal', 'usrTypeShow'); });
+cmap.bindingSelectEvent('', 'usrType');
+cmap.bindingSelectEvent('query', 'usrType');
 
-$("#queryUsrTypeShow").click(function() { cmap.showDropDownList($(this), 'queryUsrTypeList'); });
-$("#queryUsrTypeShow").blur(function() { cmap.dropDownListBlur('queryUsrTypeList'); });
-$("#queryUsrTypeList a").click(function() { cmap.updateDropDownListVal($(this), 'queryUsrTypeVal', 'queryUsrTypeShow'); });
-
+$("#btnAddUsr").click(function() { cmap.create('usrMgrForm', '${rc.contextPath}/adminUsrMgr', 'cbAddUsr', 'topHint', 'Pagination'); });
 $("#btnCleanAddUsr").click(function() { cmap.cleanBox('cbAddUsr'); });
+
+$("#btnQueryUsr").click(function() { cmap.query('usrMgrForm', '${rc.contextPath}/adminUsrMgr/usrCount', 'Pagination', 'cbQueryUsr'); });
 $("#btnCleanQueryUsr").click(function() { cmap.cleanBox('cbQueryUsr'); });
 
-$("#btnAddUsr").click(function() {
-	var params = $("#usrMgrForm").formSerialize();
-	var dialog = new Dialog(loadingPanel);
-	dialog.show();
-	$.ajax({
-		type: "POST",
-		url: "${rc.contextPath}/adminUsrMgr",
-		data: params,
-		success: function (msg) {
-			dialog.close();
-			cmap.callBackOptForCb('cbAddUsr', msg, 'topHint', 'Pagination');
-		}
-	});
-});
-
-$("#btnQueryUsr").click(function() {
-	var params = $("#usrMgrForm").formSerialize();
-	var dialog = new Dialog(loadingPanel);
-	dialog.show();
-	$.ajax({
-		type: "GET", 
-		url: "${rc.contextPath}/adminUsrMgr/usrCount",
-		data: params, 
-		success: function (msg) {
-			cmap.initPagination("Pagination", msg);
-			dialog.close();
-			$("#cbQueryUsr").slideUp();
-		}
-	});
-});
-
 cmap.initPagination("Pagination", ${usrCount});
-
-function pageselectCallback(pageIndex, jq) {
-	var params = $("#usrMgrForm").formSerialize();
- 	$.ajax({
- 		type: "GET",
-		url: "${rc.contextPath}/adminUsrMgr",
-		data: params + "&pageIndex=" + pageIndex,
-		success: function (msg) {
-			var firstLine = "<tr>" + $(".zebra-tab tr").first().html() + "</tr>";
-			$("table.zebra-tab tr:not(:last)").remove();
-			$("table.zebra-tab tr:last").before(firstLine + msg);
-			$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");
-			$("#usrList input[class='check-all']").click(function() {cmap.chooseAll('listUsrId');});
-		}
- 	});
-}
+function pageselectCallback(pageIndex, jq) { cmap.paging('usrMgrForm', '${rc.contextPath}/adminUsrMgr', pageIndex, 'usrList', 'listUsrId'); }
 </script>

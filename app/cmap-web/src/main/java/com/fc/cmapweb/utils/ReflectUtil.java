@@ -54,6 +54,10 @@ public class ReflectUtil {
 			return Integer.TYPE;
 		} else if (name.equals("java.lang.Boolean")) {
 			return Boolean.TYPE;
+		} else if (name.equals("java.lang.Float")) {
+			return Float.TYPE;
+		} else if (name.equals("java.lang.Double")) {
+			return Double.TYPE;
 		} else {
 			return obj.getClass();
 		}

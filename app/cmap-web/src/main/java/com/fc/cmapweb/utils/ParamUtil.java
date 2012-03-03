@@ -4,10 +4,14 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class ParamUtil {
+	
+	private static String[] PARAMS_STR = PropUtil.getPolicy("params.type.str.key").split(",");
 	
 	public static int getCurrentPage(HttpServletRequest request) {
 		return Integer.valueOf(request.getParameter(CmapValues.PAGE_INDEX));
@@ -30,9 +34,9 @@ public class ParamUtil {
 				String tmpKey = paramKey.replaceAll("^" + prefix, "");
 				tmpKey = tmpKey.replace(tmpKey.charAt(0), (char)(tmpKey.charAt(0) + 32));
 				
-				if (StrUtil.isNotEmpty(param)) {
+				if (null != param) {
 					
-					if (!tmpKey.contains("Cell") && StrUtil.isDigit(param)) {
+					if (!isStr(tmpKey) && StrUtil.isDigit(param)) {
 						
 						if (StrUtil.isInteger(param)) {
 							back.put(tmpKey, Integer.valueOf(param));
@@ -68,31 +72,52 @@ public class ParamUtil {
 				
 				Object obj = queryParams.get(tmpKey);
 
-				if (tmpKey.contains("Cell") || (obj instanceof String && StrUtil.isNotEmpty((String) obj))) {
+				if (isStr(tmpKey) && StrUtil.isNotEmpty((String) obj)) {
+					
+					buffer.append(prefix + "." + tmpKey + " like '%" + obj + "%' and ");
+					
+				} else if (obj instanceof String && StrUtil.isNotEmpty((String) obj)) {
 					
 					String tmpStr = (String) obj;
-					
+						
 					if ("true".equals(tmpStr) || "false".equals(tmpStr)) {
 						buffer.append(prefix + "." + tmpKey + " = " + obj + " and ");
 					} else {
 						buffer.append(prefix + "." + tmpKey + " like '%" + tmpStr + "%' and ");
 					}
 					
-				} else {
-					
+				} else if (StrUtil.isDigit(String.valueOf(obj))) {
 					buffer.append(prefix + "." + tmpKey + " = " + obj + " and ");
-					
 				}
 				
 			}
 			
-			return buffer.toString().replaceAll(" and $", " ");
+			String back = buffer.toString().replaceAll(" and $", " ");
+			
+			Pattern p = Pattern.compile("^where $");
+			Matcher m = p.matcher(back);
+			
+			return m.matches() ? "" : back;
 			
 		} else {
 			
 			return "";
 			
 		}
+		
+	}
+	
+	private static boolean isStr(String paramKey) {
+		
+		for (int i = 0; i < PARAMS_STR.length; i++) {
+			
+			if (paramKey.toLowerCase().contains(PARAMS_STR[i])) {
+				return true;
+			}
+			
+		}
+		
+		return false;
 		
 	}
 

@@ -16,6 +16,12 @@ import com.fc.cmapweb.vo.RestInfoVo;
 public class RestDaoImpl extends CmapBaseDao implements IRestDao {
 	
 	@Override
+	public RestInfoVo updateRest(RestInfoVo restInfoVo) {
+		em.merge(restInfoVo);
+		return restInfoVo;
+	}
+	
+	@Override
 	public boolean switchEnableDisable(String restId) {
 		
 		RestInfoVo tmp = getRestInfo(restId);

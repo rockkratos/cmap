@@ -62,15 +62,16 @@
     
     <div>
         <p>
-            <a id="btnDetailUpdate" href="javascript:void(0);" class="button" onclick="javascript:cmap.save('${rc.contextPath}/adminUsrMgr/edit/${usrInfoVo.usrId}', 'usrListHint', 'Pagination', 'usrMgrForm', 'cbDetailInfo');">保 存</a>
-            <a id="btnDetailClose" href="javascript:void(0);" class="button" onclick="javascript:cmap.close('cbDetailInfo', true);">关 闭</a>
+            <a id="btnDetailUpdate" href="javascript:void(0);" class="button">保 存</a>
+            <a id="btnDetailClose" href="javascript:void(0);" class="button">关 闭</a>
         </p>
     </div>
     
 </div>
 
 <script type="text/javascript" language="javascript">
-$("#detailUsrTypeShow").click(function() { cmap.showDropDownList($(this), 'detailUsrTypeList'); });
-$("#detailUsrTypeShow").blur(function() { cmap.dropDownListBlur('detailUsrTypeList'); });
-$("#detailUsrTypeList a").click(function() { cmap.updateDropDownListVal($(this), 'detailUsrTypeVal', 'detailUsrTypeShow'); });
+$("#btnDetailUpdate").click(function() { cmap.save('${rc.contextPath}/adminUsrMgr/edit/${usrInfoVo.usrId}', 'usrListHint', 'Pagination', 'usrMgrForm', 'cbDetailInfo'); });
+$("#btnDetailClose").click(function() { cmap.close('cbDetailInfo', true); });
+
+cmap.bindingSelectEvent('detail', 'usrType');
 </script>

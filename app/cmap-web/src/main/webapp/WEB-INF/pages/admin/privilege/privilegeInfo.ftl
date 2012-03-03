@@ -6,15 +6,15 @@
     
     <div class="column-left">
         <p>
-            <label>权限名称</label>
+            <label>权限名称*</label>
             <input name="detailPrivilegeName" type="text" class="text-input w200" value="${privilegeInfoVo.privilegeName}" />
         </p>
         <p>
-            <label>资源路径</label>
+            <label>资源路径*</label>
             <input name="detailResPath" type="text" class="text-input w200" value="${privilegeInfoVo.resPath}" />
         </p>
         <p>
-            <label>启用/禁用</label>
+            <label>启用/禁用*</label>
             <input name="detailPrivilegeEnabled" type="radio" class="vm" value="true" ${privilegeInfoVo.privilegeEnabled?string('checked="checked"', '')} /> <span class="vm">启用</span>
             <input name="detailPrivilegeEnabled" type="radio" class="vm" value="false" ${privilegeInfoVo.privilegeEnabled?string('', 'checked="checked"')} /> <span class="vm">禁用</span>
         </p>
@@ -22,7 +22,7 @@
     
     <div class="column-right">
 		<p>
-        	<label>HTTP方法类型</label>
+        	<label>HTTP方法类型*</label>
         	<#if privilegeInfoVo.httpMethodTypeVo.methodTypeId ==1>
             <input id="detailMethodTypeShow" type="text" class="dropdown w200" readonly="readonly" value="查询 -- GET" />
             <#elseif privilegeInfoVo.httpMethodTypeVo.methodTypeId ==2>
@@ -52,15 +52,16 @@
     
     <div>
         <p>
-            <a id="btnDetailUpdate" href="javascript:void(0);" class="button" onclick="javascript:cmap.save('${rc.contextPath}/adminPrivilege/edit/${privilegeInfoVo.privilegeId}', 'privilegeListHint', 'Pagination', 'privilegeForm', 'cbDetailInfo');">保 存</a>
-            <a id="btnDetailClose" href="javascript:void(0);" class="button" onclick="javascript:cmap.close('cbDetailInfo', true);">关 闭</a>
+            <a id="btnDetailUpdate" href="javascript:void(0);" class="button">保 存</a>
+            <a id="btnDetailClose" href="javascript:void(0);" class="button">关 闭</a>
         </p>
     </div>
     
 </div>
 
 <script type="text/javascript" language="javascript">
-$("#detailMethodTypeShow").click(function() { cmap.showDropDownList($(this), 'detailMethodTypeList'); });
-$("#detailMethodTypeShow").blur(function() { cmap.dropDownListBlur('detailMethodTypeList'); });
-$("#detailMethodTypeList a").click(function() { cmap.updateDropDownListVal($(this), 'detailMethodTypeVal', 'detailMethodTypeShow'); });
+$("#btnDetailUpdate").click(function() { cmap.save('${rc.contextPath}/adminPrivilege/edit/${privilegeInfoVo.privilegeId}', 'privilegeListHint', 'Pagination', 'privilegeForm', 'cbDetailInfo'); });
+$("#btnDetailClose").click(function() { cmap.close('cbDetailInfo', true); });
+
+cmap.bindingSelectEvent('detail', 'methodType');
 </script>

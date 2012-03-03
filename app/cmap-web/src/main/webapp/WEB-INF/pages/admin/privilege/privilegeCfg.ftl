@@ -62,15 +62,15 @@
     	
         <div class="column-left">
             <p>
-                <label>权限名称</label>
+                <label>权限名称*</label>
                 <input name="privilegeName" type="text" class="text-input w200" />
             </p>
             <p>
-                <label>资源路径</label>
+                <label>资源路径*</label>
                 <input name="resPath" type="text" class="text-input w200" />
             </p>
             <p>
-                <label>启用/禁用</label>
+                <label>启用/禁用*</label>
                 <input name="privilegeEnabled" type="radio" class="vm" checked="checked" value="true" /> <span class="vm">启用</span>
                 <input name="privilegeEnabled" type="radio" class="vm" value="false" /> <span class="vm">禁用</span>
             </p>
@@ -78,7 +78,7 @@
         
         <div class="column-right">
 			<p>
-            	<label>HTTP方法类型</label>
+            	<label>HTTP方法类型*</label>
                 <input id="methodTypeShow" type="text" class="dropdown w200" readonly="readonly" />
 				<div id="methodTypeList" class="dropdown-content">
 					<ul>
@@ -187,7 +187,6 @@
 					
 					<div class="bulk-actions fl">
 						<a class="button" href="javascript:void(0);">批量删除</a>
-						<a class="button" href="javascript:void(0);">刷 新</a>
 					</div>
 					
 					<div id="Pagination" class="pagination fr"></div>
@@ -210,66 +209,18 @@
 $("#addPrivilegeLink").click(function() { cmap.triggerContentBox('cbQueryPrivilege', 'cbAddPrivilege'); });
 $("#queryPrivilegeLink").click(function() { cmap.triggerContentBox('cbAddPrivilege', 'cbQueryPrivilege'); });
 
-$("#methodTypeShow").click(function() { cmap.showDropDownList($(this), 'methodTypeList'); });
-$("#methodTypeShow").blur(function() { cmap.dropDownListBlur('methodTypeList'); });
-$("#methodTypeList a").click(function() { cmap.updateDropDownListVal($(this), 'methodTypeVal', 'methodTypeShow'); });
+cmap.bindingSelectEvent('', 'methodType');
+cmap.bindingSelectEvent('query', 'methodType');
 
-$("#queryMethodTypeShow").click(function() { cmap.showDropDownList($(this), 'queryMethodTypeList'); });
-$("#queryMethodTypeShow").blur(function() { cmap.dropDownListBlur('queryMethodTypeList'); });
-$("#queryMethodTypeList a").click(function() { cmap.updateDropDownListVal($(this), 'queryMethodTypeVal', 'queryMethodTypeShow'); });
-
+$("#btnAddPrivilege").click(function() { cmap.create('privilegeForm', '${rc.contextPath}/adminPrivilege', 'cbAddPrivilege', 'topHint', 'Pagination'); });
 $("#btnCleanAddPrivilege").click(function() { cmap.cleanBox('cbAddPrivilege'); });
+
+$("#btnQueryPrivilege").click(function() { cmap.query('privilegeForm', '${rc.contextPath}/adminPrivilege/privilegeCount', 'Pagination', 'cbQueryPrivilege'); });
 $("#btnCleanQueryPrivilege").click(function() { cmap.cleanBox('cbQueryPrivilege'); });
 
 $("#roleCfgLink").click(function() { $("#menuRoleCfg").click(); });
 $("#roleBindingLink").click(function() { $("#menuRoleBinding").click(); });
 
-$("#btnAddPrivilege").click(function() {
-	var params = $("#privilegeForm").formSerialize();
-	var dialog = new Dialog(loadingPanel);
-	dialog.show();
-	$.ajax({
-		type: "POST",
-		url: "${rc.contextPath}/adminPrivilege",
-		data: params,
-		success: function (msg) {
-			dialog.close();
-			cmap.callBackOptForCb('cbAddPrivilege', msg, 'topHint', 'Pagination');
-		}
-	});
-});
-
-$("#btnQueryPrivilege").click(function() {
-	var params = $("#privilegeForm").formSerialize();
-	var dialog = new Dialog(loadingPanel);
-	dialog.show();
-	$.ajax({
-		type: "GET", 
-		url: "${rc.contextPath}/adminPrivilege/privilegeCount",
-		data: params, 
-		success: function (msg) {
-			cmap.initPagination("Pagination", msg);
-			dialog.close();
-			$("#cbQueryPrivilege").slideUp();
-		}
-	});
-});
-
 cmap.initPagination("Pagination", ${privilegeCount});
-
-function pageselectCallback(pageIndex, jq) {
-	var params = $("#privilegeForm").formSerialize();
- 	$.ajax({
- 		type: "GET",
-		url: "${rc.contextPath}/adminPrivilege",
-		data: params + "&pageIndex=" + pageIndex,
-		success: function (msg) {
-			var firstLine = "<tr>" + $(".zebra-tab tr").first().html() + "</tr>";
-			$("table.zebra-tab tr:not(:last)").remove();
-			$("table.zebra-tab tr:last").before(firstLine + msg);
-			$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");
-			$("#privilegeList input[class='check-all']").click(function() {cmap.chooseAll('listPrivilegeId');});
-		}
- 	});
-}
+function pageselectCallback(pageIndex, jq) { cmap.paging('privilegeForm', '${rc.contextPath}/adminPrivilege', pageIndex, 'privilegeList', 'listPrivilegeId'); }
 </script>

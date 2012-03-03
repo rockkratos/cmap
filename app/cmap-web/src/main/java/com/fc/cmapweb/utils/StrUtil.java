@@ -17,7 +17,7 @@ public class StrUtil {
 	}
 	
 	public static String upperInitial(String str) {
-		return str.replace(str.charAt(0), (char)(str.charAt(0) - 32));
+		return str.replaceFirst("^[a-z]", String.valueOf((char) (str.charAt(0) - 32)));
 	}
 	
 	public static boolean isInteger(String str) {

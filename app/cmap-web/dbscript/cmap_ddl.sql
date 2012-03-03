@@ -134,7 +134,7 @@ CREATE TABLE rest_info (
 	rest_signed BOOLEAN NOT NULL, 
 	city_id SMALLINT NOT NULL, 
 	printer_id VARCHAR(16), 
-	print_joint_num SMALLINT, 
+	print_joint_num VARCHAR(1), 
 	CONSTRAINT pk_rest_info PRIMARY KEY (rest_id)
 );
 

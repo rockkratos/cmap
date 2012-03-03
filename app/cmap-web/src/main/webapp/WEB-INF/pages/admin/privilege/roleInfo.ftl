@@ -6,7 +6,7 @@
     
     <div class="column-left">
     	<p>
-            <label>角色名称</label>
+            <label>角色名称*</label>
             <input name="detailRoleName" type="text" class="text-input w200" value="${roleInfoVo.roleName}" />
         </p>
         <p>
@@ -14,7 +14,7 @@
             <input name="detailRoleDesc" type="text" class="text-input w200" value="${roleInfoVo.roleDesc}" />
         </p>
         <p>
-            <label>启用/禁用</label>
+            <label>启用/禁用*</label>
             <input name="detailRoleEnabled" type="radio" class="vm" value="true" ${roleInfoVo.roleEnabled?string('checked="checked"', '')} /> <span class="vm">启用</span>
             <input name="detailRoleEnabled" type="radio" class="vm" value="false" ${roleInfoVo.roleEnabled?string('', 'checked="checked"')} /> <span class="vm">禁用</span>
         </p>
@@ -38,9 +38,14 @@
     
     <div>
         <p>
-            <a id="btnDetailUpdate" href="javascript:void(0);" class="button" onclick="javascript:cmap.save('${rc.contextPath}/adminRole/edit/${roleInfoVo.roleId}', 'roleListHint', 'Pagination', 'roleForm', 'cbDetailInfo');">保 存</a>
-            <a id="btnDetailClose" href="javascript:void(0);" class="button" onclick="javascript:cmap.close('cbDetailInfo', true);">关 闭</a>
+            <a id="btnDetailUpdate" href="javascript:void(0);" class="button">保 存</a>
+            <a id="btnDetailClose" href="javascript:void(0);" class="button">关 闭</a>
         </p>
     </div>
     
 </div>
+
+<script type="text/javascript" language="javascript">
+$("#btnDetailUpdate").click(function() { cmap.save('${rc.contextPath}/adminRole/edit/${roleInfoVo.roleId}', 'roleListHint', 'Pagination', 'roleForm', 'cbDetailInfo'); });
+$("#btnDetailClose").click(function() { cmap.close('cbDetailInfo', true); });
+</script>

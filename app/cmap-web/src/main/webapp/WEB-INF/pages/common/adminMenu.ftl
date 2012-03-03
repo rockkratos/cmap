@@ -17,4 +17,8 @@
         </ul>
     </li>
     
+    <li>
+        <a id="menuUsrCfg" href="javascript:void(0);" class="nav-top-item no-submenu">用户设置</a>
+    </li>
+    
 </ul><!-- END left menu -->
