@@ -5,7 +5,7 @@
 	<#if tmpRest.restId?exists>
 	
 	<td>
-		<input name="listUsrId" type="checkbox" value="${tmpRest.restId}" />
+		<input name="listRestId" type="checkbox" value="${tmpRest.restId}" />
 	</td>
     <td>${tmpRest.restName}</td>
     <td>${tmpRest.restPhone}</td>

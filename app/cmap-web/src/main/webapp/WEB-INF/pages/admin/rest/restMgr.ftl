@@ -266,7 +266,7 @@
             	<td colspan="6" class="tab-btm pb10">
 					
 					<div class="bulk-actions fl">
-						<a class="button" href="javascript:void(0);">菜品分类</a>
+						<a id="btnDishSort" class="button" href="javascript:void(0);">菜品分类</a>
 						<a class="button" href="javascript:void(0);">菜品管理</a>
 						<a class="button" href="javascript:void(0);">批量删除</a>
 					</div>
@@ -288,6 +288,32 @@
 </form>
 
 <script type="text/javascript" language="javascript">
+$("#btnDishSort").click(function() {
+	var restIdNum = $("input[name='listRestId']:checked").size();
+	if (restIdNum == 0) {
+		cmap.showHintMsg('restListHint', 'error', '请选择餐馆');
+		return;
+	} else if (restIdNum != 1) {
+		cmap.showHintMsg('restListHint', 'warning', '请选择一个餐馆');
+		return;
+	}
+	var dialog = new Dialog(loadingPanel);
+	dialog.show();
+	var restId = $("input[name='listRestId']:checked").val();
+	$.ajax({
+		type: "GET",
+		url: '${rc.contextPath}/adminDishSort/' + restId,
+		success: function (msg) {
+			dialog.close();
+			$("#main-content").fadeOut("normal", function () {
+				$("#main-content").html(msg);
+				$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");
+				$("#main-content").fadeIn("normal");
+			});
+		}
+	});
+});
+
 $("#addRestLink").click(function() { cmap.triggerContentBox('cbQueryRest', 'cbAddRest'); });
 $("#queryRestLink").click(function() { cmap.triggerContentBox('cbAddRest', 'cbQueryRest'); });
 

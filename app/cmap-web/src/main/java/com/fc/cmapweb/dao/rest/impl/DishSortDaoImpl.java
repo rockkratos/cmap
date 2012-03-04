@@ -1,5 +1,10 @@
 package com.fc.cmapweb.dao.rest.impl;
 
+import java.util.List;
+
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
 import org.springframework.stereotype.Repository;
 
 import com.fc.cmapweb.dao.CmapBaseDao;
@@ -8,7 +13,32 @@ import com.fc.cmapweb.vo.DishSortVo;
 
 @Repository("dishSortDao")
 public class DishSortDaoImpl extends CmapBaseDao implements IDishSortDao {
+	
+	@Override
+	public int getDishSortCount(String restId) {
+		
+		String jpql = "SELECT COUNT(ds) FROM DishSortVo ds WHERE ds.restInfoVo.restId = ?";
+		
+		Query rowCountQuery = em.createQuery(jpql);
+		rowCountQuery.setParameter(1, restId);
+		
+		return ((Long) rowCountQuery.getSingleResult()).intValue();
+		
+	}
 
+	@Override
+	public List<DishSortVo> getDishSort(String restId, int currentPage, int pageSize) {
+		
+		String jpql = "SELECT ds FROM DishSortVo ds WHERE ds.restInfoVo.restId = ? ORDER BY ds.dishSortOrder";
+		TypedQuery<DishSortVo> tq = em.createQuery(jpql, DishSortVo.class)
+															  .setFirstResult(currentPage * pageSize)
+															  .setMaxResults(pageSize);
+		tq.setParameter(1, restId);
+		
+		return tq.getResultList();
+		
+	}
+	
 	@Override
 	public DishSortVo insertDishSort(DishSortVo dishSortVo) {
 		em.persist(dishSortVo);

@@ -129,9 +129,12 @@ var cmap = {
 	showHintMsg: function (showId, hintType, msg) {
 		
 		$("#" + showId).slideUp("normal", function() {
-		
+			
 			var hintHtml = $("#hint-wrapper .hint" + "-" + hintType).html().replace("[hintmsg]", msg);
-		
+			
+			$("#" + showId).removeClass();
+			$("#" + showId).addClass("hint-box");
+			$("#" + showId).addClass("dn");
 			$("#" + showId).addClass("hint-" + hintType);
 			$("#" + showId).html(hintHtml);
 			
@@ -301,7 +304,7 @@ var cmap = {
 		});
 	}, 
 	
-	paging: function (formId, reqUrl, pageIndex, listId, checkBoxId) {
+	paging: function (formId, reqUrl, pageIndex, listId, checkBoxName) {
 		var params = $("#" + formId).formSerialize();
 	 	$.ajax({
 	 		type: "GET",
