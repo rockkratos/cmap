@@ -1,8 +1,6 @@
 <#assign spring=JspTaglibs["http://www.springframework.org/tags"] />
 <form id="dishSortCfgForm">
 
-<input id="restId" name="restId" type="hidden" value="${restId}" /> 
-
 <div id="page-title">
 	<ul>
 		<li class="main-title">餐馆管理</li>
@@ -130,18 +128,28 @@
 </form>
 
 <script type="text/javascript" language="javascript">
+$("#dishMgrLink").click(function() {
+	var dialog = new Dialog(loadingPanel);
+	dialog.show();
+	$.ajax({
+		type: "GET",
+		url: '${rc.contextPath}/adminDishMgr/${restId}',
+		success: function (msg) {
+			dialog.close();
+			$("#main-content").fadeOut("normal", function () {
+				$("#main-content").html(msg);
+				$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");
+				$("#main-content").fadeIn("normal");
+			});
+		}
+	});
+});
 $("#restInfoLink").click(function() { $("#menuRestMgr").click(); });
 $("#addDishSortLink").click(function() { cmap.triggerContentBox('', 'cbAddDishSort'); });
 
-$("#btnAddDishSort").click(function() {
-	var reqUrl = '${rc.contextPath}/adminDishSort/' + $("#restId").val();
-	cmap.create('dishSortCfgForm', reqUrl, 'cbAddDishSort', 'topHint', 'Pagination');
-});
+$("#btnAddDishSort").click(function() {	cmap.create('dishSortCfgForm', '${rc.contextPath}/adminDishSort/${restId}', 'cbAddDishSort', 'topHint', 'Pagination'); });
 $("#btnCleanAddDishSort").click(function() { cmap.cleanBox('cbAddDishSort'); });
 
 cmap.initPagination("Pagination", ${dishSortCount});
-function pageselectCallback(pageIndex, jq) {
-	var reqUrl = '${rc.contextPath}/adminDishSort/list/' + $("#restId").val();
-	cmap.paging('dishSortCfgForm', reqUrl, pageIndex, 'dishSortList', 'listDishSortId');
-}
+function pageselectCallback(pageIndex, jq) { cmap.paging('dishSortCfgForm', '${rc.contextPath}/adminDishSort/list/${restId}', pageIndex, 'dishSortList', 'listDishSortId'); }
 </script>

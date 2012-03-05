@@ -107,7 +107,7 @@ public class DishSortCtrl {
 	}
 	
 	@RequestMapping(value = "/{restId}", method = RequestMethod.GET)
-	public String showDishSortList(@PathVariable String restId, Model model) {
+	public String showDishSortPage(@PathVariable String restId, Model model) {
 		
 		RestInfoVo tmpRest = restMgr.queryRestInfo(restId);
 		

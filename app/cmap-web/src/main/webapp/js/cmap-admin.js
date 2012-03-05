@@ -72,11 +72,16 @@ var cmap = {
 	}, 
 	
 	loadPage: function (ctxPath, menuId) {
+		var reqUrl = ctxPath + "/adminMenu/" + menuId;
+		cmap.flushMainContent(reqUrl);
+	}, 
+	
+	flushMainContent: function(reqUrl) {
 		var dialog = new Dialog(loadingPanel);
 		dialog.show();
 		$.ajax({
 			type: "GET",
-			url: ctxPath + "/adminMenu/" + menuId,
+			url: reqUrl,
 			success: function (msg) {
 				dialog.close();
 				$("#main-content").fadeOut("normal", function () {
