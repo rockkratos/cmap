@@ -32,8 +32,6 @@ public class PrivilegeDaoImpl extends CmapBaseDao implements IPrivilegeDao {
 		PrivilegeInfoVo tmp = getPrivilege(privilegeId);
 		tmp.setPrivilegeEnabled(tmp.isPrivilegeEnabled() == true ? false : true);
 		
-		em.merge(tmp);
-		
 		return tmp.isPrivilegeEnabled();
 		
 	}
@@ -61,9 +59,9 @@ public class PrivilegeDaoImpl extends CmapBaseDao implements IPrivilegeDao {
 		buffer.append(" ORDER BY p.privilegeName");
 		
 		return em.createQuery(buffer.toString(), PrivilegeInfoVo.class)
-						.setFirstResult(currentPage * pageSize)
-						.setMaxResults(pageSize)
-						.getResultList();
+				 .setFirstResult(currentPage * pageSize)
+				 .setMaxResults(pageSize)
+				 .getResultList();
 		
 	}
 

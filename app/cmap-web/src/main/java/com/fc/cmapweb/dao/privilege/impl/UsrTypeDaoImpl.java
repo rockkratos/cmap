@@ -16,7 +16,6 @@ public class UsrTypeDaoImpl extends CmapBaseDao implements IUsrTypeDao {
 		
 		if (usrTypeVo.isUsrTypeEnabled() != enabled) {
 			usrTypeVo.setUsrTypeEnabled(enabled);
-			em.merge(usrTypeVo);
 		}
 		
 		return usrTypeVo.isUsrTypeEnabled();

@@ -28,6 +28,7 @@ public class UsrDaoImpl extends CmapBaseDao implements IUsrDao {
 		}
 		
 		em.merge(usrInfoVo);
+		
 		return usrInfoVo;
 		
 	}
@@ -52,8 +53,6 @@ public class UsrDaoImpl extends CmapBaseDao implements IUsrDao {
 		
 		UsrInfoVo tmp = getUsr(usrId);
 		tmp.setUsrEnabled(tmp.isUsrEnabled() == true ? false : true);
-		
-		em.merge(tmp);
 		
 		return tmp.isUsrEnabled();
 		

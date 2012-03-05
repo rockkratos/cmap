@@ -53,7 +53,7 @@ public class RoleCtrl {
 		
 	}
 	
-	@RequestMapping(value = "/{roleId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/detail/{roleId}", method = RequestMethod.GET)
 	public String showRoleInfo(@PathVariable String roleId, Model model) {
 		
 		model.addAttribute("roleInfoVo", roleMgr.queryRole(roleId));

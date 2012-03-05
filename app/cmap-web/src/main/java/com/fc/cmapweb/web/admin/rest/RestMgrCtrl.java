@@ -52,7 +52,7 @@ public class RestMgrCtrl {
 		
 	}
 	
-	@RequestMapping(value = "/{restId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/detail/{restId}", method = RequestMethod.GET)
 	public String showRestInfo(@PathVariable String restId, Model model) {
 		
 		model.addAttribute("restInfoVo", restMgr.queryRestInfo(restId));

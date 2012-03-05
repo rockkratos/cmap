@@ -48,7 +48,7 @@ public class UsrMgrCtrl {
 		
 	}
 	
-	@RequestMapping(value = "/{usrId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/detail/{usrId}", method = RequestMethod.GET)
 	public String showUsrInfo(@PathVariable String usrId, Model model) {
 		
 		model.addAttribute("usrInfoVo", usrMgr.queryUsrInfoByUsrId(usrId));

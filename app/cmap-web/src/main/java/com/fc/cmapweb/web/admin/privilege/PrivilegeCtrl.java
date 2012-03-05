@@ -80,7 +80,7 @@ public class PrivilegeCtrl {
 		
 	}
 	
-	@RequestMapping(value = "/{privilegeId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/detail/{privilegeId}", method = RequestMethod.GET)
 	public String showPrivilegeInfo(@PathVariable String privilegeId, Model model) {
 		
 		model.addAttribute("privilegeInfoVo", privilegeMgr.queryPrivilege(privilegeId));

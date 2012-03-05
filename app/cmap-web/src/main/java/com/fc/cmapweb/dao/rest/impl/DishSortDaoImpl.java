@@ -15,6 +15,22 @@ import com.fc.cmapweb.vo.DishSortVo;
 public class DishSortDaoImpl extends CmapBaseDao implements IDishSortDao {
 	
 	@Override
+	public DishSortVo updateRest(DishSortVo dishSortVo) {
+		em.merge(dishSortVo);
+		return dishSortVo;
+	}
+	
+	@Override
+	public boolean switchEnableDisable(String dishSortId) {
+		
+		DishSortVo tmp = getDishSort(dishSortId);
+		tmp.setDishSortEnabled(tmp.isDishSortEnabled() == true ? false : true);
+		
+		return tmp.isDishSortEnabled();
+		
+	}
+	
+	@Override
 	public int getDishSortCount(String restId) {
 		
 		String jpql = "SELECT COUNT(ds) FROM DishSortVo ds WHERE ds.restInfoVo.restId = ?";
@@ -31,8 +47,8 @@ public class DishSortDaoImpl extends CmapBaseDao implements IDishSortDao {
 		
 		String jpql = "SELECT ds FROM DishSortVo ds WHERE ds.restInfoVo.restId = ? ORDER BY ds.dishSortOrder";
 		TypedQuery<DishSortVo> tq = em.createQuery(jpql, DishSortVo.class)
-															  .setFirstResult(currentPage * pageSize)
-															  .setMaxResults(pageSize);
+									  .setFirstResult(currentPage * pageSize)
+									  .setMaxResults(pageSize);
 		tq.setParameter(1, restId);
 		
 		return tq.getResultList();

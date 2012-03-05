@@ -21,8 +21,6 @@ public class RoleDaoImpl extends CmapBaseDao implements IRoleDao {
 		RoleInfoVo tmp = getRole(roleId);
 		tmp.setRoleEnabled(tmp.isRoleEnabled() == true ? false : true);
 		
-		em.merge(tmp);
-		
 		return tmp.isRoleEnabled();
 		
 	}

@@ -27,8 +27,6 @@ public class RestDaoImpl extends CmapBaseDao implements IRestDao {
 		RestInfoVo tmp = getRestInfo(restId);
 		tmp.setRestEnabled(tmp.isRestEnabled() == true ? false : true);
 		
-		em.merge(tmp);
-		
 		return tmp.isRestEnabled();
 		
 	}

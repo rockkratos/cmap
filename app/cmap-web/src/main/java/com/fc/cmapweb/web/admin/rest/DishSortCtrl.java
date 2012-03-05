@@ -34,6 +34,37 @@ public class DishSortCtrl {
 	@Autowired
 	private IDishSortMgr dishSortMgr;
 	
+	@RequestMapping(value = "/edit/{restId}/{dishSortId}", method = RequestMethod.PUT)
+	@ResponseBody
+	public String updateDishSort(@PathVariable String restId, @PathVariable String dishSortId, HttpServletRequest request) {
+		
+		Map<String, Object> updateParams = ParamUtil.getParams(request, CmapValues.PREFIX_DETAIL);
+		
+		dishSortMgr.updateDishSort(dishSortId, updateParams);
+		
+		int count = dishSortMgr.queryDishSortCount(restId);
+		
+		Map<String, String> otherParams = new HashMap<String, String>();
+		otherParams.put("recordCount", String.valueOf(count));
+		
+		return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("update.success", null), otherParams);
+		
+	}
+	
+	@RequestMapping(value = "/{dishSortId}", method = RequestMethod.PUT)
+	@ResponseBody
+	public String enableDisableDishSort(@PathVariable String dishSortId) {
+		
+		boolean flag = dishSortMgr.updateEnableDisable(dishSortId);
+		
+		if (flag) {
+			return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("enable.success", null));
+		} else {
+			return StrUtil.getJsonHintMsg(CmapValues.HINT_SUCCESS, PropUtil.getHintMsg("disable.success", null));
+		}
+		
+	}
+	
 	@RequestMapping(value = "/{restId}/{dishSortId}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public String deleteRest(@PathVariable String restId, @PathVariable String dishSortId) {
@@ -66,8 +97,17 @@ public class DishSortCtrl {
 		
 	}
 	
+	@RequestMapping(value = "/detail/{restId}/{dishSortId}", method = RequestMethod.GET)
+	public String showDishSortInfo(@PathVariable String restId, @PathVariable String dishSortId, Model model) {
+		
+		model.addAttribute("restId", restId);
+		model.addAttribute("dishSortVo", dishSortMgr.queryDishSort(dishSortId));
+		return "/admin/rest/dishSortInfo";
+		
+	}
+	
 	@RequestMapping(value = "/{restId}", method = RequestMethod.GET)
-	public String showDishSort(@PathVariable String restId, Model model) {
+	public String showDishSortList(@PathVariable String restId, Model model) {
 		
 		RestInfoVo tmpRest = restMgr.queryRestInfo(restId);
 		
