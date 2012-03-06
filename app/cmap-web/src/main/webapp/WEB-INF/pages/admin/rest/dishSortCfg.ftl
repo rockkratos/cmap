@@ -128,22 +128,7 @@
 </form>
 
 <script type="text/javascript" language="javascript">
-$("#dishMgrLink").click(function() {
-	var dialog = new Dialog(loadingPanel);
-	dialog.show();
-	$.ajax({
-		type: "GET",
-		url: '${rc.contextPath}/adminDishMgr/${restId}',
-		success: function (msg) {
-			dialog.close();
-			$("#main-content").fadeOut("normal", function () {
-				$("#main-content").html(msg);
-				$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");
-				$("#main-content").fadeIn("normal");
-			});
-		}
-	});
-});
+$("#dishMgrLink").click(function() { cmap.flushMainContent('${rc.contextPath}/adminDishMgr/${restId}'); });
 $("#restInfoLink").click(function() { $("#menuRestMgr").click(); });
 $("#addDishSortLink").click(function() { cmap.triggerContentBox('', 'cbAddDishSort'); });
 

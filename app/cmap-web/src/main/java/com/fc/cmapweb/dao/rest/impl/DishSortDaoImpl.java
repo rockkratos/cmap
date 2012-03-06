@@ -15,6 +15,18 @@ import com.fc.cmapweb.vo.DishSortVo;
 public class DishSortDaoImpl extends CmapBaseDao implements IDishSortDao {
 	
 	@Override
+	public List<DishSortVo> getAllDishSort(String restId) {
+		
+		String jpql = "SELECT ds FROM DishSortVo ds WHERE ds.restInfoVo.restId = ? ORDER BY ds.dishSortOrder";
+		
+		TypedQuery<DishSortVo> tq = em.createQuery(jpql, DishSortVo.class);
+		tq.setParameter(1, restId);
+		
+		return tq.getResultList();
+		
+	}
+	
+	@Override
 	public DishSortVo updateRest(DishSortVo dishSortVo) {
 		em.merge(dishSortVo);
 		return dishSortVo;

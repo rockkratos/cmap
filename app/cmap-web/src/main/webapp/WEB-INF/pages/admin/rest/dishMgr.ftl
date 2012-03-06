@@ -1,6 +1,8 @@
 <#assign spring=JspTaglibs["http://www.springframework.org/tags"] />
 <form id="dishMgrForm">
 
+<input type="hidden" name="restId" value="${restId}" />
+
 <div id="page-title">
 	<ul>
 		<li class="main-title">餐馆管理</li>
@@ -74,11 +76,11 @@
 		        <input id="dishSortShow" type="text" class="dropdown w200" readonly="readonly" />
 				<div id="dishSortList" class="dropdown-content">
 					<ul>
-						<li><a href="javascript:void(0);" value="1">电话 -- PHONE</a></li>
-						<li><a href="javascript:void(0);" value="2">短信 -- SMS</a></li>
-						<li><a href="javascript:void(0);" value="3">电子邮件 -- EMAIL</a></li>
-						<li><a href="javascript:void(0);" value="4">客户端 -- CLIENT</a></li>
-						<li><a href="javascript:void(0);" value="5">打印机 -- PRINTER</a></li>
+						<#if (dishSortList??) && (dishSortList?size > 0)>
+						<#list dishSortList as tmpDishSort> 
+						<li><a href="javascript:void(0);" value="${tmpDishSort.dishSortId}">${tmpDishSort.dishSortName}</a></li>
+						</#list>
+						</#if>
 					</ul>
 				</div>
 		        <input name="dishSortVo.dishSortId" id="dishSortVal" type="hidden" />
@@ -137,7 +139,11 @@
                 <input id="queryDishSortShow" type="text" class="dropdown w200" readonly="readonly" />
 				<div id="queryDishSortList" class="dropdown-content">
 					<ul>
-						<li><a href="javascript:void(0);" value="21">天津</a></li>
+						<#if (dishSortList??) && (dishSortList?size > 0)>
+						<#list dishSortList as tmpDishSort> 
+						<li><a href="javascript:void(0);" value="${tmpDishSort.dishSortId}">${tmpDishSort.dishSortName}</a></li>
+						</#list>
+						</#if>
 					</ul>
 				</div>
                 <input name="queryDishSortVo.dishSortId" id="queryCityVal" type="hidden" />
@@ -213,5 +219,15 @@
 </form>
 
 <script type="text/javascript" language="javascript">
+$("#addDishLink").click(function() { cmap.triggerContentBox('cbQueryDish', 'cbAddDish'); });
+$("#queryDishLink").click(function() { cmap.triggerContentBox('cbAddDish', 'cbQueryDish'); });
 
+cmap.bindingSelectEvent('', 'dishSort');
+cmap.bindingSelectEvent('query', 'dishSort');
+
+$("#dishSortLink").click(function() { cmap.flushMainContent('${rc.contextPath}/adminDishSort/${restId}'); });
+$("#restInfoLink").click(function() { $("#menuRestMgr").click(); });
+
+cmap.initPagination("Pagination", ${dishCount});
+function pageselectCallback(pageIndex, jq) { cmap.paging('dishMgrForm', '${rc.contextPath}/adminDishMgr', pageIndex, 'dishList', 'listDishId'); }
 </script>

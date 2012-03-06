@@ -6,6 +6,8 @@ import com.fc.cmapweb.vo.DishSortVo;
 
 public interface IDishSortDao {
 	
+	public List<DishSortVo> getAllDishSort(String restId);
+	
 	public DishSortVo updateRest(DishSortVo dishSortVo);
 	
 	public boolean switchEnableDisable(String dishSortId);

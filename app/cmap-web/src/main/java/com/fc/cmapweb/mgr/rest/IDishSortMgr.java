@@ -7,6 +7,8 @@ import com.fc.cmapweb.vo.DishSortVo;
 
 public interface IDishSortMgr {
 	
+	public List<DishSortVo> queryAllDishSort(String restId);
+	
 	public void updateDishSort(String dishSortId, Map<String, Object> updateParams);
 	
 	public boolean updateEnableDisable(String dishSortId);
@@ -16,5 +18,5 @@ public interface IDishSortMgr {
 	public DishSortVo addDishSort(DishSortVo dishSortVo, String restId);
 	public DishSortVo queryDishSort(String dishSortId);
 	public void rmDishSort(String dishSortId);
-
+	
 }

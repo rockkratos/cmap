@@ -21,6 +21,11 @@ public class DishSortMgrImpl implements IDishSortMgr {
 	private IDishSortDao dishSortDao;
 	
 	@Override
+	public List<DishSortVo> queryAllDishSort(String restId) {
+		return dishSortDao.getAllDishSort(restId);
+	}
+	
+	@Override
 	public void updateDishSort(String dishSortId, Map<String, Object> updateParams) {
 		
 		DishSortVo tmpDishSort = dishSortDao.getDishSort(dishSortId);
