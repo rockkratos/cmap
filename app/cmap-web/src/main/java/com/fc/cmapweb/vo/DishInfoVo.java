@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -31,9 +32,9 @@ public class DishInfoVo implements Serializable {
 	private float dishPrice;
 	
 	@Column(name = "DISH_PRMT_PRICE")
-	private float dishPrmtPrice;
+	private Float dishPrmtPrice;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "DISH_SORT_ID")
 	private DishSortVo dishSortVo;
 	
@@ -70,11 +71,11 @@ public class DishInfoVo implements Serializable {
 		this.dishPrice = dishPrice;
 	}
 
-	public float getDishPrmtPrice() {
+	public Float getDishPrmtPrice() {
 		return dishPrmtPrice;
 	}
 
-	public void setDishPrmtPrice(float dishPrmtPrice) {
+	public void setDishPrmtPrice(Float dishPrmtPrice) {
 		this.dishPrmtPrice = dishPrmtPrice;
 	}
 

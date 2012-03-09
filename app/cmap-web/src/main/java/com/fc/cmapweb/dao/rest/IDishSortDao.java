@@ -6,9 +6,11 @@ import com.fc.cmapweb.vo.DishSortVo;
 
 public interface IDishSortDao {
 	
+	public void delDishSortByRest(String restId);
+	
 	public List<DishSortVo> getAllDishSort(String restId);
 	
-	public DishSortVo updateRest(DishSortVo dishSortVo);
+	public DishSortVo updateDishSort(DishSortVo dishSortVo);
 	
 	public boolean switchEnableDisable(String dishSortId);
 	public int getDishSortCount(String restId);

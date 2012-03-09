@@ -1,8 +1,6 @@
 <#assign spring=JspTaglibs["http://www.springframework.org/tags"] />
 <form id="dishMgrForm">
 
-<input type="hidden" name="restId" value="${restId}" />
-
 <div id="page-title">
 	<ul>
 		<li class="main-title">餐馆管理</li>
@@ -72,6 +70,18 @@
                 <input name="dishPrice" type="text" class="text-input w200" />
             </p>            
             <p>
+                <label>促销价格</label>
+                <input name="dishPrmtPrice" type="text" class="text-input w200" />
+            </p>
+        	<p>
+                <label>是否促销*</label>
+                <input name="dishPrmt" type="radio" class="vm" value="false" checked="checked" /> <span class="vm">否</span>
+                <input name="dishPrmt" type="radio" class="vm" value="true" /> <span class="vm">是</span>
+            </p>
+        </div>
+        
+        <div class="column-right">
+        	<p>
 		    	<label>所属分类*</label>
 		        <input id="dishSortShow" type="text" class="dropdown w200" readonly="readonly" />
 				<div id="dishSortList" class="dropdown-content">
@@ -85,26 +95,14 @@
 				</div>
 		        <input name="dishSortVo.dishSortId" id="dishSortVal" type="hidden" />
 		    </p>
-            <p>
-                <label>启用/禁用*</label>
-                <input name="dishEnabled" type="radio" class="vm" checked="checked" value="true" /> <span class="vm">启用</span>
-                <input name="dishEnabled" type="radio" class="vm" value="false" /> <span class="vm">禁用</span>
-            </p>
-        </div>
-        
-        <div class="column-right">
         	<p>
                 <label>菜品描述</label>
                 <input name="dishDesc" type="text" class="text-input w200" />
             </p>
             <p>
-                <label>促销价格</label>
-                <input name="dishPrmtPrice" type="text" class="text-input w200" />
-            </p>
-        	<p>
-                <label>是否促销*</label>
-                <input name="dishPrmt" type="radio" class="vm" checked="checked" value="true" /> <span class="vm">是</span>
-                <input name="dishPrmt" type="radio" class="vm" value="false" /> <span class="vm">否</span>
+                <label>启用/禁用*</label>
+                <input name="dishEnabled" type="radio" class="vm" checked="checked" value="true" /> <span class="vm">启用</span>
+                <input name="dishEnabled" type="radio" class="vm" value="false" /> <span class="vm">禁用</span>
             </p>
         </div>
         
@@ -146,7 +144,7 @@
 						</#if>
 					</ul>
 				</div>
-                <input name="queryDishSortVo.dishSortId" id="queryCityVal" type="hidden" />
+                <input name="queryDishSortVo.dishSortId" id="queryDishSortVal" type="hidden" />
             </p>
         </div>
         
@@ -154,11 +152,6 @@
         	<p>
                 <label>菜品描述</label>
                 <input name="queryDishDesc" type="text" class="text-input w200" />
-            </p>
-            <p>
-                <label>是否促销</label>
-                <input name="queryDishPrmt" type="radio" class="vm" checked="checked" value="true" /> <span class="vm">是</span>
-                <input name="queryDishPrmt" type="radio" class="vm" value="false" /> <span class="vm">否</span>
             </p>
         </div>
         
@@ -222,6 +215,12 @@
 $("#addDishLink").click(function() { cmap.triggerContentBox('cbQueryDish', 'cbAddDish'); });
 $("#queryDishLink").click(function() { cmap.triggerContentBox('cbAddDish', 'cbQueryDish'); });
 
+$("#btnAddDish").click(function() { cmap.create('dishMgrForm', '${rc.contextPath}/adminDishMgr', 'cbAddDish', 'topHint', 'Pagination'); });
+$("#btnCleanAddDish").click(function() { cmap.cleanBox('cbAddDish'); });
+
+$("#btnQueryDish").click(function() { cmap.query('dishMgrForm', '${rc.contextPath}/adminDishMgr/dishCount/${restId}', 'Pagination', 'cbQueryDish'); });
+$("#btnCleanQueryDish").click(function() { cmap.cleanBox('cbQueryDish'); });
+
 cmap.bindingSelectEvent('', 'dishSort');
 cmap.bindingSelectEvent('query', 'dishSort');
 
@@ -229,5 +228,5 @@ $("#dishSortLink").click(function() { cmap.flushMainContent('${rc.contextPath}/a
 $("#restInfoLink").click(function() { $("#menuRestMgr").click(); });
 
 cmap.initPagination("Pagination", ${dishCount});
-function pageselectCallback(pageIndex, jq) { cmap.paging('dishMgrForm', '${rc.contextPath}/adminDishMgr', pageIndex, 'dishList', 'listDishId'); }
+function pageselectCallback(pageIndex, jq) { cmap.paging('dishMgrForm', '${rc.contextPath}/adminDishMgr/list/${restId}', pageIndex, 'dishList', 'listDishId'); }
 </script>

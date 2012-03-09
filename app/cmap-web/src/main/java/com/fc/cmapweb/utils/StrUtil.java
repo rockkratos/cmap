@@ -16,6 +16,10 @@ public class StrUtil {
 		return DigestUtils.sha256Hex(data);
 	}
 	
+	public static String lowerInitial(String str) {
+		return str.replaceFirst("^[A-Z]", String.valueOf((char) (str.charAt(0) + 32)));
+	}
+	
 	public static String upperInitial(String str) {
 		return str.replaceFirst("^[a-z]", String.valueOf((char) (str.charAt(0) - 32)));
 	}

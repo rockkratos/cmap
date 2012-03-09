@@ -32,7 +32,8 @@ public class ParamUtil {
 				
 				String param = request.getParameter(paramKey);
 				String tmpKey = paramKey.replaceAll("^" + prefix, "");
-				tmpKey = tmpKey.replace(tmpKey.charAt(0), (char)(tmpKey.charAt(0) + 32));
+				
+				tmpKey = StrUtil.lowerInitial(tmpKey);
 				
 				if (null != param) {
 					

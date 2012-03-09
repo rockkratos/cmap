@@ -7,11 +7,14 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fc.cmapweb.dao.rest.IDishDao;
+import com.fc.cmapweb.dao.rest.IDishSortDao;
 import com.fc.cmapweb.dao.rest.IRestDao;
 import com.fc.cmapweb.mgr.rest.IRestMgr;
 import com.fc.cmapweb.utils.DateUtil;
 import com.fc.cmapweb.utils.PaginationUtil;
 import com.fc.cmapweb.utils.ReflectUtil;
+import com.fc.cmapweb.vo.DishSortVo;
 import com.fc.cmapweb.vo.RestInfoVo;
 
 @Service("restMgr")
@@ -19,6 +22,12 @@ public class RestMgrImpl implements IRestMgr {
 
 	@Autowired
 	private IRestDao restDao;
+	
+	@Autowired
+	private IDishDao dishDao;
+	
+	@Autowired
+	private IDishSortDao dishSortDao;
 	
 	@Override
 	public void updateRest(String restId, Map<String, Object> updateParams) {
@@ -95,7 +104,19 @@ public class RestMgrImpl implements IRestMgr {
 	
 	@Override
 	public void rmRest(String restId) {
+		
+		List<DishSortVo> dishSortList = dishSortDao.getAllDishSort(restId);
+		
+		for (int i = 0; i < dishSortList.size(); i++) {
+			
+			String dishSortId = dishSortList.get(i).getDishSortId();
+			dishDao.delDishByDishSort(dishSortId);
+			
+		}
+		
+		dishSortDao.delDishSortByRest(restId);
 		restDao.delRest(restId);
+		
 	}
 
 }

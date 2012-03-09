@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fc.cmapweb.dao.rest.IDishDao;
 import com.fc.cmapweb.dao.rest.IDishSortDao;
 import com.fc.cmapweb.mgr.rest.IDishSortMgr;
 import com.fc.cmapweb.utils.PaginationUtil;
@@ -19,6 +20,9 @@ public class DishSortMgrImpl implements IDishSortMgr {
 
 	@Autowired
 	private IDishSortDao dishSortDao;
+	
+	@Autowired
+	private IDishDao dishDao;
 	
 	@Override
 	public List<DishSortVo> queryAllDishSort(String restId) {
@@ -46,7 +50,7 @@ public class DishSortMgrImpl implements IDishSortMgr {
 			
 		}
 		
-		dishSortDao.updateRest(tmpDishSort);
+		dishSortDao.updateDishSort(tmpDishSort);
 		
 	}
 	
@@ -89,6 +93,7 @@ public class DishSortMgrImpl implements IDishSortMgr {
 	
 	@Override
 	public void rmDishSort(String dishSortId) {
+		dishDao.delDishByDishSort(dishSortId);
 		dishSortDao.delDishSort(dishSortId);
 	}
 

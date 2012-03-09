@@ -15,31 +15,78 @@ import com.fc.cmapweb.vo.DishInfoVo;
 
 @Repository("dishDao")
 public class DishDaoImpl extends CmapBaseDao implements IDishDao {
+	
+	@Override
+	public void delDishByDishSort(String dishSortId) {
+		
+		String jpql = "DELETE FROM DishInfoVo di WHERE di.dishSortVo.dishSortId = ?";
+		
+		Query q = em.createQuery(jpql);
+		q.setParameter(1, dishSortId);
+		
+		q.executeUpdate();
+		
+	}
+	
+	@Override
+	public DishInfoVo updateDish(DishInfoVo dishInfoVo) {
+		em.merge(dishInfoVo);
+		return dishInfoVo;
+	}
+	
+	@Override
+	public DishInfoVo getDishInfo(String dishId) {
+		return em.find(DishInfoVo.class, dishId);
+	}
+	
+	@Override
+	public boolean switchEnableDisable(String dishId) {
+		
+		DishInfoVo tmp = getDishInfo(dishId);
+		tmp.setDishEnabled(tmp.isDishEnabled() == true ? false : true);
+		
+		return tmp.isDishEnabled();
+		
+	}
+	
+	@Override
+	public void delDish(String dishId) {
+		em.remove(em.getReference(DishInfoVo.class, dishId));
+	}
 
 	@Override
+	public DishInfoVo insertDish(DishInfoVo dishInfoVo) {
+		em.persist(dishInfoVo);
+		return dishInfoVo;
+	}
+	
+	@Override
 	public List<DishInfoVo> getDish(Map<String, Object> queryParams, String restId, int currentPage, int pageSize) {
+		
+		queryParams.put("dishSortVo.restInfoVo.restId", restId);
 		
 		StringBuilder buffer = new StringBuilder();
 		
 		buffer.append("SELECT d FROM DishInfoVo d ");
 		buffer.append(ParamUtil.getQueryConditionJPQL(queryParams, "d"));
-		buffer.append("AND d.dishSortVo.restInfoVo.restId = ?");
 		buffer.append(" ORDER BY d.dishName");
 		
 		TypedQuery<DishInfoVo> tq = em.createQuery(buffer.toString(), DishInfoVo.class).setFirstResult(currentPage * pageSize).setMaxResults(pageSize);
-		tq.setParameter(1, restId);
 		
 		return tq.getResultList();
 		
 	}
 	
 	@Override
-	public int getDishCount(String restId) {
+	public int getDishCount(String restId, Map<String, Object> queryParams) {
 		
-		String jpql = "SELECT COUNT(di) FROM DishInfoVo di WHERE di.dishSortVo.restInfoVo.restId = ?";
+		queryParams.put("dishSortVo.restInfoVo.restId", restId);
 		
-		Query rowCountQuery = em.createQuery(jpql);
-		rowCountQuery.setParameter(1, restId);
+		StringBuilder buffer = new StringBuilder();
+		buffer.append("SELECT COUNT(di) FROM DishInfoVo di ");
+		buffer.append(ParamUtil.getQueryConditionJPQL(queryParams, "di"));
+		
+		Query rowCountQuery = em.createQuery(buffer.toString());
 		
 		return ((Long) rowCountQuery.getSingleResult()).intValue();
 		

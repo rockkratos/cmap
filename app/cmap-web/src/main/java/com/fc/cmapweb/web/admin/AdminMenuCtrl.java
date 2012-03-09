@@ -1,7 +1,5 @@
 package com.fc.cmapweb.web.admin;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +13,6 @@ import com.fc.cmapweb.mgr.privilege.IPrivilegeMgr;
 import com.fc.cmapweb.mgr.privilege.IRoleMgr;
 import com.fc.cmapweb.mgr.rest.IRestMgr;
 import com.fc.cmapweb.mgr.usr.IUsrMgr;
-import com.fc.cmapweb.utils.CmapValues;
-import com.fc.cmapweb.utils.ParamUtil;
 import com.fc.cmapweb.vo.PrivilegeInfoVo;
 import com.fc.cmapweb.vo.RestInfoVo;
 import com.fc.cmapweb.vo.RoleInfoVo;
@@ -41,22 +37,16 @@ public class AdminMenuCtrl {
 	@RequestMapping(value = "/{itemId}", method=RequestMethod.GET)
 	public String showPage(@PathVariable String itemId, Model model, HttpServletRequest request) {
 		
-		Map<String, Object> queryParams = null;
-		
 		if ("menuPrivilegeCfg".equals(itemId)) {
 			
-			queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
-			
-			model.addAttribute("privilegeCount", privilegeMgr.queryPrivilegeCount(queryParams));
+			model.addAttribute("privilegeCount", privilegeMgr.queryPrivilegeCount(null));
 			model.addAttribute("privilegeInfoVo", new PrivilegeInfoVo());
 			return "/admin/privilege/privilegeCfg";
 			
 		} else if ("menuRoleCfg".equals(itemId)) {
 			
-			queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
-			
 			model.addAttribute("allPrivileges", privilegeMgr.queryAllEnabledPrivilege());
-			model.addAttribute("roleCount", roleMgr.queryRoleCount(queryParams));
+			model.addAttribute("roleCount", roleMgr.queryRoleCount(null));
 			model.addAttribute("roleInfoVo", new RoleInfoVo());
 			return "admin/privilege/roleCfg";
 			
@@ -66,17 +56,13 @@ public class AdminMenuCtrl {
 			
 		} else if ("menuUsrMgr".equals(itemId)) {
 			
-			queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
-			
-			model.addAttribute("usrCount", usrMgr.queryUsrCount(queryParams));
+			model.addAttribute("usrCount", usrMgr.queryUsrCount(null));
 			model.addAttribute("usrInfoVo", new UsrInfoVo());
 			return "admin/usr/usrMgr";
 			
 		} else if ("menuRestMgr".equals(itemId)) {
 			
-			queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
-			
-			model.addAttribute("restCount", restMgr.queryRestCount(queryParams));
+			model.addAttribute("restCount", restMgr.queryRestCount(null));
 			model.addAttribute("restInfoVo", new RestInfoVo());
 			return "/admin/rest/restMgr";
 			
