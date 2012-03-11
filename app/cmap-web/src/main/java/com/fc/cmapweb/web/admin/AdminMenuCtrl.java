@@ -56,9 +56,15 @@ public class AdminMenuCtrl {
 			
 		} else if ("menuUsrMgr".equals(itemId)) {
 			
-			model.addAttribute("usrCount", usrMgr.queryUsrCount(null));
+			model.addAttribute("usrCount", usrMgr.queryUsrCount(false, null));
 			model.addAttribute("usrInfoVo", new UsrInfoVo());
 			return "admin/usr/usrMgr";
+			
+		} else if ("menuCustomerMgr".equals(itemId)) {
+			
+			model.addAttribute("usrCount", usrMgr.queryUsrCount(true, null));
+			model.addAttribute("usrInfoVo", new UsrInfoVo());
+			return "admin/usr/customerMgr";
 			
 		} else if ("menuRestMgr".equals(itemId)) {
 			

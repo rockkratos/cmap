@@ -11,8 +11,8 @@ public interface IUsrMgr {
 	public void rmUsr(String usrId);
 	public boolean updateEnableDisable(String usrId);
 	
-	public List<UsrInfoVo> queryUsr(Map<String, Object> queryParams, int currentPage, int pageSize);
-	public int queryUsrCount(Map<String, Object> queryParams);
+	public List<UsrInfoVo> queryUsr(boolean isCustomer, Map<String, Object> queryParams, int currentPage, int pageSize);
+	public int queryUsrCount(boolean isCustomer, Map<String, Object> queryParams);
 	
 	public UsrInfoVo queryUsrInfoByUsrId(String usrId);
 	public UsrInfoVo queryUsrInfo(String loginName);

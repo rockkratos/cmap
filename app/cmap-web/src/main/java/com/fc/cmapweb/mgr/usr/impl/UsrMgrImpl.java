@@ -23,7 +23,7 @@ public class UsrMgrImpl implements IUsrMgr {
 	@Override
 	public void updateUsr(String usrId, Map<String, Object> updateParams) {
 		
-		UsrInfoVo tmpUsr = usrDao.getUsr(usrId);
+		UsrInfoVo tmpUsr = usrDao.getUsrInfoByUsrId(usrId);
 		
 		Set<String> keySet = updateParams.keySet();
 		
@@ -59,9 +59,9 @@ public class UsrMgrImpl implements IUsrMgr {
 	}
 	
 	@Override
-	public List<UsrInfoVo> queryUsr(Map<String, Object> queryParams, int currentPage, int pageSize) {
+	public List<UsrInfoVo> queryUsr(boolean isCustomer, Map<String, Object> queryParams, int currentPage, int pageSize) {
 		
-		List<UsrInfoVo> back = usrDao.getUsr(queryParams, currentPage, pageSize);
+		List<UsrInfoVo> back = usrDao.getUsr(isCustomer, queryParams, currentPage, pageSize);
 		PaginationUtil.fillList(back, UsrInfoVo.class, pageSize);
 		
 		return back;
@@ -69,8 +69,8 @@ public class UsrMgrImpl implements IUsrMgr {
 	}
 	
 	@Override
-	public int queryUsrCount(Map<String, Object> queryParams) {
-		return usrDao.getUsrCount(queryParams);
+	public int queryUsrCount(boolean isCustomer, Map<String, Object> queryParams) {
+		return usrDao.getUsrCount(isCustomer, queryParams);
 	}
 	
 	@Override

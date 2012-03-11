@@ -22,11 +22,12 @@ import com.fc.cmapweb.utils.ParamUtil;
 import com.fc.cmapweb.utils.PropUtil;
 import com.fc.cmapweb.utils.StrUtil;
 import com.fc.cmapweb.vo.UsrInfoVo;
+import com.fc.cmapweb.vo.UsrTypeVo;
 
 @Controller
-@RequestMapping("/adminUsrMgr")
-public class UsrMgrCtrl {
-	
+@RequestMapping("/adminCustomerMgr")
+public class CustomerMgrCtrl {
+
 	@Autowired
 	private IUsrMgr usrMgr;
 	
@@ -39,7 +40,7 @@ public class UsrMgrCtrl {
 		usrMgr.updateUsr(usrId, updateParams);
 		
 		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
-		int count = usrMgr.queryUsrCount(false, queryParams);
+		int count = usrMgr.queryUsrCount(true, queryParams);
 		
 		Map<String, String> otherParams = new HashMap<String, String>();
 		otherParams.put("recordCount", String.valueOf(count));
@@ -52,7 +53,7 @@ public class UsrMgrCtrl {
 	public String showUsrInfo(@PathVariable String usrId, Model model) {
 		
 		model.addAttribute("usrInfoVo", usrMgr.queryUsrInfoByUsrId(usrId));
-		return "/admin/usr/usrInfo";
+		return "/admin/usr/customerInfo";
 		
 	}
 	
@@ -63,7 +64,7 @@ public class UsrMgrCtrl {
 		usrMgr.rmUsr(usrId);
 		
 		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
-		int count = usrMgr.queryUsrCount(false, queryParams);
+		int count = usrMgr.queryUsrCount(true, queryParams);
 		
 		Map<String, String> otherParams = new HashMap<String, String>();
 		otherParams.put("recordCount", String.valueOf(count));
@@ -78,11 +79,19 @@ public class UsrMgrCtrl {
 		
 		// TODO: 数据校验
 		
+		UsrTypeVo customerUsrType = new UsrTypeVo();
+		customerUsrType.setUsrTypeId(CmapValues.USR_TYPE_CUSTOMER);
+		
+		usrInfoVo.setUsrTypeVo(customerUsrType);
 		usrInfoVo.setRegTime(DateUtil.getCurrentTime());
+		
+		String loginName = StrUtil.getLoginNameByEmail(usrInfoVo.getUsrEmail());
+		usrInfoVo.setLoginName(loginName);
+		
 		usrMgr.addUsr(usrInfoVo);
 		
 		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
-		int count = usrMgr.queryUsrCount(false, queryParams);
+		int count = usrMgr.queryUsrCount(true, queryParams);
 		
 		Map<String, String> otherParams = new HashMap<String, String>();
 		otherParams.put("recordCount", String.valueOf(count));
@@ -110,7 +119,7 @@ public class UsrMgrCtrl {
 	public String queryUsrCount(HttpServletRequest request) {
 		
 		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
-		int count = usrMgr.queryUsrCount(false, queryParams);
+		int count = usrMgr.queryUsrCount(true, queryParams);
 		
 		return String.valueOf(count);
 		
@@ -122,12 +131,12 @@ public class UsrMgrCtrl {
 		int pageIndex = ParamUtil.getCurrentPage(request);
 		Map<String, Object> queryParams = ParamUtil.getParams(request, CmapValues.PREFIX_QUERY);
 		
-		List<UsrInfoVo> usrList = usrMgr.queryUsr(false, queryParams, pageIndex, CmapValues.DEFAULT_PAGE_SIZE);
+		List<UsrInfoVo> usrList = usrMgr.queryUsr(true, queryParams, pageIndex, CmapValues.DEFAULT_PAGE_SIZE);
 		
 		model.addAttribute("usrList", usrList);
 		
-		return "/admin/usr/usrList";
+		return "/admin/usr/customerList";
 		
 	}
-
+	
 }

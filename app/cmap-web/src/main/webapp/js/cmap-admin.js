@@ -160,7 +160,9 @@ var cmap = {
 		$("#" + boxId + " input[type='text']").val('');
 		//$($("#" + boxId + " input[type='radio']").get(0)).attr("checked", true);
 		$("#" + boxId + " input[type='radio'][value='true']").attr("checked", true);
+		
 		$("#" + boxId + " input[type='hidden']").val('');
+		
 		$("#" + boxId + " input[type='checkbox']").attr("checked", false);
 		$("#" + boxId + " input[type='password']").val('');
 	}, 
@@ -203,6 +205,7 @@ var cmap = {
 	}, 
 	
 	enableDisabled: function (obj, reqUrl, hintBoxId) {
+		cmap.close('cbDetailInfo', true);
 		$.ajax({
 			type: "PUT", 
 			url: reqUrl, 
@@ -226,6 +229,7 @@ var cmap = {
 	}, 
 	
 	del: function (reqUrl, hintBoxId, paginationId, formId) {
+		cmap.close('cbDetailInfo', true);
 		var params = $("#" + formId).formSerialize();
 		$.ajax({
 			type: "DELETE", 
@@ -265,6 +269,26 @@ var cmap = {
 		$("#" + contentBoxId).slideUp("normal", function() {
 			if (emptyFlag) {
 				$("#" + contentBoxId).empty();
+			}
+		});
+	}, 
+	
+	setDefault: function (reqUrl, hintBoxId, paginationId) {
+		var dialog = new Dialog(loadingPanel);
+		dialog.show();
+		$.ajax({
+			type: "PUT", 
+			url: reqUrl, 
+			success: function (msg) {
+				dialog.close();
+				var msgType = $.evalJSON(msg).hintType;
+				var msgContent = $.evalJSON(msg).hintMsg;
+				
+				if ("success" == msgType) {
+					cmap.initPagination(paginationId, parseInt($.evalJSON(msg).recordCount));
+				}
+				
+				cmap.showHintMsg(hintBoxId, msgType, msgContent);
 			}
 		});
 	}, 
@@ -334,7 +358,7 @@ var cmap = {
 			url: reqUrl,
 			data: params, 
 			success: function (msg) {
-				cmap.initPagination(paginationId, msg);
+				cmap.initPagination(paginationId, parseInt(msg));
 				dialog.close();
 				$("#" + cbId).slideUp();
 			}

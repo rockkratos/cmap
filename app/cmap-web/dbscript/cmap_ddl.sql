@@ -265,6 +265,7 @@ CREATE TABLE delivery_addr (
 	spec_addr VARCHAR(255) NOT NULL, 
 	phone_nbr VARCHAR(16) NOT NULL, 
 	usr_id CHAR(32) NOT NULL, 
+	is_default BOOLEAN NOT NULL, 
 	CONSTRAINT pk_delivery_addr PRIMARY KEY (addr_id)
 );
 

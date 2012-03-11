@@ -5,7 +5,11 @@
     </li>
     
     <li>
-        <a id="menuUsrMgr" href="javascript:void(0);" class="nav-top-item no-submenu">用户管理</a>
+        <a href="javascript:void(0);" class="nav-top-item">用户管理</a>
+        <ul class="submenu">
+            <li><a id="menuCustomerMgr" href="javascript:void(0);">前台用户</a></li>
+            <li><a id="menuUsrMgr" href="javascript:void(0);">后台用户</a></li>
+        </ul>
     </li>
     
     <li>
@@ -18,7 +22,7 @@
     </li>
     
     <li>
-        <a id="menuUsrCfg" href="javascript:void(0);" class="nav-top-item no-submenu">用户设置</a>
+        <a id="menuUsrCfg" href="javascript:void(0);" class="nav-top-item no-submenu">修改密码</a>
     </li>
     
 </ul><!-- END left menu -->

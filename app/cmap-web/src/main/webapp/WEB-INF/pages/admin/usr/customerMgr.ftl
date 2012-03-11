@@ -4,7 +4,7 @@
 <div id="page-title">
 	<ul>
 		<li class="main-title">用户管理</li>
-		<li class="sub-title">后台用户</li>
+		<li class="sub-title">前台用户</li>
 	</ul>
 </div>
 
@@ -31,10 +31,10 @@
     </li>
     
     <li>
-        <a id="customerLink" class="shortcut-button" href="javascript:void(0);">
+        <a id="adminUsrLink" class="shortcut-button" href="javascript:void(0);">
             <span>
-                <img src="${rc.contextPath}/imgs/admin/icons/customer.png" alt="icon" /><br />
-				前台用户
+                <img src="${rc.contextPath}/imgs/admin/icons/admin-usr.png" alt="icon" /><br />
+				后台用户
             </span>
         </a>
     </li>
@@ -53,22 +53,12 @@
     	
         <div class="column-left">
         	<p>
-            	<label>用户类型*</label>
-                <input id="usrTypeShow" type="text" class="dropdown w200" readonly="readonly" />
-				<div id="usrTypeList" class="dropdown-content">
-					<ul>
-						<li><a href="javascript:void(0);" value="1">管理员 -- ADMIN</a></li>
-						<li><a href="javascript:void(0);" value="3">餐馆用户 -- REST</a></li>
-						<li><a href="javascript:void(0);" value="4">客服用户 -- SERVICE</a></li>
-						<li><a href="javascript:void(0);" value="5">营销用户 -- MARKET</a></li>
-						<li><a href="javascript:void(0);" value="6">业务用户 -- BUSINESS</a></li>
-					</ul>
-				</div>
-                <input name="usrTypeVo.usrTypeId" id="usrTypeVal" type="hidden" />
+                <label>电子邮箱*</label>
+                <input name="usrEmail" type="text" class="text-input w200" />
             </p>
             <p>
-                <label>登录名*</label>
-                <input name="loginName" type="text" class="text-input w200" />
+                <label>手机号*</label>
+                <input name="usrCell" type="text" class="text-input w200" />
             </p>
             <p>
                 <label>登录密码*</label>
@@ -78,22 +68,9 @@
                 <label>确认密码*</label>
                 <input id="cfmPwd" name="cfmPwd" type="password" class="text-input w200" />
             </p>
-            <p>
-                <label>启用/禁用*</label>
-                <input name="usrEnabled" type="radio" class="vm" checked="checked" value="true" /> <span class="vm">启用</span>
-                <input name="usrEnabled" type="radio" class="vm" value="false" /> <span class="vm">禁用</span>
-            </p>
         </div>
         
         <div class="column-right">
-        	<p>
-                <label>手机号*</label>
-                <input name="usrCell" type="text" class="text-input w200" />
-            </p>
-            <p>
-                <label>电子邮箱*</label>
-                <input name="usrEmail" type="text" class="text-input w200" />
-            </p>
         	<p>
                 <label>昵称</label>
                 <input name="nickName" type="text" class="text-input w200" />
@@ -101,6 +78,11 @@
             <p>
                 <label>真实姓名</label>
                 <input name="realName" type="text" class="text-input w200" />
+            </p>
+            <p>
+                <label>启用/禁用*</label>
+                <input name="usrEnabled" type="radio" class="vm" checked="checked" value="true" /> <span class="vm">启用</span>
+                <input name="usrEnabled" type="radio" class="vm" value="false" /> <span class="vm">禁用</span>
             </p>
         </div>
         
@@ -127,41 +109,23 @@
     	
         <div class="column-left">
         	<p>
-            	<label>用户类型</label>
-                <input id="queryUsrTypeShow" type="text" class="dropdown w200" readonly="readonly" />
-				<div id="queryUsrTypeList" class="dropdown-content">
-					<ul>
-						<li><a href="javascript:void(0);" value="1">管理员 -- ADMIN</a></li>
-						<li><a href="javascript:void(0);" value="3">餐馆用户 -- REST</a></li>
-						<li><a href="javascript:void(0);" value="4">客服用户 -- SERVICE</a></li>
-						<li><a href="javascript:void(0);" value="5">营销用户 -- MARKET</a></li>
-						<li><a href="javascript:void(0);" value="6">业务用户 -- BUSINESS</a></li>
-					</ul>
-				</div>
-                <input name="queryUsrTypeVo.usrTypeId" id="queryUsrTypeVal" type="hidden" />
+                <label>电子邮箱</label>
+                <input name="queryUsrEmail" type="text" class="text-input w200" />
             </p>
         	<p>
                 <label>昵称</label>
                 <input name="queryNickName" type="text" class="text-input w200" />
             </p>
-            <p>
-                <label>真实姓名</label>
-                <input name="queryRealName" type="text" class="text-input w200" />
-            </p>
         </div>
         
         <div class="column-right">
-        	<p>
-                <label>登录名</label>
-                <input name="queryLoginName" type="text" class="text-input w200" />
-            </p>
             <p>
                 <label>手机号</label>
                 <input name="queryUsrCell" type="text" class="text-input w200" />
             </p>
             <p>
-                <label>电子邮箱</label>
-                <input name="queryUsrEmail" type="text" class="text-input w200" />
+                <label>真实姓名</label>
+                <input name="queryRealName" type="text" class="text-input w200" />
             </p>
         </div>
         
@@ -202,6 +166,7 @@
             	<td colspan="5" class="tab-btm pb10">
 					
 					<div class="bulk-actions fl">
+						<a id="btnDeliveryAddr" class="button" href="javascript:void(0);">送餐地址</a>
 						<a class="button" href="javascript:void(0);">批量删除</a>
 					</div>
 					
@@ -222,19 +187,39 @@
 </form>
 
 <script type="text/javascript" language="javascript">
+$("#btnDeliveryAddr").click(function() {
+	if (checkChooseUsr()) {
+		var usrId = $("input[name='listUsrId']:checked").val();
+		cmap.flushMainContent('${rc.contextPath}/adminDeliveryAddr/' + usrId);
+	}
+});
+
 $("#addUsrLink").click(function() { cmap.triggerContentBox('cbQueryUsr', 'cbAddUsr'); });
 $("#queryUsrLink").click(function() { cmap.triggerContentBox('cbAddUsr', 'cbQueryUsr'); });
-$("#customerLink").click(function() { $("#menuCustomerMgr").click(); });
+$("#adminUsrLink").click(function() { $("#menuUsrMgr").click(); });
 
 cmap.bindingSelectEvent('', 'usrType');
 cmap.bindingSelectEvent('query', 'usrType');
 
-$("#btnAddUsr").click(function() { cmap.create('usrMgrForm', '${rc.contextPath}/adminUsrMgr', 'cbAddUsr', 'topHint', 'Pagination'); });
+$("#btnAddUsr").click(function() { cmap.create('usrMgrForm', '${rc.contextPath}/adminCustomerMgr', 'cbAddUsr', 'topHint', 'Pagination'); });
 $("#btnCleanAddUsr").click(function() { cmap.cleanBox('cbAddUsr'); });
 
-$("#btnQueryUsr").click(function() { cmap.query('usrMgrForm', '${rc.contextPath}/adminUsrMgr/usrCount', 'Pagination', 'cbQueryUsr'); });
+$("#btnQueryUsr").click(function() { cmap.query('usrMgrForm', '${rc.contextPath}/adminCustomerMgr/usrCount', 'Pagination', 'cbQueryUsr'); });
 $("#btnCleanQueryUsr").click(function() { cmap.cleanBox('cbQueryUsr'); });
 
 cmap.initPagination("Pagination", ${usrCount});
-function pageselectCallback(pageIndex, jq) { cmap.paging('usrMgrForm', '${rc.contextPath}/adminUsrMgr', pageIndex, 'usrList', 'listUsrId'); }
+function pageselectCallback(pageIndex, jq) { cmap.paging('usrMgrForm', '${rc.contextPath}/adminCustomerMgr', pageIndex, 'usrList', 'listUsrId'); }
+
+function checkChooseUsr() {
+	var usrIdNum = $("input[name='listUsrId']:checked").size();
+	if (usrIdNum == 0) {
+		cmap.showHintMsg('usrListHint', 'error', '请选择用户');
+		return false;
+	} else if (usrIdNum != 1) {
+		cmap.showHintMsg('usrListHint', 'warning', '请选择一个用户');
+		return false;
+	} else {
+		return true;
+	}
+}
 </script>

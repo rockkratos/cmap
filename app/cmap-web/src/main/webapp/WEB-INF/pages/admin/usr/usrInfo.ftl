@@ -11,7 +11,6 @@
 			<div id="detailUsrTypeList" class="dropdown-content">
 				<ul>
 					<li><a href="javascript:void(0);" value="1">管理员 -- ADMIN</a></li>
-					<li><a href="javascript:void(0);" value="2">普通用户 -- CUSTOMER</a></li>
 					<li><a href="javascript:void(0);" value="3">餐馆用户 -- REST</a></li>
 					<li><a href="javascript:void(0);" value="4">客服用户 -- SERVICE</a></li>
 					<li><a href="javascript:void(0);" value="5">营销用户 -- MARKET</a></li>
@@ -22,7 +21,7 @@
         </p>
         <p>
             <label>登录名*</label>
-            <input name="detailLoginName" type="text" class="text-input w200" value="${usrInfoVo.loginName}" <#if usrInfoVo.usrTypeVo.usrTypeId == 2>readonly="readonly"</#if> />
+            <input name="detailLoginName" type="text" class="text-input w200" value="${usrInfoVo.loginName}" readonly="readonly" />
         </p>
         <p>
             <label>重设密码</label>

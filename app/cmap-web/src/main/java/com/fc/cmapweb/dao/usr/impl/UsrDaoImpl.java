@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.fc.cmapweb.dao.CmapBaseDao;
 import com.fc.cmapweb.dao.usr.IUsrDao;
+import com.fc.cmapweb.utils.CmapValues;
 import com.fc.cmapweb.utils.ParamUtil;
 import com.fc.cmapweb.utils.StrUtil;
 import com.fc.cmapweb.vo.UsrInfoVo;
@@ -44,14 +45,9 @@ public class UsrDaoImpl extends CmapBaseDao implements IUsrDao {
 	}
 	
 	@Override
-	public UsrInfoVo getUsr(String usrId) {
-		return em.find(UsrInfoVo.class, usrId);
-	}
-	
-	@Override
 	public boolean switchEnableDisable(String usrId) {
 		
-		UsrInfoVo tmp = getUsr(usrId);
+		UsrInfoVo tmp = getUsrInfoByUsrId(usrId);
 		tmp.setUsrEnabled(tmp.isUsrEnabled() == true ? false : true);
 		
 		return tmp.isUsrEnabled();
@@ -59,12 +55,34 @@ public class UsrDaoImpl extends CmapBaseDao implements IUsrDao {
 	}
 	
 	@Override
-	public List<UsrInfoVo> getUsr(Map<String, Object> queryParams, int currentPage, int pageSize) {
+	public List<UsrInfoVo> getUsr(boolean isCustomer, Map<String, Object> queryParams, int currentPage, int pageSize) {
 		
 		StringBuilder buffer = new StringBuilder();
 		
 		buffer.append("SELECT u FROM UsrInfoVo u ");
-		buffer.append(ParamUtil.getQueryConditionJPQL(queryParams, "u"));
+		
+		String queryCondition = ParamUtil.getQueryConditionJPQL(queryParams, "u");
+		
+		if (queryCondition.length() > 0) {
+			
+			buffer.append(queryCondition);
+			
+			if (isCustomer) {
+				buffer.append(" AND u.usrTypeVo.usrTypeId = " + CmapValues.USR_TYPE_CUSTOMER);
+			} else {
+				buffer.append(" AND u.usrTypeVo.usrTypeId <> " + CmapValues.USR_TYPE_CUSTOMER);
+			}
+			
+		} else {
+			
+			if (isCustomer) {
+				buffer.append(" WHERE u.usrTypeVo.usrTypeId = " + CmapValues.USR_TYPE_CUSTOMER);
+			} else {
+				buffer.append(" WHERE u.usrTypeVo.usrTypeId <> " + CmapValues.USR_TYPE_CUSTOMER);
+			}
+			
+		}
+		
 		buffer.append(" ORDER BY u.loginName");
 		
 		return em.createQuery(buffer.toString(), UsrInfoVo.class)
@@ -75,12 +93,32 @@ public class UsrDaoImpl extends CmapBaseDao implements IUsrDao {
 	}
 	
 	@Override
-	public int getUsrCount(Map<String, Object> queryParams) {
+	public int getUsrCount(boolean isCustomer, Map<String, Object> queryParams) {
 		
 		StringBuilder buffer = new StringBuilder();
 		
 		buffer.append("SELECT COUNT(u) FROM UsrInfoVo u ");
-		buffer.append(ParamUtil.getQueryConditionJPQL(queryParams, "u"));
+		
+		String queryCondition = ParamUtil.getQueryConditionJPQL(queryParams, "u");
+		
+		if (queryCondition.length() > 0) {
+			
+			buffer.append(queryCondition);
+			if (isCustomer) {
+				buffer.append(" AND u.usrTypeVo.usrTypeId = " + CmapValues.USR_TYPE_CUSTOMER);
+			} else {
+				buffer.append(" AND u.usrTypeVo.usrTypeId <> " + CmapValues.USR_TYPE_CUSTOMER);
+			}
+			
+		} else {
+			
+			if (isCustomer) {
+				buffer.append(" WHERE u.usrTypeVo.usrTypeId = " + CmapValues.USR_TYPE_CUSTOMER);
+			} else {
+				buffer.append(" WHERE u.usrTypeVo.usrTypeId <> " + CmapValues.USR_TYPE_CUSTOMER);
+			}
+			
+		}
 		
 		Query rowCountQuery = em.createQuery(buffer.toString());
 		return ((Long) rowCountQuery.getSingleResult()).intValue();

@@ -11,9 +11,8 @@ public interface IUsrDao {
 	public void delUsr(String usrId);
 	public boolean switchEnableDisable(String usrId);
 	
-	public UsrInfoVo getUsr(String usrId);
-	public List<UsrInfoVo> getUsr(Map<String, Object> queryParams, int currentPage, int pageSize);
-	public int getUsrCount(Map<String, Object> queryParams);
+	public List<UsrInfoVo> getUsr(boolean isCustomer, Map<String, Object> queryParams, int currentPage, int pageSize);
+	public int getUsrCount(boolean isCustomer, Map<String, Object> queryParams);
 	
 	public UsrInfoVo getUsrInfoByUsrId(String usrId);
 	public UsrInfoVo getUsrInfo(String loginName);

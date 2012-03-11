@@ -12,6 +12,10 @@ import com.alibaba.fastjson.JSON;
 
 public class StrUtil {
 	
+	public static String getLoginNameByEmail(String email) {
+		return email.substring(0, email.indexOf("@"));
+	}
+	
 	public static String getSHAEncryptData(String data) {
 		return DigestUtils.sha256Hex(data);
 	}
