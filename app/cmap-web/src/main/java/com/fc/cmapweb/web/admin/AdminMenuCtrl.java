@@ -19,7 +19,7 @@ import com.fc.cmapweb.vo.RoleInfoVo;
 import com.fc.cmapweb.vo.UsrInfoVo;
 
 @Controller
-@RequestMapping("/adminMenu/")
+@RequestMapping("/adminMenu")
 public class AdminMenuCtrl {
 	
 	@Autowired
@@ -71,6 +71,10 @@ public class AdminMenuCtrl {
 			model.addAttribute("restCount", restMgr.queryRestCount(null));
 			model.addAttribute("restInfoVo", new RestInfoVo());
 			return "/admin/rest/restMgr";
+			
+		} else if ("menuChangePwd".equals(itemId)) {
+			
+			return "/admin/changePwd";
 			
 		} else {
 			

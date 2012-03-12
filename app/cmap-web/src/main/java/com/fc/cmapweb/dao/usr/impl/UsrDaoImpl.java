@@ -21,6 +21,16 @@ import com.fc.cmapweb.vo.UsrInfoVo;
 public class UsrDaoImpl extends CmapBaseDao implements IUsrDao {
 	
 	@Override
+	public UsrInfoVo updatePwd(String usrId, String newPwd) {
+		
+		UsrInfoVo usr = getUsrInfoByUsrId(usrId);
+		usr.setLoginPwd(StrUtil.getSHAEncryptData(newPwd));
+		
+		return usr;
+		
+	}
+	
+	@Override
 	public UsrInfoVo updateUsr(UsrInfoVo usrInfoVo) {
 		
 		if (usrInfoVo.getLoginPwd().length() != 64) {

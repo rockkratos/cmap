@@ -7,6 +7,8 @@ import com.fc.cmapweb.vo.UsrInfoVo;
 
 public interface IUsrMgr {
 	
+	public void updatePwd(String usrId, String newPwd);
+	
 	public void updateUsr(String usrId, Map<String, Object> updateParams);
 	public void rmUsr(String usrId);
 	public boolean updateEnableDisable(String usrId);

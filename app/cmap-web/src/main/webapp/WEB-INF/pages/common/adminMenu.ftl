@@ -22,7 +22,7 @@
     </li>
     
     <li>
-        <a id="menuUsrCfg" href="javascript:void(0);" class="nav-top-item no-submenu">修改密码</a>
+        <a id="menuChangePwd" href="javascript:void(0);" class="nav-top-item no-submenu">修改密码</a>
     </li>
     
 </ul><!-- END left menu -->

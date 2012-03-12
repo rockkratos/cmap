@@ -110,7 +110,7 @@ public class DeliveryAddrCtrl {
 		int count = deliveryAddrMgr.queryDeliveryAddrCount(usrId);
 		
 		if (count >= Integer.parseInt(PropUtil.getPolicy("delivery.addr.num"))) {
-			return StrUtil.getJsonHintMsg(CmapValues.HINT_ERROR, PropUtil.getHintMsg("delivery.addr.num.error", null));
+			return StrUtil.getJsonHintMsg(CmapValues.HINT_ERROR, PropUtil.getHintMsg("err.delivery.addr.num", null));
 		}
 		
 		UsrInfoVo usr = new UsrInfoVo();

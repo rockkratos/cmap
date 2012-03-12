@@ -7,6 +7,8 @@ import com.fc.cmapweb.vo.UsrInfoVo;
 
 public interface IUsrDao {
 	
+	public UsrInfoVo updatePwd(String usrId, String newPwd);
+	
 	public UsrInfoVo updateUsr(UsrInfoVo usrInfoVo);
 	public void delUsr(String usrId);
 	public boolean switchEnableDisable(String usrId);

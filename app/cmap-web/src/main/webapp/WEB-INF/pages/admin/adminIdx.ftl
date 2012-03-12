@@ -1,3 +1,4 @@
+<#assign sec=JspTaglibs["http://www.springframework.org/security/tags"] />
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -21,7 +22,7 @@ $(document).ready(function(){
 			
 		<div id="profile-links"><!-- BEGIN profile links -->
 			<img src="${rc.contextPath}/imgs/admin/icons/current-user.png" />
-			<span class="vm mr10">当前用户</span>
+			<span class="vm mr10"><@sec.authentication property="principal.username" /></span>
 			<img src="${rc.contextPath}/imgs/admin/icons/logout.png" />
 			<a href="${rc.contextPath}/admin/logout" class="vm">注销</a>
 		</div><!-- END profile links -->

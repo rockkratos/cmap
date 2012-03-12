@@ -15,8 +15,8 @@
 		<org.hibernate.version>3.6.9.Final</org.hibernate.version>
 		<org.springframework.version>3.1.1.RELEASE</org.springframework.version>
 		<org.slf4j.version>1.6.4</org.slf4j.version>
-		<org.freemarker.version>2.3.18</org.freemarker.version>
-		<ch.qos.logback.version>1.0.0</ch.qos.logback.version>
+		<org.freemarker.version>2.3.19</org.freemarker.version>
+		<ch.qos.logback.version>1.0.1</ch.qos.logback.version>
 		<com.jolbox.bonecp.version>0.7.1.RELEASE</com.jolbox.bonecp.version>
 		<com.google.guava.version>11.0.1</com.google.guava.version>
 		<postgresql.jdbc.version>9.1-901.jdbc4</postgresql.jdbc.version>

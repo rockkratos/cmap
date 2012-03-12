@@ -21,6 +21,11 @@ public class UsrMgrImpl implements IUsrMgr {
 	private IUsrDao usrDao;
 	
 	@Override
+	public void updatePwd(String usrId, String newPwd) {
+		usrDao.updatePwd(usrId, newPwd);
+	}
+	
+	@Override
 	public void updateUsr(String usrId, Map<String, Object> updateParams) {
 		
 		UsrInfoVo tmpUsr = usrDao.getUsrInfoByUsrId(usrId);
