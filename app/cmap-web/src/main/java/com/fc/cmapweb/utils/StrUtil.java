@@ -85,13 +85,23 @@ public class StrUtil {
 	public static String getPrivilegeUrl(String requestUrl) {
 		
 		String tmpUrl = requestUrl.replaceAll("\\?.*$", "");
-		String regex = ".+/[0-9a-zA-Z]{32}$";
-		String replaceRegex = "[0-9a-zA-Z]{32}$";
 		
-		Pattern p = Pattern.compile(regex);
-		Matcher m = p.matcher(tmpUrl);
+		String[] regex = {".+/[0-9a-zA-Z]{32}/[0-9a-zA-Z]{32}$", ".+/[0-9a-zA-Z]{32}$"};
+		String[] replaceRegex = {"[0-9a-zA-Z]{32}/[0-9a-zA-Z]{32}$", "[0-9a-zA-Z]{32}$"};
+		String[] replaceStr = {"{id}/{id}", "{id}"};
 		
-		return m.matches() ? tmpUrl.replaceAll(replaceRegex, "{id}") : tmpUrl;
+		for (int i = 0; i < regex.length; i++) {
+			
+			Pattern p = Pattern.compile(regex[i]);
+			Matcher m = p.matcher(tmpUrl);
+			
+			if (m.matches()) {
+				return tmpUrl.replaceAll(replaceRegex[i], replaceStr[i]);
+			}
+			
+		}
+		
+		return tmpUrl;
 		
 	}
 

@@ -45,7 +45,7 @@ public class CmapVoter implements AccessDecisionVoter<Object> {
 		
 		int result = ACCESS_ABSTAIN;
         Collection<? extends GrantedAuthority> authorities = extractAuthorities(authentication);
-
+        
         for (ConfigAttribute attribute : attributes) {
             
         	if (this.supports(attribute)) {

@@ -33,6 +33,8 @@ public class CmapInvocationSecurityMetadataSource implements FilterInvocationSec
 	@Override
 	public Collection<ConfigAttribute> getAttributes(Object obj) throws IllegalArgumentException {
 		
+		Collection<ConfigAttribute> back = null;
+		
 		FilterInvocation fi = (FilterInvocation) obj;
 		String reqUrl = fi.getRequestUrl();
 		String reqMethod = fi.getRequest().getMethod().toUpperCase();
@@ -41,7 +43,11 @@ public class CmapInvocationSecurityMetadataSource implements FilterInvocationSec
 		
 		Map<String, Collection<ConfigAttribute>> urlMap = resMap.get(reqMethod);
 		
-		if (null == urlMap) {
+		if (null != urlMap) {
+			back = urlMap.get(StrUtil.getPrivilegeUrl(reqUrl));
+		}
+		
+		if (null == back) {
 			
 			for (Map<String, Collection<ConfigAttribute>> globalRequestMap : globalRequestMapList) {
 				
@@ -63,7 +69,7 @@ public class CmapInvocationSecurityMetadataSource implements FilterInvocationSec
 			return null;
 			
 		} else {
-			return urlMap.get(StrUtil.getPrivilegeUrl(reqUrl));
+			return back;
 		}
 		
 	}

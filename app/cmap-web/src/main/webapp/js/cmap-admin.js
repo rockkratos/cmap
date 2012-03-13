@@ -83,7 +83,10 @@ var cmap = {
 			type: "GET",
 			url: reqUrl,
 			success: function (msg) {
-				dialog.close();
+				if (cmap.isLoginPage(msg)) {
+					cmap.redirectToLogin();
+				}
+				dialog.close();				
 				$("#main-content").fadeOut("normal", function () {
 					$("#main-content").html(msg);
 					$("table.zebra-tab tr:nth-child(even)").addClass("tab-bg");
@@ -210,6 +213,9 @@ var cmap = {
 			type: "PUT", 
 			url: reqUrl, 
 			success: function (msg) {
+				if (cmap.isLoginPage(msg)) {
+					cmap.redirectToLogin();
+				}
 				var msgType = $.evalJSON(msg).hintType;
 				var msgContent = $.evalJSON(msg).hintMsg;
 				
@@ -236,6 +242,9 @@ var cmap = {
 			url: reqUrl, 
 			data: params, 
 			success: function (msg) {
+				if (cmap.isLoginPage(msg)) {
+					cmap.redirectToLogin();
+				}
 				var msgType = $.evalJSON(msg).hintType;
 				var msgContent = $.evalJSON(msg).hintMsg;
 				
@@ -257,6 +266,9 @@ var cmap = {
 				type: "GET", 
 				url: reqUrl, 
 				success: function (msg) {
+					if (cmap.isLoginPage(msg)) {
+						cmap.redirectToLogin();
+					}
 					$("#" + detailBoxId).empty().append(msg);
 					dialog.close();
 					$("#" + detailBoxId).slideDown();
@@ -280,6 +292,9 @@ var cmap = {
 			type: "PUT", 
 			url: reqUrl, 
 			success: function (msg) {
+				if (cmap.isLoginPage(msg)) {
+					cmap.redirectToLogin();
+				}
 				dialog.close();
 				var msgType = $.evalJSON(msg).hintType;
 				var msgContent = $.evalJSON(msg).hintMsg;
@@ -302,6 +317,9 @@ var cmap = {
 			url: reqUrl, 
 			data: params, 
 			success: function (msg) {
+				if (cmap.isLoginPage(msg)) {
+					cmap.redirectToLogin();
+				}
 				dialog.close();
 				var msgType = $.evalJSON(msg).hintType;
 				var msgContent = $.evalJSON(msg).hintMsg;
@@ -327,6 +345,9 @@ var cmap = {
 			url: reqUrl,
 			data: params,
 			success: function (msg) {
+				if (cmap.isLoginPage(msg)) {
+					cmap.redirectToLogin();
+				}
 				dialog.close();
 				cmap.callBackOptForCb(cbId, msg, hintId, paginationId);
 			}
@@ -340,6 +361,9 @@ var cmap = {
 			url: reqUrl,
 			data: params + "&pageIndex=" + pageIndex,
 			success: function (msg) {
+				if (cmap.isLoginPage(msg)) {
+					cmap.redirectToLogin();
+				}
 				var firstLine = "<tr>" + $(".zebra-tab tr").first().html() + "</tr>";
 				$("table.zebra-tab tr:not(:last)").remove();
 				$("table.zebra-tab tr:last").before(firstLine + msg);
@@ -358,6 +382,9 @@ var cmap = {
 			url: reqUrl,
 			data: params, 
 			success: function (msg) {
+				if (cmap.isLoginPage(msg)) {
+					cmap.redirectToLogin();
+				}
 				cmap.initPagination(paginationId, parseInt(msg));
 				dialog.close();
 				$("#" + cbId).slideUp();
@@ -378,6 +405,15 @@ var cmap = {
 		$("#" + showId).click(function() { cmap.showDropDownList($(this), listId); });
 		$("#" + showId).blur(function() { cmap.dropDownListBlur(listId); });
 		$("#" + listId + " a").click(function() { cmap.updateDropDownListVal($(this), valId, showId); });
+	}, 
+	
+	isLoginPage: function (msg) {
+		var regex = /Canditu Admin Login/;
+		return regex.exec(msg) != null ? true : false;
+	}, 
+	
+	redirectToLogin: function () {
+		window.location.href = "/cmapweb/admin/login";
 	}
 	
 };

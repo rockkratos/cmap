@@ -1,4 +1,5 @@
 <#assign spring=JspTaglibs["http://www.springframework.org/tags"] />
+<#assign sec=JspTaglibs["http://www.springframework.org/security/tags"] />
 <form id="privilegeForm">
 
 <div id="page-title">
@@ -12,6 +13,7 @@
 
 <ul class="shortcut-buttons-set clearfix">
 	
+	<@sec.authorize url="/adminPrivilege" method="POST">
     <li>
         <a id="addPrivilegeLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -20,7 +22,9 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
 	
+	<@sec.authorize url="/adminPrivilege" method="GET">
 	<li>
         <a id="queryPrivilegeLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -29,7 +33,9 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
     
+    <@sec.authorize url="/adminMenu/menuRoleCfg" method="GET">
     <li>
     	<a id="roleCfgLink" class="shortcut-button" href="javascript:void(0);">
         	<span>
@@ -38,7 +44,9 @@
     		</span>
 		</a>
 	</li>
+	</@sec.authorize>
 	
+	<@sec.authorize url="/adminMenu/menuRoleBinding" method="GET">
 	<li>
     	<a id="roleBindingLink" class="shortcut-button" href="javascript:void(0);">
         	<span>
@@ -47,11 +55,13 @@
     		</span>
 		</a>
 	</li>
+	</@sec.authorize>
     
 </ul>
 
 <div id="topHint" class="hint-box dn"></div><!-- error msg wrapper -->
 
+<@sec.authorize url="/adminPrivilege" method="POST">
 <div id="cbAddPrivilege" class="content-box dn">
 	
 	<div class="content-box-header"><h3>新增权限</h3></div>
@@ -110,7 +120,9 @@
     </div>
     
 </div><!-- END content-box -->
+</@sec.authorize>
 
+<@sec.authorize url="/adminPrivilege" method="GET">
 <div id="cbQueryPrivilege" class="content-box dn">
 	
 	<div class="content-box-header"><h3>查询条件</h3></div>
@@ -160,6 +172,7 @@
     </div>
     
 </div><!-- END content-box -->
+</@sec.authorize>
 
 <div id="privilegeList" class="content-box">
 		
@@ -206,21 +219,27 @@
 </form>
 
 <script type="text/javascript" language="javascript">
+<@sec.authorize url="/adminPrivilege" method="POST">
 $("#addPrivilegeLink").click(function() { cmap.triggerContentBox('cbQueryPrivilege', 'cbAddPrivilege'); });
-$("#queryPrivilegeLink").click(function() { cmap.triggerContentBox('cbAddPrivilege', 'cbQueryPrivilege'); });
-
-cmap.bindingSelectEvent('', 'methodType');
-cmap.bindingSelectEvent('query', 'methodType');
-
 $("#btnAddPrivilege").click(function() { cmap.create('privilegeForm', '${rc.contextPath}/adminPrivilege', 'cbAddPrivilege', 'topHint', 'Pagination'); });
 $("#btnCleanAddPrivilege").click(function() { cmap.cleanBox('cbAddPrivilege'); });
+cmap.bindingSelectEvent('', 'methodType');
+</@sec.authorize>
 
+<@sec.authorize url="/adminPrivilege" method="GET">
+$("#queryPrivilegeLink").click(function() { cmap.triggerContentBox('cbAddPrivilege', 'cbQueryPrivilege'); });
 $("#btnQueryPrivilege").click(function() { cmap.query('privilegeForm', '${rc.contextPath}/adminPrivilege/privilegeCount', 'Pagination', 'cbQueryPrivilege'); });
 $("#btnCleanQueryPrivilege").click(function() { cmap.cleanBox('cbQueryPrivilege'); });
-
-$("#roleCfgLink").click(function() { $("#menuRoleCfg").click(); });
-$("#roleBindingLink").click(function() { $("#menuRoleBinding").click(); });
-
+cmap.bindingSelectEvent('query', 'methodType');
 cmap.initPagination("Pagination", ${privilegeCount});
 function pageselectCallback(pageIndex, jq) { cmap.paging('privilegeForm', '${rc.contextPath}/adminPrivilege', pageIndex, 'privilegeList', 'listPrivilegeId'); }
+</@sec.authorize>
+
+<@sec.authorize url="/adminMenu/menuRoleCfg" method="GET">
+$("#roleCfgLink").click(function() { $("#menuRoleCfg").click(); });
+</@sec.authorize>
+
+<@sec.authorize url="/adminMenu/menuRoleBinding" method="GET">
+$("#roleBindingLink").click(function() { $("#menuRoleBinding").click(); });
+</@sec.authorize>
 </script>

@@ -152,6 +152,9 @@ public class UsrDaoImpl extends CmapBaseDao implements IUsrDao {
 			back = tq.getResultList().get(0);
 		}
 		
+		//Load lazy attr
+		back.getUsrTypeVo().getUsrTypeId();
+		
 		return back;
 		
 	}
