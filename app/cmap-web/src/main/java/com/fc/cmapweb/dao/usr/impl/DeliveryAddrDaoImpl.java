@@ -15,6 +15,18 @@ import com.fc.cmapweb.vo.DeliveryAddrVo;
 public class DeliveryAddrDaoImpl extends CmapBaseDao implements IDeliveryAddrDao {
 	
 	@Override
+	public void delDeliveryAddrByUsrId(String usrId) {
+		
+		String jpql = "DELETE FROM DeliveryAddrVo da WHERE da.usrInfoVo.usrId = ?";
+		
+		Query q = em.createQuery(jpql);
+		q.setParameter(1, usrId);
+		
+		q.executeUpdate();
+		
+	}
+	
+	@Override
 	public DeliveryAddrVo updateDeliveryAddr(DeliveryAddrVo deliveryAddrVo) {
 		em.merge(deliveryAddrVo);
 		return deliveryAddrVo;

@@ -18,8 +18,8 @@ public class AdminCtrl {
 	}
 	
 	@RequestMapping(value = "main", method = RequestMethod.GET)
-	public String showIdx() {
-		return "admin/adminIdx";
+	public String showIdx() {		
+		return "admin/adminIdx";		
 	}
 	
 }

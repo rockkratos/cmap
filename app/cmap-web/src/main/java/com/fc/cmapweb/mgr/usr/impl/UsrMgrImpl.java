@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fc.cmapweb.dao.usr.IDeliveryAddrDao;
 import com.fc.cmapweb.dao.usr.IUsrDao;
 import com.fc.cmapweb.mgr.usr.IUsrMgr;
 import com.fc.cmapweb.utils.PaginationUtil;
@@ -19,6 +20,9 @@ public class UsrMgrImpl implements IUsrMgr {
 
 	@Autowired
 	private IUsrDao usrDao;
+	
+	@Autowired
+	private IDeliveryAddrDao deliveryAddrDao;
 	
 	@Override
 	public void updatePwd(String usrId, String newPwd) {
@@ -55,6 +59,7 @@ public class UsrMgrImpl implements IUsrMgr {
 	
 	@Override
 	public void rmUsr(String usrId) {
+		deliveryAddrDao.delDeliveryAddrByUsrId(usrId);
 		usrDao.delUsr(usrId);
 	}
 	
