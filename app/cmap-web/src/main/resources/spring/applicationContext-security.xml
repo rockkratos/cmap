@@ -7,6 +7,10 @@
 			 					 http://www.springframework.org/schema/security 
 			 					 http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 	
+	<beans:bean id="webPrivilegeEvaluator" class="org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator">
+		<beans:constructor-arg ref="cmapFilter" />
+	</beans:bean>
+	
 	<http auto-config="false" use-expressions="true" entry-point-ref="cmapLoginUrlEntryPoint">
 		
 		<!-- 登录过滤器 -->

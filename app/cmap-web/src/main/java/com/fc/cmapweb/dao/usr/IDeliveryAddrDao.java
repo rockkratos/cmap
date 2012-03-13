@@ -6,6 +6,8 @@ import com.fc.cmapweb.vo.DeliveryAddrVo;
 
 public interface IDeliveryAddrDao {
 	
+	public void delDeliveryAddrByUsrId(String usrId);
+	
 	public DeliveryAddrVo updateDeliveryAddr(DeliveryAddrVo deliveryAddrVo);
 	public void switchDefaultAddrFlag(String addrId);
 	

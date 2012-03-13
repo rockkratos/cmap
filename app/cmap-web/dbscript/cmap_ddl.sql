@@ -168,48 +168,48 @@ CREATE TABLE dish_info (
 -- ============================================================
 --   Table: cannot_trans_addr
 -- ============================================================
-CREATE TABLE cannot_trans_addr (
-	cannot_trans_id CHAR(32) NOT NULL, 
-	addr_coll_id CHAR(32) NOT NULL, 
-	rest_id CHAR(32) NOT NULL, 
-	CONSTRAINT pk_cannot_trans_addr PRIMARY KEY (cannot_trans_id)
-);
+--CREATE TABLE cannot_trans_addr (
+--	cannot_trans_id CHAR(32) NOT NULL, 
+--	addr_coll_id CHAR(32) NOT NULL, 
+--	rest_id CHAR(32) NOT NULL, 
+--	CONSTRAINT pk_cannot_trans_addr PRIMARY KEY (cannot_trans_id)
+--);
 
 -- ============================================================
 --   Table: addr_type
 -- ============================================================
-CREATE TABLE addr_type (
-	addr_type_id SMALLINT NOT NULL, 
-	addr_type_name VARCHAR(16) NOT NULL, 
-	CONSTRAINT pk_addr_type PRIMARY KEY (addr_type_id)
-);
+--CREATE TABLE addr_type (
+--	addr_type_id SMALLINT NOT NULL, 
+--	addr_type_name VARCHAR(16) NOT NULL, 
+--	CONSTRAINT pk_addr_type PRIMARY KEY (addr_type_id)
+--);
 
 -- ============================================================
 --   Table: addr_coll
 -- ============================================================
-CREATE TABLE addr_coll (
-	addr_coll_id CHAR(32) NOT NULL, 
-	addr_name VARCHAR(64) NOT NULL, 
-	sepc_addr VARCHAR(255) NOT NULL, 
-	addr_longitude NUMERIC NOT NULL, 
-	addr_latitude NUMERIC NOT NULL, 
-	city_id SMALLINT NOT NULL, 
-	addr_type_id SMALLINT NOT NULL, 
-	CONSTRAINT pk_addr_coll PRIMARY KEY (addr_coll_id)
-);
+--CREATE TABLE addr_coll (
+--	addr_coll_id CHAR(32) NOT NULL, 
+--	addr_name VARCHAR(64) NOT NULL, 
+--	sepc_addr VARCHAR(255) NOT NULL, 
+--	addr_longitude NUMERIC NOT NULL, 
+--	addr_latitude NUMERIC NOT NULL, 
+--	city_id SMALLINT NOT NULL, 
+--	addr_type_id SMALLINT NOT NULL, 
+--	CONSTRAINT pk_addr_coll PRIMARY KEY (addr_coll_id)
+--);
 
 -- ============================================================
 --   Table: prmt_info
 -- ============================================================
-CREATE TABLE prmt_info (
-	prmt_info_id CHAR(32) NOT NULL, 
-	prmt_info_desc VARCHAR(255) NOT NULL, 
-	rest_id CHAR(32) NOT NULL, 
-	prmt_start_time TIMESTAMP NOT NULL, 
-	prmt_end_time TIMESTAMP NOT NULL, 
-	enabled BOOLEAN NOT NULL, 
-	CONSTRAINT pk_prmt_info PRIMARY KEY (prmt_info_id)
-);
+--CREATE TABLE prmt_info (
+--	prmt_info_id CHAR(32) NOT NULL, 
+--	prmt_info_desc VARCHAR(255) NOT NULL, 
+--	rest_id CHAR(32) NOT NULL, 
+--	prmt_start_time TIMESTAMP NOT NULL, 
+--	prmt_end_time TIMESTAMP NOT NULL, 
+--	enabled BOOLEAN NOT NULL, 
+--	CONSTRAINT pk_prmt_info PRIMARY KEY (prmt_info_id)
+--);
 
 -- ============================================================
 --   Table: order_info
@@ -250,12 +250,12 @@ CREATE TABLE order_status (
 -- ============================================================
 --   Table: push_order_history
 -- ============================================================
-CREATE TABLE push_order_history (
-	poh_id CHAR(32) NOT NULL, 
-	order_id CHAR(16) NOT NULL, 
-	po_time TIMESTAMP NOT NULL, 
-	CONSTRAINT pk_push_order_history PRIMARY KEY (poh_id)
-);
+--CREATE TABLE push_order_history (
+--	poh_id CHAR(32) NOT NULL, 
+--	order_id CHAR(16) NOT NULL, 
+--	po_time TIMESTAMP NOT NULL, 
+--	CONSTRAINT pk_push_order_history PRIMARY KEY (poh_id)
+--);
 
 -- ============================================================
 --   Table: delivery_addr
@@ -311,13 +311,13 @@ ALTER TABLE dish_sort ADD CONSTRAINT fk_rest FOREIGN KEY (rest_id) REFERENCES re
 
 ALTER TABLE dish_info ADD CONSTRAINT fk_dish_sort FOREIGN KEY (dish_sort_id) REFERENCES dish_sort(dish_sort_id);
 
-ALTER TABLE cannot_trans_addr ADD CONSTRAINT fk_addr_coll FOREIGN KEY (addr_coll_id) REFERENCES addr_coll(addr_coll_id);
-ALTER TABLE cannot_trans_addr ADD CONSTRAINT fk_rest FOREIGN KEY (rest_id) REFERENCES rest_info(rest_id);
+--ALTER TABLE cannot_trans_addr ADD CONSTRAINT fk_addr_coll FOREIGN KEY (addr_coll_id) REFERENCES addr_coll(addr_coll_id);
+--ALTER TABLE cannot_trans_addr ADD CONSTRAINT fk_rest FOREIGN KEY (rest_id) REFERENCES rest_info(rest_id);
 
-ALTER TABLE addr_coll ADD CONSTRAINT fk_city FOREIGN KEY (city_id) REFERENCES city_info(city_id);
-ALTER TABLE addr_coll ADD CONSTRAINT fk_addr_type FOREIGN KEY (addr_type_id) REFERENCES addr_type(addr_type_id);
+--ALTER TABLE addr_coll ADD CONSTRAINT fk_city FOREIGN KEY (city_id) REFERENCES city_info(city_id);
+--ALTER TABLE addr_coll ADD CONSTRAINT fk_addr_type FOREIGN KEY (addr_type_id) REFERENCES addr_type(addr_type_id);
 
-ALTER TABLE prmt_info ADD CONSTRAINT fk_rest FOREIGN KEY (rest_id) REFERENCES rest_info(rest_id);
+--ALTER TABLE prmt_info ADD CONSTRAINT fk_rest FOREIGN KEY (rest_id) REFERENCES rest_info(rest_id);
 
 ALTER TABLE order_info ADD CONSTRAINT fk_usr FOREIGN KEY (usr_id) REFERENCES usr_info(usr_id);
 ALTER TABLE order_info ADD CONSTRAINT fk_addr FOREIGN KEY (addr_id) REFERENCES delivery_addr(addr_id);
@@ -327,7 +327,7 @@ ALTER TABLE order_info ADD CONSTRAINT fk_order_status FOREIGN KEY (order_status_
 ALTER TABLE order_detail ADD CONSTRAINT fk_dish FOREIGN KEY (dish_id) REFERENCES dish_info(dish_id);
 ALTER TABLE order_detail ADD CONSTRAINT fk_order FOREIGN KEY (order_id) REFERENCES order_info(order_id);
 
-ALTER TABLE push_order_history ADD CONSTRAINT fk_order FOREIGN KEY (order_id) REFERENCES order_info(order_id);
+--ALTER TABLE push_order_history ADD CONSTRAINT fk_order FOREIGN KEY (order_id) REFERENCES order_info(order_id);
 
 ALTER TABLE delivery_addr ADD CONSTRAINT fk_usr FOREIGN KEY (usr_id) REFERENCES usr_info(usr_id);
 

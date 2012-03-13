@@ -9,9 +9,6 @@
 		
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		
-		<class>com.fc.cmapweb.vo.AddrCollVo</class>
-		<class>com.fc.cmapweb.vo.AddrTypeVo</class>
-		<class>com.fc.cmapweb.vo.CannotTransAddrVo</class>
 		<class>com.fc.cmapweb.vo.CityInfoVo</class>
 		<class>com.fc.cmapweb.vo.CookingTypeVo</class>
 		<class>com.fc.cmapweb.vo.DeliveryAddrVo</class>
@@ -23,9 +20,7 @@
 		<class>com.fc.cmapweb.vo.OrderStatusVo</class>
 		<class>com.fc.cmapweb.vo.OrderTransTypeVo</class>
 		<class>com.fc.cmapweb.vo.PrivilegeInfoVo</class>
-		<class>com.fc.cmapweb.vo.PrmtInfoVo</class>
 		<class>com.fc.cmapweb.vo.ProvinceInfoVo</class>
-		<class>com.fc.cmapweb.vo.PushOrderHistoryVo</class>
 		<class>com.fc.cmapweb.vo.RestInfoVo</class>
 		<class>com.fc.cmapweb.vo.RoleInfoVo</class>
 		<class>com.fc.cmapweb.vo.RolePrivilegeVo</class>

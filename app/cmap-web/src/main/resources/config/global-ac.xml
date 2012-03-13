@@ -3,9 +3,6 @@
 	
 	<url pattern="/admin/login" access="IS_ANONYMOUS" />
 	<url pattern="/admin/main" access="ONLY_AUTHENTICATED" />
-	<url pattern="/admin.*" access="ONLY_AUTHENTICATED" />
-	<!-- 
 	<url pattern="/admin.*" access="IS_AUTHENTICATED" />
-	-->
 	
 </url-list>
