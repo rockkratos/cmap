@@ -1,4 +1,5 @@
 <#assign spring=JspTaglibs["http://www.springframework.org/tags"] />
+<#assign sec=JspTaglibs["http://www.springframework.org/security/tags"] />
 <form id="roleForm">
 
 <div id="page-title">
@@ -12,6 +13,7 @@
 
 <ul class="shortcut-buttons-set clearfix">
 	
+	<@sec.authorize url="/adminRole" method="POST">
     <li>
         <a id="addRoleLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -20,7 +22,9 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
 	
+	<@sec.authorize url="/adminRole" method="GET">
 	<li>
         <a id="queryRoleLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -29,7 +33,9 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
     
+    <@sec.authorize url="/adminMenu/menuPrivilegeCfg" method="GET">
     <li>
     	<a id="privilegeCfgLink" class="shortcut-button" href="#">
         	<span>
@@ -38,7 +44,9 @@
     		</span>
 		</a>
 	</li>
+	</@sec.authorize>
 	
+	<@sec.authorize url="/adminMenu/menuRoleBinding" method="GET">
 	<li>
     	<a id="roleBindingLink" class="shortcut-button" href="javascript:void(0);">
         	<span>
@@ -47,11 +55,13 @@
     		</span>
 		</a>
 	</li>
+	</@sec.authorize>
     
 </ul>
 
 <div id="topHint" class="hint-box dn"></div><!-- error msg wrapper -->
 
+<@sec.authorize url="/adminRole" method="POST">
 <div id="cbAddRole" class="content-box dn">
 	
 	<div class="content-box-header"><h3>新增角色</h3></div>
@@ -102,7 +112,9 @@
     </div>
     
 </div><!-- END content-box -->
+</@sec.authorize>
 
+<@sec.authorize url="/adminRole" method="GET">
 <div id="cbQueryRole" class="content-box dn">
 	
 	<div class="content-box-header"><h3>查询条件</h3></div>
@@ -135,6 +147,7 @@
     </div>
     
 </div><!-- END content-box -->
+</@sec.authorize>
 
 <div id="roleList" class="content-box">
 		
@@ -181,18 +194,25 @@
 </form>
 
 <script type="text/javascript" language="javascript">
+<@sec.authorize url="/adminRole" method="POST">
 $("#addRoleLink").click(function() { cmap.triggerContentBox('cbQueryRole', 'cbAddRole'); });
-$("#queryRoleLink").click(function() { cmap.triggerContentBox('cbAddRole', 'cbQueryRole'); });
-
 $("#btnAddRole").click(function() { cmap.create('roleForm', '${rc.contextPath}/adminRole', 'cbAddRole', 'topHint', 'Pagination'); });
 $("#btnCleanAddRole").click(function() { cmap.cleanBox('cbAddRole'); });
+</@sec.authorize>
 
+<@sec.authorize url="/adminRole" method="GET">
+$("#queryRoleLink").click(function() { cmap.triggerContentBox('cbAddRole', 'cbQueryRole'); });
 $("#btnQueryRole").click(function() { cmap.query('roleForm', '${rc.contextPath}/adminRole/roleCount', 'Pagination', 'cbQueryRole'); });
 $("#btnCleanQueryRole").click(function() { cmap.cleanBox('cbQueryRole'); });
-
-$("#privilegeCfgLink").click(function() { $("#menuPrivilegeCfg").click(); });
-$("#roleBindingLink").click(function() { $("#menuRoleBinding").click(); });
-
 cmap.initPagination("Pagination", ${roleCount});
 function pageselectCallback(pageIndex, jq) {	cmap.paging('roleForm', '${rc.contextPath}/adminRole', pageIndex, 'roleList', 'listRoleId'); }
+</@sec.authorize>
+
+<@sec.authorize url="/adminMenu/menuPrivilegeCfg" method="GET">
+$("#privilegeCfgLink").click(function() { $("#menuPrivilegeCfg").click(); });
+</@sec.authorize>
+
+<@sec.authorize url="/adminMenu/menuRoleBinding" method="GET">
+$("#roleBindingLink").click(function() { $("#menuRoleBinding").click(); });
+</@sec.authorize>
 </script>

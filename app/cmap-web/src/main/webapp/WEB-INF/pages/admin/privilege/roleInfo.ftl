@@ -1,3 +1,4 @@
+<#assign sec=JspTaglibs["http://www.springframework.org/security/tags"] />
 <div class="content-box-header">
 	<h3>详细信息</h3>
 </div>
@@ -27,7 +28,7 @@
     		<#list privilegeMarkedRole as tmpRolePrivilege>
 			<li>
 				<input name="editRolePrivilegeId" type="checkbox" value="${tmpRolePrivilege.privilegeInfoVo.privilegeId}" <#if tmpRolePrivilege.roleInfoVo.roleId??>checked="checked"</#if> />
-				<span>${tmpRolePrivilege.privilegeInfoVo.privilegeDesc} -- ${tmpRolePrivilege.privilegeInfoVo.privilegeName}</span>
+				<span>${tmpRolePrivilege.privilegeInfoVo.privilegeDesc}</span>
 			</li>
 			</#list>
 			</#if>
@@ -38,7 +39,9 @@
     
     <div>
         <p>
+        	<@sec.authorize url="/adminRole/edit/{id}" method="PUT">
             <a id="btnDetailUpdate" href="javascript:void(0);" class="button">保 存</a>
+            </@sec.authorize>
             <a id="btnDetailClose" href="javascript:void(0);" class="button">关 闭</a>
         </p>
     </div>
@@ -46,6 +49,9 @@
 </div>
 
 <script type="text/javascript" language="javascript">
+<@sec.authorize url="/adminRole/edit/{id}" method="PUT">
 $("#btnDetailUpdate").click(function() { cmap.save('${rc.contextPath}/adminRole/edit/${roleInfoVo.roleId}', 'roleListHint', 'Pagination', 'roleForm', 'cbDetailInfo'); });
+</@sec.authorize>
+
 $("#btnDetailClose").click(function() { cmap.close('cbDetailInfo', true); });
 </script>

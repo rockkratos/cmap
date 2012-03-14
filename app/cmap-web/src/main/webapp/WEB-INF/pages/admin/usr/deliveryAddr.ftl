@@ -1,4 +1,5 @@
 <#assign spring=JspTaglibs["http://www.springframework.org/tags"] />
+<#assign sec=JspTaglibs["http://www.springframework.org/security/tags"] />
 <form id="deliveryAddrForm">
 
 <div id="page-title">
@@ -12,6 +13,7 @@
 
 <ul class="shortcut-buttons-set clearfix">
 	
+	<@sec.authorize url="/adminDeliveryAddr/{id}" method="POST">
     <li>
         <a id="addDeliveryAddrLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -20,7 +22,9 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
 	
+	<@sec.authorize url="/adminMenu/menuCustomerMgr" method="GET">
 	<li>
         <a id="customerLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -29,7 +33,9 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
     
+    <@sec.authorize url="/adminMenu/menuUsrMgr" method="GET">
     <li>
         <a id="adminUsrLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -38,11 +44,13 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
     
 </ul>
 
 <div id="topHint" class="hint-box dn"></div><!-- error msg wrapper -->
 
+<@sec.authorize url="/adminDeliveryAddr/{id}" method="POST">
 <div id="cbAddDeliveryAddr" class="content-box dn">
 	
 	<div class="content-box-header"><h3>新增地址</h3></div>
@@ -79,6 +87,7 @@
     </div>
     
 </div><!-- END content-box -->
+</@sec.authorize>
 
 <div id="deliveryAddrList" class="content-box">
 		
@@ -123,13 +132,22 @@
 </form>
 
 <script type="text/javascript" language="javascript">
+<@sec.authorize url="/adminDeliveryAddr/{id}" method="POST">
 $("#addDeliveryAddrLink").click(function() { cmap.triggerContentBox('', 'cbAddDeliveryAddr'); });
-$("#adminUsrLink").click(function() { $("#menuUsrMgr").click(); });
-$("#customerLink").click(function() { $("#menuCustomerMgr").click(); });
-
 $("#btnAddDeliveryAddr").click(function() { cmap.create('deliveryAddrForm', '${rc.contextPath}/adminDeliveryAddr/${usrId}', 'cbAddDeliveryAddr', 'topHint', 'Pagination'); });
 $("#btnCleanAddDeliveryAddr").click(function() { cmap.cleanBox('cbAddDeliveryAddr'); });
+</@sec.authorize>
 
+<@sec.authorize url="/adminMenu/menuCustomerMgr" method="GET">
+$("#adminUsrLink").click(function() { $("#menuUsrMgr").click(); });
+</@sec.authorize>
+
+<@sec.authorize url="/adminMenu/menuUsrMgr" method="GET">
+$("#customerLink").click(function() { $("#menuCustomerMgr").click(); });
+</@sec.authorize>
+
+<@sec.authorize url="/adminDeliveryAddr/{id}" method="GET">
 cmap.initPagination("Pagination", ${deliveryAddrCount});
 function pageselectCallback(pageIndex, jq) { cmap.paging('deliveryAddrForm', '${rc.contextPath}/adminDeliveryAddr/list/${usrId}', pageIndex, 'deliveryAddrList', 'listDeliveryAddrId'); }
+</@sec.authorize>
 </script>

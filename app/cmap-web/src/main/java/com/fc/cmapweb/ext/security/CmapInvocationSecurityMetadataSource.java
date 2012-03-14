@@ -38,16 +38,19 @@ public class CmapInvocationSecurityMetadataSource implements FilterInvocationSec
 		FilterInvocation fi = (FilterInvocation) obj;
 		String reqUrl = fi.getRequestUrl();
 		String reqMethod = fi.getRequest().getMethod().toUpperCase();
+		String tmpUrl = StrUtil.getPrivilegeUrl(reqUrl);
 		
 		Map<String, Map<String, Collection<ConfigAttribute>>> resMap = rolePrivilegeMgr.queryResMap();
 		
 		Map<String, Collection<ConfigAttribute>> urlMap = resMap.get(reqMethod);
 		
 		if (null != urlMap) {
-			back = urlMap.get(StrUtil.getPrivilegeUrl(reqUrl));
+			back = urlMap.get(tmpUrl);
 		}
 		
 		if (null == back) {
+			
+			
 			
 			for (Map<String, Collection<ConfigAttribute>> globalRequestMap : globalRequestMapList) {
 				
@@ -56,7 +59,7 @@ public class CmapInvocationSecurityMetadataSource implements FilterInvocationSec
 				for (String tmpKey : globalReqKey) {
 					
 					Pattern p = Pattern.compile(tmpKey);
-					Matcher m = p.matcher(reqUrl);
+					Matcher m = p.matcher(tmpUrl);
 					
 					if (m.matches()) {
 						return globalRequestMap.get(tmpKey);

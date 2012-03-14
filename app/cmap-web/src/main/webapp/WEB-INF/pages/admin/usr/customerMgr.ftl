@@ -1,4 +1,5 @@
 <#assign spring=JspTaglibs["http://www.springframework.org/tags"] />
+<#assign sec=JspTaglibs["http://www.springframework.org/security/tags"] />
 <form id="usrMgrForm">
 
 <div id="page-title">
@@ -12,6 +13,7 @@
 
 <ul class="shortcut-buttons-set clearfix">
 	
+	<@sec.authorize url="/adminCustomerMgr" method="POST">
     <li>
         <a id="addUsrLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -20,7 +22,9 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
 	
+	<@sec.authorize url="/adminCustomerMgr" method="GET">
 	<li>
         <a id="queryUsrLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -29,7 +33,9 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
     
+    <@sec.authorize url="/adminMenu/menuUsrMgr" method="GET">
     <li>
         <a id="adminUsrLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -38,11 +44,13 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
     
 </ul>
 
 <div id="topHint" class="hint-box dn"></div><!-- error msg wrapper -->
 
+<@sec.authorize url="/adminCustomerMgr" method="POST">
 <div id="cbAddUsr" class="content-box dn">
 	
 	<div class="content-box-header"><h3>新增用户</h3></div>
@@ -100,7 +108,9 @@
     </div>
     
 </div><!-- END content-box -->
+</@sec.authorize>
 
+<@sec.authorize url="/adminCustomerMgr" method="GET">
 <div id="cbQueryUsr" class="content-box dn">
 	
 	<div class="content-box-header"><h3>查询条件</h3></div>
@@ -141,6 +151,7 @@
     </div>
     
 </div><!-- END content-box -->
+</@sec.authorize>
 
 <div id="usrList" class="content-box">
 		
@@ -166,7 +177,9 @@
             	<td colspan="5" class="tab-btm pb10">
 					
 					<div class="bulk-actions fl">
+						<@sec.authorize url="/adminDeliveryAddr/{id}" method="GET">
 						<a id="btnDeliveryAddr" class="button" href="javascript:void(0);">送餐地址</a>
+						</@sec.authorize>
 						<a class="button" href="javascript:void(0);">批量删除</a>
 					</div>
 					
@@ -187,28 +200,13 @@
 </form>
 
 <script type="text/javascript" language="javascript">
+<@sec.authorize url="/adminDeliveryAddr/{id}" method="GET">
 $("#btnDeliveryAddr").click(function() {
 	if (checkChooseUsr()) {
 		var usrId = $("input[name='listUsrId']:checked").val();
 		cmap.flushMainContent('${rc.contextPath}/adminDeliveryAddr/' + usrId);
 	}
 });
-
-$("#addUsrLink").click(function() { cmap.triggerContentBox('cbQueryUsr', 'cbAddUsr'); });
-$("#queryUsrLink").click(function() { cmap.triggerContentBox('cbAddUsr', 'cbQueryUsr'); });
-$("#adminUsrLink").click(function() { $("#menuUsrMgr").click(); });
-
-cmap.bindingSelectEvent('', 'usrType');
-cmap.bindingSelectEvent('query', 'usrType');
-
-$("#btnAddUsr").click(function() { cmap.create('usrMgrForm', '${rc.contextPath}/adminCustomerMgr', 'cbAddUsr', 'topHint', 'Pagination'); });
-$("#btnCleanAddUsr").click(function() { cmap.cleanBox('cbAddUsr'); });
-
-$("#btnQueryUsr").click(function() { cmap.query('usrMgrForm', '${rc.contextPath}/adminCustomerMgr/usrCount', 'Pagination', 'cbQueryUsr'); });
-$("#btnCleanQueryUsr").click(function() { cmap.cleanBox('cbQueryUsr'); });
-
-cmap.initPagination("Pagination", ${usrCount});
-function pageselectCallback(pageIndex, jq) { cmap.paging('usrMgrForm', '${rc.contextPath}/adminCustomerMgr', pageIndex, 'usrList', 'listUsrId'); }
 
 function checkChooseUsr() {
 	var usrIdNum = $("input[name='listUsrId']:checked").size();
@@ -222,4 +220,25 @@ function checkChooseUsr() {
 		return true;
 	}
 }
+</@sec.authorize>
+
+<@sec.authorize url="/adminCustomerMgr" method="POST">
+$("#addUsrLink").click(function() { cmap.triggerContentBox('cbQueryUsr', 'cbAddUsr'); });
+cmap.bindingSelectEvent('', 'usrType');
+$("#btnAddUsr").click(function() { cmap.create('usrMgrForm', '${rc.contextPath}/adminCustomerMgr', 'cbAddUsr', 'topHint', 'Pagination'); });
+$("#btnCleanAddUsr").click(function() { cmap.cleanBox('cbAddUsr'); });
+</@sec.authorize>
+
+<@sec.authorize url="/adminCustomerMgr" method="GET">
+$("#queryUsrLink").click(function() { cmap.triggerContentBox('cbAddUsr', 'cbQueryUsr'); });
+cmap.bindingSelectEvent('query', 'usrType');
+$("#btnQueryUsr").click(function() { cmap.query('usrMgrForm', '${rc.contextPath}/adminCustomerMgr/usrCount', 'Pagination', 'cbQueryUsr'); });
+$("#btnCleanQueryUsr").click(function() { cmap.cleanBox('cbQueryUsr'); });
+cmap.initPagination("Pagination", ${usrCount});
+function pageselectCallback(pageIndex, jq) { cmap.paging('usrMgrForm', '${rc.contextPath}/adminCustomerMgr', pageIndex, 'usrList', 'listUsrId'); }
+</@sec.authorize>
+
+<@sec.authorize url="/adminMenu/menuUsrMgr" method="GET">
+$("#adminUsrLink").click(function() { $("#menuUsrMgr").click(); });
+</@sec.authorize>
 </script>

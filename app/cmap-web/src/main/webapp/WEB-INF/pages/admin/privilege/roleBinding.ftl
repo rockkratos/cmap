@@ -1,4 +1,5 @@
 <#assign spring=JspTaglibs["http://www.springframework.org/tags"] />
+<#assign sec=JspTaglibs["http://www.springframework.org/security/tags"] />
 <form id="roleBindingForm">
 
 <div id="page-title">
@@ -12,6 +13,7 @@
 
 <ul class="shortcut-buttons-set clearfix">
     
+    <@sec.authorize url="/adminMenu/menuPrivilegeCfg" method="GET">
     <li>
     	<a id="privilegeCfgLink" class="shortcut-button" href="#">
         	<span>
@@ -20,7 +22,9 @@
     		</span>
 		</a>
 	</li>
+	</@sec.authorize>
 	
+	<@sec.authorize url="/adminMenu/menuRoleCfg" method="GET">
 	<li>
     	<a id="roleCfgLink" class="shortcut-button" href="javascript:void(0);">
         	<span>
@@ -29,6 +33,7 @@
     		</span>
 		</a>
 	</li>
+	</@sec.authorize>
     
 </ul>
 
@@ -72,7 +77,9 @@
         
         <div>
             <p>
+            	<@sec.authorize url="/adminMenu/menuRoleBinding" method="GET">
                 <a id="btnRoleBinding" href="javascript:void(0);" class="button">保 存</a>
+                </@sec.authorize>
                 <a id="btnCleanRoleBinding" href="javascript:void(0);" class="button">清 空</a>
             </p>
         </div>
@@ -84,6 +91,17 @@
 </form>
 
 <script type="text/javascript" language="javascript">
+<@sec.authorize url="/adminMenu/menuPrivilegeCfg" method="GET">
+$("#privilegeCfgLink").click(function() { $("#menuPrivilegeCfg").click(); });
+</@sec.authorize>
+
+<@sec.authorize url="/adminMenu/menuRoleCfg" method="GET">
+$("#roleCfgLink").click(function() { $("#menuRoleCfg").click(); });
+</@sec.authorize>
+
+$("#btnCleanRoleBinding").click(function() { cmap.cleanBox('cbRoleBinding'); $("#roleList").empty(); });
+
+<@sec.authorize url="/adminMenu/menuRoleBinding" method="GET">
 $("#usrTypeShow").click(function() { cmap.showDropDownList($(this), 'usrTypeList'); });
 $("#usrTypeShow").blur(function() { cmap.dropDownListBlur('usrTypeList'); });
 
@@ -93,11 +111,6 @@ $("#usrTypeList a").click(function() {
 	dialog.show();
 	loadRoleList(dialog);
 });
-
-$("#privilegeCfgLink").click(function() { $("#menuPrivilegeCfg").click(); });
-$("#roleCfgLink").click(function() { $("#menuRoleCfg").click(); });
-
-$("#btnCleanRoleBinding").click(function() { cmap.cleanBox('cbRoleBinding'); $("#roleList").empty(); });
 
 $("#btnRoleBinding").click(function() {
 	var dialog = new Dialog(loadingPanel);
@@ -142,4 +155,5 @@ function loadRoleList(dialog) {
 		}
 	});
 }
+</@sec.authorize>
 </script>

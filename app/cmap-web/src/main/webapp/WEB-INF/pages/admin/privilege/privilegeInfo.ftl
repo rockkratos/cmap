@@ -65,9 +65,8 @@
 <script type="text/javascript" language="javascript">
 <@sec.authorize url="/adminPrivilege/edit/{id}" method="PUT">
 $("#btnDetailUpdate").click(function() { cmap.save('${rc.contextPath}/adminPrivilege/edit/${privilegeInfoVo.privilegeId}', 'privilegeListHint', 'Pagination', 'privilegeForm', 'cbDetailInfo'); });
+cmap.bindingSelectEvent('detail', 'methodType');
 </@sec.authorize>
 
 $("#btnDetailClose").click(function() { cmap.close('cbDetailInfo', true); });
-
-cmap.bindingSelectEvent('detail', 'methodType');
 </script>
