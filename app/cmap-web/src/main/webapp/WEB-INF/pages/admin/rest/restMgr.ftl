@@ -83,11 +83,12 @@
             </p>
             <p>
                 <label>餐馆大LOGO</label>
-                <input name="restBigLogo" type="file" class="text-input w200" />
+                <input type="file" class="img-file" onchange="document.getElementById('ttt').value = this.value" />
+                <input name="restBigLogo" type="text" class="img-txt w200" id="ttt" />
             </p>
             <p>
                 <label>餐馆小LOGO</label>
-                <input name="restBigLogo" type="file" class="text-input w200" />
+                <input name="restBigLogo" type="text" class="img-txt w200" />
             </p>
             <p>
                 <label>启用/禁用*</label>

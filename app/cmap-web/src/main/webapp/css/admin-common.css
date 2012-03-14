@@ -75,6 +75,8 @@ div.bulk-actions{padding:14px 0 5px 0}
 .content-box-content p{margin-bottom:20px}
 .content-box-content input.text-input{padding:0 6px;font-size:12px;background:#FFF url(../imgs/admin/bg-form-field.gif) top left repeat-x;border:1px solid #D5D5D5;color:#333;height:27px;line-height:27px}
 
+.img-file{opacity:0;filter:alpha(opacity=0);display:inline-block; position:absolute}
+.img-txt{background:url(../imgs/admin/bg-img.gif) right no-repeat;cursor:pointer;padding:0 6px;font-size:12px;border:1px solid #D5D5D5;color:#333;height:27px;line-height:27px}
 .date-txt{background:url(../imgs/admin/bg-calendar.gif) right no-repeat;cursor:pointer;padding:0 6px;font-size:12px;border:1px solid #D5D5D5;color:#333;height:27px;line-height:27px}
 .dropdown{background:url(../imgs/admin/bg-dropdown.gif) right no-repeat;cursor:pointer;padding:0 6px;font-size:12px;border:1px solid #D5D5D5;color:#333;height:27px;line-height:27px}
 .dropdown-content{background-color:#E8E8E8;display:none;position:absolute}
