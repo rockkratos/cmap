@@ -1,4 +1,5 @@
 <#assign spring=JspTaglibs["http://www.springframework.org/tags"] />
+<#assign sec=JspTaglibs["http://www.springframework.org/security/tags"] />
 <form id="dishMgrForm">
 
 <div id="page-title">
@@ -12,6 +13,7 @@
 
 <ul class="shortcut-buttons-set clearfix">
 	
+	<@sec.authorize url="/adminDishMgr" method="POST">
     <li>
         <a id="addDishLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -20,7 +22,9 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
     
+    <@sec.authorize url="/adminDishMgr/list/{id}" method="GET">
     <li>
         <a id="queryDishLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -29,7 +33,9 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
     
+    <@sec.authorize url="/adminDishSort/{id}" method="GET">
     <li>
         <a id="dishSortLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -38,7 +44,9 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
 	
+	<@sec.authorize url="/adminMenu/menuRestMgr" method="GET">
 	<li>
         <a id="restInfoLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -47,11 +55,13 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
     
 </ul>
 
 <div id="topHint" class="hint-box dn"></div><!-- error msg wrapper -->
 
+<@sec.authorize url="/adminDishMgr" method="POST">
 <div id="cbAddDish" class="content-box dn">
 	
 	<div class="content-box-header"><h3>新增菜品</h3></div>
@@ -120,7 +130,9 @@
     </div>
     
 </div><!-- END content-box -->
+</@sec.authorize>
 
+<@sec.authorize url="/adminDishMgr/list/{id}" method="GET">
 <div id="cbQueryDish" class="content-box dn">
 	
 	<div class="content-box-header"><h3>查询条件</h3></div>
@@ -167,6 +179,7 @@
     </div>
     
 </div><!-- END content-box -->
+</@sec.authorize>
 
 <div id="dishList" class="content-box">
 		
@@ -212,20 +225,27 @@
 </form>
 
 <script type="text/javascript" language="javascript">
+<@sec.authorize url="/adminDishMgr" method="POST">
 $("#addDishLink").click(function() { cmap.triggerContentBox('cbQueryDish', 'cbAddDish'); });
-$("#queryDishLink").click(function() { cmap.triggerContentBox('cbAddDish', 'cbQueryDish'); });
-
 $("#btnAddDish").click(function() { cmap.create('dishMgrForm', '${rc.contextPath}/adminDishMgr', 'cbAddDish', 'topHint', 'Pagination'); });
 $("#btnCleanAddDish").click(function() { cmap.cleanBox('cbAddDish'); });
+cmap.bindingSelectEvent('', 'dishSort');
+</@sec.authorize>
 
+<@sec.authorize url="/adminDishMgr/list/{id}" method="GET">
+$("#queryDishLink").click(function() { cmap.triggerContentBox('cbAddDish', 'cbQueryDish'); });
 $("#btnQueryDish").click(function() { cmap.query('dishMgrForm', '${rc.contextPath}/adminDishMgr/dishCount/${restId}', 'Pagination', 'cbQueryDish'); });
 $("#btnCleanQueryDish").click(function() { cmap.cleanBox('cbQueryDish'); });
-
-cmap.bindingSelectEvent('', 'dishSort');
 cmap.bindingSelectEvent('query', 'dishSort');
+</@sec.authorize>
 
+<@sec.authorize url="/adminDishSort/{id}" method="GET">
 $("#dishSortLink").click(function() { cmap.flushMainContent('${rc.contextPath}/adminDishSort/${restId}'); });
+</@sec.authorize>
+
+<@sec.authorize url="/adminMenu/menuRestMgr" method="GET">
 $("#restInfoLink").click(function() { $("#menuRestMgr").click(); });
+</@sec.authorize>
 
 cmap.initPagination("Pagination", ${dishCount});
 function pageselectCallback(pageIndex, jq) { cmap.paging('dishMgrForm', '${rc.contextPath}/adminDishMgr/list/${restId}', pageIndex, 'dishList', 'listDishId'); }

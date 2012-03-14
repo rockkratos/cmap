@@ -234,11 +234,12 @@ $("#queryUsrLink").click(function() { cmap.triggerContentBox('cbAddUsr', 'cbQuer
 cmap.bindingSelectEvent('query', 'usrType');
 $("#btnQueryUsr").click(function() { cmap.query('usrMgrForm', '${rc.contextPath}/adminCustomerMgr/usrCount', 'Pagination', 'cbQueryUsr'); });
 $("#btnCleanQueryUsr").click(function() { cmap.cleanBox('cbQueryUsr'); });
-cmap.initPagination("Pagination", ${usrCount});
-function pageselectCallback(pageIndex, jq) { cmap.paging('usrMgrForm', '${rc.contextPath}/adminCustomerMgr', pageIndex, 'usrList', 'listUsrId'); }
 </@sec.authorize>
 
 <@sec.authorize url="/adminMenu/menuUsrMgr" method="GET">
 $("#adminUsrLink").click(function() { $("#menuUsrMgr").click(); });
 </@sec.authorize>
+
+cmap.initPagination("Pagination", ${usrCount});
+function pageselectCallback(pageIndex, jq) { cmap.paging('usrMgrForm', '${rc.contextPath}/adminCustomerMgr', pageIndex, 'usrList', 'listUsrId'); }
 </script>

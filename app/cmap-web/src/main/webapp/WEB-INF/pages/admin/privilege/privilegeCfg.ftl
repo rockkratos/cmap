@@ -231,8 +231,6 @@ $("#queryPrivilegeLink").click(function() { cmap.triggerContentBox('cbAddPrivile
 $("#btnQueryPrivilege").click(function() { cmap.query('privilegeForm', '${rc.contextPath}/adminPrivilege/privilegeCount', 'Pagination', 'cbQueryPrivilege'); });
 $("#btnCleanQueryPrivilege").click(function() { cmap.cleanBox('cbQueryPrivilege'); });
 cmap.bindingSelectEvent('query', 'methodType');
-cmap.initPagination("Pagination", ${privilegeCount});
-function pageselectCallback(pageIndex, jq) { cmap.paging('privilegeForm', '${rc.contextPath}/adminPrivilege', pageIndex, 'privilegeList', 'listPrivilegeId'); }
 </@sec.authorize>
 
 <@sec.authorize url="/adminMenu/menuRoleCfg" method="GET">
@@ -242,4 +240,7 @@ $("#roleCfgLink").click(function() { $("#menuRoleCfg").click(); });
 <@sec.authorize url="/adminMenu/menuRoleBinding" method="GET">
 $("#roleBindingLink").click(function() { $("#menuRoleBinding").click(); });
 </@sec.authorize>
+
+cmap.initPagination("Pagination", ${privilegeCount});
+function pageselectCallback(pageIndex, jq) { cmap.paging('privilegeForm', '${rc.contextPath}/adminPrivilege', pageIndex, 'privilegeList', 'listPrivilegeId'); }
 </script>

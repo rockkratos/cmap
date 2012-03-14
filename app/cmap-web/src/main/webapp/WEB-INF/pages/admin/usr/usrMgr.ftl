@@ -249,7 +249,8 @@ $("#queryUsrLink").click(function() { cmap.triggerContentBox('cbAddUsr', 'cbQuer
 cmap.bindingSelectEvent('query', 'usrType');
 $("#btnQueryUsr").click(function() { cmap.query('usrMgrForm', '${rc.contextPath}/adminUsrMgr/usrCount', 'Pagination', 'cbQueryUsr'); });
 $("#btnCleanQueryUsr").click(function() { cmap.cleanBox('cbQueryUsr'); });
+</@sec.authorize>
+
 cmap.initPagination("Pagination", ${usrCount});
 function pageselectCallback(pageIndex, jq) { cmap.paging('usrMgrForm', '${rc.contextPath}/adminUsrMgr', pageIndex, 'usrList', 'listUsrId'); }
-</@sec.authorize>
 </script>

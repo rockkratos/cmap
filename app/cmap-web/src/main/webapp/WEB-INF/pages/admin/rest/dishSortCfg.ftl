@@ -1,4 +1,5 @@
 <#assign spring=JspTaglibs["http://www.springframework.org/tags"] />
+<#assign sec=JspTaglibs["http://www.springframework.org/security/tags"] />
 <form id="dishSortCfgForm">
 
 <div id="page-title">
@@ -12,6 +13,7 @@
 
 <ul class="shortcut-buttons-set clearfix">
 	
+	<@sec.authorize url="/adminDishSort/{id}" method="POST">
     <li>
         <a id="addDishSortLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -20,7 +22,9 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
     
+    <@sec.authorize url="/adminDishMgr/{id}" method="GET">
     <li>
         <a id="dishMgrLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -29,7 +33,9 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
 	
+	<@sec.authorize url="/adminMenu/menuRestMgr" method="GET">
 	<li>
         <a id="restInfoLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -38,11 +44,13 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
     
 </ul>
 
 <div id="topHint" class="hint-box dn"></div><!-- error msg wrapper -->
 
+<@sec.authorize url="/adminDishSort/{id}" method="POST">
 <div id="cbAddDishSort" class="content-box dn">
 	
 	<div class="content-box-header"><h3>新增分类</h3></div>
@@ -84,6 +92,7 @@
     </div>
     
 </div><!-- END content-box -->
+</@sec.authorize>
 
 <div id="dishSortList" class="content-box">
 		
@@ -128,12 +137,19 @@
 </form>
 
 <script type="text/javascript" language="javascript">
+<@sec.authorize url="/adminDishMgr/{id}" method="GET">
 $("#dishMgrLink").click(function() { cmap.flushMainContent('${rc.contextPath}/adminDishMgr/${restId}'); });
-$("#restInfoLink").click(function() { $("#menuRestMgr").click(); });
-$("#addDishSortLink").click(function() { cmap.triggerContentBox('', 'cbAddDishSort'); });
+</@sec.authorize>
 
+<@sec.authorize url="/adminMenu/menuRestMgr" method="GET">
+$("#restInfoLink").click(function() { $("#menuRestMgr").click(); });
+</@sec.authorize>
+
+<@sec.authorize url="/adminDishSort/{id}" method="POST">
+$("#addDishSortLink").click(function() { cmap.triggerContentBox('', 'cbAddDishSort'); });
 $("#btnAddDishSort").click(function() {	cmap.create('dishSortCfgForm', '${rc.contextPath}/adminDishSort/${restId}', 'cbAddDishSort', 'topHint', 'Pagination'); });
 $("#btnCleanAddDishSort").click(function() { cmap.cleanBox('cbAddDishSort'); });
+</@sec.authorize>
 
 cmap.initPagination("Pagination", ${dishSortCount});
 function pageselectCallback(pageIndex, jq) { cmap.paging('dishSortCfgForm', '${rc.contextPath}/adminDishSort/list/${restId}', pageIndex, 'dishSortList', 'listDishSortId'); }

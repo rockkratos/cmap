@@ -1,4 +1,5 @@
 <#assign spring=JspTaglibs["http://www.springframework.org/tags"] />
+<#assign sec=JspTaglibs["http://www.springframework.org/security/tags"] />
 <form id="restMgrForm">
 
 <div id="page-title">
@@ -12,6 +13,7 @@
 
 <ul class="shortcut-buttons-set clearfix">
 	
+	<@sec.authorize url="/adminRestMgr" method="POST">
     <li>
         <a id="addRestLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -20,7 +22,9 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
 	
+	<@sec.authorize url="/adminRestMgr" method="GET">
 	<li>
         <a id="queryRestLink" class="shortcut-button" href="javascript:void(0);">
             <span>
@@ -29,11 +33,13 @@
             </span>
         </a>
     </li>
+    </@sec.authorize>
     
 </ul>
 
 <div id="topHint" class="hint-box dn"></div><!-- error msg wrapper -->
 
+<@sec.authorize url="/adminRestMgr" method="POST">
 <div id="cbAddRest" class="content-box dn">
 	
 	<div class="content-box-header"><h3>新增餐馆</h3></div>
@@ -76,8 +82,12 @@
                 <input name="sendingAmount" type="text" class="text-input w200" />
             </p>
             <p>
-                <label>网络打印机ID</label>
-                <input name="printerId" type="text" class="text-input w200" />
+                <label>餐馆大LOGO</label>
+                <input name="restBigLogo" type="file" class="text-input w200" />
+            </p>
+            <p>
+                <label>餐馆小LOGO</label>
+                <input name="restBigLogo" type="file" class="text-input w200" />
             </p>
             <p>
                 <label>启用/禁用*</label>
@@ -148,6 +158,10 @@
                 <input id="restEndTime" name="restEndTime" type="text" readonly="readonly" class="date-txt w200" />
             </p>
             <p>
+                <label>网络打印机ID</label>
+                <input name="printerId" type="text" class="text-input w200" />
+            </p>
+            <p>
                 <label>打印联数</label>
                 <input id="printJointNumShow" type="text" class="dropdown w200" readonly="readonly" />
 				<div id="printJointNumList" class="dropdown-content">
@@ -180,7 +194,9 @@
     </div>
     
 </div><!-- END content-box -->
+</@sec.authorize>
 
+<@sec.authorize url="/adminRestMgr" method="GET">
 <div id="cbQueryRest" class="content-box dn">
 	
 	<div class="content-box-header"><h3>查询条件</h3></div>
@@ -240,6 +256,7 @@
     </div>
     
 </div><!-- END content-box -->
+</@sec.authorize>
 
 <div id="restList" class="content-box">
 		
@@ -266,8 +283,12 @@
             	<td colspan="6" class="tab-btm pb10">
 					
 					<div class="bulk-actions fl">
+						<@sec.authorize url="/adminDishSort/{id}" method="GET">
 						<a id="btnDishSort" class="button" href="javascript:void(0);">菜品分类</a>
+						</@sec.authorize>
+						<@sec.authorize url="/adminDishMgr/{id}" method="GET">
 						<a id="btnDishMgr" class="button" href="javascript:void(0);">菜品管理</a>
+						</@sec.authorize>
 						<a class="button" href="javascript:void(0);">批量删除</a>
 					</div>
 					
@@ -288,38 +309,43 @@
 </form>
 
 <script type="text/javascript" language="javascript">
+<@sec.authorize url="/adminDishSort/{id}" method="GET">
 $("#btnDishSort").click(function() {
 	if (checkChooseRest()) {
 		var restId = $("input[name='listRestId']:checked").val();
 		cmap.flushMainContent('${rc.contextPath}/adminDishSort/' + restId);
 	}
 });
+</@sec.authorize>
 
+<@sec.authorize url="/adminDishMgr/{id}" method="GET">
 $("#btnDishMgr").click(function() {
 	if (checkChooseRest()) {
 		var restId = $("input[name='listRestId']:checked").val();
 		cmap.flushMainContent('${rc.contextPath}/adminDishMgr/' + restId);
 	}
 });
+</@sec.authorize>
 
+<@sec.authorize url="/adminRestMgr" method="POST">
 $("#addRestLink").click(function() { cmap.triggerContentBox('cbQueryRest', 'cbAddRest'); });
-$("#queryRestLink").click(function() { cmap.triggerContentBox('cbAddRest', 'cbQueryRest'); });
-
 cmap.bindingSelectEvent('', 'city');
 cmap.bindingSelectEvent('', 'orderTransType');
 cmap.bindingSelectEvent('', 'cookingType');
-cmap.bindingSelectEvent('query', 'cookingType');
-cmap.bindingSelectEvent('query', 'city');
 cmap.bindingSelectEvent('', 'printJointNum');
-
 $("#restStartTime").focus(function() { WdatePicker(); });
 $("#restEndTime").focus(function() { WdatePicker(); });
-
 $("#btnAddRest").click(function() { cmap.create('restMgrForm', '${rc.contextPath}/adminRestMgr', 'cbAddRest', 'topHint', 'Pagination'); });
 $("#btnCleanAddRest").click(function() { cmap.cleanBox('cbAddRest'); });
+</@sec.authorize>
 
+<@sec.authorize url="/adminRestMgr" method="GET">
+$("#queryRestLink").click(function() { cmap.triggerContentBox('cbAddRest', 'cbQueryRest'); });
+cmap.bindingSelectEvent('query', 'cookingType');
+cmap.bindingSelectEvent('query', 'city');
 $("#btnQueryRest").click(function() { cmap.query('restMgrForm', '${rc.contextPath}/adminRestMgr/restCount', 'Pagination', 'cbQueryRest'); });
 $("#btnCleanQueryRest").click(function() { cmap.cleanBox('cbQueryRest'); });
+</@sec.authorize>
 
 cmap.initPagination("Pagination", ${restCount});
 function pageselectCallback(pageIndex, jq) { cmap.paging('restMgrForm', '${rc.contextPath}/adminRestMgr', pageIndex, 'restList', 'listRestId'); }
