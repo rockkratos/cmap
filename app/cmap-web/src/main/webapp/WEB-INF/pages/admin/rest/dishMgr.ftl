@@ -45,6 +45,15 @@
         </a>
     </li>
     </@sec.authorize>
+    
+    <li>
+        <a id="restLogoLink" class="shortcut-button" href="javascript:void(0);">
+            <span>
+                <img src="${rc.contextPath}/imgs/admin/icons/rest-logo.png" alt="icon" /><br />
+				餐馆LOGO
+            </span>
+        </a>
+    </li>
 	
 	<@sec.authorize url="/adminMenu/menuRestMgr" method="GET">
 	<li>
@@ -204,9 +213,7 @@
             
             	<td colspan="5" class="tab-btm pb10">
 					
-					<div class="bulk-actions fl">
-						<a class="button" href="javascript:void(0);">批量删除</a>
-					</div>
+					<div class="bulk-actions fl">&nbsp;</div>
 					
 					<div id="Pagination" class="pagination fr"></div>
 					
@@ -246,6 +253,8 @@ $("#dishSortLink").click(function() { cmap.flushMainContent('${rc.contextPath}/a
 <@sec.authorize url="/adminMenu/menuRestMgr" method="GET">
 $("#restInfoLink").click(function() { $("#menuRestMgr").click(); });
 </@sec.authorize>
+
+$("#restLogoLink").click(function() { cmap.flushMainContent('${rc.contextPath}/adminRestMgr/restlogo/${restId}'); });
 
 cmap.initPagination("Pagination", ${dishCount});
 function pageselectCallback(pageIndex, jq) { cmap.paging('dishMgrForm', '${rc.contextPath}/adminDishMgr/list/${restId}', pageIndex, 'dishList', 'listDishId'); }

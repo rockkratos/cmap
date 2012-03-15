@@ -12,6 +12,7 @@ import com.fc.cmapweb.dao.rest.IDishSortDao;
 import com.fc.cmapweb.dao.rest.IRestDao;
 import com.fc.cmapweb.mgr.rest.IRestMgr;
 import com.fc.cmapweb.utils.DateUtil;
+import com.fc.cmapweb.utils.FileUtil;
 import com.fc.cmapweb.utils.PaginationUtil;
 import com.fc.cmapweb.utils.ReflectUtil;
 import com.fc.cmapweb.vo.DishSortVo;
@@ -81,6 +82,19 @@ public class RestMgrImpl implements IRestMgr {
 	public List<RestInfoVo> queryRest(Map<String, Object> queryParams, int currentPage, int pageSize) {
 		
 		List<RestInfoVo> back = restDao.getRest(queryParams, currentPage, pageSize);
+		
+		if (back.size() > 0) {
+			
+			for (RestInfoVo tmpRest : back) {
+				
+				String restId = tmpRest.getRestId();
+				int logoFlag = FileUtil.checkLogoExist(restId);
+				tmpRest.setLogoFlag(logoFlag);
+				
+			}
+			
+		}
+		
 		PaginationUtil.fillList(back, RestInfoVo.class, pageSize);
 		
 		return back;

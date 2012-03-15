@@ -180,7 +180,6 @@
 						<@sec.authorize url="/adminDeliveryAddr/{id}" method="GET">
 						<a id="btnDeliveryAddr" class="button" href="javascript:void(0);">送餐地址</a>
 						</@sec.authorize>
-						<a class="button" href="javascript:void(0);">批量删除</a>
 					</div>
 					
 					<div id="Pagination" class="pagination fr"></div>

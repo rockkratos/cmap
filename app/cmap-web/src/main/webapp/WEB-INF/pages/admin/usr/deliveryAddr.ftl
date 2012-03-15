@@ -111,9 +111,7 @@
             
             	<td colspan="4" class="tab-btm pb10">
 					
-					<div class="bulk-actions fl">
-						<a class="button" href="javascript:void(0);">批量删除</a>
-					</div>
+					<div class="bulk-actions fl">&nbsp;</div>
 					
 					<div id="Pagination" class="pagination fr"></div>
 					

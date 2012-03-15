@@ -34,6 +34,15 @@
         </a>
     </li>
     </@sec.authorize>
+    
+    <li>
+        <a id="restLogoLink" class="shortcut-button" href="javascript:void(0);">
+            <span>
+                <img src="${rc.contextPath}/imgs/admin/icons/rest-logo.png" alt="icon" /><br />
+				餐馆LOGO
+            </span>
+        </a>
+    </li>
 	
 	<@sec.authorize url="/adminMenu/menuRestMgr" method="GET">
 	<li>
@@ -116,9 +125,7 @@
             
             	<td colspan="4" class="tab-btm pb10">
 					
-					<div class="bulk-actions fl">
-						<a class="button" href="javascript:void(0);">批量删除</a>
-					</div>
+					<div class="bulk-actions fl">&nbsp;</div>
 					
 					<div id="Pagination" class="pagination fr"></div>
 					
@@ -150,6 +157,8 @@ $("#addDishSortLink").click(function() { cmap.triggerContentBox('', 'cbAddDishSo
 $("#btnAddDishSort").click(function() {	cmap.create('dishSortCfgForm', '${rc.contextPath}/adminDishSort/${restId}', 'cbAddDishSort', 'topHint', 'Pagination'); });
 $("#btnCleanAddDishSort").click(function() { cmap.cleanBox('cbAddDishSort'); });
 </@sec.authorize>
+
+$("#restLogoLink").click(function() { cmap.flushMainContent('${rc.contextPath}/adminRestMgr/restlogo/${restId}'); });
 
 cmap.initPagination("Pagination", ${dishSortCount});
 function pageselectCallback(pageIndex, jq) { cmap.paging('dishSortCfgForm', '${rc.contextPath}/adminDishSort/list/${restId}', pageIndex, 'dishSortList', 'listDishSortId'); }

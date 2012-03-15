@@ -267,12 +267,13 @@
 				<th>联系电话</th>
 				<th>生效时间</th>
 				<th>失效时间</th>
+				<th>LOGO</th>
 				<th>操作</th>
             </tr>
             
             <tr class="tab-bg-white">
             
-            	<td colspan="6" class="tab-btm pb10">
+            	<td colspan="7" class="tab-btm pb10">
 					
 					<div class="bulk-actions fl">
 						<@sec.authorize url="/adminDishSort/{id}" method="GET">
@@ -281,7 +282,7 @@
 						<@sec.authorize url="/adminDishMgr/{id}" method="GET">
 						<a id="btnDishMgr" class="button" href="javascript:void(0);">菜品管理</a>
 						</@sec.authorize>
-						<a class="button" href="javascript:void(0);">批量删除</a>
+						<a id="btnRestLogo" class="button" href="javascript:void(0);">餐馆LOGO</a>
 					</div>
 					
 					<div id="Pagination" class="pagination fr"></div>
@@ -327,9 +328,7 @@ cmap.bindingSelectEvent('', 'cookingType');
 cmap.bindingSelectEvent('', 'printJointNum');
 $("#restStartTime").focus(function() { WdatePicker(); });
 $("#restEndTime").focus(function() { WdatePicker(); });
-
 $("#btnAddRest").click(function() { cmap.create('restMgrForm', '${rc.contextPath}/adminRestMgr', 'cbAddRest', 'topHint', 'Pagination'); });
-
 $("#btnCleanAddRest").click(function() { cmap.cleanBox('cbAddRest'); });
 </@sec.authorize>
 
@@ -356,4 +355,11 @@ function checkChooseRest() {
 		return true;
 	}
 }
+
+$("#btnRestLogo").click(function() {
+	if (checkChooseRest()) {
+		var restId = $("input[name='listRestId']:checked").val();
+		cmap.flushMainContent('${rc.contextPath}/adminRestMgr/restlogo/' + restId);
+	}	
+});
 </script>

@@ -132,6 +132,14 @@ public class RestMgrCtrl {
 		
 	}
 	
+	@RequestMapping(value = "/restlogo/{restId}", method = RequestMethod.GET)
+	public String showRestLogoPage(@PathVariable String restId, Model model) {
+		
+		model.addAttribute("restId", restId);
+		return "/admin/rest/restLogo";
+		
+	}
+	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

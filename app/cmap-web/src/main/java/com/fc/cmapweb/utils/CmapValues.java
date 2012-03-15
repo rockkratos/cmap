@@ -2,6 +2,10 @@ package com.fc.cmapweb.utils;
 
 public class CmapValues {
 	
+	public static final int REST_LOGO_ALL = 3;
+	public static final int REST_LOGO_BIG = 2;
+	public static final int REST_LOGO_SMALL = 1;
+	
 	public static final boolean PRIVILEGE_CHECK = Boolean.valueOf(PropUtil.getPolicy("privilege.check"));
 	
 	public static final String PREFIX_QUERY = "query";
