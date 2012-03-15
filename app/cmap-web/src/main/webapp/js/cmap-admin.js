@@ -161,11 +161,8 @@ var cmap = {
 	
 	cleanBox: function (boxId) {
 		$("#" + boxId + " input[type='text']").val('');
-		//$($("#" + boxId + " input[type='radio']").get(0)).attr("checked", true);
 		$("#" + boxId + " input[type='radio'][value='true']").attr("checked", true);
-		
 		$("#" + boxId + " input[type='hidden']").val('');
-		
 		$("#" + boxId + " input[type='checkbox']").attr("checked", false);
 		$("#" + boxId + " input[type='password']").val('');
 	}, 

@@ -82,13 +82,8 @@
                 <input name="sendingAmount" type="text" class="text-input w200" />
             </p>
             <p>
-                <label>餐馆大LOGO</label>
-                <input type="file" class="img-file" onchange="document.getElementById('ttt').value = this.value" />
-                <input name="restBigLogo" type="text" class="img-txt w200" id="ttt" />
-            </p>
-            <p>
-                <label>餐馆小LOGO</label>
-                <input name="restBigLogo" type="text" class="img-txt w200" />
+                <label>网络打印机ID</label>
+                <input name="printerId" type="text" class="text-input w200" />
             </p>
             <p>
                 <label>启用/禁用*</label>
@@ -157,10 +152,6 @@
             <p>
                 <label>失效时间*</label>
                 <input id="restEndTime" name="restEndTime" type="text" readonly="readonly" class="date-txt w200" />
-            </p>
-            <p>
-                <label>网络打印机ID</label>
-                <input name="printerId" type="text" class="text-input w200" />
             </p>
             <p>
                 <label>打印联数</label>
@@ -336,7 +327,9 @@ cmap.bindingSelectEvent('', 'cookingType');
 cmap.bindingSelectEvent('', 'printJointNum');
 $("#restStartTime").focus(function() { WdatePicker(); });
 $("#restEndTime").focus(function() { WdatePicker(); });
+
 $("#btnAddRest").click(function() { cmap.create('restMgrForm', '${rc.contextPath}/adminRestMgr', 'cbAddRest', 'topHint', 'Pagination'); });
+
 $("#btnCleanAddRest").click(function() { cmap.cleanBox('cbAddRest'); });
 </@sec.authorize>
 
