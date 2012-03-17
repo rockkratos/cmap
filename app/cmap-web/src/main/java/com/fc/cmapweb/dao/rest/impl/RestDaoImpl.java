@@ -16,6 +16,26 @@ import com.fc.cmapweb.vo.RestInfoVo;
 public class RestDaoImpl extends CmapBaseDao implements IRestDao {
 	
 	@Override
+	public RestInfoVo updateRestSmallLogoName(String restId, String logoName) {
+		
+		RestInfoVo tmp = getRestInfo(restId);
+		tmp.setSmallLogoName(logoName);
+		
+		return tmp;
+		
+	}
+	
+	@Override
+	public RestInfoVo updateRestBigLogoName(String restId, String logoName) {
+		
+		RestInfoVo tmp = getRestInfo(restId);
+		tmp.setBigLogoName(logoName);
+		
+		return tmp;
+		
+	}
+	
+	@Override
 	public RestInfoVo updateRest(RestInfoVo restInfoVo) {
 		em.merge(restInfoVo);
 		return restInfoVo;

@@ -1,5 +1,7 @@
 package com.fc.cmapweb.utils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -11,6 +13,20 @@ import org.apache.commons.codec.digest.DigestUtils;
 import com.alibaba.fastjson.JSON;
 
 public class StrUtil {
+	
+	public static String getEncodeStr(String str) {
+		
+		String back = "";
+		
+		try {
+			back = URLEncoder.encode(str, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		return back;
+		
+	}
 	
 	public static String getLoginNameByEmail(String email) {
 		return email.substring(0, email.indexOf("@"));

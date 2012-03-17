@@ -411,6 +411,28 @@ var cmap = {
 	
 	redirectToLogin: function () {
 		window.location.href = "/cmapweb/admin/login";
+	}, 
+	
+	uploadPic: function(reqUrl, fileInputId, hintBoxId, resetBtnId, previewId) {
+		var dialog = new Dialog(loadingPanel);
+		dialog.show();
+		$.ajaxFileUpload({
+			url: reqUrl, 
+			secureuri: false, 
+			fileElementId: fileInputId, 
+			dataType: 'text', 
+			success: function(data, status) {
+				dialog.close();
+				var msgType = $.evalJSON(data).hintType;
+				var msgContent = $.evalJSON(data).hintMsg;
+				var picPath=$.evalJSON(data).picPath;
+				if ("success" == msgType) {
+					$("#" + resetBtnId).click();
+				}
+				$("#" + previewId).attr("src", picPath);
+				cmap.showHintMsg(hintBoxId, msgType, decodeURIComponent(msgContent));
+			}
+		});
 	}
 	
 };

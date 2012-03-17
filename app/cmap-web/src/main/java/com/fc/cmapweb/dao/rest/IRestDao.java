@@ -7,6 +7,8 @@ import com.fc.cmapweb.vo.RestInfoVo;
 
 public interface IRestDao {
 	
+	public RestInfoVo updateRestSmallLogoName(String restId, String logoName);
+	public RestInfoVo updateRestBigLogoName(String restId, String logoName);
 	public RestInfoVo updateRest(RestInfoVo restInfoVo);
 	
 	public boolean switchEnableDisable(String restId);

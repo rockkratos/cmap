@@ -135,6 +135,8 @@ CREATE TABLE rest_info (
 	city_id SMALLINT NOT NULL, 
 	printer_id VARCHAR(16), 
 	print_joint_num VARCHAR(1), 
+	big_logo_name VARCHAR(64), 
+	small_logo_name VARCHAR(64), 
 	CONSTRAINT pk_rest_info PRIMARY KEY (rest_id)
 );
 

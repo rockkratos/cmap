@@ -105,6 +105,10 @@ INSERT INTO privilege_info VALUES('fb2dd6f336ae49cea5009c2e09f3ae9a', 'AUTH_DISH
 INSERT INTO privilege_info VALUES('f60481b900b64790b5bf47e9ff93e8bc', 'AUTH_DISH_QUERY', '/adminDishMgr/list/{id}', 1, true, '查询菜品');
 INSERT INTO privilege_info VALUES('3f99d4aa4e71449dbc9c2cf676ac0b12', 'AUTH_DISH_SHOW', '/adminDishMgr/{id}', 1, true, '显示菜品');
 
+INSERT INTO privilege_info VALUES('9efc4b2e430f4655b9ff31dcaa053f3d', 'AUTH_REST_LOGO_SHOW', '/adminRestMgr/restlogo/{id}', 1, true, '显示餐馆LOGO');
+INSERT INTO privilege_info VALUES('d039ae5487164aabb5bbd4d5ac69f5c3', 'AUTH_BIG_LOGO_UPLOAD', '/adminRestMgr/upload/biglogo/{id}', 2, true, '上传餐馆大LOGO');
+INSERT INTO privilege_info VALUES('32556acdb4d94712bcd9d8fcd8758d17', 'AUTH_SMALL_LOGO_UPLOAD', '/adminRestMgr/upload/smalllogo/{id}', 2, true, '上传餐馆小LOGO');
+
 INSERT INTO role_info VALUES('7a2d19da508943f2a3b253385e2103b0', 'ROLE_SUPER_ADMIN', true, '超级管理员');
 
 INSERT INTO role_privilege VALUES('dc220e67de9445708f0f11d917bef7c3', '02de2b5a9e424499bd2e834f95457ab4', '7a2d19da508943f2a3b253385e2103b0');
@@ -165,6 +169,9 @@ INSERT INTO role_privilege VALUES('fba9c1a20ced4399949c1dc6b3d1175b', 'f87557a6d
 INSERT INTO role_privilege VALUES('b7edd30643e74ed9875ba58a8bb20ff7', 'f8f377957dd249f7a72d0be49b2215d4', '7a2d19da508943f2a3b253385e2103b0');
 INSERT INTO role_privilege VALUES('44f48fa90c2b44fcb862d1a6aac089ca', 'fb2dd6f336ae49cea5009c2e09f3ae9a', '7a2d19da508943f2a3b253385e2103b0');
 INSERT INTO role_privilege VALUES('caac452bab624c40b4b9f4789cf480f6', 'fd27d3a437464fa7bd343f25b52e397a', '7a2d19da508943f2a3b253385e2103b0');
+INSERT INTO role_privilege VALUES('0405995bd0d043868b267c7d5d277f48', '9efc4b2e430f4655b9ff31dcaa053f3d', '7a2d19da508943f2a3b253385e2103b0');
+INSERT INTO role_privilege VALUES('59791137c82d4b57bbe78be168e18da1', 'd039ae5487164aabb5bbd4d5ac69f5c3', '7a2d19da508943f2a3b253385e2103b0');
+INSERT INTO role_privilege VALUES('11cf4acfefc745f7ba2c54ed21f6a6a3', '32556acdb4d94712bcd9d8fcd8758d17', '7a2d19da508943f2a3b253385e2103b0');
 
 INSERT INTO usr_info VALUES('8a6dd9833605f2e9013605f2ed960000', 'admin', '6ecd3dd03b8905dd7bda7811ee097350f3230a9965f0aac9a06d6a8cdf4fce6c', null, null, '', '', now(), 0, true, 1, null, null);
 

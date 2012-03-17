@@ -13,11 +13,12 @@
     <td>${tmpRest.restStartTime?string('yyyy-MM-dd')}</td>
     <td>${tmpRest.restEndTime?string('yyyy-MM-dd')}</td>
     <td>
-    	<#if tmpRest.logoFlag == 3>
+    	<#if (tmpRest.bigLogoName??) && (tmpRest.smallLogoName??)>
     	全
-    	<#elseif tmpRest.logoFlag == 2>
+    	<#elseif tmpRest.bigLogoName??>
     	大
-    	<#elseif tmpRest.logoFlag == 1>
+    	<#elseif tmpRest.smallLogoName??>
+    	小
     	<#else>
     	默认
     	</#if>

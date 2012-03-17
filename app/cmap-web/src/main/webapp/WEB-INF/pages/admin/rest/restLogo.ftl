@@ -56,40 +56,46 @@
     <div class="content-box-content clearfix">
     	
         <div class="column-left">
+        	<p>
+        		<label>大LOGO预览</label>
+        		<#if restInfoVo.bigLogoName??>
+        		<img id="bigLogo" width="118" height="118" src="${rc.contextPath}/imgs/restlogo/${restInfoVo.bigLogoName}" />
+        		<#else>
+        		<img id="bigLogo" width="118" height="118" src="${rc.contextPath}/imgs/restlogo/logob.gif" />
+        		</#if>
+        	</p>
             <p>
-                <label>餐馆大LOGO</label>
-                <input name="bigLogoPath" type="file" class="img-file" />
-                <input id="restBigLogo" type="text" class="img-txt w200" readonly="readonly" />
+                <label>大LOGO上传</label>
+                <input id="bigLogoFile" name="bigLogoFile" type="file" />
             </p>
             <p>
-                <label>餐馆小LOGO</label>
-                <input name="smallLogoPath" type="file" class="img-file" />
-                <input id="restSmallLogo" type="text" class="img-txt w200" readonly="readonly" />
+            	<a id="btnBigLogo" href="javascript:void(0);" class="button">上传大LOGO</a>
             </p>
         </div>
         
         <div class="column-right">
         	<p>
-        		<label>大LOGO预览</label>
-        		<img id="bigLogo" src="${rc.contextPath}/imgs/restlogo/logob.gif" />
+        		<label>小LOGO预览</label>
+        		<#if restInfoVo.smallLogoName??>
+        		<img id="smallLogo" width="118" height="118" src="${rc.contextPath}/imgs/restlogo/${restInfoVo.smallLogoName}" />
+        		<#else>
+        		<img id="smallLogo" width="118" height="118" src="${rc.contextPath}/imgs/restlogo/logos.gif" />
+        		</#if>
         	</p>
         	<p>
-        		<label>小LOGO预览</label>
-        		<img id="smallLogo" src="${rc.contextPath}/imgs/restlogo/logos.gif" />
-        	</p>
-        </div>
-        
-        <div class="cb"></div>
-        
-        <div>
+                <label>小LOGO上传</label>
+                <input id="smallLogoFile" name="smallLogoFile" type="file" />
+            </p>
             <p>
-                <a id="btnRestLogo" href="javascript:void(0);" class="button">上 传</a>
+            	<a id="btnSmallLogo" href="javascript:void(0);" class="button">上传小LOGO</a>
             </p>
         </div>
         
     </div>
     
 </div><!-- END content-box -->
+
+<input id="resetBtn" type="reset" class="dn" />
 
 </form>
 
@@ -105,4 +111,7 @@ $("#dishMgrLink").click(function() { cmap.flushMainContent('${rc.contextPath}/ad
 <@sec.authorize url="/adminMenu/menuRestMgr" method="GET">
 $("#restInfoLink").click(function() { $("#menuRestMgr").click(); });
 </@sec.authorize>
+
+$("#btnBigLogo").click(function() { cmap.uploadPic('${rc.contextPath}/adminRestMgr/upload/biglogo/${restId}', 'bigLogoFile', 'topHint', 'resetBtn', 'bigLogo') });
+$("#btnSmallLogo").click(function() { cmap.uploadPic('${rc.contextPath}/adminRestMgr/upload/smalllogo/${restId}', 'smallLogoFile', 'topHint', 'resetBtn', 'smallLogo') });
 </script>
