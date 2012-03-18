@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -94,6 +95,9 @@ public class RestInfoVo implements Serializable {
 	
 	@Column(name = "SMALL_LOGO_NAME")
 	private String smallLogoName;
+	
+	@Transient
+	private int restStatus;
 	
 	public String getRestId() {
 		return restId;
@@ -277,6 +281,14 @@ public class RestInfoVo implements Serializable {
 
 	public void setSmallLogoName(String smallLogoName) {
 		this.smallLogoName = smallLogoName;
+	}
+
+	public int getRestStatus() {
+		return restStatus;
+	}
+
+	public void setRestStatus(int restStatus) {
+		this.restStatus = restStatus;
 	}
 	
 }

@@ -16,11 +16,11 @@
 	    </p>
 	    <p>
 	        <label>餐馆经度*</label>
-	        <input name="detailRestLng" type="text" class="text-input w200" value="${restInfoVo.restLng}" />
+	        <input name="detailRestLng" type="text" class="text-input w200" value="${restInfoVo.restLng?string("##0.######")}" />
 	    </p>
 	    <p>
 	        <label>餐馆纬度*</label>
-	        <input name="detailRestLat" type="text" class="text-input w200" value="${restInfoVo.restLat}" />
+	        <input name="detailRestLat" type="text" class="text-input w200" value="${restInfoVo.restLat?string("##0.######")}" />
 	    </p>
 	    <p>
 	        <label>送餐起始时间*</label>

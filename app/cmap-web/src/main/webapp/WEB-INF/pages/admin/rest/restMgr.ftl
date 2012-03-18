@@ -136,11 +136,12 @@
 					<ul>
 						<li><a href="javascript:void(0);" value="1">中餐</a></li>
 						<li><a href="javascript:void(0);" value="2">西餐</a></li>
-						<li><a href="javascript:void(0);" value="3">快餐</a></li>
+						<li><a href="javascript:void(0);" value="3">韩式料理</a></li>
 						<li><a href="javascript:void(0);" value="4">日式料理</a></li>
-						<li><a href="javascript:void(0);" value="5">韩式料理</a></li>
-						<li><a href="javascript:void(0);" value="6">清真</a></li>
+						<li><a href="javascript:void(0);" value="5">清真</a></li>
+						<li><a href="javascript:void(0);" value="6">南亚菜</a></li>
 						<li><a href="javascript:void(0);" value="7">零食/饮料</a></li>
+						<li><a href="javascript:void(0);" value="8">快餐</a></li>
 					</ul>
 				</div>
                 <input name="cookingTypeVo.cookingTypeId" id="cookingTypeVal" type="hidden" />
@@ -220,11 +221,12 @@
 					<ul>
 						<li><a href="javascript:void(0);" value="1">中餐</a></li>
 						<li><a href="javascript:void(0);" value="2">西餐</a></li>
-						<li><a href="javascript:void(0);" value="3">快餐</a></li>
+						<li><a href="javascript:void(0);" value="3">韩式料理</a></li>
 						<li><a href="javascript:void(0);" value="4">日式料理</a></li>
-						<li><a href="javascript:void(0);" value="5">韩式料理</a></li>
-						<li><a href="javascript:void(0);" value="6">清真</a></li>
+						<li><a href="javascript:void(0);" value="5">清真</a></li>
+						<li><a href="javascript:void(0);" value="6">南亚菜</a></li>
 						<li><a href="javascript:void(0);" value="7">零食/饮料</a></li>
+						<li><a href="javascript:void(0);" value="8">快餐</a></li>
 					</ul>
 				</div>
                 <input name="queryCookingTypeVo.cookingTypeId" id="queryCookingTypeVal" type="hidden" />
@@ -282,7 +284,9 @@
 						<@sec.authorize url="/adminDishMgr/{id}" method="GET">
 						<a id="btnDishMgr" class="button" href="javascript:void(0);">菜品管理</a>
 						</@sec.authorize>
+						<@sec.authorize url="/adminRestMgr/restlogo/{id}" method="GET">
 						<a id="btnRestLogo" class="button" href="javascript:void(0);">餐馆LOGO</a>
+						</@sec.authorize>
 					</div>
 					
 					<div id="Pagination" class="pagination fr"></div>
@@ -317,6 +321,15 @@ $("#btnDishMgr").click(function() {
 		var restId = $("input[name='listRestId']:checked").val();
 		cmap.flushMainContent('${rc.contextPath}/adminDishMgr/' + restId);
 	}
+});
+</@sec.authorize>
+
+<@sec.authorize url="/adminRestMgr/restlogo/{id}" method="GET">
+$("#btnRestLogo").click(function() {
+	if (checkChooseRest()) {
+		var restId = $("input[name='listRestId']:checked").val();
+		cmap.flushMainContent('${rc.contextPath}/adminRestMgr/restlogo/' + restId);
+	}	
 });
 </@sec.authorize>
 
@@ -355,11 +368,4 @@ function checkChooseRest() {
 		return true;
 	}
 }
-
-$("#btnRestLogo").click(function() {
-	if (checkChooseRest()) {
-		var restId = $("input[name='listRestId']:checked").val();
-		cmap.flushMainContent('${rc.contextPath}/adminRestMgr/restlogo/' + restId);
-	}	
-});
 </script>

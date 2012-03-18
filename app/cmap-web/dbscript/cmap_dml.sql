@@ -18,12 +18,12 @@ INSERT INTO order_trans_type VALUES(5, 'PRINTER', '打印机');
 
 INSERT INTO cooking_type VALUES(1, '中餐', true);
 INSERT INTO cooking_type VALUES(2, '西餐', true);
-INSERT INTO cooking_type VALUES(3, '快餐', true);
+INSERT INTO cooking_type VALUES(3, '韩式料理', true);
 INSERT INTO cooking_type VALUES(4, '日式料理', true);
-INSERT INTO cooking_type VALUES(5, '韩式料理', true);
-INSERT INTO cooking_type VALUES(6, '清真', true);
+INSERT INTO cooking_type VALUES(5, '清真', true);
+INSERT INTO cooking_type VALUES(6, '南亚菜', true);
 INSERT INTO cooking_type VALUES(7, '零食/饮料', true);
-INSERT INTO cooking_type VALUES(8, '随便吃点', true);
+INSERT INTO cooking_type VALUES(8, '快餐', true);
 
 --INSERT INTO addr_type VALUES(1, '楼');
 --INSERT INTO addr_type VALUES(2, '小区');

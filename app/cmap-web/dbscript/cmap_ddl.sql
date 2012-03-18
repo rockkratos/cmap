@@ -137,6 +137,7 @@ CREATE TABLE rest_info (
 	print_joint_num VARCHAR(1), 
 	big_logo_name VARCHAR(64), 
 	small_logo_name VARCHAR(64), 
+	oa_id VARCHAR(32), 
 	CONSTRAINT pk_rest_info PRIMARY KEY (rest_id)
 );
 

@@ -2,6 +2,10 @@ package com.fc.cmapweb.utils;
 
 public class CmapValues {
 	
+	public static final int REST_FAR_AWAY_HALF_KM = 1;
+	public static final int REST_FAR_AWAY_1KM = 2;
+	public static final int REST_FAR_AWAY_2KM = 3;
+	
 	public static final int REST_LOGO_ALL = 3;
 	public static final int REST_LOGO_BIG = 2;
 	public static final int REST_LOGO_SMALL = 1;

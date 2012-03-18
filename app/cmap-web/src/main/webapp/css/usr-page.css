@@ -1,51 +1,50 @@
-div.cmn-wrapper{border:1px solid #CCC;width:918px;background-color:#FFF}
+div.cmn-wrapper{border:1px solid #CCC;width:720px;background-color:#FFF}
+div.idx-wrapper{padding:55px 119px}
+div.cmn-wrapper span.lbl{width:82px;height:19px;background:url(../imgs/usr/bg-gif.gif);display:inline-block}
+div.cmn-wrapper span.eat-what{background-position:5px -376px}
+div.cmn-wrapper span.where-are-u{height:40px;background-position:5px -397px}
 
-div#map-area{width:393px;height:393px;border:1px solid #C5C5C5;background:#C5C5C5 url(../imgs/usr/bg-jpg.jpg) no-repeat 0 0;float:left}
-div#search-area{float:right;width:503px;height:375px;padding:20px 0 0 0}
+div#map-wrapper{margin-top:14px;width:100%;height:594px;position:relative}
+div#map-container{width:100%;height:100%}
+div#close-map{position:absolute;z-index:9;width:100%}
+div#close-map a{background:url(../imgs/usr/bg-gif.gif) 0 -490px;display:block;height:45px;width:45px;float:right}
+div#close-map a:hover{background-position:0 -535px}
 
-ul#list-dinner-sort{width:503px}
-ul#list-dinner-sort li{float:left}
-ul#list-dinner-sort li.dinner-narrow{width:155px;height:47px;margin-bottom:20px}
-ul#list-dinner-sort li.dinner-wide{width:242px;height:47px;margin-bottom:30px}
-ul#list-dinner-sort a{font-size:16px;font-weight:bold;color:#000;display:block}
-ul#list-dinner-sort a:hover{text-decoration:none}
-li.dinner-narrow a{width:155px;height:47px;line-height:47px;background:url(../imgs/usr/bg-jpg.jpg) no-repeat}
-li.dinner-narrow a#dinner-zc{background-position:0 -394px;padding-left:88px;width:67px}
-li.dinner-narrow a#dinner-zc:hover{background-position:0 -441px}
-li.dinner-narrow a#dinner-zc.choose{background-position:0 -488px}
-li.dinner-narrow a#dinner-xc{background-position:0 -535px;padding-left:93px;width:62px}
-li.dinner-narrow a#dinner-xc:hover{background-position:0 -582px}
-li.dinner-narrow a#dinner-xc.choose{background-position:0 -629px}
-li.dinner-narrow a#dinner-kc{background-position:0 -676px;padding-left:99px;width:56px}
-li.dinner-narrow a#dinner-kc:hover{background-position:0 -723px}
-li.dinner-narrow a#dinner-kc.choose{background-position:0 -770px}
-li.dinner-narrow a#dinner-rl{background-position:0 -817px;padding-left:71px;width:84px}
-li.dinner-narrow a#dinner-rl:hover{background-position:0 -864px}
-li.dinner-narrow a#dinner-rl.choose{background-position:0 -911px}
-li.dinner-narrow a#dinner-hl{background-position:0 -958px;padding-left:75px;width:80px}
-li.dinner-narrow a#dinner-hl:hover{background-position:0 -1005px}
-li.dinner-narrow a#dinner-hl.choose{background-position:0 -1052px}
-li.dinner-narrow a#dinner-nyc{background-position:0 -1099px;padding-left:82px;width:73px}
-li.dinner-narrow a#dinner-nyc:hover{background-position:0 -1146px}
-li.dinner-narrow a#dinner-nyc.choose{background-position:0 -1193px}
+ul.cook-type-list li{float:left;background:url(../imgs/usr/cook-type.gif) no-repeat;margin-bottom:45px}
+ul.cook-type-list a{display:block;width:74px;height:74px;cursor:pointer;text-align:center;line-height:30px;border:1px solid #ccc;margin:2px}
+ul.cook-type-list a:hover{border:2px solid #d79660;text-decoration:none;margin:1px}
+ul.cook-type-list  li.current a{border:2px solid #CD3500;font-weight:bold;background:url(../imgs/usr/red-tick.gif) 55px 56px no-repeat;margin:1px}
+ul.cook-type-list li.casual-food{background-position:-120px -237px}
+ul.cook-type-list li.chinese-food{background-position:4px 34px}
+ul.cook-type-list li.west-food{background-position:4px -50px}
+ul.cook-type-list li.korea-food{background-position:-92px 35px}
+ul.cook-type-list li.japan-food{background-position:-92px -52px}
+ul.cook-type-list li.islamic-food{background-position:10px -134px}
+ul.cook-type-list li.south-asia-food{background-position:-6px -318px}
+ul.cook-type-list li.sock-food{background-position:-94px -135px}
+ul.cook-type-list li.fast-food{background-position:-4px -234px}
 
-li.dinner-wide a{width:242px;height:47px;line-height:47px;background:url(../imgs/usr/bg-jpg.jpg) no-repeat}
-li.dinner-wide a#dinner-snack{background-position:-156px -394px;padding-left:128px;width:114px}
-li.dinner-wide a#dinner-snack:hover{background-position:-156px -441px}
-li.dinner-wide a#dinner-snack.choose{background-position:-156px -488px}
-li.dinner-wide a#dinner-random{background-position:-156px -535px;padding-left:124px;width:118px}
-li.dinner-wide a#dinner-random:hover{background-position:-156px -582px}
-li.dinner-wide a#dinner-random.choose{background-position:-156px -629px}
+div#prompt-info{width:231px;height:40px;text-indent:-9999px;background:url(../imgs/usr/bg-gif.gif) 0 -437px;float:right;position:absolute;margin-left:200px;display:none}
+div#search-bar{width:622px;height:37px;margin-bottom:30px;margin:0 auto}
+div#search-bar-txt{width:517px;height:33px;padding-top:2px;padding-left:2px;border:1px solid #7F2800;border-right:0;background-color:#FFEFC3;float:left}
+div#search-bar-txt input{border:1px solid #D79661;font-size:14px;float:left}
+div#search-bar-txt .txt-city{color:#545454;font-weight:bold;padding:0 5px;width:100px;height:29px;line-height:29px;background:url(../imgs/usr/bg-gif.gif) -390px 0 no-repeat;margin-right:2px;cursor:pointer}
+div#search-bar-txt .txt-address{width:389px;height:29px;line-height:29px;padding:0 5px;background:#FFF url(../imgs/usr/bg-gif.gif) 0 -804px repeat-x;color:#999}
+div#search-bar a{display:block;width:100px;height:35px;line-height:35px;border:1px solid #7F2800;float:right;font-size:0}
 
-div#search-bar{width:503px;height:37px;margin-bottom:30px}
-div#search-bar-txt{width:425px;height:33px !important;padding-top:2px !important;height:34px;padding-top:1px;padding-left:2px;border:1px solid #7F2800;border-right:0;background-color:#FFEFC3;float:left}
-div#search-bar-txt input{border:1px solid #D79661;font-size:14px}
-div#search-bar-txt .txt-city{font-weight:bold;padding:0 5px;width:100px;height:29px;line-height:29px;background:url(../imgs/usr/bg-gif.gif) -390px 0 no-repeat;margin-right:2px;cursor:pointer}
-div#search-bar-txt .txt-address{width:297px;height:29px;line-height:29px;padding:0 5px;background:#FFF url(../imgs/usr/bg-gif.gif) 0 -804px repeat-x}
-div#search-bar a{display:block;width:73px;height:35px;line-height:35px;border:1px solid #7F2800;float:right;font-size:0}
-
-div#slogan-wrapper{width:503px}
-div#slogan-wrapper span{display:block;width:390px;height:68px;background:url(../imgs/usr/bg-gif.gif) 0 -60px no-repeat;text-indent:-9999px;margin:0 auto}
+div#film-wrapper{width:631px;margin:0 auto}
+div#film-wrapper li{width:571px;height:142px}
+div#film-wrapper h1{font-size:16px;font-weight:bold;margin-bottom:25px}
+div#film-wrapper div.slide-pic{height:150px;width:190px;float:left;background:url(../imgs/usr/aboutUs.jpg)}
+div#film-wrapper div.type-choose{background-position:0 -170px}
+div#film-wrapper div.sale-info{background-position:0 -320px}
+div#film-wrapper div.quick-order{background-position:0 -480px}
+div#film-wrapper div.slide-words-wrapper{float:left;padding:40px 25px 0 20px}
+div.toggle a{display:block;width:30px;height:146px;cursor:pointer;background:url(../imgs/usr/bg-gif.gif) no-repeat;text-indent:-9999px}
+div#prevBtn a{background-position:-848px -453px}
+div#prevBtn a:hover{background-position:-877px -453px}
+div#nextBtn a{background-position:-907px -453px}
+div#nextBtn a:hover{background-position:-935px -453px}
 
 /* BEGIN login page */
 div.loginreg-cnt-wrapper{padding:30px 0 30px 30px}
@@ -167,7 +166,7 @@ div#cnt-wrapper div.rest-list-wrapper{border:1px solid #CCC;background:#FFF;padd
 div.rest-list-wrapper h2{font-weight:bold;margin-bottom:12px}
 div.rest-list-wrapper ul.rest-filter-list{height:24px;line-height:24px;margin-bottom:12px}
 div.rest-list-wrapper ul.rest-filter-list li{float:left;height:24px;line-height:24px;margin-right:5px}
-ul.rest-filter-list a{display:inline-block;color:#000;border:1px solid #C5C5C5;padding:0 22px;height:22px;line-height:22px}
+ul.rest-filter-list a{display:inline-block;color:#000;border:1px solid #C5C5C5;padding:0 22px;height:22px;line-height:22px;cursor:pointer}
 ul.rest-filter-list a:hover{border:2px solid #CD3500;height:20px;line-height:20px;padding:0 21px;text-decoration:none}
 ul.rest-filter-list a.filter-choose{border:2px solid #CD3500;height:20px;line-height:20px;padding:0 21px;background:#FFF url(../imgs/usr/red-tick.gif) right bottom no-repeat}
 div.rest-list-wrapper div.restaurant-count{width:253px;height:40px;line-height:40px;padding-left:20px;background:url(../imgs/usr/bg-gif.gif) -501px 0 no-repeat;margin-left:-21px;margin-bottom:20px}

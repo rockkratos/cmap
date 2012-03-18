@@ -26,6 +26,7 @@ a.common-btn{display:inline-block;height:35px;line-height:35px;text-align:center
 a.default-btn{display:inline-block;height:35px;line-height:35px;text-align:center;border:1px solid #7F2800;background:url(../imgs/usr/bg-gif.gif) 0 -129px repeat-x;color:#FFF;width:134px;font-size:16px;font-weight:bold}
 a.non-bg-btn{display:inline-block;padding:0 20px;height:23px;line-height:23px;text-align:center;color:#CD3500;background-color:#FFEFC3;border:1px solid #D79660;margin:6px 0}
 a.small-btn{padding:0 20px;border:1px solid #802900;background:url(../imgs/usr/bg-gif.gif) -686px -756px no-repeat;height:25px;display:inline-block;;line-height:25px;font-size:14px;font-weight:bold;text-align:center;color:#FFF}
+a.map-search-btn{padding:0 20px;border:1px solid #802900;background:url(../imgs/usr/bg-gif.gif) -686px -756px no-repeat;height:25px;display:inline-block;;line-height:25px;font-size:12px;text-align:center;color:#FFF;cursor:pointer}
 a.common-link{color:#CD3500}
 
 span.ico-login{display:inline-block;width:20px;height:15px;background:url(../imgs/usr/bg-gif.gif) -90px 0 no-repeat;vertical-align:middle}
@@ -43,10 +44,15 @@ span.ico-question{display:inline-block;width:13px;height:13px;background:url(../
 span.ico-answer{display:inline-block;width:13px;height:13px;background:url(../imgs/usr/bg-gif.gif) 0 -339px no-repeat;margin-right:3px}
 /* BEGIN partition */
 div.paging-box{text-align:right}
-div.paging-box a{color:#CD3500;margin-right:5px}
-div.paging-box a.choose{color:#000;font-weight:bold}
 div.paging-box input{border:1px solid #DFDFDF;width:25px;text-align:center;background:url(../imgs/usr/bg-gif.gif) 0 -804px repeat-x}
-div.paging-box a.btn-go{display:inline-block;height:18px;line-height:18px;width:39px;border:1px solid #D79660;text-align:center;margin-bottom:0;background-color:#FFEFC3;font-weight:bold}
+div.paging-box a.btn-go{color:#CD3500;display:inline-block;height:18px;line-height:18px;width:39px;border:1px solid #D79660;text-align:center;margin-bottom:0;background-color:#FFEFC3;font-weight:bold}
+
+.pagination a{color:#CD3500;margin-right:5px}
+.pagination a,.pagination span{padding:0 2px;display:inline-block;margin-right:5px}
+.pagination a:hover{text-decoration:underline}
+.pagination .current{color:#000;font-weight:bold}
+.pagination .current.prev,.pagination .current.next{color:#999}
+.pagination .prev,.pagination .next{background:#FFF;border:0}
 /* END partition */
 
 .txt-wrapper{border:1px solid #D79660;background-color:#FFEFC3;padding:2px !important;height:31px !important;padding:1px 2px 1px 2px;height:33px;display:inline-block}

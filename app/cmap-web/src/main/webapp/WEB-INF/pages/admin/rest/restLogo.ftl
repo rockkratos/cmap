@@ -68,9 +68,11 @@
                 <label>大LOGO上传</label>
                 <input id="bigLogoFile" name="bigLogoFile" type="file" />
             </p>
+            <@sec.authorize url="/adminRestMgr/upload/biglogo/{id}" method="POST">
             <p>
             	<a id="btnBigLogo" href="javascript:void(0);" class="button">上传大LOGO</a>
             </p>
+            </@sec.authorize>
         </div>
         
         <div class="column-right">
@@ -86,9 +88,11 @@
                 <label>小LOGO上传</label>
                 <input id="smallLogoFile" name="smallLogoFile" type="file" />
             </p>
+            <@sec.authorize url="/adminRestMgr/upload/smalllogo/{id}" method="POST">
             <p>
             	<a id="btnSmallLogo" href="javascript:void(0);" class="button">上传小LOGO</a>
             </p>
+            </@sec.authorize>
         </div>
         
     </div>
@@ -112,6 +116,11 @@ $("#dishMgrLink").click(function() { cmap.flushMainContent('${rc.contextPath}/ad
 $("#restInfoLink").click(function() { $("#menuRestMgr").click(); });
 </@sec.authorize>
 
+<@sec.authorize url="/adminRestMgr/upload/biglogo/{id}" method="POST">
 $("#btnBigLogo").click(function() { cmap.uploadPic('${rc.contextPath}/adminRestMgr/upload/biglogo/${restId}', 'bigLogoFile', 'topHint', 'resetBtn', 'bigLogo') });
+</@sec.authorize>
+
+<@sec.authorize url="/adminRestMgr/upload/smalllogo/{id}" method="POST">
 $("#btnSmallLogo").click(function() { cmap.uploadPic('${rc.contextPath}/adminRestMgr/upload/smalllogo/${restId}', 'smallLogoFile', 'topHint', 'resetBtn', 'smallLogo') });
+</@sec.authorize>
 </script>

@@ -7,5 +7,6 @@
 	<url pattern="/adminUsrTypeRole/[0-9]{1}" access="ONLY_AUTHENTICATED" />
 	<url pattern="/admin.*Count" access="ONLY_AUTHENTICATED" />
 	<url pattern="/admin.*" access="IS_AUTHENTICATED" />
+	<url pattern="/.*" access="IS_ANONYMOUS" />
 	
 </url-list>
