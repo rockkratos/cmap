@@ -224,7 +224,7 @@ public class RestInfoVo implements Serializable {
 	}
 
 	public void setTakeAwayDesc(String takeAwayDesc) {
-		this.takeAwayDesc = takeAwayDesc.trim();
+		this.takeAwayDesc = (null == takeAwayDesc) ? null : takeAwayDesc.trim();
 	}
 
 	public String getRestPhone() {

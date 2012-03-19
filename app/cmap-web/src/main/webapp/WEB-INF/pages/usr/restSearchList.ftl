@@ -8,7 +8,7 @@
 <script type="text/javascript" language="javascript" src="${rc.contextPath}/js/jquery.form.js"></script>
 <script type="text/javascript" language="javascript">
 $(document).ready(function(){
-	cmap.searchRestListInit();
+	cmap.searchRestListInit('searchRestListForm', '${rc.contextPath}/rest/count', 'Pagination', 'restCountShow');
 	cmap.initPagination('Pagination', ${restCount}, 9);
 });
 
@@ -56,25 +56,27 @@ function pageselectCallback(pageIndex, jq) {
 			</ul>
 			
 			<div class="restaurant-count">
-				共搜索到&nbsp;<span>${restCount}</span>&nbsp;家餐馆
+				共搜索到&nbsp;<span id="restCountShow">${restCount}</span>&nbsp;家餐馆
 			</div>
 			
-			<ul id="restList" class="rest-list">
-				<li>&nbsp;</li>
-				<li>&nbsp;</li>
-				<li class="last">&nbsp;</li>
-				<li>&nbsp;</li>
-				<li>&nbsp;</li>
-				<li class="last">&nbsp;</li>
-				<li>&nbsp;</li>
-				<li>&nbsp;</li>
-				<li class="last">&nbsp;</li>
-			</ul>
+			<div class="h549">
+				<ul id="restList" class="rest-list">
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li class="last">&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li class="last">&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li class="last">&nbsp;</li>
+				</ul>
+			</div>
 			
 			<div class="paging-box">
 				<span id="Pagination" class="pagination"></span>
-				到第 <input type="text" maxlength="3" /> 页
-				<a href="#" class="btn-go">GO</a>
+				到第 <input id="pageNum" type="text" maxlength="3" /> 页
+				<a id="btnGo" href="#" class="btn-go">GO</a>
 			</div>
 			
 		</div> <!-- END rest-list-wrapper -->
@@ -92,6 +94,14 @@ function pageselectCallback(pageIndex, jq) {
 	<input type="hidden" name="cityId" id="cityId" value="${restSearchFormVo.cityId}" />
 	<input type="hidden" name="customerLng" id="customerLng" value="${restSearchFormVo.customerLng}" />
 	<input type="hidden" name="customerLat" id="customerLat" value="${restSearchFormVo.customerLat}" />
+</form>
+
+<form id="detailParamsForm" name="detailParamsForm" method="post" action="${rc.contextPath}/detail">
+	<input type="hidden" name="customerLng" id="customerLng" value="${restSearchFormVo.customerLng}" />
+	<input type="hidden" name="customerLat" id="customerLat" value="${restSearchFormVo.customerLat}" />
+	<input type="hidden" name="customerAddr" value="${restSearchFormVo.customerAddr}" />
+	<input id="restId" name="restId" type="hidden" />
+	<input id="btnSubmit" type="submit" />	
 </form>
 
 </body>

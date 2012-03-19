@@ -2,6 +2,35 @@ var defaultSearchTxt = "请输入你所在的楼盘/小区/写字楼，如：南
 var myVal, map, mark, infoWindow, cnt;
 var cmap = {
 	
+	isNumber: function (e) {
+		if ($.browser.msie) {
+			if ((event.keyCode > 47) && (event.keyCode < 58) || event.keyCode == 8) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			if ((e.which > 47) && (e.which < 58) || e.which == 8) {
+				return true;
+			} else {
+				return false;
+			}
+        }
+    }, 
+	
+	flushSearchRestList: function(formId, reqUrl, paginationId, showNumId) {
+		var params = $("#" + formId).formSerialize();
+		$.ajax({
+			type: "GET", 
+			url: reqUrl, 
+			data: params, 
+			success: function (msg) {
+				$("#" + showNumId).html(msg);
+				cmap.initPagination(paginationId, parseInt(msg), 9);
+			}
+		});
+	}, 
+	
 	paging: function(formId, reqUrl, pageIndex, listId) {
 		$("#restList").fadeOut("normal", function() {
 			var params = $("#" + formId).formSerialize();
@@ -17,6 +46,18 @@ var cmap = {
 		});
 	}, 
 	
+	goBtnPagination: function (paginationId, maxItemNum, pageShowNum, currentPage) {
+		$("#" + paginationId).pagination(maxItemNum, {
+			callback: pageselectCallback, 
+			prev_text: '&lt;&lt;', 
+			next_text: '&gt;&gt;', 
+			num_display_entries: 4, 
+			num_edge_entries: 1, 
+			items_per_page: pageShowNum, 
+			current_page: currentPage
+		}); 
+	}, 
+	
 	initPagination: function (paginationId, maxItemNum, pageShowNum) {
 		$("#" + paginationId).pagination(maxItemNum, {
 			callback: pageselectCallback, 
@@ -28,12 +69,13 @@ var cmap = {
 		}); 
 	}, 
 	
-	searchRestListInit: function() {
+	searchRestListInit: function(formId, reqUrl, paginationId, showNumId) {
 		$("#restFarAway a").each(function(i) {
 			$(this).click(function() {
 				$("#restFarAway a.filter-choose").removeClass("filter-choose");
 				$(this).addClass("filter-choose");
 				$("#restFarWayId").val(i);
+				cmap.flushSearchRestList(formId, reqUrl, paginationId, showNumId);
 			});
 		});
 		
@@ -42,7 +84,27 @@ var cmap = {
 				$("#cookingType a.filter-choose").removeClass("filter-choose");
 				$(this).addClass("filter-choose");
 				$("#cookingTypeId").val(i);
+				cmap.flushSearchRestList(formId, reqUrl, paginationId, showNumId);
 			});
+		});
+		
+		$("#pageNum").keypress(function(event) {
+			return cmap.isNumber(event);
+		});
+		
+		$("#btnGo").click(function() {
+			var count = parseInt($("#restCountShow").html());
+			var re = /^\d{1,3}$/;
+			var pageNum = $("#pageNum").val();
+			var pageTotalNum = Math.ceil(count / 9);
+			if (re.test(pageNum)) {
+				if (pageNum > pageTotalNum) {
+					$("#pageNum").val(pageTotalNum);
+					cmap.goBtnPagination('Pagination', count, 9, pageTotalNum - 1);
+				} else {
+					cmap.goBtnPagination('Pagination', count, 9, pageNum - 1);
+				}
+			}
 		});
 	}, 
 	
@@ -180,7 +242,7 @@ var cmap = {
 		$("#customerLng").val(mark.getPosition().lng);
 		$("#customerLat").val(mark.getPosition().lat);
 		$("#customerAddr").val($("#my-local").text());
-		idxForm.submit();
+		$("#btnSubmit").click();
 	}
 	
 };	

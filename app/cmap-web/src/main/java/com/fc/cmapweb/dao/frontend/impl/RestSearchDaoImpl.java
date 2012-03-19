@@ -5,18 +5,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
 import com.fc.cmapweb.dao.CmapBaseDao;
-import com.fc.cmapweb.dao.frontend.IRestDao;
+import com.fc.cmapweb.dao.frontend.IRestSearchDao;
 import com.fc.cmapweb.utils.CmapValues;
+import com.fc.cmapweb.vo.DishInfoVo;
 import com.fc.cmapweb.vo.RestInfoVo;
 import com.fc.cmapweb.web.form.RestSearchFormVo;
 
-@Repository("usrRestDao")
-public class RestDaoImpl extends CmapBaseDao implements IRestDao {
-
+@Repository("restSearchDao")
+public class RestSearchDaoImpl extends CmapBaseDao implements IRestSearchDao {
+	
+	@Override
+	public List<DishInfoVo> getAllDishByRestId(String restId) {
+		
+		StringBuilder jpql = new StringBuilder();
+		jpql.append("SELECT di FROM DishInfoVo di ");
+		jpql.append("WHERE di.dishEnabled = true AND di.dishSortVo.dishSortEnabled = true ");
+		jpql.append("AND di.dishSortVo.restInfoVo.restId = ? ORDER BY di.dishSortVo.dishSortOrder");
+		
+		TypedQuery<DishInfoVo> tq = em.createQuery(jpql.toString(), DishInfoVo.class);
+		tq.setParameter(1, restId);
+		
+		return tq.getResultList();
+		
+	}
+	
 	@Override
 	public int getRestCount(RestSearchFormVo restSearchFormVo) {
 		
@@ -26,7 +43,7 @@ public class RestDaoImpl extends CmapBaseDao implements IRestDao {
 		buffer.append("WHERE enabled = true ");
 		buffer.append("AND (NOW() BETWEEN rest_start_time AND rest_end_time) ");
 		buffer.append("AND city_id = ? ");
-		buffer.append("AND GETDISTANCE(rest_lng, rest_lat, " + restSearchFormVo.getCustomerLng() + ", " + restSearchFormVo.getCustomerLat() + ") <= take_away_radius * 1000 ");
+//		buffer.append("AND GETDISTANCE(rest_lng, rest_lat, " + restSearchFormVo.getCustomerLng() + ", " + restSearchFormVo.getCustomerLat() + ") <= take_away_radius * 1000 ");
 		
 		switch (restSearchFormVo.getRestFarAway()) {
 		case CmapValues.REST_FAR_AWAY_HALF_KM: 
@@ -53,15 +70,15 @@ public class RestDaoImpl extends CmapBaseDao implements IRestDao {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<RestInfoVo> getRest(RestSearchFormVo restSearchFormVo) {
+	public List<RestInfoVo> getRest(RestSearchFormVo restSearchFormVo, int currentPage, int pageSize) {
 		
 		List<RestInfoVo> back = new ArrayList<RestInfoVo>();
 		
 		StringBuilder buffer = new StringBuilder();
 		buffer.append("SELECT rest_id, ");
 		buffer.append("rest_name, ");
-		buffer.append("SUBSTRING(rest_open_time FROM '^..') || ':' || SUBSTRING(rest_open_time FROM '..$'), ");
-		buffer.append("SUBSTRING(rest_close_time FROM '^..') || ':' || SUBSTRING(rest_close_time FROM '..$'), ");
+		buffer.append("SUBSTRING(rest_open_time FROM '^..') || ':' || SUBSTRING(rest_open_time FROM '..$') AS open_time, ");
+		buffer.append("SUBSTRING(rest_close_time FROM '^..') || ':' || SUBSTRING(rest_close_time FROM '..$') AS close_time, ");
 		buffer.append("sending_amount, ");
 		buffer.append("take_away_fee, ");
 		buffer.append("take_away_desc, ");
@@ -76,17 +93,19 @@ public class RestDaoImpl extends CmapBaseDao implements IRestDao {
 		buffer.append("WHERE enabled = true ");
 		buffer.append("AND (NOW() BETWEEN rest_start_time AND rest_end_time) ");
 		buffer.append("AND city_id = ? ");
-		buffer.append("AND GETDISTANCE(rest_lng, rest_lat, " + restSearchFormVo.getCustomerLng() + ", " + restSearchFormVo.getCustomerLat() + ") <= take_away_radius * 1000 ");
+//		buffer.append("AND GETDISTANCE(rest_lng, rest_lat, " + restSearchFormVo.getCustomerLng() + ", " + restSearchFormVo.getCustomerLat() + ") <= take_away_radius * 1000 ");
 		
 		if (restSearchFormVo.getCookingTypeId() != 0) {
 			buffer.append("AND cooking_type_id = " + restSearchFormVo.getCookingTypeId());
 		}
 		
+		buffer.append("ORDER BY rest_signed DESC, rest_name ASC");
+		
 		Query q = em.createNativeQuery(buffer.toString());
 		q.setParameter(1, restSearchFormVo.getNowTime());
 		q.setParameter(2, restSearchFormVo.getCityId());
 		
-		List<Object[]> list = q.getResultList();
+		List<Object[]> list = q.setFirstResult(currentPage * pageSize).setMaxResults(pageSize).getResultList();
 		
 		for (Object[] tmp : list) {
 			

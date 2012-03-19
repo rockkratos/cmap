@@ -131,6 +131,8 @@ $(document).ready(function(){
 	<input type="hidden" id="cityId" name="cityId" value="21" />
 	</@spring.bind>
 	
+	<input id="btnSubmit" type="submit" class="dn" />
+	
 </form>
 
 </body>

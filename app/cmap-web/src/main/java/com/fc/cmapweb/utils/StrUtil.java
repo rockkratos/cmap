@@ -14,6 +14,11 @@ import com.alibaba.fastjson.JSON;
 
 public class StrUtil {
 	
+	public static String getRestPhoneNbr(String phoneNbr) {
+		String prefix = PropUtil.getPolicy("prefix.400");
+		return phoneNbr.length() == 4 ? prefix + phoneNbr : phoneNbr;
+	}
+	
 	public static String getEncodeStr(String str) {
 		
 		String back = "";

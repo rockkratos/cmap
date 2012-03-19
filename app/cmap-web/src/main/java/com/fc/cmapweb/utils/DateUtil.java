@@ -7,6 +7,10 @@ import java.util.Date;
 
 public class DateUtil {
 	
+	public static String formatTimeStr(String hhmm) {
+		return hhmm.substring(0, 2) + ":" + hhmm.substring(2);
+	}
+	
 	public static Date getDateObj(String dateStr, String pattern) {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);

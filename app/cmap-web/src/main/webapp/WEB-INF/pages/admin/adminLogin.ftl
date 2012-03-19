@@ -45,7 +45,7 @@
 		<div class="cb"></div>
 		<p>
 			<label>密&nbsp;&nbsp;&nbsp;码</label>
-			<input id="login_usrpwd" name="login_usrpwd" class="text-input" type="password" value="1q2w#E$R" />
+			<input id="login_usrpwd" name="login_usrpwd" class="text-input" type="password" />
 		</p>
 		<div class="cb"></div>
 		<p>

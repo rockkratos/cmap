@@ -1,8 +1,5 @@
 package com.fc.cmapweb.web.usr;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
-import com.fc.cmapweb.mgr.frontend.IRestMgr;
+import com.fc.cmapweb.mgr.frontend.IRestSearchMgr;
 import com.fc.cmapweb.utils.CmapValues;
 import com.fc.cmapweb.utils.DateUtil;
+import com.fc.cmapweb.utils.ParamUtil;
 import com.fc.cmapweb.web.form.RestSearchFormVo;
 
 @Controller
@@ -24,44 +21,38 @@ import com.fc.cmapweb.web.form.RestSearchFormVo;
 public class RestListCtrl {
 
 	@Autowired
-	private IRestMgr usrRestMgr;
+	private IRestSearchMgr usrRestMgr;
 	
 	@RequestMapping(value = "/count", method = RequestMethod.GET)
 	@ResponseBody
 	public String searchRestCount(HttpServletRequest request, Model model) {
 		
-		RestSearchFormVo queryParams = new RestSearchFormVo();
-		queryParams.setCityId(Integer.valueOf(request.getParameter("cityId")));
-		queryParams.setCookingTypeId(Integer.valueOf(request.getParameter("cookingTypeId")));
-		queryParams.setCustomerLng(Double.valueOf(request.getParameter("customerLng")));
-		queryParams.setCustomerLat(Double.valueOf(request.getParameter("customerLat")));
-		queryParams.setNowTime(DateUtil.getCurrentTime("HHmm"));
-		setRestFarAway(queryParams, request.getParameter("restFarWayId"));
-		
+		RestSearchFormVo queryParams = getQueryParams(request);
 		int count = usrRestMgr.searchRestCount(queryParams);
 		
-		Map<String, String> backParams = new HashMap<String, String>();
-		backParams.put("recordCount", String.valueOf(count));
-		
-		return JSON.toJSONString(backParams);
+		return String.valueOf(count);
 		
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String showRestList(@ModelAttribute("idxFormVo") RestSearchFormVo restSearchFormVo, Model model) {
 		
-		model.addAttribute("restList", usrRestMgr.searchRest(restSearchFormVo));
-//		model.addAttribute("cookingType", restSearchFormVo.getCookingTypeId());
 		model.addAttribute("restCount", usrRestMgr.searchRestCount(restSearchFormVo));
-//		model.addAttribute("customerAddr", restSearchFormVo.getCustomerAddr());
 		model.addAttribute("restSearchFormVo", restSearchFormVo);
 		return "/usr/restSearchList";
 		
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String searchRest() {
+	public String searchRest(HttpServletRequest request, Model model) {
+		
+		int pageIndex = ParamUtil.getCurrentPage(request);
+		
+		RestSearchFormVo queryParams = getQueryParams(request);
+		model.addAttribute("restList", usrRestMgr.searchRest(queryParams, pageIndex, CmapValues.SEARCH_REST_PAGE_SIZE));
+		
 		return "/usr/restSearchResult";
+		
 	}
 	
 	private void setRestFarAway(RestSearchFormVo restSearchFormVo, String restFarAway) {
@@ -78,6 +69,21 @@ public class RestListCtrl {
 		case CmapValues.REST_FAR_AWAY_2KM:
 			restSearchFormVo.setRestFarAway(2000);
 		}
+		
+	}
+	
+	private RestSearchFormVo getQueryParams(HttpServletRequest request) {
+		
+		RestSearchFormVo queryParams = new RestSearchFormVo();
+		
+		queryParams.setCityId(Integer.valueOf(request.getParameter("cityId")));
+		queryParams.setCookingTypeId(Integer.valueOf(request.getParameter("cookingTypeId")));
+		queryParams.setCustomerLng(Double.valueOf(request.getParameter("customerLng")));
+		queryParams.setCustomerLat(Double.valueOf(request.getParameter("customerLat")));
+		queryParams.setNowTime(DateUtil.getCurrentTime("HHmm"));
+		setRestFarAway(queryParams, request.getParameter("restFarWayId"));
+		
+		return queryParams;
 		
 	}
 	

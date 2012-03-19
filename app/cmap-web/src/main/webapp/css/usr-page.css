@@ -176,7 +176,7 @@ div.rest-list-wrapper ul.rest-list a{width:262px;height:122px;cursor:pointer;bac
 div.rest-list-wrapper ul.rest-list a:hover{background-position:-501px -203px;text-decoration:none}
 div.rest-list-wrapper ul.rest-list div.rest-pic-wrapper{width:118px;height:118px;border:1px solid #DDD;background-color:#FFF;float:left;padding:0;margin:0}
 div.rest-list-wrapper ul.rest-list ul.rest-detail-list{float:right;padding-top:3px}
-div.rest-list-wrapper ul.rest-list ul.rest-detail-list li{width:125px;height:13px;margin:0 0 12px 0;clear:both}
+div.rest-list-wrapper ul.rest-list ul.rest-detail-list li{width:128px;height:13px;margin:0 0 12px 0;clear:both}
 div.rest-list-wrapper ul.rest-list ul.rest-detail-list h3{font-size:14px;font-weight:bold;line-height:15px}
 div.rest-list-wrapper ul.rest-list a.closed{color:#999}
 div.rest-list-wrapper ul.rest-list a.closed:hover{background-position:-501px -365px}
@@ -242,14 +242,12 @@ div#wood-wrapper #nextBtn{margin-left:640px}
 div#wood-wrapper #prevBtn a,div#wood-wrapper #nextBtn a{display:block;width:16px;height:16px;background:url(../imgs/usr/bg-gif.gif) -206px 0 no-repeat;text-indent:-9999px}
 div#wood-wrapper #nextBtn a{background:url(../imgs/usr/bg-gif.gif) -215px 0 no-repeat}
 
-div#wood-wrapper ul.food-sort{width:105px;border-right:1px solid #D4D4D4;padding:8px 0 3px;float:left;height:577px}
-div#wood-wrapper ul.food-sort li{margin-bottom:5px}
-div#wood-wrapper ul.food-sort li a{display:block;width:103px;height:35px;border:1px solid #E5CBA3;border-right:1px solid #D4D4D4;background-color:#FFF9DE;text-align:center;line-height:35px;color:#CD3500;position:relative;right:-1px}
-div#wood-wrapper ul.food-sort li a:hover{width:105px;height:37px;line-height:37px;border:0;background:url(../imgs/usr/bg-gif.gif) -686px -718px no-repeat;color:#FFF;text-decoration:none}
-div#wood-wrapper ul.food-sort li a.choose{width:105px;height:37px;line-height:37px;border:0;color:#FFF;background:url(../imgs/usr/bg-gif.gif) -686px -681px no-repeat}
-div#wood-wrapper div.food-list-wrapper{float:right;height:566px;border:1px solid #D4D4D4;border-left:0;width:545px;padding:10px}
-div#wood-wrapper div.food-list-wrapper h1.food-sort-title{font-size:14px;font-weight:bold;border-bottom:1px solid #F4F4F4;padding-bottom:5px;margin-bottom:5px}
-div#wood-wrapper table.food-list{width:100%;margin-bottom:10px}
+div#wood-wrapper ul.food-sort li{float:left;margin-right:5px}
+div#wood-wrapper ul.food-sort a{display:block;padding:0 10px;height:22px;line-height:22px;border:1px solid #C5C5C5;cursor:pointer;color:#000}
+div#wood-wrapper ul.food-sort a:hover{text-decoration:none;border:2px solid #CD3500;height:20px;line-height:20px;padding:0 9px;}
+div#wood-wrapper div.food-list-wrapper{border:1px solid #D4D4D4;padding:10px;margin-top:40px}
+div#wood-wrapper div.food-list-wrapper h1.food-sort-title{font-size:14px;font-weight:bold;border-bottom:1px solid #F4F4F4;padding-bottom:5px;margin:10px 0 5px}
+div#wood-wrapper table.food-list{width:100%;margin-bottom:40px}
 div#wood-wrapper table.food-list tr{height:50px;line-height:50px}
 div#wood-wrapper table.food-list td{border-bottom:1px dashed #CCC;padding:0 5px}
 div#wood-wrapper table.food-list a{display:inline-block;padding:0 10px;height:25px;line-height:25px;border:1px solid #D79660;background-color:#FFEFC3;text-align:center;color:#CD3500;font-weight:bold}
