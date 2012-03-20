@@ -1,3 +1,4 @@
+var clear="imgs/clear.gif"; //path to clear.gif
 var defaultSearchTxt = "请输入你所在的楼盘/小区/写字楼，如：南京路新天地大厦";
 var myVal, map, mark, infoWindow, cnt;
 var cmap = {

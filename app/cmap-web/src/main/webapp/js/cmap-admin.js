@@ -1,3 +1,4 @@
+var clear="../imgs/clear.gif"; //path to clear.gif
 var loadingPanel = '<div class="loading-wrapper"><span>系统处理中...</span></div>';
 
 var cmap = {

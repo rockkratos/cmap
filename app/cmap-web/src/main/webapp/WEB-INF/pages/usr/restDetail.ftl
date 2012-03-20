@@ -70,7 +70,7 @@
 					<#if dishSortList??>
 					<#list dishSortList as tmpDishSort>
 					<li>
-						<a>${tmpDishSort.dishSortName}</a>
+						<a href="#sort${tmpDishSort_index}">${tmpDishSort.dishSortName}</a>
 					</li>
 					</#list>
 					</#if>
@@ -80,14 +80,14 @@
 					
 					<#if dishSortList?? && dishList??>
 					<#list dishSortList as tmpDishSort>
-					<h1 class="food-sort-title">${tmpDishSort.dishSortName}</h1>
+					<h1 class="food-sort-title"><a id="sort${tmpDishSort_index}" name="sort${tmpDishSort_index}"></a>${tmpDishSort.dishSortName}</h1>
 					<table class="food-list">
 						<#list dishList as tmpDish>
 						<#if tmpDishSort.dishSortId == tmpDish.dishSortVo.dishSortId>
 						<tr>
 							<td class="lh15">
-								${tmpDish.dishName}<br />
-								<#if tmpDish.dishDesc??><span>${tmpDish.dishDesc}</span></#if>
+								<span>${tmpDish.dishName}</span>
+								<#if tmpDish.dishDesc??><br /><span>${tmpDish.dishDesc}</span></#if>
 							</td>
 							<td class="tc w100">${tmpDish.dishPrice?string.currency}</td>
 							<td class="tc w50">&nbsp;</td>
@@ -122,51 +122,6 @@
 			
 			<ul class="my-order-list">
 				<li class="bg-order">
-					<span class="del-food">删除</span>
-					<h2>辣翅巨无霸</h2>
-					<div>
-						<span class="unit-price">&yen;195.00</span>
-						<a href="#" class="sub-count">&nbsp;</a><span class="cate-num">1</span><a href="#" class="add-count">&nbsp;</a>
-						<span class="subtotal-price">&yen;15.00</span>
-					</div>
-				</li>
-				<li>
-					<span class="del-food">删除</span>
-					<h2>辣翅巨无霸</h2>
-					<div>
-						<span class="unit-price">&yen;195.00</span>
-						<a href="#" class="sub-count">&nbsp;</a><span class="cate-num">1</span><a href="#" class="add-count">&nbsp;</a>
-						<span class="subtotal-price">&yen;15.00</span>
-					</div>
-				</li>
-				<li class="bg-order">
-					<span class="del-food">删除</span>
-					<h2>辣翅巨无霸</h2>
-					<div>
-						<span class="unit-price">&yen;195.00</span>
-						<a href="#" class="sub-count">&nbsp;</a><span class="cate-num">1</span><a href="#" class="add-count">&nbsp;</a>
-						<span class="subtotal-price">&yen;15.00</span>
-					</div>
-				</li>
-				<li>
-					<span class="del-food">删除</span>
-					<h2>辣翅巨无霸</h2>
-					<div>
-						<span class="unit-price">&yen;195.00</span>
-						<a href="#" class="sub-count">&nbsp;</a><span class="cate-num">1</span><a href="#" class="add-count">&nbsp;</a>
-						<span class="subtotal-price">&yen;15.00</span>
-					</div>
-				</li>
-				<li class="bg-order">
-					<span class="del-food">删除</span>
-					<h2>辣翅巨无霸</h2>
-					<div>
-						<span class="unit-price">&yen;195.00</span>
-						<a href="#" class="sub-count">&nbsp;</a><span class="cate-num">1</span><a href="#" class="add-count">&nbsp;</a>
-						<span class="subtotal-price">&yen;15.00</span>
-					</div>
-				</li>
-				<li>
 					<span class="del-food">删除</span>
 					<h2>辣翅巨无霸</h2>
 					<div>
