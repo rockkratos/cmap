@@ -7,7 +7,7 @@
 <script type="text/javascript" language="javascript" src="${rc.contextPath}/js/jquery.pagination.js"></script>
 <script type="text/javascript" language="javascript" src="${rc.contextPath}/js/jquery.form.js"></script>
 <script type="text/javascript" language="javascript">
-$(document).ready(function(){
+$(document).ready(function() {
 	cmap.searchRestListInit('searchRestListForm', '${rc.contextPath}/rest/count', 'Pagination', 'restCountShow');
 	cmap.initPagination('Pagination', ${restCount}, 9);
 });
@@ -50,6 +50,7 @@ function pageselectCallback(pageIndex, jq) {
 				<li><a>西餐</a></li>
 				<li><a>韩式料理</a></li>
 				<li><a>日式料理</a></li>
+				<li><a>清真</a></li>
 				<li><a>南亚菜</a></li>
 				<li><a>零食/饮料</a></li>
 				<li><a>快餐</a></li>

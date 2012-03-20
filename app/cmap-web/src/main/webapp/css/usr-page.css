@@ -214,9 +214,9 @@ div.rest-list-wrapper div.opt-wrapper{width:300px;margin:0 auto}
 div.rest-list-wrapper div.opt-wrapper li{float:left;margin-bottom:10px}
 
 a.sub-count{display:inline-block;background:#FFF url(../imgs/usr/bg-gif.gif) -174px 0 no-repeat;width:15px;height:15px;line-height:15px}
-a.sub-count:hover{background-position:-174px -30px}
+a.sub-count:hover{background-position:-174px -30px;text-decoration:none}
 a.add-count{display:inline-block;background:#FFF url(../imgs/usr/bg-gif.gif) -174px -15px no-repeat; width:15px;height:15px;line-height:15px}
-a.add-count:hover{background-position:-174px -45px}
+a.add-count:hover{background-position:-174px -45px;text-decoration:none}
 span.cate-num{width:30px;display:inline-block;text-align:center}
 /* END payOff page */
 

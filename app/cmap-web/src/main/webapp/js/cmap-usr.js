@@ -3,6 +3,20 @@ var defaultSearchTxt = "请输入你所在的楼盘/小区/写字楼，如：南
 var myVal, map, mark, infoWindow, cnt;
 var cmap = {
 	
+	formatNumber: function (num, exponent) {
+		if (exponent < 1) return num;
+		var str = num.toString();
+		if (str.indexOf(".") != -1) {
+			if (str.split(".")[1].length >= exponent) {
+				return str;
+			} else {
+				return cmap.formatNumber(str + "0", exponent);
+			}
+		} else {
+			return cmap.formatNumber(str + ".0", exponent);
+		}
+	}, 
+	
 	isNumber: function (e) {
 		if ($.browser.msie) {
 			if ((event.keyCode > 47) && (event.keyCode < 58) || event.keyCode == 8) {
