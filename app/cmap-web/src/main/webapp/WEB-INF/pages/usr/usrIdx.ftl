@@ -48,8 +48,8 @@ $(document).ready(function(){
 			<div class="cb"></div>
 			
 			<div>
-				<span class="lbl where-are-u"></span> <!-- 你在哪儿？ -->
 				<div id="prompt-info">请输入你的大致方位以便地图搜索</div>
+				<span class="lbl where-are-u"></span> <!-- 你在哪儿？ -->
 			</div>
 			
 			<div id="search-bar">

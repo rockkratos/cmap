@@ -15,8 +15,10 @@
 		<ul class="rest-detail-list">
 			<li class="tc"><h3 title="${tmpRest.restName}"><#if (tmpRest.restName?length > 7)>${tmpRest.restName?substring(0, 7)}...<#else>${tmpRest.restName}</#if></h3></li>
 			<li>送餐时间：${tmpRest.restOpenTime}-${tmpRest.restCloseTime}</li>
+			<!--
 			<li>起送价格：${tmpRest.sendingAmount?string.currency}</li>
 			<li>送餐费用：<#if tmpRest.takeAwayFee == 0>--<#else>${tmpRest.takeAwayFee?string.currency}</#if></li>
+			-->
 			<li>送餐半径：${tmpRest.takeAwayRadius}km</li>
 		</ul>
 	</a>

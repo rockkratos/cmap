@@ -35,7 +35,7 @@ public class RestListCtrl {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String showRestList(@ModelAttribute("idxFormVo") RestSearchFormVo restSearchFormVo, Model model) {
+	public String showRestList(@ModelAttribute("restSearchForm") RestSearchFormVo restSearchFormVo, Model model) {
 		
 		model.addAttribute("restCount", usrRestMgr.searchRestCount(restSearchFormVo));
 		model.addAttribute("restSearchFormVo", restSearchFormVo);

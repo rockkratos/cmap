@@ -142,7 +142,7 @@ $(document).ready(function() {
 		<h1 class="current-addr">
 			<span class="ico-pin"></span>
 			<span class="addr-desp">${customerAddr}</span>
-			<a href="${rc.contextPath}">重选地点</a>
+			<a href="/${rc.contextPath}">重选地点</a>
 		</h1>
 		
 		<div class="step-wrapper first-wrapper">
@@ -174,12 +174,14 @@ $(document).ready(function() {
 					<li>
 						送餐时间：${restInfo.restOpenTime}&nbsp;-&nbsp;${restInfo.restCloseTime}
 					</li>
+					<!--
 					<li>
 						起送金额：<span class="deliver-fee">${restInfo.sendingAmount?string.currency}</span>&nbsp;起送
 					</li>
 					<li>
 						送餐费用：${restInfo.takeAwayFee?string.currency}<#if restInfo.takeAwayDesc??>&nbsp;/&nbsp;<span class="fb">3km</span>内免费</#if>
 					</li>
+					-->
 				</ul>
 				
 				<div class="contact-wrapper">
@@ -200,6 +202,8 @@ $(document).ready(function() {
 					</#list>
 					</#if>
 				</ul>
+				
+				<div class="cb"></div>
 				
 				<div class="food-list-wrapper"> <!-- BEGIN food-list-wrapper -->
 					
@@ -261,6 +265,9 @@ $(document).ready(function() {
 			</ul>
 			
 			<a href="#" class="small-btn">打电话</a>
+			
+			<p style="font-size:14px;color:#802900;text-align:center;margin-bottom:5px">本站试运营阶段支持免费电话订餐</p>
+			<p style="font-size:14px;color:#802900;text-align:center;margin-bottom:10px">近期将开放注册，提供在线下单功能。</p>
 			
 			<div class="fold-box">
 				<a id="linkCloseOrder" href="javascript:void(0);" class="dn">

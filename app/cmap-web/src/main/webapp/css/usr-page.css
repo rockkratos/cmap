@@ -242,10 +242,10 @@ div#wood-wrapper #nextBtn{margin-left:640px}
 div#wood-wrapper #prevBtn a,div#wood-wrapper #nextBtn a{display:block;width:16px;height:16px;background:url(../imgs/usr/bg-gif.gif) -206px 0 no-repeat;text-indent:-9999px}
 div#wood-wrapper #nextBtn a{background:url(../imgs/usr/bg-gif.gif) -215px 0 no-repeat}
 
-div#wood-wrapper ul.food-sort li{float:left;margin-right:5px}
+div#wood-wrapper ul.food-sort li{float:left;margin:0 5px 5px 0}
 div#wood-wrapper ul.food-sort a{display:inline-block;padding:0 10px;height:22px;line-height:22px;border:1px solid #C5C5C5;cursor:pointer;color:#000}
 div#wood-wrapper ul.food-sort a:hover{text-decoration:none;border:2px solid #CD3500;height:20px;line-height:20px;padding:0 9px;}
-div#wood-wrapper div.food-list-wrapper{border:1px solid #D4D4D4;padding:10px;margin-top:40px}
+div#wood-wrapper div.food-list-wrapper{border:1px solid #D4D4D4;padding:10px;margin-top:10px}
 div#wood-wrapper div.food-list-wrapper h1.food-sort-title{font-size:14px;font-weight:bold;border-bottom:1px solid #F4F4F4;padding-bottom:5px;margin:10px 0 5px}
 div#wood-wrapper table.food-list{width:100%;margin-bottom:40px}
 div#wood-wrapper table.food-list tr{height:50px;line-height:50px}

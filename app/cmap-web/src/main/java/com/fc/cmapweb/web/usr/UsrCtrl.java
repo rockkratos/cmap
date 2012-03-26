@@ -11,7 +11,7 @@ import com.fc.cmapweb.web.form.RestSearchFormVo;
 @RequestMapping("/")
 public class UsrCtrl {
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String showLogin(Model model) {
 		return null;
 	}

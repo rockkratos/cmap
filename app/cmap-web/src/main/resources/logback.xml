@@ -85,11 +85,9 @@
 	
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />
-		<!-- 
 		<appender-ref ref="LOGFILE" />
 		<appender-ref ref="FILE-ERROR" />
 		<appender-ref ref="FILE-EXCEPTION" />
-		 -->
 	</root>
 	
 </configuration>

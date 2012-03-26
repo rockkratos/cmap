@@ -29,7 +29,7 @@ function pageselectCallback(pageIndex, jq) {
 		<h1 class="current-addr">
 			<span class="ico-pin">&nbsp;</span>
 			<span class="addr-desp">${restSearchFormVo.customerAddr}</span>
-			<a href="${rc.contextPath}">重选地点</a>
+			<a href="/${rc.contextPath}">重选地点</a>
 		</h1>
 		
 		<div class="rest-list-wrapper"> <!-- BEGIN rest-list-wrapper -->

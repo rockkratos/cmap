@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import com.fc.cmapweb.dao.CmapBaseDao;
 import com.fc.cmapweb.dao.frontend.IRestSearchDao;
-import com.fc.cmapweb.utils.CmapValues;
 import com.fc.cmapweb.vo.DishInfoVo;
 import com.fc.cmapweb.vo.RestInfoVo;
 import com.fc.cmapweb.web.form.RestSearchFormVo;
@@ -43,19 +42,23 @@ public class RestSearchDaoImpl extends CmapBaseDao implements IRestSearchDao {
 		buffer.append("WHERE enabled = true ");
 		buffer.append("AND (NOW() BETWEEN rest_start_time AND rest_end_time) ");
 		buffer.append("AND city_id = ? ");
-//		buffer.append("AND GETDISTANCE(rest_lng, rest_lat, " + restSearchFormVo.getCustomerLng() + ", " + restSearchFormVo.getCustomerLat() + ") <= take_away_radius * 1000 ");
+		buffer.append("AND GETDISTANCE(rest_lng, rest_lat, " + restSearchFormVo.getCustomerLng() + ", " + restSearchFormVo.getCustomerLat() + ") <= take_away_radius * 1000 ");
 		
-		switch (restSearchFormVo.getRestFarAway()) {
-		case CmapValues.REST_FAR_AWAY_HALF_KM: 
-			buffer.append("AND GETDISTANCE(rest_lng, rest_lat, " + restSearchFormVo.getCustomerLng() + ", " + restSearchFormVo.getCustomerLat() + ") <= 500 ");
-			break;
-		case CmapValues.REST_FAR_AWAY_1KM: 
-			buffer.append("AND GETDISTANCE(rest_lng, rest_lat, " + restSearchFormVo.getCustomerLng() + ", " + restSearchFormVo.getCustomerLat() + ") <= 1000 ");
-			break;
-		case CmapValues.REST_FAR_AWAY_2KM:
-			buffer.append("AND GETDISTANCE(rest_lng, rest_lat, " + restSearchFormVo.getCustomerLng() + ", " + restSearchFormVo.getCustomerLat() + ") <= 2000 ");
-			break;
+		if (restSearchFormVo.getRestFarAway() != 0) {
+			buffer.append("AND GETDISTANCE(rest_lng, rest_lat, " + restSearchFormVo.getCustomerLng() + ", " + restSearchFormVo.getCustomerLat() + ") <= " + restSearchFormVo.getRestFarAway() + " ");
 		}
+		
+//		switch (restSearchFormVo.getRestFarAway()) {
+//		case CmapValues.REST_FAR_AWAY_HALF_KM: 
+//			buffer.append("AND GETDISTANCE(rest_lng, rest_lat, " + restSearchFormVo.getCustomerLng() + ", " + restSearchFormVo.getCustomerLat() + ") <= 500 ");
+//			break;
+//		case CmapValues.REST_FAR_AWAY_1KM: 
+//			buffer.append("AND GETDISTANCE(rest_lng, rest_lat, " + restSearchFormVo.getCustomerLng() + ", " + restSearchFormVo.getCustomerLat() + ") <= 1000 ");
+//			break;
+//		case CmapValues.REST_FAR_AWAY_2KM: 
+//			buffer.append("AND GETDISTANCE(rest_lng, rest_lat, " + restSearchFormVo.getCustomerLng() + ", " + restSearchFormVo.getCustomerLat() + ") <= 2000 ");
+//			break;
+//		}
 		
 		if (restSearchFormVo.getCookingTypeId() != 0) {
 			buffer.append("AND cooking_type_id = " + restSearchFormVo.getCookingTypeId());
@@ -93,7 +96,11 @@ public class RestSearchDaoImpl extends CmapBaseDao implements IRestSearchDao {
 		buffer.append("WHERE enabled = true ");
 		buffer.append("AND (NOW() BETWEEN rest_start_time AND rest_end_time) ");
 		buffer.append("AND city_id = ? ");
-//		buffer.append("AND GETDISTANCE(rest_lng, rest_lat, " + restSearchFormVo.getCustomerLng() + ", " + restSearchFormVo.getCustomerLat() + ") <= take_away_radius * 1000 ");
+		buffer.append("AND GETDISTANCE(rest_lng, rest_lat, " + restSearchFormVo.getCustomerLng() + ", " + restSearchFormVo.getCustomerLat() + ") <= take_away_radius * 1000 ");
+		
+		if (restSearchFormVo.getRestFarAway() != 0) {
+			buffer.append("AND GETDISTANCE(rest_lng, rest_lat, " + restSearchFormVo.getCustomerLng() + ", " + restSearchFormVo.getCustomerLat() + ") <= " + restSearchFormVo.getRestFarAway() + " ");
+		}
 		
 		if (restSearchFormVo.getCookingTypeId() != 0) {
 			buffer.append("AND cooking_type_id = " + restSearchFormVo.getCookingTypeId());
