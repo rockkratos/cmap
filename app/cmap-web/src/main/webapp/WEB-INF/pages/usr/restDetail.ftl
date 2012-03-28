@@ -155,9 +155,15 @@ $(document).ready(function() {
 			
 			<span class="rest-logo">
 				<ul>
+					<#if restInfo.smallLogoName??>
+					<li class="mb10">
+						<img src="${rc.contextPath}/imgs/restlogo/${restInfo.smallLogoName}" />
+					</li>
+					<#else>
 					<li class="mb10">
 						<img src="${rc.contextPath}/imgs/restlogo/logos.gif" />
 					</li>
+					</#if>
 				</ul>
 			</span>
 			
@@ -250,19 +256,7 @@ $(document).ready(function() {
 				<span class="fc-orange">&yen;0.00</span>
 			</p>
 			
-			<ul class="my-order-list">
-				<!--
-				<li class="bg-order">
-					<span class="del-food">删除</span>
-					<h2>辣翅巨无霸</h2>
-					<div>
-						<span class="unit-price">&yen;195.00</span>
-						<a href="#" class="sub-count">&nbsp;</a><span class="cate-num">1</span><a href="#" class="add-count">&nbsp;</a>
-						<span class="subtotal-price">&yen;15.00</span>
-					</div>
-				</li>
-				-->
-			</ul>
+			<ul class="my-order-list"></ul>
 			
 			<a href="#" class="small-btn">打电话</a>
 			

@@ -14,6 +14,7 @@ import com.fc.cmapweb.mgr.rest.IRestMgr;
 import com.fc.cmapweb.utils.DateUtil;
 import com.fc.cmapweb.utils.PaginationUtil;
 import com.fc.cmapweb.utils.ReflectUtil;
+import com.fc.cmapweb.utils.StrUtil;
 import com.fc.cmapweb.vo.DishSortVo;
 import com.fc.cmapweb.vo.RestInfoVo;
 
@@ -76,6 +77,10 @@ public class RestMgrImpl implements IRestMgr {
 				
 			}
 			
+		}
+		
+		if (StrUtil.isEmpty(tmpRest.getPrintJointNum())) {
+			tmpRest.setPrintJointNum(null);
 		}
 		
 		restDao.updateRest(tmpRest);

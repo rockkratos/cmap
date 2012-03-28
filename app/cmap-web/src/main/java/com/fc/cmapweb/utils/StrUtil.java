@@ -107,9 +107,9 @@ public class StrUtil {
 		
 		String tmpUrl = requestUrl.replaceAll("\\?.*$", "");
 		
-		String[] regex = {".+/[0-9a-zA-Z]{32}/[0-9a-zA-Z]{32}$", ".+/[0-9a-zA-Z]{32}$"};
-		String[] replaceRegex = {"[0-9a-zA-Z]{32}/[0-9a-zA-Z]{32}$", "[0-9a-zA-Z]{32}$"};
-		String[] replaceStr = {"{id}/{id}", "{id}"};
+		String[] regex = {".+/[0-9a-zA-Z]{32}/[0-9a-zA-Z]{32}$", ".+/[0-9a-zA-Z]{32}$", ".+/[0-9]+$"};
+		String[] replaceRegex = {"[0-9a-zA-Z]{32}/[0-9a-zA-Z]{32}$", "[0-9a-zA-Z]{32}$", "[0-9]+$"};
+		String[] replaceStr = {"{id}/{id}", "{id}", "{id}"};
 		
 		for (int i = 0; i < regex.length; i++) {
 			

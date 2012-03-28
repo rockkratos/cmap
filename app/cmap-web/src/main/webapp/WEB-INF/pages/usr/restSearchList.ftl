@@ -10,6 +10,7 @@
 $(document).ready(function() {
 	cmap.searchRestListInit('searchRestListForm', '${rc.contextPath}/rest/count', 'Pagination', 'restCountShow');
 	cmap.initPagination('Pagination', ${restCount}, 9);
+	$($("#cookingType a").get(${cookingTypeId})).addClass("filter-choose");
 });
 
 function pageselectCallback(pageIndex, jq) {
@@ -45,7 +46,7 @@ function pageselectCallback(pageIndex, jq) {
 			
 			<ul id="cookingType" class="rest-filter-list">
 				<li>菜式类别：</li>
-				<li><a class="filter-choose">随便</a></li>
+				<li><a>随便</a></li>
 				<li><a>中餐</a></li>
 				<li><a>西餐</a></li>
 				<li><a>韩式料理</a></li>

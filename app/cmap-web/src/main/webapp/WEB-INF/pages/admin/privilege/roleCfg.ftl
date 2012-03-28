@@ -92,7 +92,7 @@
         		<#list allPrivileges as tmpPrivilege>
 				<li>
 					<input name="setRolePrivilegeId" type="checkbox" value="${tmpPrivilege.privilegeId}" />
-					<span>${tmpPrivilege.privilegeDesc} -- ${tmpPrivilege.privilegeName}</span>
+					<span>${tmpPrivilege.privilegeDesc}</span>
 				</li>
 				</#list>
 			</ul>

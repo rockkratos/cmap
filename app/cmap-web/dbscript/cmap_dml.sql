@@ -58,6 +58,7 @@ INSERT INTO privilege_info VALUES('34941e500a77425e919413690b16f1d3', 'AUTH_ROLE
 INSERT INTO privilege_info VALUES('d70dd60a722a4685b5b0650369f960b5', 'AUTH_ROLE_UPDATE', '/adminRole/edit/{id}', 3, true, '更新角色信息');
 INSERT INTO privilege_info VALUES('70e65ac79eaa4b9f98b4406a2dd3a568', 'AUTH_ROLE_DELETE', '/adminRole/{id}', 4, true, '删除角色');
 
+INSERT INTO privilege_info VALUES('f3a52f20b5d24207a9329e46161cd562', 'AUTH_ROLE_BINDING_SHOW', '/adminUsrTypeRole/{id}', 1, true, '列示已有角色');
 INSERT INTO privilege_info VALUES('bcaac5abc78743a4b05e11baaf165de6', 'AUTH_ROLE_BINDING_UPDATE', '/adminUsrTypeRole/edit/{id}', 3, true, '保存角色绑定');
 
 INSERT INTO privilege_info VALUES('40c93cb5445a4196870437bd7ce1605a', 'AUTH_CUSTOMER_UPDATE', '/adminCustomerMgr/edit/{id}', 3, true, '更新前台用户信息');
@@ -111,6 +112,7 @@ INSERT INTO privilege_info VALUES('32556acdb4d94712bcd9d8fcd8758d17', 'AUTH_SMAL
 
 INSERT INTO role_info VALUES('7a2d19da508943f2a3b253385e2103b0', 'ROLE_SUPER_ADMIN', true, '超级管理员');
 
+INSERT INTO role_privilege VALUES('1b051474d28f4e91a0626c0335962009', 'f3a52f20b5d24207a9329e46161cd562', '7a2d19da508943f2a3b253385e2103b0');
 INSERT INTO role_privilege VALUES('dc220e67de9445708f0f11d917bef7c3', '02de2b5a9e424499bd2e834f95457ab4', '7a2d19da508943f2a3b253385e2103b0');
 INSERT INTO role_privilege VALUES('20a1027852364772b6af249fc311b196', '0b8fab6133f8428fafc352d45b97cc7a', '7a2d19da508943f2a3b253385e2103b0');
 INSERT INTO role_privilege VALUES('da5543b55791454f93fc05292ef0c6f5', '1b848f03ff2f4676a27e485c1ca88caa', '7a2d19da508943f2a3b253385e2103b0');

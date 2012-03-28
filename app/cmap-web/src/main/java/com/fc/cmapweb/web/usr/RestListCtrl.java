@@ -39,6 +39,7 @@ public class RestListCtrl {
 		
 		model.addAttribute("restCount", usrRestMgr.searchRestCount(restSearchFormVo));
 		model.addAttribute("restSearchFormVo", restSearchFormVo);
+		model.addAttribute("cookingTypeId", restSearchFormVo.getCookingTypeId());
 		return "/usr/restSearchList";
 		
 	}
